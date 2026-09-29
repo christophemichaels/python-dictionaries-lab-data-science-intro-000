@@ -743,11 +743,11 @@ We do not claim \eqref{eq:RNasymp} as a theorem: it requires uniform integrabili
 
 \begin{computation}[The M\"obius mean-square constant]\label{comp:constant}
 \begin{enumerate}[label=(\arabic*)]
-\item Zero side. The partial sums of \eqref{eq:CM} over the first $10,100,500,1000,2000$ zeros are $0.02531$, $0.02829$, $0.02881$, $0.02891$, $0.02896$ (heights to $2515$). Under Gonek's conjecture the tail beyond height $T$ is about $2\cdot\frac{3}{\pi^2}/T$, which is $2.4\times10^{-4}$ at $T=2515$, giving
+\item Zero side. The partial sums of \eqref{eq:CM} over the first $10,100,1000,2000,3000,4000$ zeros are $0.02531$, $0.02829$, $0.02891$, $0.02896$, $0.02898$, $0.02899$ (heights to $4506$); the increment per thousand zeros has fallen to $1.2\times10^{-5}$. Under Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^2}T$ the tail beyond height $T$ is about $2\cdot\frac{3}{\pi^2}/T=1.4\times10^{-4}$ at $T=4506$; the observed increments are about a third of what that asymptotic predicts on this range, so we record
 \[
-C_M\approx0.0292.
+C_M\approx0.0290\ \text{to}\ 0.0291.
 \]
-The same zeros give $\sum_{\gamma\le1419}2/|\rho|^2=0.04475$, and adding the tail $\frac1\pi\log(T/2\pi)/T=0.00122$ reproduces Cram\'er's constant $2+\gamma-\log4\pi=0.04619$ to $0.5\%$, which calibrates the zero computation.
+The same zeros give $\sum_{\gamma\le4506}2/|\rho|^2=0.045656$, and adding the tail $\frac1\pi\log(T/2\pi)/T=0.000464$ reproduces Cram\'er's constant $2+\gamma-\log4\pi=0.046191$ to $0.15\%$, which calibrates the zero computation.
 \item Prime side. By Computation~\ref{comp:blocks}(4) the increment of $\int_1^N M(x)^2x^{-2}dx$ per unit of $\log N$ is $0.0300$, $0.0281$, $0.0285$, $0.0299$ on the four successive ranges from $10^4$ to $5\times10^7$, and by Computation~\ref{comp:recon}(3) the mean of $(M/\sqrt x)^2$ over the logarithmic grid is $0.02907$.
 \item The two sides agree to within one percent, at the same level as the corresponding comparison $0.0458$ against $0.0462$ for $\psi$ in \cite[Computation 13.3]{michaels-folds}. The M\"obius constant is smaller than Cram\'er's by the factor $|\zeta'(\rho)|^{-2}$ in each term; the ratio of the two partial sums over the first thousand zeros is $0.65$.
 \item Caveats. The constant is conditional (Theorem~\ref{thm:ng} and the convergence of \eqref{eq:CM}); the cross terms between zeros in the running mean decay only like $1/\log N$, so the slope on individual decades fluctuates by about $\pm4\%$; and, as noted in Computation~\ref{comp:blocks}(4), the ratio $R(N)/\log N$ approaches the same limit only for $\log N\gg40$.
