@@ -1,0 +1,789 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{computation}[theorem]{Computation}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{heuristic}[theorem]{Heuristic}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\DeclareMathOperator{\Ree}{Re}
+\DeclareMathOperator{\Imm}{Im}
+
+\title{\textsc{Prime DNA}\\[1ex]
+\textbf{The Michaels M\"obius Modifier and the Michaels Dynamic DNA Sieve}\\[1ex]
+\large Adaptive arithmetic blocks, exact Green-energy decomposition,\\ and the critical line\\[1ex]
+\normalsize Version 2}
+\author{Christophe Michaels\\ Independent Researcher\\ Houston, Texas}
+\date{September 8, 2026; revised September 29, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formulate a family of compensated modifications of arithmetic coefficients and an adaptive block procedure driven by their prime factorizations. In the historical Green metric with kernel $1/\max(m,n)$, a packet supported on a finite interval is orthogonal to every later coordinate exactly when its coefficient sum vanishes. This observation yields an exact orthogonal decomposition into completed return blocks and a finite unfinished tail. Arbitrary adaptive endpoint compression is treated with a precise reconstruction error, and the interval from $29$ through $35$ supplies a fully evaluated example. The intrinsic analysis uses only block depth, length, location, and signed occupation. We prove telescoping energy bounds, a sharp envelope for unit-step return paths, a logarithmic-coordinate identity, and a weighted signed-work formula. Established oscillation results imply eventual closure of every fixed-baseline M\"obius return block.
+
+This version adds the continuous form of the Green space. The Green energy of any finite vector equals $\int_1^\infty F(x)^2\,dx/x^2$ for its cumulative function $F$, and by Mellin--Plancherel it equals the $L^2\big(dt/(\tfrac14+t^2)\big)$ norm of the associated Dirichlet polynomial on the critical line. For the M\"obius vector this is the Hilbert space of the Nyman--Beurling--B\'aez-Duarte criterion. Consequently the total historical energy $R(N)$ is $O(N^{\varepsilon})$ for every $\varepsilon>0$ if and only if the Riemann Hypothesis holds; a zero of real part $\beta_0>\tfrac12$ forces $R(N)$ above $N^{2\beta_0-1-\delta}$ infinitely often. The native block budget of Theorem~\ref{thm:budget} is therefore an exact, finite, RH-equivalent quantity. We measure the growth of $R(N)$ per unit of $\log N$ to $N=5\times10^7$ against the zero-side constant $\sum_{\gamma>0}2/|\rho\zeta'(\rho)|^2$, tabulate the closure statistics of the dynamic blocks, and reconstruct the longest blocks from the zeros through the explicit formula. Nothing in this paper proves the Riemann Hypothesis. Definitions, finite proofs, computations, and established external theorems are distinguished throughout.
+\end{abstract}
+
+\noindent\emph{Standalone research paper. Companion to} Prime DNA: From Ramanujan Coordinates to Adaptive Return Blocks \emph{and to} Primes, Folds, and the One Dot.
+
+\tableofcontents
+
+\section*{Status conventions}
+A \textbf{Theorem} or \textbf{Proposition} without citation is proved in the text. A statement with a citation is taken from the literature and its hypotheses are stated. A \textbf{Computation} is a numerical result with its range and cross-checks. A \textbf{Heuristic} or \textbf{Remark} makes no mathematical claim. Sections~\ref{sec:coords}--\ref{sec:budget} reproduce the first version with minor corrections; Sections~\ref{sec:continuous}--\ref{sec:tori} are new.
+
+\section{Arithmetic coordinates and the scope of the construction}\label{sec:coords}
+
+The constructions in this paper organize the authentic M\"obius coefficients into finite arithmetic packets. Their defining data are the prime valuations of each integer, the signed sum accumulated since a chosen boundary, and the position of the next return to that boundary level. The resulting blocks have variable lengths. Their interaction is measured throughout in the historical Green metric with kernel $1/\max(m,n)$.
+
+Two objects are distinguished. The \emph{Michaels M\"obius modifier} is a family of explicitly compensated coefficient transformations; its main form moves the signed mass of each block to that block's endpoint. The \emph{Michaels dynamic DNA sieve} is the rule selecting those endpoints by successive zero returns of the valuation-derived signed sum. The modifier acts on a supplied partition, whereas the dynamic rule determines a partition from the arithmetic sequence itself.
+
+Here ``DNA'' denotes the prime-valuation vector
+\begin{equation}
+D(n) = \big(v_p(n)\big)_{p\ \text{prime}}.
+\end{equation}
+It has finite support for each positive integer. Write $\omega(n)=\#\{p : v_p(n)>0\}$, with $\omega(1)=0$. The coefficient extracted from this vector is
+\begin{equation}\label{eq:mu}
+\mu(n)=\begin{cases}1, & n=1,\\ (-1)^{\omega(n)}, & v_p(n)\in\{0,1\}\ \text{for every }p,\\ 0, & v_p(n)\ge2\ \text{for at least one }p.\end{cases}
+\end{equation}
+Thus prime squares determine the zero support, while the parity of the number of distinct prime factors determines the surviving sign. This is the classical M\"obius function \cite{dlmf272}. Set
+\begin{equation}
+M(x)=\sum_{1\le n\le x}\mu(n),\qquad M(0)=0,
+\end{equation}
+where a real endpoint means its integer part.
+
+The names used here identify the particular compensated transformations and adaptive assembly developed in this manuscript. Fundamental factorization, M\"obius inversion, summation by parts, and the use of return excursions are established mathematical tools. Every finite energy statement needed below is proved directly. The only global oscillation input is stated and attributed when it is used to guarantee eventual return. No assertion of historical priority for the underlying tools is made.
+
+The preceding manuscript \cite{michaels-colors} developed prime-color recombination, historical energy, and a global density invariant. The companion continuation \cite{michaels-ramanujan} records the route from Ramanujan coordinates to the present adaptive blocks. The manuscript \cite{michaels-folds} measures the mean square of $(\psi(x)-x)/\sqrt{x}$ and the odd Weil form; Sections~\ref{sec:continuous}--\ref{sec:tori} below connect the present energy to those objects. The present paper is self-contained as a treatment of the modifier and its intrinsic energy geometry.
+
+\section{The historical Green space}\label{sec:green}
+
+Fix an integer $N\ge1$. Let $e_n$ denote the $n$th coordinate vector in $\C^N$. For $f,g\in\C^N$, define
+\begin{equation}\label{eq:green}
+\ip{f}{g}_N=\sum_{m,n\le N}\frac{f(m)\overline{g(n)}}{\max(m,n)},\qquad \|f\|_N^2=\ip{f}{f}_N.
+\end{equation}
+The inner product is linear in the first argument. (For real vectors the conjugate is immaterial, and every vector considered below is real.) Define cumulative coordinates
+\begin{equation}
+F(k)=\sum_{n\le k}f(n),\qquad G(k)=\sum_{n\le k}g(n),\qquad F(0)=G(0)=0.
+\end{equation}
+
+\begin{theorem}[Exact cumulative representation]\label{thm:cumulative}
+For all $f,g\in\C^N$,
+\begin{equation}\label{eq:cumrep}
+\ip{f}{g}_N=\frac{F(N)\overline{G(N)}}{N}+\sum_{k=1}^{N-1}\frac{F(k)\overline{G(k)}}{k(k+1)}.
+\end{equation}
+In particular, \eqref{eq:green} is positive definite. The map
+\begin{equation}
+f\longmapsto\Big(\frac{F(1)}{\sqrt{1\cdot2}},\dots,\frac{F(N-1)}{\sqrt{(N-1)N}},\frac{F(N)}{\sqrt N}\Big)
+\end{equation}
+is an isometric isomorphism onto Euclidean $\C^N$.
+\end{theorem}
+
+\begin{proof}
+For $m,n\le N$, telescoping gives
+\[
+\frac{1}{\max(m,n)}=\frac1N+\sum_{k=\max(m,n)}^{N-1}\frac{1}{k(k+1)}.
+\]
+Insert this identity into \eqref{eq:green} and interchange finite sums. The coefficient of $1/[k(k+1)]$ is $\big(\sum_{m\le k}f(m)\big)\big(\overline{\sum_{n\le k}g(n)}\big)$. This proves \eqref{eq:cumrep}. All weights on its diagonal are positive. If the resulting norm is zero, every $F(k)$ is zero, whence $f(k)=F(k)-F(k-1)=0$. Finally, the cumulative map is triangular with diagonal entries one and is therefore invertible.
+\end{proof}
+
+\begin{corollary}[Compatibility under extension]\label{cor:extension}
+If $f$ and $g$ are supported on $[1,b]$ and $N\ge b$, then their Green inner product has the same value for every such $N$. For the vector $\mu_{\le N}=\sum_{n\le N}\mu(n)e_n$,
+\begin{equation}\label{eq:RN}
+R(N):=\|\mu_{\le N}\|_N^2=\frac{M(N)^2}{N}+\sum_{k<N}\frac{M(k)^2}{k(k+1)}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The kernel entries between fixed coordinates are independent of the ambient cutoff. The formula for $R(N)$ is the preceding theorem with $f=g=\mu_{\le N}$.
+\end{proof}
+
+The endpoint term in \eqref{eq:cumrep} is essential for a vector of nonzero total mass. It disappears for a completed zero-mass block. This distinction is the source of the exact separation between completed blocks and the final unfinished block. Section~\ref{sec:continuous} shows that \eqref{eq:cumrep} is the Riemann sum of $\int_1^\infty F\overline{G}\,dx/x^2$ and identifies its Mellin dual.
+
+\section{A finite exceptional modifier and its compensation}\label{sec:exceptional}
+
+The consecutive prime pair $2,3$ motivates a simple prototype. If two primes differ by one, one is even, so the pair is necessarily $2,3$. Accordingly, for consecutive primes $p<q$, the integer count $q-p-1$ between them is zero exactly at that pair.
+
+\begin{definition}[Exceptional Michaels modifier]
+Define
+\begin{equation}
+\mu_{\mathrm{exc}}(n)=\mu(n)+\mathbf 1_{\{n=2\}}+\mathbf 1_{\{n=3\}}.
+\end{equation}
+Thus $\mu_{\mathrm{exc}}(2)=\mu_{\mathrm{exc}}(3)=0$, and all other coefficients agree with $\mu$.
+\end{definition}
+
+\begin{proposition}[Exact finite compensation]
+For $N\ge3$,
+\begin{equation}\label{eq:exc}
+\mu_{\le N}=(\mu_{\mathrm{exc}})_{\le N}-e_2-e_3,\qquad \|e_2+e_3\|_N^2=\tfrac32.
+\end{equation}
+Consequently, if $R_{\mathrm{exc}}(N)=\|(\mu_{\mathrm{exc}})_{\le N}\|_N^2$, then
+$\big|\sqrt{R_{\mathrm{exc}}(N)}-\sqrt{R(N)}\big|\le\sqrt{3/2}$.
+For $x\ge3$, the modified cumulative sum is $M(x)+2$.
+\end{proposition}
+
+\begin{proof}
+The vector identity follows coefficient by coefficient. The correction energy is $\frac12+\frac13+\frac{2}{\max(2,3)}=\frac32$. Apply the reverse triangle inequality in the positive definite space of the preceding section. The cumulative identity follows by summing the two added coefficients.
+\end{proof}
+
+The prototype is a compensated arithmetic function rather than a new multiplicative inverse. For example, $\mu_{\mathrm{exc}}(2)\mu_{\mathrm{exc}}(5)=0$ while $\mu_{\mathrm{exc}}(10)=1$. If $\mathbf 1(n)=1$ and $\varepsilon(n)=\mathbf 1_{\{n=1\}}$, the classical identity $\mu*\mathbf 1=\varepsilon$ instead becomes
+\begin{equation}
+\mu_{\mathrm{exc}}*\mathbf 1=\varepsilon+\mathbf 1_{\{2\mid n\}}+\mathbf 1_{\{3\mid n\}}.
+\end{equation}
+Here $*$ is Dirichlet convolution, and the right side is understood as an arithmetic function of $n$ \cite{dlmf275}. Formula \eqref{eq:exc} is the exact means of recovering the original coefficients.
+
+The adjacent perfect powers $8=2^3$ and $9=3^2$ require no coefficient correction: both already have M\"obius value zero. Adjacency, square-divisibility, and signed cancellation therefore enter through different explicitly specified parts of the construction.
+
+\subsection{Why the kernel is preserved}
+
+A coefficient modifier can be compensated within a fixed positive metric. Erasing selected cross entries of the metric itself has a different effect.
+
+\begin{proposition}[An adjacency gate can destroy positivity]
+Let $G_{mn}=1/\max(m,n)$ on $\{1,2,3,4\}$, and form $\widetilde G$ by replacing $G_{23}$ and $G_{32}$ by zero while retaining every other entry. Then $\widetilde G$ is not positive semidefinite.
+\end{proposition}
+
+\begin{proof}
+Take $f=(-1,1,1,-1)$. Its cumulative coordinates are $(-1,0,1,0)$, so $f^{\mathsf T}Gf=\frac12+\frac1{12}=\frac7{12}$. The erased entries contribute $2f(2)f(3)/3=\frac23$. Therefore $f^{\mathsf T}\widetilde Gf=\frac7{12}-\frac23=-\frac1{12}$.
+\end{proof}
+
+This example fixes the operator convention for the rest of the paper: every transformation changes coefficients or their organization, and every energy continues to use \eqref{eq:green}.
+
+\section{Adaptive endpoint compression}\label{sec:compression}
+
+Let $0\le a<N$ be integers. A partition of $(a,N]$ is specified by
+\begin{equation}
+\mathcal P:\quad a=t_0<t_1<\dots<t_m=N.
+\end{equation}
+No equality of block lengths is assumed. Put $B_j=(t_{j-1},t_j]$ and $L_j=t_j-t_{j-1}$. A partition may be chosen beforehand or obtained by a rule acting on the coefficients.
+
+\begin{definition}[Endpoint form of the Michaels modifier]
+For a vector $f$ supported on $(a,N]$, define its block masses and endpoint compression by
+\begin{equation}
+b_j(f)=\sum_{t_{j-1}<n\le t_j}f(n),\qquad \mathcal M_{\mathcal P}f=\sum_{j=1}^m b_j(f)\,e_{t_j}.
+\end{equation}
+Its exact residual is $\eta_{\mathcal P}(f)=f-\mathcal M_{\mathcal P}f$. For fixed $\mathcal P$, this defines a linear operator. If $\mathcal P$ is chosen from $f$, the composite adaptive operation need not be linear.
+\end{definition}
+
+\begin{proposition}[Algebraic projection and reconstruction]
+For a fixed partition, $\mathcal M_{\mathcal P}^2=\mathcal M_{\mathcal P}$ and $f=\mathcal M_{\mathcal P}f+\eta_{\mathcal P}(f)$. The range is the span of the endpoint vectors $e_{t_j}$. The kernel consists of vectors whose mass is zero on every block. At each partition endpoint, $\sum_{n\le t_j}\mathcal M_{\mathcal P}f(n)=\sum_{n\le t_j}f(n)$.
+\end{proposition}
+
+\begin{proof}
+An endpoint belongs to its own block and to no other block. Applying the modifier to a vector supported on the endpoints therefore leaves each coefficient unchanged. This proves idempotence and the range assertion. The kernel assertion and the endpoint equality follow by summing the block masses. Reconstruction is the definition of the residual.
+\end{proof}
+
+The word ``projection'' in this proposition is algebraic. It generally does not mean an orthogonal projection in the Green metric. For example, with partition $0<1<3$ and $f=e_1+e_2$, one has $\mathcal M_{\mathcal P}f=e_1+e_3$, $\eta_{\mathcal P}(f)=e_2-e_3$, and $\ip{e_2-e_3}{e_1+e_3}_3=\frac16$. The exact residual must therefore be retained whenever an energy is reconstructed.
+
+\begin{theorem}[Exact compression error]\label{thm:compression}
+Define the local prefix within $B_j$ by $S_j(k)=\sum_{t_{j-1}<n\le k}f(n)$ for $t_{j-1}\le k<t_j$. Then
+\begin{equation}\label{eq:comperr}
+\|\eta_{\mathcal P}(f)\|_N^2=\sum_{j=1}^m\sum_{k=t_{j-1}+1}^{t_j-1}\frac{|S_j(k)|^2}{k(k+1)}.
+\end{equation}
+If $A_j=\max_{t_{j-1}<k<t_j}|S_j(k)|$, with $A_j=0$ for a singleton block, then
+\begin{equation}\label{eq:comperr2}
+\|\eta_{\mathcal P}(f)\|_N^2\le\sum_{j=1}^m A_j^2\Big(\frac{1}{t_{j-1}+1}-\frac1{t_j}\Big).
+\end{equation}
+Moreover, $\big|\|f\|_N-\|\mathcal M_{\mathcal P}f\|_N\big|\le\|\eta_{\mathcal P}(f)\|_N$.
+\end{theorem}
+
+\begin{proof}
+The residual has cumulative sum zero at every $t_j$. At an interior coordinate $t_{j-1}<k<t_j$, all previous residual blocks have total mass zero, and the present endpoint correction has not yet occurred. Its cumulative sum is therefore exactly $S_j(k)$. In particular, its total mass at $N$ is zero. Substitution into \eqref{eq:cumrep} proves \eqref{eq:comperr}. Bounding each local prefix by $A_j$ and telescoping the weights proves \eqref{eq:comperr2}. The final inequality is the reverse triangle inequality.
+\end{proof}
+
+\begin{corollary}[Bounded block lengths]
+If $|f(n)|\le A$ and $L_j\le h$ for every block, then
+\begin{equation}
+\|\eta_{\mathcal P}(f)\|_N^2\le A^2(h-1)^2\Big(\frac1{a+1}-\frac1N\Big)\le\frac{A^2(h-1)^2}{a+1}
+\end{equation}
+whenever $N>a+1$; for a singleton interval the error is zero. The last inequality is strict when $A>0$ and $h>1$.
+\end{corollary}
+
+\begin{proof}
+An interior prefix contains at most $h-1$ terms. The interior indices of all blocks form a subset of $\{a+1,\dots,N-1\}$. Apply \eqref{eq:comperr} and sum the full telescoping weight over that set.
+\end{proof}
+
+For blocks of length at most three and authentic M\"obius coefficients, the bound is $4/(a+1)$. Formula \eqref{eq:comperr2} is the version relevant to variable block sizes. A long block is admissible, and its actual prefix height, rather than its length alone, controls the compression error.
+
+\section{Zero-mass blocks and exact future orthogonality}\label{sec:zeromass}
+
+The kernel has a simple causal property: every coefficient inside a block sees a later coordinate through the same denominator. Zero block mass consequently removes all interaction with the future.
+
+\begin{theorem}[Characterization of future orthogonality]\label{thm:future}
+Let $f$ be supported on $(a,b]$, and let the ambient space contain at least one coordinate after $b$. Then the following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\sum_{a<n\le b}f(n)=0$;
+\item $\ip{f}{e_j}_N=0$ for every $j>b$;
+\item $f$ is orthogonal to every vector supported on $(b,N]$.
+\end{enumerate}
+For every $j\ge b$, the exact formula is
+\begin{equation}\label{eq:future}
+\ip{f}{e_j}_N=\frac1j\sum_{a<n\le b}f(n).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $n\le b\le j$, one has $\max(n,j)=j$. This proves \eqref{eq:future}. Zero mass gives the second statement; linearity gives the third. Conversely, testing any one available later coordinate in the second or third statement forces the block mass to be zero.
+\end{proof}
+
+\begin{corollary}[Energy of a completed block]\label{cor:blockenergy}
+Suppose $f$ is supported on $(a,b]$ and has total mass zero. With $S_a(k)=\sum_{a<n\le k}f(n)$, its energy is
+\begin{equation}\label{eq:EB}
+E(f)=\|f\|_N^2=\sum_{k=a+1}^{b-1}\frac{|S_a(k)|^2}{k(k+1)},\qquad N\ge b.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Its cumulative sum is zero through $a$, follows $S_a$ inside the block, and is zero from $b$ onward. Apply \eqref{eq:cumrep}.
+\end{proof}
+
+\begin{theorem}[Finite orthogonal block decomposition]\label{thm:decomp}
+Let $a=t_0<t_1<\dots<t_m\le N$. Suppose the restriction $f_j=f\mathbf 1_{(t_{j-1},t_j]}$ has zero mass for $1\le j\le m$, and put $u=f\mathbf 1_{(t_m,N]}$. If $f$ is supported on $(a,N]$, then
+\begin{equation}\label{eq:decomp}
+f=\sum_{j=1}^m f_j+u,\qquad \|f\|_N^2=\sum_{j=1}^m E(f_j)+\|u\|_N^2.
+\end{equation}
+The terminal vector $u$ may have arbitrary mass, and it is zero when $t_m=N$.
+\end{theorem}
+
+\begin{proof}
+Every earlier completed block is orthogonal to each later block and to $u$ by \eqref{eq:future}. Expanding the squared norm therefore leaves only the diagonal energies.
+\end{proof}
+
+The same reasoning shows that the residual blocks in \eqref{eq:comperr} are mutually orthogonal: each residual block has zero mass. Their sum may still interact with the compressed endpoint vector, as the example after Theorem~\ref{thm:compression} demonstrates. Zero-return blocks are special because the completed block endpoint masses themselves vanish.
+
+\section{The Michaels dynamic DNA sieve}\label{sec:sieve}
+
+\begin{definition}[First-return partition]\label{def:firstreturn}
+Fix an initial integer $a_0\ge0$. Having defined $a_j$, set
+\begin{equation}\label{eq:firstreturn}
+a_{j+1}=\min\{b>a_j : M(b)=M(a_j)\},
+\end{equation}
+whenever the set is nonempty. The interval $B_j=(a_j,a_{j+1}]$ is a completed dynamic DNA block. At a finite observation cutoff $N$, all completed blocks with $a_{j+1}\le N$ are retained, together with the unfinished interval after the final such endpoint.
+\end{definition}
+
+The signed sum used in this rule is computed from \eqref{eq:mu}. Each coefficient is read at its integer position. A repeated prime factor contributes zero; a squarefree factorization contributes its parity sign. The boundary is closed precisely when the local accumulated sum returns to zero. No fixed block size is part of the definition. Since every return is to the level $M(a_j)=M(a_0)$, the blocks are exactly the excursions of $M$ away from the fixed baseline $M(a_0)$.
+
+\begin{proposition}[Elementary structure of a return block]
+For a completed block $B=(a,b]$ chosen by \eqref{eq:firstreturn}, either $b=a+1$ and $\mu(b)=0$, or the following properties hold:
+\begin{enumerate}[label=(\arabic*)]
+\item $S_a(k)=M(k)-M(a)$ has one strict sign for all $a<k<b$;
+\item the first and last nonzero steps have opposite signs;
+\item the number of positive steps equals the number of negative steps;
+\item the number of squarefree integers in the block is even.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+If the first step is zero, the definition closes the block immediately. Otherwise the local sum starts at $1$ or $-1$. Its increments belong to $\{-1,0,1\}$. It cannot change sign without reaching zero at an intermediate integer, which would contradict first return. The final step must therefore oppose the sign of the excursion. Zero total sum implies equality of the positive and negative step counts; their sum is the squarefree count.
+\end{proof}
+
+\subsection{Existence of every subsequent return}
+
+The global input used here is the established two-sided oscillation of the Mertens function. Odlyzko and te Riele proved $\limsup M(x)/\sqrt x>1.06$ and $\liminf M(x)/\sqrt x<-1.009$; Hurst strengthened the constants to $1.826$ and $-1.837$ \cite{odlyzko-teriele,hurst}. In particular,
+\begin{equation}\label{eq:osc}
+\limsup_{n\to\infty}M(n)=+\infty,\qquad \liminf_{n\to\infty}M(n)=-\infty.
+\end{equation}
+Only these two qualitative consequences are required.
+
+\begin{theorem}[Every fixed baseline is revisited infinitely often]\label{thm:revisit}
+For every integer $c$ and every integer $T$, there exists $n>T$ with $M(n)=c$. Consequently every $a_j$ in \eqref{eq:firstreturn} is finite, and the rule defines an infinite partition of the integers after $a_0$ into finite completed blocks.
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:osc}, there is $n_1>T$ with $M(n_1)>c$, and there is a later $n_2>n_1$ with $M(n_2)<c$. Since the sequence is integer-valued and changes by at most one at each step, some integer between $n_1$ and $n_2$ has value $c$. Taking $c=M(a_j)$ proves the existence of the next return. The nonempty set of return indices has a least element by well ordering. Induction gives every finite stage. The endpoints strictly increase and hence tend to infinity, so the resulting blocks exhaust the tail.
+\end{proof}
+
+This argument is an existence proof for each fixed starting level. The quantitative energy of the intervening path is supplied by its actual local sums in \eqref{eq:EB}; a return-time or height estimate does not enter the existence argument. Section~\ref{sec:closure} measures the return times and explains their scale.
+
+\subsection{A finite implementation}
+
+The following procedure specifies the dynamic rule through an arbitrary finite cutoff. It assumes that the valuation data needed to calculate $\mu(n)$ are available. It makes no claim about an improved factorization algorithm.
+
+\begin{verbatim}
+Input: integers a0 >= 0 and N >= a0.
+a = a0; S = 0; E = 0; completed = empty list.
+For n = a0+1, ..., N:
+    Read the prime valuations of n.
+    Set z = 0 if any valuation is at least 2;
+    otherwise set z = (-1)^(number of distinct prime factors).
+    Set S = S + z.
+    If S == 0:
+        Record the completed block (a,n] with energy E.
+        Set a = n and E = 0.
+    Else if n < N:
+        Set E = E + S^2/(n*(n+1)).
+After the loop:
+    If a < N, record unfinished energy E + S^2/N.
+Output: all completed blocks and the unfinished block, if any.
+\end{verbatim}
+
+For $N=a_0$ the output is empty and the energy is zero. A zero singleton is a legitimate completed block with zero energy. The energy is added after the coefficient at $n$ is read, consistently with the cumulative coordinate at $n$. At a closing endpoint the local sum is zero, so no energy summand is omitted. Formula \eqref{eq:decomp} proves that the recorded energies sum to $\|\mu\mathbf 1_{(a_0,N]}\|_N^2$.
+
+\subsection{Relation to the endpoint modifier}
+
+Apply $\mathcal M_{\mathcal P}$ to the partition consisting of the completed return blocks and a possible final unfinished block ending at $N$. Every completed block has mass zero. If $a_*$ is its last completed endpoint, then
+\begin{equation}
+\mathcal M_{\mathcal P}\big(\mu\mathbf 1_{(a_0,N]}\big)=\big(M(N)-M(a_*)\big)e_N.
+\end{equation}
+If the cutoff itself is a return, this compressed vector is zero. Exact reconstruction still retains the residual, which contains every completed packet and the interior history of the unfinished block. Thus the modifier's endpoint output and the dynamic sieve's energy record are complementary parts of the representation.
+
+\section{The block from 29 through 35}\label{sec:example}
+
+Start at $a=28$. The factorization and cumulative data are
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$n$ & Prime factorization & $\mu(n)$ & $S_{28}(n)$\\
+\midrule
+29 & $29$ & $-1$ & $-1$\\
+30 & $2\cdot3\cdot5$ & $-1$ & $-2$\\
+31 & $31$ & $-1$ & $-3$\\
+32 & $2^5$ & $0$ & $-3$\\
+33 & $3\cdot11$ & $1$ & $-2$\\
+34 & $2\cdot17$ & $1$ & $-1$\\
+35 & $5\cdot7$ & $1$ & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The first subsequent return is therefore $b=35$. The block vector is $f_B=-e_{29}-e_{30}-e_{31}+e_{33}+e_{34}+e_{35}$. The intervening integer $30$ is the product of the first three primes and has negative sign. The compensating positive signs occur at $33,34,35$, each with two distinct prime factors. The repeated prime factor at $32$ supplies a zero. Direct substitution gives
+\begin{equation}\label{eq:EB29}
+E_B=\frac1{29\cdot30}+\frac4{30\cdot31}+\frac9{31\cdot32}+\frac9{32\cdot33}+\frac4{33\cdot34}+\frac1{34\cdot35}=\frac{96913}{3530373}\approx0.0274512.
+\end{equation}
+For every $j>35$, one has $\ip{f_B}{e_j}_N=0$ whenever the ambient cutoff includes $j$.
+
+At the earlier observation cutoff $N=31$, the same block is unfinished. Its mass is $-3$, and the correct finite energy is $\|\mu\mathbf 1_{(28,31]}\|_{31}^2=\frac1{29\cdot30}+\frac4{30\cdot31}+\frac9{31}$. The future coefficients at $33,34,35$ become part of the block only when those positions enter the observed interval. This retains the exact finite cutoff while allowing eventual closure.
+
+\section{Intrinsic bounds for an individual block}\label{sec:intrinsic}
+
+Let $B=(a,b]$ be a completed M\"obius block. Its length and maximum height are
+\begin{equation}
+L_B=b-a,\qquad H_B=\max_{a<k<b}|S_a(k)|,
+\end{equation}
+with $H_B=0$ for a zero singleton. All the estimates in this section involve only the block's location, length, support, and internal heights.
+
+\begin{theorem}[Height and reciprocal-location bound]\label{thm:height}
+Every completed block satisfies
+\begin{equation}\label{eq:heightbound}
+E_B\le H_B^2\Big(\frac1{a+1}-\frac1b\Big)\le\frac{H_B^2}{a+1}.
+\end{equation}
+For a block of length greater than one and positive height, the last inequality is strict.
+\end{theorem}
+
+\begin{proof}
+Bound each squared prefix in \eqref{eq:EB} by $H_B^2$ and use $\sum_{k=a+1}^{b-1}\frac1{k(k+1)}=\frac1{a+1}-\frac1b$.
+\end{proof}
+
+This estimate controls an excursion of prescribed maximum depth at arbitrarily large closing time. For example, a height bound of $5000$ for a block beginning after $10^6$ gives $E_B<25$. A single summand near $10^6$ is approximately $2.5\cdot10^{-5}$, while a hypothetical path maintained at that height from $10^6$ to $2\cdot10^6$ contributes approximately $12.5$. The local summand and its accumulated occupation therefore represent different quantities.
+
+\begin{theorem}[Unit-step envelope]\label{thm:envelope}
+For $1\le j\le L_B-1$,
+\begin{equation}
+|S_a(a+j)|\le\min\{j,\,L_B-j,\,H_B\}.
+\end{equation}
+Consequently
+\begin{equation}\label{eq:envelope}
+E_B\le\sum_{j=1}^{L_B-1}\frac{\min\{j,L_B-j,H_B\}^2}{(a+j)(a+j+1)}.
+\end{equation}
+Among all integer-valued return paths with increments in $\{-1,0,1\}$ and height at most a nonnegative integer $H$, the corresponding bound with $H$ in place of $H_B$ is attained by the path $\min\{j,L_B-j,H\}$, up to an overall sign.
+\end{theorem}
+
+\begin{proof}
+At time $a+j$, at most $j$ unit steps have occurred. Returning to zero requires canceling the current sum with at most $L_B-j$ remaining unit steps. These two facts and the definition of $H_B$ give the pointwise bound. The energy inequality follows term by term. Finally, the sequence $T_j=\min\{j,L_B-j,H\}$ starts and ends at zero and changes by at most one at every step. It attains the stated envelope simultaneously at every index.
+\end{proof}
+
+The final assertion concerns the stated class of unit-step paths. It does not prescribe the actual M\"obius signs at a given set of integers. It identifies the strongest bound obtainable from those path constraints alone.
+
+\subsection{A refinement using squarefree support}
+
+Let $Q_a(k)=\sum_{a<n\le k}\mu(n)^2$ and $Q_B=Q_a(b)$. The support has the exact divisor representation
+\begin{equation}\label{eq:musq}
+\mu(n)^2=\sum_{d^2\mid n}\mu(d).
+\end{equation}
+Indeed, the right side is a product of factors $1-1$ over primes whose squares divide $n$, with empty product one.
+
+\begin{proposition}[Squarefree prefix--suffix envelope]
+For every $a<k<b$,
+\begin{equation}
+|S_a(k)|\le\min\{Q_a(k),\,Q_B-Q_a(k),\,H_B\},
+\end{equation}
+and hence
+\begin{equation}
+E_B\le\sum_{k=a+1}^{b-1}\frac{\min\{Q_a(k),Q_B-Q_a(k),H_B\}^2}{k(k+1)}.
+\end{equation}
+In particular, $H_B\le Q_B/2$.
+\end{proposition}
+
+\begin{proof}
+Since $|\mu(n)|=\mu(n)^2$, the absolute value of the prefix sum is at most its squarefree count. Zero block mass also gives $S_a(k)=-\sum_{k<n\le b}\mu(n)$, whose absolute value is at most the squarefree count in the suffix. Insert the resulting pointwise bound into the exact energy identity. The minimum of two nonnegative quantities summing to $Q_B$ is at most $Q_B/2$.
+\end{proof}
+
+This refinement incorporates every prime-square obstruction at its actual integer position. The parity ordering of the surviving squarefree coefficients remains present in the exact values $S_a(k)$.
+
+\section{The logarithmic board and occupation of depth}\label{sec:logboard}
+
+For $a\ge1$, extend the local sum to a step function $S_a(x)=\sum_{a<n\le x}\mu(n)$, $a\le x\le b$. It is constant on each interval $[k,k+1)$.
+
+\begin{theorem}[Exact logarithmic representation]\label{thm:logrep}
+For every completed block with $a\ge1$,
+\begin{equation}\label{eq:logrep}
+E_B=\int_a^b\frac{S_a(x)^2}{x^2}\,dx=\int_{\log a}^{\log b}\Big(\frac{S_a(e^t)}{\sqrt{e^t}}\Big)^2dt.
+\end{equation}
+For the initial block with $a=0$, the first integral may start at $1$, and the logarithmic integral starts at $0$.
+\end{theorem}
+
+\begin{proof}
+On $[k,k+1)$, $\int_k^{k+1}S_a(x)^2x^{-2}\,dx=S_a(k)^2\big(\frac1k-\frac1{k+1}\big)$. The sum is zero on $[a,a+1)$ and after closure. Summing proves the first equality. Substitution $x=e^t$, $dx=e^t\,dt$ proves the second. At $a=0$, there is no nonzero cumulative value below $x=1$.
+\end{proof}
+
+Thus the natural ordinate on the logarithmic board is the normalized depth $S_a(x)/\sqrt x$. An excursion with depth of order $\sqrt x$ has order-one squared ordinate; its energy depends on the logarithmic duration of its occupation. A constant depth $H$ on a subinterval $[A,B]$ contributes exactly $H^2(1/A-1/B)$.
+
+There is also an exact discrete occupation formula. Define
+\begin{equation}
+\Lambda_B(h)=\sum_{k=a+1}^{b-1}\frac{\mathbf 1_{\{|S_a(k)|\ge h\}}}{k(k+1)},\qquad 1\le h\le H_B.
+\end{equation}
+
+\begin{proposition}[Energy by occupied depth levels]\label{prop:occupation}
+The internal energy satisfies
+\begin{equation}\label{eq:occupation}
+E_B=\sum_{h=1}^{H_B}(2h-1)\Lambda_B(h).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For a nonnegative integer $s$, the identity $s^2=\sum_{h=1}^s(2h-1)$ holds. Apply it to $|S_a(k)|$, multiply by $1/[k(k+1)]$, and interchange finite sums.
+\end{proof}
+
+Formula \eqref{eq:occupation} separates depth from the reciprocal-weighted time spent at that depth. The height bound \eqref{eq:heightbound} follows again by replacing every $\Lambda_B(h)$ by $1/(a+1)-1/b$.
+
+\subsection{The size permitted by geometry alone}
+
+The denominator and eventual return do not impose a uniform upper bound over all admissible unit-step paths. To quantify this, take an even integer $a$, length $L=a$, and the triangular path $T_j=\min(j,a-j)$, $0\le j\le a$. Its energy, with the same historical weights, is
+\begin{equation}\label{eq:triangle}
+E^{\triangle}_a=\sum_{j=1}^{a-1}\frac{\min(j,a-j)^2}{(a+j)(a+j+1)}.
+\end{equation}
+A Riemann-sum calculation gives
+\begin{equation}\label{eq:triangleconst}
+\lim_{\substack{a\to\infty\\ a\ \text{even}}}\frac{E^{\triangle}_a}{a}=\int_0^{1/2}\frac{t^2}{(1+t)^2}\,dt+\int_{1/2}^1\frac{(1-t)^2}{(1+t)^2}\,dt=2+2\log(3/2)-4\log2>0.
+\end{equation}
+The first integrand has primitive $t-2\log(1+t)-1/(1+t)$; the second has primitive $(1+t)-4\log(1+t)-4/(1+t)$. These give the displayed constant, approximately $0.03834149\ldots$.
+
+This is an example in the generic path class, with a complete return at its endpoint. Its purpose is to measure precisely what the geometric constraints allow. Any stronger conclusion for the authentic dynamic DNA blocks must use additional arithmetic information about their signed paths or occupied depth levels. Section~\ref{sec:continuous} supplies exactly such information: for the authentic M\"obius path the total energy through $N$ is $O(N^{\varepsilon})$ if and only if the Riemann Hypothesis holds, whereas the triangular family grows linearly in its starting position.
+
+\section{Signed arithmetic work inside the block}\label{sec:work}
+
+The energy has an exact expression as diagonal squarefree contribution plus signed work performed at the current depth.
+
+\begin{theorem}[Internal work identity]\label{thm:work}
+For a completed block $B=(a,b]$,
+\begin{equation}\label{eq:work}
+E_B=\sum_{k=a+1}^b\frac{\mu(k)^2}{k}+2\sum_{k=a+1}^b\frac{S_a(k-1)\mu(k)}{k}.
+\end{equation}
+For an unfinished block $(a,N]$, the same right side with $b=N$ equals
+\begin{equation}\label{eq:openenergy}
+E^{\mathrm{open}}_{a,N}=\frac{S_a(N)^2}{N}+\sum_{k=a+1}^{N-1}\frac{S_a(k)^2}{k(k+1)}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+At each step, $S_a(k)^2-S_a(k-1)^2=2S_a(k-1)\mu(k)+\mu(k)^2$. Multiply by $1/k$ and sum. Discrete summation by parts yields
+\[
+\sum_{k=a+1}^b\frac{S_a(k)^2-S_a(k-1)^2}{k}=\frac{S_a(b)^2}{b}+\sum_{k=a+1}^{b-1}\frac{S_a(k)^2}{k(k+1)},
+\]
+because $S_a(a)=0$. In the closed case $S_a(b)=0$; in the open case the terminal term remains. These are exactly \eqref{eq:EB} and \eqref{eq:openenergy}.
+\end{proof}
+
+Inside a nontrivial first-return block, $S_a(k-1)$ has one sign until closure. A coefficient with the same sign increases the squared depth; a coefficient with the opposite sign reduces it subject to the diagonal term. The factor $1/k$ records when that work occurs. Formula \eqref{eq:work} retains both the support and the parity of every factorization.
+
+For $a\ge1$, let $C_+(a,k)$ and $C_-(a,k)$ count the squarefree composite integers in $(a,k]$ with M\"obius signs $+1$ and $-1$, respectively. Then
+\begin{equation}\label{eq:Cpm}
+S_a(k)=C_+(a,k)-C_-(a,k)-\big(\pi(k)-\pi(a)\big).
+\end{equation}
+The contribution of $1$ must be added separately if the initial block begins at $a=0$. Equation \eqref{eq:Cpm} isolates the arithmetic relation needed to connect prime arrivals to the signed behavior of the intervening composites.
+
+\subsection{Global density and the two composite parities}
+
+The density of primes alone does not specify the two terms $C_+$ and $C_-$. This can be seen using classical global asymptotics, without using them as block-energy upper bounds. Let $Q(x)=\sum_{n\le x}\mu(n)^2$. From \eqref{eq:musq},
+\begin{equation}
+Q(x)=\sum_{d\le\sqrt x}\mu(d)\Big\lfloor\frac{x}{d^2}\Big\rfloor=x\sum_{d\le\sqrt x}\frac{\mu(d)}{d^2}+O(\sqrt x)=\frac6{\pi^2}x+O(\sqrt x).
+\end{equation}
+The last step uses absolute convergence of $\sum\mu(d)/d^2=1/\zeta(2)$, and the tail is $O(x^{-1/2})$. The classical prime number theorem gives $\pi(x)=o(x)$ and, in its equivalent Mertens formulation, $M(x)=o(x)$ \cite{dlmf2711}. Writing $N_\pm(x)=\#\{n\le x:\mu(n)=\pm1\}$, one has the exact identities $N_\pm(x)=\big(Q(x)\pm M(x)\big)/2$. Hence both signs have density $3/\pi^2$. Removing the primes from the negative population and the integer $1$ from the positive population leaves squarefree composite populations of the same positive density:
+\begin{equation}
+\#\{n\le x: n\ \text{composite},\ \mu(n)=\pm1\}\sim\frac3{\pi^2}x.
+\end{equation}
+These global statements are compatible with substantial local imbalance. In the dynamic energy, that imbalance appears explicitly in \eqref{eq:Cpm} and its weighted interaction \eqref{eq:work}.
+
+\section{The complete intrinsic energy statement}\label{sec:budget}
+
+The preceding results assemble into a finite theorem involving only the dynamic blocks and their native data.
+
+\begin{theorem}[Native block budget]\label{thm:budget}
+Fix $a_0\ge0$ and $N\ge\max\{1,a_0\}$. Apply the first-return rule through $N$, obtaining completed blocks $B_j=(a_j,a_{j+1}]$, $0\le j<m$, and a final endpoint $a_m\le N$. Let $H_j$ be the height of $B_j$. Then
+\begin{align}
+\|\mu\mathbf 1_{(a_0,N]}\|_N^2&=\sum_{j=0}^{m-1}E_{B_j}+E^{\mathrm{open}}_{a_m,N}\label{eq:budget}\\
+&\le\sum_{j=0}^{m-1}H_j^2\Big(\frac1{a_j+1}-\frac1{a_{j+1}}\Big)+E^{\mathrm{open}}_{a_m,N}.\label{eq:budget2}
+\end{align}
+If $a_m=N$, the open energy is zero. Otherwise, writing $H_{\mathrm{open}}=\max_{a_m<k\le N}|M(k)-M(a_m)|$, one has the additional native bound $E^{\mathrm{open}}_{a_m,N}\le H_{\mathrm{open}}^2/(a_m+1)$. Each closed energy in \eqref{eq:budget} may equivalently be written using the exact occupation formula \eqref{eq:occupation} or the signed work identity \eqref{eq:work}.
+\end{theorem}
+
+\begin{proof}
+Apply \eqref{eq:decomp} to the completed zero-mass packets and the unfinished tail. Use \eqref{eq:heightbound} for each completed packet. For the open block, bound every cumulative square in \eqref{eq:openenergy} by $H_{\mathrm{open}}^2$ and telescope $\frac1N+\sum_{k=a_m+1}^{N-1}\frac1{k(k+1)}=\frac1{a_m+1}$. The alternative exact formulas have already been proved for each block.
+\end{proof}
+
+With $a_0=0$, the left side of \eqref{eq:budget} is the full historical energy $R(N)$. For a positive initial boundary, it is the energy of the actual tail beginning at that boundary. Every cross interaction between completed blocks vanishes, while their internal squared histories remain present in the sum.
+
+The theorem gives a complete finite statement of the dynamic mechanism. The arithmetic rule determines the blocks; two-sided oscillation guarantees that each block eventually closes; zero mass supplies exact future orthogonality; the reciprocal kernel weights the internal occupation of each depth. The denominator and closure alone do not impose a universal energy cap, as \eqref{eq:triangleconst} establishes for the underlying path geometry. The next section shows what the authentic budget is equivalent to.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The continuous Green space and the critical line}\label{sec:continuous}
+
+Everything in Sections~\ref{sec:green}--\ref{sec:budget} is finite and exact. This section identifies the space in which those finite statements live. The identification is elementary, but it changes what the block budget means: it is the $x$-side of the Hilbert space in which the Nyman--Beurling--B\'aez-Duarte criterion is formulated, and its growth rate is equivalent to the Riemann Hypothesis.
+
+For $f\in\C^N$ define the extended cumulative function
+\begin{equation}
+F_N(x)=\sum_{n\le\min(x,N)}f(n)=\sum_{n\le N}f(n)\mathbf 1_{[n,\infty)}(x),\qquad x\ge1,
+\end{equation}
+which is a step function, constant on each $[k,k+1)$ and constant on $[N,\infty)$.
+
+\begin{theorem}[Integral form of the Green metric]\label{thm:integral}
+For all $f,g\in\C^N$,
+\begin{equation}\label{eq:integralform}
+\ip{f}{g}_N=\int_1^\infty F_N(x)\,\overline{G_N(x)}\,\frac{dx}{x^2}.
+\end{equation}
+In particular $R(N)=\int_1^\infty M_N(x)^2\,dx/x^2$ with $M_N(x)=M(\min(x,N))$, and for a completed block \eqref{eq:logrep} is the special case in which $F_N$ vanishes outside $[a,b]$.
+\end{theorem}
+
+\begin{proof}
+For positive integers $m,n$,
+\[
+\int_1^\infty\mathbf 1_{[m,\infty)}(x)\mathbf 1_{[n,\infty)}(x)\frac{dx}{x^2}=\int_{\max(m,n)}^\infty\frac{dx}{x^2}=\frac1{\max(m,n)}.
+\]
+Multiply by $f(m)\overline{g(n)}$, sum over $m,n\le N$, and interchange the finite sum with the integral. Evaluating the right side of \eqref{eq:integralform} on $[k,k+1)$ for $k<N$ and on $[N,\infty)$ recovers \eqref{eq:cumrep} term by term.
+\end{proof}
+
+For $f\in\C^N$ let $D_f(s)=\sum_{n\le N}f(n)n^{-s}$ be its Dirichlet polynomial.
+
+\begin{theorem}[Plancherel form of the Green metric]\label{thm:plancherel}
+For all $f,g\in\C^N$,
+\begin{equation}\label{eq:plancherel}
+\ip{f}{g}_N=\frac1{2\pi}\int_{-\infty}^{\infty}D_f\big(\tfrac12+it\big)\,\overline{D_g\big(\tfrac12+it\big)}\,\frac{dt}{\frac14+t^2}.
+\end{equation}
+In particular,
+\begin{equation}\label{eq:RNplancherel}
+R(N)=\frac1{2\pi}\int_{-\infty}^\infty\Big|\sum_{n\le N}\mu(n)\,n^{-1/2-it}\Big|^2\frac{dt}{\frac14+t^2}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Put $\varphi(u)=F_N(e^u)e^{-u/2}$ for $u\ge0$ and $\varphi(u)=0$ for $u<0$. Since $F_N$ is bounded, $\varphi\in L^1(\R)\cap L^2(\R)$, and the substitution $x=e^u$ in \eqref{eq:integralform} gives $\ip{f}{g}_N=\int_\R\varphi_f(u)\overline{\varphi_g(u)}\,du$. The Fourier transform of $\varphi_f$ at $t$ is
+\[
+\widehat{\varphi_f}(t)=\int_0^\infty F_N(e^u)e^{-u/2}e^{-itu}\,du=\int_1^\infty F_N(x)\,x^{-s-1}\,dx\Big|_{s=1/2+it}
+=\sum_{n\le N}f(n)\int_n^\infty x^{-s-1}dx=\frac{D_f(s)}{s},
+\]
+where the exchange of the finite sum and the integral is justified by absolute convergence for $\Ree s>0$. Plancherel's theorem $\int\varphi_f\overline{\varphi_g}=\frac1{2\pi}\int\widehat{\varphi_f}\overline{\widehat{\varphi_g}}$ and $|s|^2=\frac14+t^2$ give \eqref{eq:plancherel}.
+\end{proof}
+
+\begin{remark}[The Nyman--Beurling--B\'aez-Duarte space]\label{rem:nb}
+The weighted space $L^2\big(\R,\,dt/(\frac14+t^2)\big)$ on the critical line is the space in which B\'aez-Duarte's strengthening of the Nyman--Beurling criterion is stated: the Riemann Hypothesis holds if and only if
+\[
+d_N^2=\inf_{c_1,\dots,c_N}\frac1{2\pi}\int_{-\infty}^\infty\Big|1-\zeta\big(\tfrac12+it\big)\sum_{n\le N}c_n n^{-1/2-it}\Big|^2\frac{dt}{\frac14+t^2}\longrightarrow0
+\]
+\cite{baezduarte}. Theorem~\ref{thm:plancherel} says that the Green energy of a coefficient vector $c$ is the squared norm, in the same space, of the approximant $\sum c_n n^{-s}$ before multiplication by $\zeta$. The M\"obius vector is the natural approximant to $1/\zeta$, and Burnol proved the unconditional lower bound $\liminf_N d_N^2\log N\ge\sum_{\Ree\rho=1/2}m_\rho^2/|\rho|^2$, which under the Riemann Hypothesis and simple zeros equals $2+\gamma-\log4\pi\approx0.0462$ \cite{burnol}; B\'aez-Duarte, Balazard, Landreau and Saias conjectured equality \cite{bbls}. That constant is Cram\'er's mean-square constant for $(\psi(x)-x)/\sqrt x$, measured as $0.0458$ at $10^{10}$ in \cite[Computation 13.3]{michaels-folds}. Section~\ref{sec:constant} identifies the different constant that governs $R(N)$ itself.
+\end{remark}
+
+\begin{theorem}[The Green energy and the Riemann Hypothesis]\label{thm:rhcrit}
+The following are equivalent.
+\begin{enumerate}[label=(\roman*)]
+\item The Riemann Hypothesis.
+\item $M(x)\ll_\varepsilon x^{1/2+\varepsilon}$ for every $\varepsilon>0$.
+\item $R(N)\ll_\varepsilon N^{\varepsilon}$ for every $\varepsilon>0$.
+\item With $a_0=0$, the native block budget \eqref{eq:budget} through $N$ is $\ll_\varepsilon N^\varepsilon$ for every $\varepsilon>0$.
+\end{enumerate}
+Moreover, if $\zeta$ has a zero of real part $\beta_0>\frac12$, then for every $\delta>0$,
+\begin{equation}\label{eq:offline}
+\limsup_{N\to\infty}\frac{R(N)}{N^{2\beta_0-1-\delta}}=\infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+(i)$\Leftrightarrow$(ii) is classical \cite[\S14.25]{titchmarsh}. (iii)$\Leftrightarrow$(iv) is the identity \eqref{eq:budget} with $a_0=0$.
+
+(ii)$\Rightarrow$(iii). By \eqref{eq:RN}, $R(N)\le N^{-1}M(N)^2+\sum_{k<N}M(k)^2k^{-2}\ll N^{2\varepsilon}+\sum_{k<N}k^{2\varepsilon-1}\ll_\varepsilon N^{2\varepsilon}$.
+
+(iii)$\Rightarrow$(i). Fix $\varepsilon>0$ and suppose $R(N)\le CN^{\varepsilon}$ for all $N$. Since $R(N)\ge\int_1^N M(x)^2x^{-2}dx$ by Theorem~\ref{thm:integral}, for $\sigma>\frac12$ and every $k\ge0$ the Cauchy--Schwarz inequality gives
+\[
+\int_{2^k}^{2^{k+1}}|M(x)|\,x^{-\sigma-1}dx\le\Big(\int_{2^k}^{2^{k+1}}\frac{M(x)^2}{x^2}dx\Big)^{1/2}\Big(\int_{2^k}^{2^{k+1}}x^{-2\sigma}dx\Big)^{1/2}\le\big(C2^{(k+1)\varepsilon}\big)^{1/2}\Big(\frac{2^{k(1-2\sigma)}}{2\sigma-1}\Big)^{1/2}.
+\]
+The right side is summable over $k$ when $2\sigma>1+\varepsilon$. Hence $I(s)=\int_1^\infty M(x)x^{-s-1}dx$ converges absolutely and locally uniformly for $\Ree s>\frac{1+\varepsilon}2$ and defines an analytic function there. For $\Ree s>1$, partial summation gives $I(s)=\frac1s\sum_{n\ge1}\mu(n)n^{-s}=\frac1{s\zeta(s)}$. By analytic continuation $1/\zeta(s)=sI(s)$ is analytic on $\Ree s>\frac{1+\varepsilon}2$, so $\zeta$ has no zero there. As $\varepsilon>0$ is arbitrary, (i) follows.
+
+Finally, \eqref{eq:offline} is the contrapositive of the last argument: if $R(N)\ll N^{2\beta_0-1-\delta}$ then $1/\zeta$ is analytic on $\Ree s>\beta_0-\delta/2$, contradicting the zero at real part $\beta_0$.
+\end{proof}
+
+\begin{remark}
+Statement (iv) is the precise sense in which the native block budget is a Riemann-Hypothesis quantity. Its ingredients are all finite: each closed block contributes its exact energy \eqref{eq:EB}, the open block contributes \eqref{eq:openenergy}, and the sum is a sum of squares of integers with explicit rational weights. What is equivalent to the Riemann Hypothesis is the growth rate of that sum. Statement \eqref{eq:offline} is the M\"obius analogue of the effect of an off-line quartet on the running mean of $(\psi(x)-x)/\sqrt x$ in \cite[Computation 13.3(4)]{michaels-folds}: an off-line zero does not merely add a term, it changes the growth exponent.
+\end{remark}
+
+\begin{remark}[Heights versus energies]
+Theorem~\ref{thm:height} bounds each block energy by its height. The converse direction is weaker: a unit-step excursion of height $H$ attained near position $k$ spends at least $H/2$ steps at depth $\ge H/2$, so $E_B\ge H^3/(8(k+H)^2)$ when $H\le k$. A height $H\ge k^{1/2+\delta}$ therefore forces $E_B\gg k^{3\delta-1/2}$, which grows only when $\delta>1/6$. The proof of Theorem~\ref{thm:rhcrit} does not pass through heights; it passes through the Mellin transform, and that is why the mean-square statement (iii) is as strong as the pointwise statement (ii).
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Closure on the logarithmic scale}\label{sec:closure}
+
+Theorem~\ref{thm:revisit} guarantees that every block closes and says nothing about when. This section records what the explicit formula predicts about closure times, measures the closure statistics to $N=5\times10^7$, and reconstructs the longest blocks from the zeros of $\zeta$.
+
+\subsection{What the explicit formula predicts}
+
+\begin{theorem}[Explicit formula for $M$; Titchmarsh {\cite[\S14.27]{titchmarsh}}]\label{thm:explicitM}
+Assume the Riemann Hypothesis and that all zeros are simple. Then for $x>1$ not an integer,
+\begin{equation}\label{eq:explicitM}
+M(x)=\sum_{\rho}\frac{x^{\rho}}{\rho\,\zeta'(\rho)}-2+\sum_{k\ge1}\frac{(-1)^{k-1}(2\pi/x)^{2k}}{(2k)!\,k\,\zeta(2k+1)},
+\end{equation}
+where the sum over zeros is taken symmetrically and converges conditionally.
+\end{theorem}
+
+Dividing by $\sqrt x$ and writing $u=\log x$, the zero sum becomes $\sum_\rho e^{i\gamma u}/(\rho\zeta'(\rho))$: an almost periodic function of $u$ with frequencies the ordinates $\gamma$ and amplitudes $1/|\rho\zeta'(\rho)|$. This is the scaling of \cite[Proposition 13.1]{michaels-folds} with $\Lambda$ replaced by $\mu$, and with the amplitudes now involving $\zeta'(\rho)$. Two consequences for the dynamic blocks follow, the first a theorem and the second a heuristic.
+
+\begin{proposition}[Blocks are the excursions of $M$]\label{prop:cluster}
+With $a_0=0$, the completed dynamic blocks are exactly the intervals between consecutive zeros of $M$; the number of completed blocks through $N$ is the number of $k\le N$ with $M(k)=0$; and every sign change of $M$ contributes at least one such $k$.
+\end{proposition}
+
+\begin{proof}
+This restates Definition~\ref{def:firstreturn} with baseline $M(0)=0$: a block closes exactly at a zero of $M$, and an integer-valued sequence with unit steps cannot change sign without vanishing.
+\end{proof}
+
+\begin{heuristic}[Two populations of blocks]\label{heur:scale}
+The amplitudes in \eqref{eq:explicitM} decay only like $1/(\gamma\log\gamma)$, so the normalized function $M(x)/\sqrt x$ is rough on the logarithmic scale: its zero-crossing rate is dominated by the highest zeros that the integer resolution of $x$ can carry, which is of order $\gamma\lesssim x$. One therefore expects the number of zeros of $M$ up to $N$, hence the number of completed blocks, to grow like a power of $N$ rather than like $\log N$. At the same time the low zeros, with the largest amplitudes, produce excursions of size comparable to $\sqrt x$ lasting a fixed fraction of a unit of $\log x$, that is, a fixed fraction of $x$ itself. One therefore also expects a few blocks of length comparable to their position to cover most of the range. The first expectation makes the blocks numerous and mostly tiny; the second is the ``late repayment'' of \cite{michaels-colors}, and it is where the energy lives. Both are tested in Computation~\ref{comp:blocks}.
+\end{heuristic}
+
+\subsection{The closure statistics to \texorpdfstring{$5\times10^7$}{5e7}}
+
+\begin{computation}[Closure statistics to $5\times10^7$]\label{comp:blocks}
+Take $a_0=0$ and $N=5\times10^7$, with $\mu$ from an exact sieve, cumulative sums in 64-bit integers, and energies in double precision (script \texttt{rh\_mobius\_green.py}). Then:
+\begin{enumerate}[label=(\arabic*)]
+\item $M(N)=-908$, $\max_{k\le N}|M(k)|=2573$, and $R(N)=1.79358$, of which the endpoint term $M(N)^2/N$ is $0.01649$.
+\item There are $25{,}975$ completed blocks and $7{,}977$ sign changes of $M$. The number of completed blocks through $10^2,10^3,\dots,10^7$ is $6,92,406,1549,5361,12546$. Its log-log slope against $N$ is $0.49$ over $10^4\le N\le5\times10^7$ and $0.40$ over $10^6\le N\le5\times10^7$: a power, as Heuristic~\ref{heur:scale} predicts, and not $\log N$.
+\item The median block length is $2$; $90\%$ of blocks have length at most $39$, $99\%$ at most $3{,}836$, and $99.9\%$ at most $330{,}509$. The ten longest blocks are listed in Table~\ref{tab:longest}. They have lengths between $1.47\times10^6$ and $4.99\times10^6$, each between $3\%$ and $13\%$ of its own position, and together they cover $2.77\times10^7$ integers, $55\%$ of the range. Their heights lie between $0.17\sqrt b$ and $0.44\sqrt b$, and their energies sum to $0.047$, comparable to the whole increment $0.048$ of $\int_1^N M(x)^2x^{-2}dx$ between $10^7$ and $5\times10^7$.
+\item Let $I(N)=R(N)-M(N)^2/N=\int_1^N M(x)^2x^{-2}\,dx$. Its increment per unit of $\log N$ on the successive ranges $[10^4,10^5]$, $[10^5,10^6]$, $[10^6,10^7]$, $[10^7,5\times10^7]$ is $0.0300$, $0.0281$, $0.0285$, $0.0299$. This is the quantity compared with the zero-side constant in Section~\ref{sec:constant}. The ratio $R(N)/\log N$ itself is $0.101$ at $N=5\times10^7$ and still falling, because $R$ carries the constant $\approx1.27$ contributed by $x<10^4$; the ratio converges to the same limit as the slope only when $\log N$ is large compared with that constant divided by the slope, that is, for $\log N\gg40$.
+\end{enumerate}
+\end{computation}
+
+\begin{table}[ht]
+\centering
+\caption{The ten longest completed blocks through $N=5\times10^7$ (baseline $a_0=0$). $L=b-a$, $H$ the height, $E$ the exact Green energy \eqref{eq:EB}.}
+\label{tab:longest}
+\begin{tabular}{rrrrrcr}
+\toprule
+$a$ & $b$ & $L$ & $L/b$ & $H$ & $H/\sqrt b$ & $E$\\
+\midrule
+34{,}249{,}477 & 39{,}243{,}070 & 4{,}993{,}593 & 0.127 & 2470 & 0.39 & 0.0109\\
+29{,}639{,}784 & 34{,}249{,}278 & 4{,}609{,}494 & 0.135 & 2573 & 0.44 & 0.0090\\
+44{,}698{,}702 & 48{,}557{,}006 & 3{,}858{,}304 & 0.079 & 1674 & 0.24 & 0.0019\\
+13{,}973{,}694 & 16{,}817{,}258 & 2{,}843{,}564 & 0.169 & 1172 & 0.29 & 0.0046\\
+18{,}631{,}886 & 21{,}133{,}515 & 2{,}501{,}629 & 0.118 & 1321 & 0.29 & 0.0024\\
+24{,}568{,}618 & 27{,}000{,}102 & 2{,}431{,}484 & 0.090 & 1419 & 0.27 & 0.0027\\
+11{,}494{,}532 & 13{,}452{,}383 & 1{,}957{,}851 & 0.146 & 1447 & 0.39 & 0.0067\\
+40{,}115{,}525 & 41{,}652{,}309 & 1{,}536{,}784 & 0.037 & 1417 & 0.22 & 0.0007\\
+9{,}593{,}970 & 11{,}085{,}801 & 1{,}491{,}831 & 0.135 & 1240 & 0.37 & 0.0075\\
+43{,}151{,}034 & 44{,}622{,}514 & 1{,}471{,}480 & 0.033 & 1149 & 0.17 & 0.0003\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The two populations of Heuristic~\ref{heur:scale} are both visible: half of all blocks have length at most two, while ten blocks cover more than half of the range and carry essentially all of the recent energy. A block of the second kind is what \cite{michaels-colors} called a late repayment. Its height is a fixed fraction of $\sqrt b$, so by Theorem~\ref{thm:height} its energy is at most $H^2\log(b/a)/a\approx(H/\sqrt b)^2\cdot(b/a)\log(b/a)$, which is bounded; the energy of the range is therefore carried by a bounded number of blocks per unit of $\log N$, consistent with logarithmic growth of $R(N)$.
+
+\subsection{Reconstruction of the longest blocks from the zeros}
+
+%% COMPUTATION_RECON_PLACEHOLDER
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The M\"obius mean-square constant}\label{sec:constant}
+
+Under the Riemann Hypothesis the Green energy grows, by Theorem~\ref{thm:rhcrit}, slower than any power of $N$. The expected growth is logarithmic, with a constant determined by the zeros.
+
+\begin{theorem}[Ng {\cite{ng}}]\label{thm:ng}
+Assume the Riemann Hypothesis and $J_{-1}(T):=\sum_{0<\gamma\le T}|\zeta'(\rho)|^{-2}\ll T$. Then $e^{-y/2}M(e^y)$ has a limiting distribution on $\R$ as $y\to\infty$.
+\end{theorem}
+
+The hypothesis $J_{-1}(T)\ll T$ is a weak form of Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^2}T$ \cite{ng}; it implies that
+\begin{equation}\label{eq:CM}
+C_M:=\sum_{\gamma>0}\frac{2}{|\rho\,\zeta'(\rho)|^2}
+\end{equation}
+converges, and $C_M$ is the second moment of the limiting distribution. Since $R(N)=\int_1^N M(x)^2x^{-2}dx+M(N)^2/N$ and $\int_1^N M(x)^2x^{-2}dx=\int_0^{\log N}\big(e^{-y/2}M(e^y)\big)^2dy$, one expects
+\begin{equation}\label{eq:RNasymp}
+\frac{R(N)}{\log N}\longrightarrow C_M .
+\end{equation}
+We do not claim \eqref{eq:RNasymp} as a theorem: it requires uniform integrability of the squares in addition to Theorem~\ref{thm:ng}, and the constant itself is conditional on the convergence of \eqref{eq:CM}. It is the M\"obius twin of Cram\'er's theorem that $\frac1{\log X}\int_2^X(\psi(x)-x)^2x^{-2}dx\to\sum_\rho|\rho|^{-2}=2+\gamma-\log4\pi$ under the Riemann Hypothesis \cite{cramer}, measured in \cite[Computation 13.3]{michaels-folds}. The difference between the two constants is the factor $\zeta'(\rho)$ in every term: the M\"obius energy is sensitive to the derivative of $\zeta$ at each zero, and its largest terms come from close pairs of zeros.
+
+%% COMPUTATION_CONSTANT_PLACEHOLDER
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Two tori, and what a finite cutoff can certify}\label{sec:tori}
+
+This section makes no mathematical claim beyond the cited theorems. It records how the present blocks sit next to the prime-color chords of \cite{michaels-colors,michaels-folds}, and why late closure is a structural obstruction rather than a nuisance.
+
+\begin{remark}[Prime chords and zero chords]
+In \cite[\S3]{michaels-folds} the prime comb $\sum_n2\Lambda(n)n^{-1/2}\cos(t\log n)$ is large where the phases $t\log p$ nearly align: a chord of the primes. By \eqref{eq:explicitM}, $M(x)/\sqrt x$ is large where the phases $\gamma\log x$ nearly align: a chord of the zeros. The two are exchanged by the explicit formula, which is a Fourier transform between the torus with one angle per prime and the torus with one angle per zero. The late closures of Section~\ref{sec:closure} are the near-returns of the zero chord. The disproof of the Mertens conjecture \cite{odlyzko-teriele} located such a near-return by lattice reduction on the phases $\gamma_k\log x$ of the first two thousand zeros; the first crossing of $|M(x)|>\sqrt x$ is known to lie below $e^{1.6\times10^{40}}$ \cite{kotnik-teriele}. The same mechanism produces the first sign change of $\pi(x)-\mathrm{li}(x)$ near $10^{316}$.
+\end{remark}
+
+\begin{remark}[Backward propagation]
+An off-line zero $\rho_0=\beta_0+i\gamma_0$ is present in \eqref{eq:explicitM} at every $x$, with the term $x^{\beta_0}/|\rho_0\zeta'(\rho_0)|$. On the block side it is invisible until $x^{\beta_0-1/2}$ exceeds the amplitude of the on-line sum, and then it dominates every later block: by \eqref{eq:offline} the energy budget changes its growth exponent. There is no backward propagation in $x$ in the sense of blocks below the detection scale being affected, and there is unrestricted forward propagation. The same dichotomy holds for the odd Weil form of \cite[\S12]{michaels-folds}, whose floor is unaffected below the horizon of an off-line zero and negative for every support above it.
+\end{remark}
+
+\begin{remark}[What a finite computation certifies]
+Theorem~\ref{thm:rhcrit} is a statement about a growth rate. A value of $R(N)$ at any single $N$ is compatible with both alternatives: under the Riemann Hypothesis $R(N)\approx C_M\log N$, and under an off-line zero at $\beta_0$ the excess $N^{2\beta_0-1}$ is invisible until $N^{\beta_0-1/2}\gg|\rho_0\zeta'(\rho_0)|\sqrt{C_M}$. The block budget through $N$ therefore certifies nothing about zeros beyond the height that the interval $[1,N]$ resolves, and the closures that would reveal such a zero happen, by the previous remark, only beyond that scale. This is the same limitation as the resolution threshold of the Weil form in \cite{michaels-folds,zhu}, in the M\"obius coordinate. A proof through the present objects would have to be a statement uniform in $N$ about the growth of \eqref{eq:budget}, and Section~\ref{sec:continuous} shows that any such statement is equivalent to the Riemann Hypothesis.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\section{Reproducible finite checks}
+
+The accompanying script \texttt{verify\_finite\_claims.py} uses exact rational arithmetic for the finite Green energies. It verifies the fraction in \eqref{eq:EB29}, future orthogonality of that packet at selected later coordinates, and the negative quadratic-form value $-1/12$ for the gated kernel. It also constructs the first-return partition and checks every pairwise block inner product and the full energy sum for the starting-point/cutoff pairs $(a_0,N)=(0,100),(15,100),(28,100),(50,216)$. The unfinished packet is retained in each finite test.
+
+\section{Scripts for Sections~\ref{sec:closure}--\ref{sec:constant}}\label{app:scripts}
+
+Three short Python scripts reproduce every number in Computations~\ref{comp:blocks}, \ref{comp:recon} and \ref{comp:constant}.
+\begin{itemize}
+\item \texttt{rh\_mobius\_green.py} sieves $\mu(n)$ to $N=5\times10^7$ with NumPy (a Boolean prime sieve followed by sign flips along multiples of each prime and zeroing along multiples of each prime square), accumulates $M(k)$ in 64-bit integers in chunks of $5\times10^6$, records $R(N)$ and $M(N)$ at the checkpoints $10^2,\dots,10^7,2\times10^7,5\times10^7$, saves every $k$ with $M(k)=0$, counts sign changes, and recomputes the exact energy \eqref{eq:EB} of the ten longest blocks from the sieved coefficients. It also samples $M$ on the logarithmic grid $x=\lfloor e^{u}\rfloor$, $u\in[\log100,\log N]$ with step $0.0005$, for the comparison of Computation~\ref{comp:recon}. It runs in under a minute.
+\item \texttt{rh\_mobius\_zeros.py} computes the first $4000$ zeros $\rho=\tfrac12+i\gamma$ with \texttt{mpmath.zetazero}, evaluates $\zeta'(\rho)$ with \texttt{mpmath.zeta(rho, derivative=1)}, and records the partial sums $\sum2/|\rho|^2$ and $\sum2/|\rho\zeta'(\rho)|^2$.
+\item \texttt{rh\_mobius\_analyze.py} reads the outputs of the two scripts above, fits the growth exponent of the block count, forms the truncated explicit formula on the logarithmic grid, and prints the correlation, the root-mean-square error and the crossing comparison of Computation~\ref{comp:recon}, together with the slope comparison of Computation~\ref{comp:constant}.
+\end{itemize}
+The finite checks of Appendix~A are independent of these scripts and use exact rational arithmetic.
+
+\section*{Acknowledgments}
+The computations of Sections~\ref{sec:closure}--\ref{sec:constant}, the identification in Section~\ref{sec:continuous}, and the drafting of this revision were carried out with the assistance of Claude (Anthropic), an AI system, working under the author's direction; this use is reported in accordance with arXiv policy. The author takes full responsibility for the content.
+
+\begin{thebibliography}{99}
+\bibitem{dlmf272} NIST Digital Library of Mathematical Functions, Chapter 27: Functions of Number Theory, \S27.2, especially equation 27.2.12. \url{https://dlmf.nist.gov/27.2}.
+\bibitem{dlmf275} NIST Digital Library of Mathematical Functions, Divisor Sums, \S27.5, equations 27.5.1--27.5.2. \url{https://dlmf.nist.gov/27.5}.
+\bibitem{dlmf2711} NIST Digital Library of Mathematical Functions, Asymptotic Formulas: Partial Sums, \S27.11, especially equation 27.11.13. \url{https://dlmf.nist.gov/27.11}.
+\bibitem{odlyzko-teriele} A. M. Odlyzko and H. J. J. te Riele, Disproof of the Mertens conjecture, J. reine angew. Math. 357 (1985), 138--160.
+\bibitem{hurst} G. Hurst, Computations of the Mertens function and improved bounds on the Mertens conjecture, Math. Comp. 87 (2018), no. 310, 1013--1028.
+\bibitem{michaels-colors} C. Michaels, Prime-Color Recombination, Historical Energy, and Global Density, research manuscript, September 8, 2026, 36 pp.
+\bibitem{michaels-ramanujan} C. Michaels, From Ramanujan Coordinates to Adaptive Return Blocks, companion research manuscript, September 8, 2026.
+\bibitem{michaels-folds} C. Michaels, Primes, Folds, and the One Dot: A Computational Atlas of Weil Positivity, Prime-Sieve Geometry and the Zeta Zeros, manuscript, September 28, 2026.
+\bibitem{titchmarsh} E. C. Titchmarsh, The Theory of the Riemann Zeta-Function, 2nd ed., revised by D. R. Heath-Brown, Oxford University Press, 1986.
+\bibitem{baezduarte} L. B\'aez-Duarte, A strengthening of the Nyman--Beurling criterion for the Riemann hypothesis, Atti Accad. Naz. Lincei Rend. Lincei Mat. Appl. (9) 14 (2003), 5--11.
+\bibitem{burnol} J.-F. Burnol, A lower bound in an approximation problem involving the zeros of the Riemann zeta function, Adv. Math. 170 (2002), 56--70.
+\bibitem{bbls} L. B\'aez-Duarte, M. Balazard, B. Landreau and E. Saias, Notes sur la fonction $\zeta$ de Riemann, 3, Adv. Math. 149 (2000), 130--144.
+\bibitem{ng} N. Ng, The distribution of the summatory function of the M\"obius function, Proc. London Math. Soc. (3) 89 (2004), 361--389.
+\bibitem{cramer} H. Cram\'er, Ein Mittelwertsatz in der Primzahltheorie, Math. Z. 12 (1922), 147--153.
+\bibitem{kotnik-teriele} T. Kotnik and H. te Riele, The Mertens conjecture revisited, in: Algorithmic Number Theory (ANTS VII), Lecture Notes in Comput. Sci. 4076, Springer, 2006, 156--167.
+\bibitem{ingham} A. E. Ingham, On two conjectures in the theory of numbers, Amer. J. Math. 64 (1942), 313--319.
+\bibitem{zhu} X. Zhu, Weil positivity in compact windows: a finite reduction, certified two-sided bounds, and a Landau--Widom decay law, arXiv:2608.24827 (2026).
+\end{thebibliography}
+
+\end{document}
