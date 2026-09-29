@@ -38,8 +38,10 @@ def legendre_all(u, nmax):
     return P
 
 class OddWeil:
-    def __init__(self, K=24, M=64, Mx=80):
+    def __init__(self, K=24, M=None, Mx=80):
         self.K = K
+        # inner rule must integrate products of two odd Legendre polynomials of degree 2K-1 exactly: need M >= 2K
+        if M is None: M = 2*K + 8
         self.N = [mp.sqrt(mp.mpf(4*i+3)/2) for i in range(K)]
         self.xs, self.ws = gl_nodes(M)       # inner (u) quadrature
         self.xx, self.wx = gl_nodes(Mx)      # outer (x) quadrature
