@@ -707,7 +707,20 @@ The two populations of Heuristic~\ref{heur:scale} are both visible: half of all 
 
 \subsection{Reconstruction of the longest blocks from the zeros}
 
-%% COMPUTATION_RECON_PLACEHOLDER
+\begin{computation}[The zeros reconstruct the blocks]\label{comp:recon}
+On the logarithmic grid $x=\lfloor e^u\rfloor$, with $u$ from $\log10^4$ to $\log(5\times10^7)$ in steps of $0.0005$ ($17{,}040$ points), compare the sieved values of $M(x)/\sqrt x$ with the truncated explicit formula
+\[
+\sum_{k\le K}2\Ree\frac{x^{i\gamma_k}}{\rho_k\,\zeta'(\rho_k)}-\frac{2}{\sqrt x},
+\]
+using the first $K$ zeros (the trivial-zero series in \eqref{eq:explicitM} is below $10^{-8}$ on this range). The zeros and the values $\zeta'(\rho_k)$ are computed with \texttt{mpmath} at 15 digits (script \texttt{rh\_mobius\_zeros.py}).
+\begin{enumerate}[label=(\arabic*)]
+\item With $K=100$ the correlation between the two functions is $0.9872$ and the root-mean-square error is $0.0272$; with $K=1000$ they are $0.9978$ and $0.0113$, against a root-mean-square value $0.1705$ of the signal itself. This is the M\"obius counterpart of \cite[Computation 13.3(3)]{michaels-folds}, where $1000$ zeros reproduce $(\psi(x)-x)/\sqrt x$ with correlation $0.983$.
+\item Closures are predicted by the zeros. Of the $366$ sign changes of $M$ that the grid resolves for $x\ge10^5$, every one lies within $0.034$ in $u=\log x$ of a sign change of the $K=1000$ reconstruction; the median distance is $0.0010$, and $92\%$ lie within $0.01$, that is, within one percent in $x$. The reconstruction has fewer sign changes ($182$) than the sieve on the same grid, because it lacks the zeros above height $1419$ that produce the fine returns of Heuristic~\ref{heur:scale}; the coarse crossings, which bound the long blocks of Table~\ref{tab:longest}, are all present.
+\item The mean of $\big(M(x)/\sqrt x\big)^2$ over the grid is $0.02907$; this is the quantity compared with the zero-side constant in Computation~\ref{comp:constant}.
+\end{enumerate}
+\end{computation}
+
+The second item is the quantitative form of the statement that late closure is a zero chord: the position at which a long block finally closes is fixed, to a fraction of a percent, by the phases $\gamma_k\log x$ of the first thousand zeros.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The M\"obius mean-square constant}\label{sec:constant}
@@ -728,7 +741,20 @@ converges, and $C_M$ is the second moment of the limiting distribution. Since $R
 \end{equation}
 We do not claim \eqref{eq:RNasymp} as a theorem: it requires uniform integrability of the squares in addition to Theorem~\ref{thm:ng}, and the constant itself is conditional on the convergence of \eqref{eq:CM}. It is the M\"obius twin of Cram\'er's theorem that $\frac1{\log X}\int_2^X(\psi(x)-x)^2x^{-2}dx\to\sum_\rho|\rho|^{-2}=2+\gamma-\log4\pi$ under the Riemann Hypothesis \cite{cramer}, measured in \cite[Computation 13.3]{michaels-folds}. The difference between the two constants is the factor $\zeta'(\rho)$ in every term: the M\"obius energy is sensitive to the derivative of $\zeta$ at each zero, and its largest terms come from close pairs of zeros.
 
-%% COMPUTATION_CONSTANT_PLACEHOLDER
+\begin{computation}[The M\"obius mean-square constant]\label{comp:constant}
+\begin{enumerate}[label=(\arabic*)]
+\item Zero side. The partial sums of \eqref{eq:CM} over the first $10,100,500,1000,2000$ zeros are $0.02531$, $0.02829$, $0.02881$, $0.02891$, $0.02896$ (heights to $2515$). Under Gonek's conjecture the tail beyond height $T$ is about $2\cdot\frac{3}{\pi^2}/T$, which is $2.4\times10^{-4}$ at $T=2515$, giving
+\[
+C_M\approx0.0292.
+\]
+The same zeros give $\sum_{\gamma\le1419}2/|\rho|^2=0.04475$, and adding the tail $\frac1\pi\log(T/2\pi)/T=0.00122$ reproduces Cram\'er's constant $2+\gamma-\log4\pi=0.04619$ to $0.5\%$, which calibrates the zero computation.
+\item Prime side. By Computation~\ref{comp:blocks}(4) the increment of $\int_1^N M(x)^2x^{-2}dx$ per unit of $\log N$ is $0.0300$, $0.0281$, $0.0285$, $0.0299$ on the four successive ranges from $10^4$ to $5\times10^7$, and by Computation~\ref{comp:recon}(3) the mean of $(M/\sqrt x)^2$ over the logarithmic grid is $0.02907$.
+\item The two sides agree to within one percent, at the same level as the corresponding comparison $0.0458$ against $0.0462$ for $\psi$ in \cite[Computation 13.3]{michaels-folds}. The M\"obius constant is smaller than Cram\'er's by the factor $|\zeta'(\rho)|^{-2}$ in each term; the ratio of the two partial sums over the first thousand zeros is $0.65$.
+\item Caveats. The constant is conditional (Theorem~\ref{thm:ng} and the convergence of \eqref{eq:CM}); the cross terms between zeros in the running mean decay only like $1/\log N$, so the slope on individual decades fluctuates by about $\pm4\%$; and, as noted in Computation~\ref{comp:blocks}(4), the ratio $R(N)/\log N$ approaches the same limit only for $\log N\gg40$.
+\end{enumerate}
+\end{computation}
+
+The comparison says that the historical Green energy of the M\"obius vector grows, on the range computed, at exactly the rate the zeros of $\zeta$ prescribe. Theorem~\ref{thm:rhcrit} says what that rate would become under an off-line zero, and Remark~\ref{rem:nb} says which classical criterion the same Hilbert space carries.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Two tori, and what a finite cutoff can certify}\label{sec:tori}
