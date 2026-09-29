@@ -6,7 +6,7 @@
 
 - **This is not a proof and does not contain one.** It's an attempt to design the *shape* of a proof along the three routes I ranked highest for your toolkit (the horizon theorem, the decay law, and the Davenport–Heilbronn control), to isolate the single lemma on which such a proof would stand, and to say where the circularity hides.
 - Everything below is one of three things, and each is labelled:
-  - **[verified]** — computed with a small independent engine for the odd Weil form (`rh_weil_odd.py`, 24 modes, 50 digits). It reproduces your floors (λ(0.5) = 1.943×10⁻⁴, λ(0.6) = 6.0×10⁻⁷) and your Table 1 failure points (0.371602 vs your 0.371601; 0.55735 vs your 0.557323). A K-mode minimum is a minimum over a subspace and therefore an *upper bound* on the true floor: a negative finite-mode value certifies indefiniteness (up to rounding), a positive one does not certify positivity, which is why certification (Zhu) needs the control of the omitted directions that this engine does not attempt. Every [verified] number below is a statement about the 24-mode form; the rigidity conclusions (§2.4) survive because they rest on negative values.
+  - **[verified]** — computed with a small independent engine for the odd Weil form (`rh_weil_odd.py`, 24 modes, 50 digits). It reproduces your floors (λ(0.5) = 1.943×10⁻⁴, λ(0.6) = 6.0×10⁻⁷) and your Table 1 failure points (0.371602 vs your 0.371601; 0.55735 vs your 0.557323). A K-mode minimum is a minimum over a subspace and therefore an *upper bound* on the true floor: a negative finite-mode value certifies indefiniteness (up to rounding), a positive one does not certify positivity, which is why certification (Zhu) needs the control of the omitted directions that this engine does not attempt. Every [verified] number below is a statement about the 24-mode form, except in §2.6, where the numbers come from a second engine (`rh_edge_fem.py`, hat functions on a mesh graded to the window edge, double precision) whose minima are likewise upper bounds; the rigidity conclusions (§2.4) survive because they rest on negative values.
   - **[derived]** — a formula I derived and checked for consistency but did not compute.
   - **[conjecture]** or **[heuristic]** — clearly marked.
 - The three routes are not three problems. They are three faces of one function, Φ(a) = −log λ(a).
@@ -73,11 +73,13 @@ Note the prime weights in λ′ are **Λ(n) log n**, the Dirichlet coefficients 
 
 ### 2.1 The kink proposition
 
-**Proposition.** At each entry a_n = ½ log n, λ is continuous and its derivative jumps up by
+**Proposition (K-mode form).** At each entry a_n = ½ log n, the K-mode floor λ_K is continuous and its derivative jumps up by
 
-**λ′(a_n⁺) − λ′(a_n⁻) = 4 Λ(n) n^{−1/2} f_{a_n}(a_n)²,**
+**λ_K′(a_n⁺) − λ_K′(a_n⁻) = 4 Λ(n) n^{−1/2} f_K(a_n)²,**
 
-where f_{a_n}(a_n) is the endpoint value of the normalized minimizer at entry.
+where f_K(a_n) is the endpoint value of the normalized K-mode minimizer at entry.
+
+**For the exact form the endpoint value is zero** (§2.6: the minimizer vanishes at the edge like C(log(a/δ) + β)^{−1/2}, a theorem of Hernández-Santamaría–López Ríos–Saldaña applied to the window form), so the exact λ has no first-order kink. What replaces it is a **soft kink**: the entering term grows like 4Λ(n)n^{−1/2}C²(a − a_n)/(log(1/(a − a_n)) + β), so λ′ is continuous but its increment across the entry, measured at scale ε, is 4Λ(n)n^{−1/2}C²/(log(1/ε) + β), vanishing only logarithmically. The K-mode kick is this law evaluated at the resolution scale of the truncation, f_K(a_n)² ≈ C²/(2 log K + β′). Everything in this subsection is about the K-mode form, where the proposition is exact; §2.6 has the exact-form measurements.
 
 *Proof sketch.* The new term −2Λ(n)n^{−1/2} g(log n) vanishes at entry; for a slightly larger, g(log n) = ∫_{2a_n−a}^{a} f(y) f(y − log n) dy ≈ −2(a − a_n) f(a)² for odd f. Differentiate in a with the minimizer frozen (Feynman–Hellmann). ∎
 
@@ -112,7 +114,9 @@ So **Table 1 measures the e-folding length of λ(a)**, not a hand-off in the sen
 - Between entries, the archimedean drift pushes Φ′ up (faster decay).
 - At each entry, Φ′ **drops** by J_n = 4Λ(n)n^{−1/2} f(a_n)²/λ(a_n).
 
-Measured: J_2 = 5.96 (Φ′ from 41.2 to 35.2, a 14% drop); J_3 = 14.4 (from 77.4 to 63.0, a 19% drop). [verified]
+Measured on the 24-mode form: J_2 = 5.96 (Φ′ from 41.2 to 35.2, a 14% drop); J_3 = 14.4 (from 77.4 to 63.0, a 19% drop). [verified]
+
+For the exact form (§2.6) the drop is not instantaneous: at distance ε past the entry, Φ′ has dropped by J_n(ε) = 4Λ(n)n^{−1/2}C_n²/(λ(a_n)(log(1/ε) + β)). What the budget needs is the drop accumulated over the next e-folding length ε ≈ 1/Φ′, i.e. J_n(1/Φ′) with log(1/ε) = log Φ′. At the entry of 3 the asymptotic law gives 4Λ(3)3^{−1/2}C₃²/(log Φ′ + β) ≈ 6×10⁻⁴ at ε = 1/Φ′ = 0.013, but at that scale the law overestimates (measured increment 1.6×10⁻⁴ at ε = 10⁻³ after removing the smooth curvature, against 3.0×10⁻⁴ from the law; the two agree to 5% from ε = 10⁻⁴ down). So the exact relay at the scale that matters is of the same order as the 24-mode kick (2.3×10⁻⁴), not a different mechanism, and the budget below keeps its form with f(a_n)² read as the measured λ′ increment at scale 1/Φ′ divided by 4Λ(n)n^{−1/2}.
 
 Two ratios stay in narrow bands across a = 0.35 to 1.2:
 
@@ -160,7 +164,7 @@ So the relay kick is instantaneous and exact, and within Δa ≈ 3×10⁻⁵ the
 | 56 | 1.49368×10⁻⁵ | 0.008444 | 1.808×10⁻⁴ |
 | 64 | 1.49325×10⁻⁵ | 0.008207 | 1.708×10⁻⁴ |
 
-The floor converges (its steps shrink: 2.0, 1.5, 0.9, 0.5, 0.4 ×10⁻⁸). The endpoint value does not on this range: it is 13% lower at K = 64 than at K = 24 and still falling, so the kick's predicted size has dropped 25% and has no visible limit. A fit f(K) = f_∞ + c/K gives f_∞ ≈ 0.0075 from each of three independent pairs (24/64, 32/56, 40/64), which would make the true kick about 1.4×10⁻⁴; but a slow power law f ∝ K^{−0.15}, tending to zero, fits the six values equally well. A Legendre expansion converges slowest at the endpoint, and the endpoint is exactly where the relay lives. Two consequences. First, this is the concrete form of the reviewers' point about omitted directions: a certified relay transition must enclose f(a_n), not only λ(a_n), and the complementary-space debit for f(a_n) is much larger than for λ. Second, it is an open question whether the true minimizer's endpoint value is nonzero at all; if it tends to zero the kick is a truncation effect and the relay proceeds through the interior of the window instead. The question is analytical, not numerical: the Euler–Lagrange equation of the minimizer is an integral equation on [−a, a] whose kernel has the singularity J_Γ(s) ~ 1/(2|s|), and the endpoint behaviour of its solutions (a boundary layer or a finite limit) is a Wiener–Hopf question about that kernel. Numerically, the direct test is the profile of the minimizer near y = a at increasing K:
+The floor converges (its steps shrink: 2.0, 1.5, 0.9, 0.5, 0.4 ×10⁻⁸). The endpoint value does not on this range: it is 13% lower at K = 64 than at K = 24 and still falling, so the kick's predicted size has dropped 25% and has no visible limit. A fit f(K) = f_∞ + c/K gives f_∞ ≈ 0.0075 from each of three independent pairs (24/64, 32/56, 40/64), which would make the true kick about 1.4×10⁻⁴; but a slow power law f ∝ K^{−0.15}, tending to zero, fits the six values equally well. A Legendre expansion converges slowest at the endpoint, and the endpoint is exactly where the relay lives. Two consequences. First, this is the concrete form of the reviewers' point about omitted directions: a certified relay transition must enclose f(a_n), not only λ(a_n), and the complementary-space debit for f(a_n) is much larger than for λ. Second, whether the true minimizer's endpoint value is nonzero at all is answered in §2.6: it is zero, the kick is a truncation effect of the K-mode form, and the relay proceeds through a logarithmic boundary layer. The Legendre profiles alone could not decide this (they resolve only δ ≳ 1/K² at the edge); they are kept here because they show what a finite-mode computation sees:
 
 | y/a | 0.5 | 0.9 | 0.95 | 0.98 | 0.99 | 0.995 | 0.999 | 1.0 |
 |---|---|---|---|---|---|---|---|---|
@@ -168,9 +172,9 @@ The floor converges (its steps shrink: 2.0, 1.5, 0.9, 0.5, 0.4 ×10⁻⁸). The 
 | K = 40 | 1.3664 | 0.11690 | 0.04873 | 0.02379 | 0.01745 | 0.01422 | 0.01093 | 0.00865 |
 | K = 64 | 1.3664 | 0.11689 | 0.04875 | 0.02381 | 0.01747 | 0.01429 | 0.01100 | 0.00821 |
 
-For y ≤ 0.99a the minimizer is converged to better than 0.1% and is nonzero (f(0.99a) = 0.0175). The last one percent of the window is a boundary layer where the K-mode minimizer is still adjusting: f(0.999a) drifts up (0.0107 → 0.0110) while f(a) drifts down (0.0095 → 0.0082), the two closing toward each other. A vanishing endpoint value would require the drop to occur inside the last 0.1% of the window, against that trend. Taken alone, the profiles suggest a finite limit f(a₃) ≈ 0.008–0.011. The structural fact below argues the other way, and it is the more reliable guide. [verified: profiles]
+For y ≤ 0.99a the minimizer is converged to better than 0.1% (f(0.99a) = 0.0175). The last one percent of the window is a boundary layer where the K-mode minimizer is still adjusting: f(0.999a) drifts up (0.0107 → 0.0110) while f(a) drifts down (0.0095 → 0.0082). Read with the edge law of §2.6, the six endpoint values are f_K(a₃) = C(2 log K + β′)^{−1/2}: 1/f_K² is linear in log K (the fit f_∞ + c/K and the power law K^{−0.15} were both wrong extrapolations), and the "boundary layer" is the truncation's view of a profile that continues to fall, like (log(a/δ))^{−1/2}, all the way to zero. [verified: profiles]
 
-### 2.6 The archimedean wall [verified identity; reading conjectural]
+### 2.6 The archimedean wall and the edge law [identity verified; edge law: theorem + numerics]
 
 For f supported in [−a, a], the archimedean form in x-space is c₁‖f‖² + ½∬_{ℝ²} J_Γ(u−v)|f(u)−f(v)|² du dv with J_Γ(s) = e^{−|s|/2}/(1−e^{−2|s|}). Splitting the double integral according to whether v lies inside the window gives an exact decomposition of the window form:
 
@@ -185,11 +189,49 @@ Since J_Γ(s) ~ 1/(2|s|), the potential diverges logarithmically at the edge. Nu
 
 So **V(y) = ½ log(1/(a−|y|)) + 2.6606 + o(1)**: the odd Weil form on a window is a logarithmic kinetic form (the interior J_Γ Dirichlet form, which has symbol ~ log|t|, the logarithmic Laplacian of Chen–Weth) plus a logarithmic confining wall, plus the prime shifts and the rank-one polar term, both bounded.
 
-Consequences:
+Consequences, in order of certainty:
 
-- The minimizer is pushed off the edge by a divergent potential. The Euler–Lagrange equation [c₁ + V(y) − λ] f(y) + (kinetic term)(y) = (bounded) forces either f(y) → 0 as |y| → a or a compensating divergence of the nonlocal kinetic term. The simplest consistent behaviour is f(y) ≈ C/log(1/(a−|y|)), i.e. **f(a) = 0 with logarithmic approach**. The K = 64 profile is consistent with this on the converged range (f·log(1/δ) = 0.081, 0.076, 0.076 at δ = 0.01, 0.005, 0.001 in units of a), and a Legendre truncation resolving scales ~1/K² would then show f_K(a) ~ c/log K, which is exactly the slow, non-shrinking decrease observed from K = 24 to 64. A finite limit f(a₃) ≈ 0.008 is not excluded by the numerics, but it would require the kinetic term to diverge at the edge.
-- If f(a) = 0 for the exact form, the kink of §2.1 is a **truncation feature of the K-mode form**: exact for every K, vanishing in the limit. The entering prime power then enters at *zero* first-order rate, with the term −2Λ(n)n^{−1/2} g(log n) growing like (a − a_n)·C²/log²(1/(a − a_n)): a soft kink, a derivative that is continuous but whose slope diverges. The relay is real but gentler than a kick, and the Φ′ budget of §2.3 must be re-derived with this growth law. The rigidity results (§2.4) are unaffected, since they rest on negative values of the finite form.
-- The boundary layer seen in §2.5 is then **archimedean**, and the prime-free form confirms it. Ground state of the archimedean-plus-polar odd form at a = 0.3 (no prime inside the window; λ = 0.222557, converged to six digits), values of f at y/a: [verified]
+**1. The edge law is a theorem.** The window form is one half of the Dirichlet form of the logarithmic Laplacian L_Δ (Chen–Weth) plus a bounded quadratic form: the symbol of ½∬J_Γ(u−v)|f(u)−f(v)|² is σ(ξ) = ∫J_Γ(s)(1 − cos sξ)ds = log|ξ| + O(1), so it differs from ½·(2 log|ξ|) by a bounded multiplier, and on the window that difference, the prime shifts and the polar term are integral operators with bounded kernels. The Euler–Lagrange equation of the minimizer is therefore L_Δ f = F with F ∈ L^∞, granted f ∈ L^∞ (interior regularity; numerically max f = 1.37 at a₃). Two theorems on bounded weak solutions of the Dirichlet problem for L_Δ then apply to it:
+
+- Chen–Weth, *The Dirichlet problem for the logarithmic Laplacian*, Comm. PDE 44 (2019), Thm 1.11: |f(y)| = O((log(1/(a − |y|)))^{−τ}) for every τ < ½.
+- Hernández-Santamaría, López Ríos, Saldaña, *Optimal boundary regularity and a Hopf-type lemma for Dirichlet problems involving the logarithmic Laplacian*, DCDS 45 (2025), arXiv:2401.18033, Thm 1.1: |f(y)| ≤ C (log(1/(a − |y|)))^{−1/2}. Their Thm 1.2 shows the rate is sharp (two-sided for the torsion function of a small ball), and Thm 1.4 is a Hopf lemma giving the same rate from below for nonnegative supersolutions.
+
+So **the exact minimizer vanishes at the edge, at least like (log)^{−1/2}**, and the endpoint value f(a_n) of §2.1 is a quantity of the truncation. The same exponent comes out of the Euler–Lagrange equation directly [derived]: in t = log(1/δ) the equation near the edge reads t·g(t) − ½∫₀ᵗ g(τ)dτ = O(g) + O(1), the coefficient t being ½ from the wall and ½ from the interior kernel and the ½∫g coming from the long-range part of the interior kernel (a constant ½ on one side in the variable t), and its solutions are g = C t^{−1/2}(1 + O(1/t)). A finite limit would need the nonlocal term to diverge, which it cannot.
+
+**2. The profile, resolved.** `rh_edge_fem.py` (Appendix) is a second engine built for the edge: hat functions on a mesh graded geometrically to 10⁻¹²·a, with exact cross-correlations and closed-form archimedean tails, so the minimizer is read to t = log(a/δ) ≈ 25 where the Legendre engine stops at 2 log K ≈ 8. On every mesh and in both cases, 1/f² is linear in t: [verified]
+
+| form | mesh (graded to 10⁻¹⁰–10⁻¹²) | λ | C | β | max rel. residual, 14 < t < 20 | local exponent, t = 8 → 22 |
+|---|---|---|---|---|---|---|
+| prime-free, a = 0.3 | 130-node, ratio ½ from 0.1a | 2.2255833e-01 | 1.3090 | -1.49 | 4e-05 | 0.621 → 0.519 |
+| prime-free, a = 0.3 | 350-node, ratio 0.6 from 0.2a | 2.2256002e-01 | 1.3089 | -1.47 | 4e-05 | 0.622 → 0.536 |
+| prime-free, a = 0.3 | 487-node, ratio 0.9 then ½ from 0.05a | 2.2255660e-01 | 1.3089 | -1.49 | 4e-05 | 0.623 → 0.537 |
+| full form, a = a₃ | 130-node, ratio ½ from 0.1a | 1.5446844e-05 | 0.0241 | -1.87 | 5e-05 | 0.718 → 0.528 |
+| full form, a = a₃ | 350-node, ratio 0.6 from 0.2a | 1.8594108e-05 | 0.0244 | -1.86 | 5e-05 | 0.724 → 0.546 |
+| full form, a = a₃ | 487-node, ratio 0.9 then ½ from 0.05a | 1.4914475e-05 | 0.0241 | -1.87 | 5e-05 | 0.724 → 0.547 |
+
+The fit is f(a − δ) = C (t + β)^{−1/2}, with the residual of the linear law below 10⁻⁴ over six e-foldings and the local exponent −d log f/d log t descending toward ½ exactly as ½·t/(t + β) does. C and β are mesh-independent to 10⁻³ (prime-free) and 10⁻² (at a₃, where the interior is harder and λ itself is a five-digit cancellation). On the two coarser meshes the floor sits above the 64-mode Legendre value (0.2225569 at a = 0.3; 1.49325×10⁻⁵ at a₃) by the P1 interior error; on the two-stage mesh it lies *below* it, by 1.3×10⁻⁶ and by 0.12% respectively, as a space that resolves the edge better must give, and the profile agrees with the converged Legendre profile to 10⁻⁴ for y ≤ 0.99a.
+
+The six Legendre endpoint values of §2.5 are this law seen at the truncation's resolution scale: a degree-2K expansion resolves δ ~ 1/K² at the edge, and reading each f_K(a) through the fitted C and β gives an effective t_K that tracks 2 log K with a constant offset:
+
+| K | 24 | 32 | 40 | 48 | 56 | 64 |
+|---|---|---|---|---|---|---|
+| 2 log K | 6.36 | 6.93 | 7.38 | 7.74 | 8.05 | 8.32 |
+| t_K at a₃ (from f_K(a₃)) | 8.36 | 8.93 | 9.64 | 9.67 | 10.03 | 10.51 |
+| t_K at a = 0.3, prime-free | 8.44 | – | 9.42 | – | – | 10.34 |
+
+That is the "slow, steady decrease with no visible limit" of §2.5, explained: f_K(a_n)² = C²/(2 log K + β′), and the fits f_∞ + c/K and K^{−0.15} were both wrong extrapolations of a logarithm. The same offset, t_K ≈ 2 log K + 2 (the truncation resolves δ ≈ e⁻²·a/K² at the edge), appears with and without primes, which is what one expects from a property of the Legendre basis.
+
+**3. The relay is a soft kink.** With f(a − δ) = C(t + β)^{−1/2}, the entering term at a = a_n + ε is −2Λ(n)n^{−1/2} g(log n) = 2Λ(n)n^{−1/2}∫₀^{2ε} f(a − δ) f(a − 2ε + δ) dδ ≈ 4Λ(n)n^{−1/2} C² ε/(log(1/ε) + β), so λ′ is continuous across the entry and its increment at scale ε is 4Λ(n)n^{−1/2}C²/(log(1/ε) + β): a kick whose size vanishes, but only logarithmically. Measured at the entry of 3 on the 134-node mesh (C = 0.0241, β = -1.93), with D(ε) = [λ(a₃+ε) − 2λ(a₃) + λ(a₃−ε)]/ε, all entries ×10⁻⁴: [verified]
+
+| ε | 10⁻³ | 10⁻⁴ | 10⁻⁵ | 10⁻⁶ | 10⁻⁷ |
+|---|---|---|---|---|---|
+| measured λ′ increment D(ε) | 2.45 | 1.90 | 1.48 | 1.21 | 1.01 |
+| first-order energy P(ε)/ε on the a₃ minimizer | 3.42 | 2.13 | 1.59 | 1.27 | 1.06 |
+| law 4Λ(3)3^{−1/2}C²/(log(1/ε) + β) | 2.96 | 2.02 | 1.54 | 1.24 | 1.04 |
+
+The measured increment falls by about 22% per decade, as 1/(log(1/ε) + β) does, and from ε = 10⁻⁴ down it agrees with the law to 2–6% and with the frozen-minimizer first-order energy to 4–11% (the remainder is the reorganization of the minimizer, which shrinks like 1/log(1/ε) relative to the first-order term); at ε = 10⁻³ the smooth curvature λ″ε ≈ 0.9×10⁻⁴ is still inside D. The 24-mode form gives a constant 2.28×10⁻⁴ at every scale below its resolution; the exact form has passed below that value by ε = 10⁻⁴ and keeps falling. This is the relay of §2.1–2.3 in its exact form: the entering prime power does not kick λ′, it bends it, with a slope that diverges like 1/(ε log²(1/ε)) at the entry. The Φ′ budget of §2.3 keeps its shape with f(a_n)² read at the scale 1/Φ′ (see there); the rigidity results of §2.4 are unaffected, since they rest on negative values of finite forms.
+
+**4. The boundary layer is archimedean.** The ground state of the archimedean-plus-polar odd form at a = 0.3 (no prime inside the window; λ = 0.222557) shows the same signature in the Legendre engine, values of f at y/a: [verified]
 
 | K | 0.5 | 0.9 | 0.99 | 0.995 | 0.999 | 1.0 |
 |---|---|---|---|---|---|---|
@@ -197,11 +239,9 @@ Consequences:
 | 40 | 1.6067 | 1.2562 | 0.7479 | 0.6724 | 0.5591 | 0.4647 |
 | 64 | 1.6067 | 1.2558 | 0.7472 | 0.6747 | 0.5657 | 0.4399 |
 
-  Same signature with no primes present: interior converged, endpoint value falling steadily with K (0.4966, 0.4647, 0.4399: −6.4% then −5.3%, not converging), f(0.999a) rising toward it (0.5518, 0.5591, 0.5657). The edge law differs between the two cases (f(0.99a)/f(0.999a) is 1.32 here at K = 64 against 1.59 at a₃), so the edge behaviour is not a universal power; that is what one expects from logarithmic corrections and is a further reason to settle it analytically rather than by fitting.
+and the edge-FEM rows above give its law, C = 1.3089, β = -1.49. This is the first place in the program where the archimedean place acts *alone* on the mechanism, which is what §1.2 said any proof would need; the primes enter the edge law only through the amplitude C(a). (A first K = 40 Legendre run returned nonsense because the inner quadrature rule had 64 nodes, exact only to polynomial degree 127; the engine now scales the rule with K. Nothing at K ≤ 32 was affected.)
 
-This is the point at which the numerics stop being informative and the analysis takes over: the edge asymptotics of the first eigenfunction of "log-Laplacian + ½log(1/dist) wall" on an interval is a well-posed problem, and settling it settles the kink. It is also the first place in this program where the archimedean place acts *alone* on the mechanism, which is what §1.2 said any proof would need. (A first K = 40 run returned nonsense because the inner quadrature rule had 64 nodes, exact only to polynomial degree 127; the engine now scales the rule with K. Nothing at K ≤ 32 was affected.)
-
-**What a certified transition needs.** Interval enclosures of (i) the K-mode matrix at a₃ ± h for h ≤ 10⁻⁵ (the archimedean integrals reduce to incomplete-gamma series, so this is elementary-function interval arithmetic), (ii) the lowest eigenvalue by interval LDLᵀ from both sides, (iii) the endpoint value of the enclosed eigenvector, and (iv) Zhu's complementary-space floor for both λ and f(a₃). Items (i)–(iii) are within reach of `rh_weil_odd.py` rewritten over `mpmath.iv`; item (iv) is your team's certificate machinery.
+**What a certified transition needs, revised.** The earlier list (interval enclosures of the K-mode matrix at a₃ ± h, of its lowest eigenvalue, and of the endpoint value of the enclosed eigenvector, plus Zhu's complementary-space floor for λ and f(a₃)) would certify the K-mode kick, which is now known to be a quantity of the truncation with limit zero. What is worth certifying: (i) the floor λ(a) itself, unchanged, where Zhu's tail control is the tool; (ii) for the relay, the soft law, whose inputs are the theorem in item 1 (nothing to certify) and the edge amplitude C(a), a property of the exact eigenvector. Enclosing C needs an a posteriori eigenvector bound on the graded mesh, which is a harder certificate than an eigenvalue enclosure; whether the relay inequality of §2.3 needs C certified at all, or only bounded below, is the question to settle before building that certificate. E0 and E1 of §5 are the measurements that decide it.
 
 ---
 
@@ -283,7 +323,8 @@ Each m_k is a k-fold sum over the prime side. So RH is equivalent to a family of
 
 All cheap at your precision, all new, and each one either strengthens or kills a piece of §2–§4.
 
-- **E1. Kinks J_n for n ∈ {2,3,4,5,7,8,9}.** You have all the minimizers. Tabulate f(a_n)²/λ(a_n) and the fractional drop J_n/Φ′(a_n⁻). Test the conjecture J_n/Φ′ ≈ 0.3 Λ(n)/√n. If the fractional drop is instead growing or shrinking systematically with n, the Φ′ budget of §2.3 is wrong and the decay law is being set elsewhere.
+- **E1. Soft kinks J_n for n ∈ {2,3,4,5,7,8,9}.** With `rh_edge_fem.py`, tabulate the edge amplitude C_n of the minimizer at each entry and the soft-kink coefficient 4Λ(n)n^{−1/2}C_n²/λ(a_n), which replaces f(a_n)²/λ(a_n) in the Φ′ budget. Test whether C_n²/λ(a_n) scales with T\*(a_n) as f_K(a_n)²/λ(a_n) appeared to (§2.3). If the fractional effect grows or shrinks systematically with n, the Φ′ budget of §2.3 is wrong and the decay law is being set elsewhere.
+- **E0. The edge amplitude C(a) between entries.** The one new archimedean quantity: C(a) from the graded-mesh minimizer on a fine grid of a. Its jumps at entries, if any, and its growth law in a are inputs to the relay inequality that no finite-mode computation can supply.
 - **E2. Φ′/T\* against a**, from your λ(a) curve, at resolution fine enough to see the sawtooth of drifts and kinks. Whether Φ′/T\* converges (then −log λ ≍ T\*) or grows like log T\* (then −log λ ≍ T\* log T\*) is the whole of route 3. Your Table 8 cannot tell; a = 1.3 to 1.5 probably can.
 - **E3. λ₂(a)/λ₁(a).** Lemma L2. If the ratio ever approaches 1 the ground state can switch branches and everything in §2 needs restating.
 - **E4. Rigidity at 640 bits.** Displace log 2 by ±ε at a = 1.1 and find the ε that flips the sign; prediction ≈ 5×10⁻³⁵. Then a_fail(ε) for ε = 10⁻³, 10⁻⁶, 10⁻⁹ on the prime 3. This is a one-paragraph result for the paper: "positivity at support a is destroyed by displacing a single prime by exp(−cT\*(a))."
@@ -310,3 +351,5 @@ All cheap at your precision, all new, and each one either strengthens or kills a
 - the polar term −2(∫ f sinh(x/2))².
 
 It agrees with your Table 1 to 4–6 digits with 24 modes and takes about 18 s per floor at 50 digits. The scripts `rh_kink_test.py`, `rh_deleted_form.py`, `rh_rigidity.py`, `rh_symbol_sign.py` reproduce every [verified] number above.
+
+`rh_edge_fem.py` is the second engine, built for the edge. It uses odd-extended hat functions on a mesh of the half window that is uniform in the interior and geometrically graded to 10⁻¹² of the endpoint (350–490 nodes), computes every cross-correlation of basis functions exactly (piecewise cubic, Simpson on merged breakpoints), integrates the archimedean kernel piece by piece with Gauss–Legendre where the cross-correlation is a single cubic and in closed form (∫ₓ^∞ J_Γ = artanh e^{−x/2} + arctan e^{−x/2}) elsewhere, and keeps every breakpoint near the edge exact in floating point by working in a coordinate whose origin is the edge. It reproduces the Legendre floor at a = 0.3 to 6×10⁻⁶ and the converged Legendre profile at a₃ to 10⁻³, and resolves the minimizer to log(a/δ) ≈ 25 where a K-mode expansion stops at 2 log K. `rh_soft_kink.py` measures the entering term across a₃ on this engine.

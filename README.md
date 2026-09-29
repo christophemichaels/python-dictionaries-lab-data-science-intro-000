@@ -9,7 +9,7 @@ Research repository of Christophe Michaels. Everything here surrounds the Rieman
 | `mobius_modifier_v2.pdf` / `.tex` | *The Michaels Möbius Modifier and the Michaels Dynamic DNA Sieve*, version 2. The Green energy of the Möbius vector, its block decomposition, and (new in v2) its identification with the Nyman–Beurling–Báez-Duarte norm on the critical line; RH ⇔ R(N) = O(N^ε); closure statistics to 5×10⁷; the Möbius mean-square constant. |
 | `atlas_potential_set.pdf` / `.tex` | Two remarks for the Mathematical Theory Atlas: the potential set 𝒫(a) of the light cone (Krein extensions of the truncated Weil distribution), and the ground-state transform of the Weil form with its spectral corollary (RH ⇔ E_Γ + E_P ≥ ½ Var_ν). |
 | `RH_ROUTES.md` | One hundred research routes toward RH, tiered by credibility, each with its known obstruction and a publishable next step; seven filters any route must pass. |
-| `RH_TOP3_PROOF_ARCHITECTURE.md` | The Weil-floor program as one object Φ(a) = −log λ(a): the derivative formula, the kink proposition at prime-power entries, the Φ′ budget, rigidity of positivity under displacement of a prime, the reorganization scale at an entry, and the four-lemma architecture with the lemma equivalent to RH isolated. |
+| `RH_TOP3_PROOF_ARCHITECTURE.md` | The Weil-floor program as one object Φ(a) = −log λ(a): the derivative formula, the kink proposition for finite-mode forms and the soft kink of the exact form (the archimedean wall, the (log)^{−1/2} edge law, and its consequence for the relay), the Φ′ budget, rigidity of positivity under displacement of a prime, and the four-lemma architecture with the lemma equivalent to RH isolated. |
 | `FOLDS_ERRATA.md` | Corrections and additions for *Primes, Folds, and the One Dot* (draft of 2026-09-28). |
 
 ## Code
@@ -20,6 +20,8 @@ All scripts are Python 3 and need only `numpy` and `mpmath` (plus `pymupdf` for 
 |---|---|
 | `rh_weil_odd.py` | 24–64-mode engine for the odd-sector Weil form on [−a, a] at 50 digits. Reproduces the floors and the Table 1 failure points of the folds paper to 4–6 digits. Finite-mode minima are upper bounds on the true floor; negative values certify indefiniteness, positive values do not certify positivity. |
 | `rh_kink_test.py`, `rh_kink_steps.py`, `rh_kink_modes.py`, `rh_kink_endpoint.py`, `rh_kink_profile.py` | The relay transition at the entry of 3: the derivative jump 4Λ(n)n^{−1/2} f(a_n)², its convergence in the step size and in the mode count, and the minimizer's profile near the endpoint. |
+| `rh_edge_fem.py` | Edge-adapted finite-element solver for the same form (hat functions on a mesh graded geometrically to 10⁻¹² of the window edge; exact cross-correlations, closed-form archimedean tails). Resolves the minimizer to log(a/δ) ≈ 25 and shows the edge law f(a−δ) = C (log(a/δ) + β)^{−1/2}. Double precision, numpy only. |
+| `rh_soft_kink.py` | The soft kink at the entry of 3: finite differences of the edge-FEM floor across a₃ at scales 10⁻³ … 10⁻⁷, against the first-order entering energy and the law 4Λ(3)3^{−1/2}C²/(log(1/ε) + β). |
 | `rh_deleted_form.py` | Failure points of the form with the newest prime power deleted (Table 1 of the folds paper). |
 | `rh_rigidity.py` | Sensitivity of positivity to displacing a single prime. |
 | `rh_symbol_sign.py` | Where the truncated Weil symbol is negative, relative to the horizon. |
