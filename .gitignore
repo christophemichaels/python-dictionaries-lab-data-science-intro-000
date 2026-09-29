@@ -1,2 +1,17 @@
-.ipynb_checkpoints
-.DS_Store
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Python
+__pycache__/
+*.pyc
+
+# large intermediate data from the scripts
+*.npy
+green.json
+ngconst.json

@@ -1,153 +1,35 @@
+# Riemann Hypothesis: Weil positivity, the Möbius Green energy, and the prime relay
 
-# Dictionaries lab
+Research repository of Christophe Michaels. Everything here surrounds the Riemann Hypothesis; nothing here proves it. Each document labels its statements as theorem (cited), proposition (proved here), computation (with precision and cross-checks), or heuristic.
 
-### Introduction
+## Papers and notes
 
-Now that we know about dictionaries in Python, it is time to practice using them. In this lesson, we'll use our knowledge of dictionaries to retrieve and assign data about various cities.
+| File | What it is |
+|---|---|
+| `mobius_modifier_v2.pdf` / `.tex` | *The Michaels Möbius Modifier and the Michaels Dynamic DNA Sieve*, version 2. The Green energy of the Möbius vector, its block decomposition, and (new in v2) its identification with the Nyman–Beurling–Báez-Duarte norm on the critical line; RH ⇔ R(N) = O(N^ε); closure statistics to 5×10⁷; the Möbius mean-square constant. |
+| `atlas_potential_set.pdf` / `.tex` | Two remarks for the Mathematical Theory Atlas: the potential set 𝒫(a) of the light cone (Krein extensions of the truncated Weil distribution), and the ground-state transform of the Weil form with its spectral corollary (RH ⇔ E_Γ + E_P ≥ ½ Var_ν). |
+| `RH_ROUTES.md` | One hundred research routes toward RH, tiered by credibility, each with its known obstruction and a publishable next step; seven filters any route must pass. |
+| `RH_TOP3_PROOF_ARCHITECTURE.md` | The Weil-floor program as one object Φ(a) = −log λ(a): the derivative formula, the kink proposition at prime-power entries, the Φ′ budget, rigidity of positivity under displacement of a prime, the reorganization scale at an entry, and the four-lemma architecture with the lemma equivalent to RH isolated. |
+| `FOLDS_ERRATA.md` | Corrections and additions for *Primes, Folds, and the One Dot* (draft of 2026-09-28). |
 
-### Objectives
+## Code
 
-* Practice retrieving information from dictionaries
-* Practice assigning new information to dictionaries
-* Practice retrieving information from a list of dictionaries
+All scripts are Python 3 and need only `numpy` and `mpmath` (plus `pymupdf` for PDF handling).
 
-### Working with a single dictionary
+| Script | Purpose |
+|---|---|
+| `rh_weil_odd.py` | 24–64-mode engine for the odd-sector Weil form on [−a, a] at 50 digits. Reproduces the floors and the Table 1 failure points of the folds paper to 4–6 digits. Finite-mode minima are upper bounds on the true floor; negative values certify indefiniteness, positive values do not certify positivity. |
+| `rh_kink_test.py`, `rh_kink_steps.py`, `rh_kink_modes.py`, `rh_kink_endpoint.py`, `rh_kink_profile.py` | The relay transition at the entry of 3: the derivative jump 4Λ(n)n^{−1/2} f(a_n)², its convergence in the step size and in the mode count, and the minimizer's profile near the endpoint. |
+| `rh_deleted_form.py` | Failure points of the form with the newest prime power deleted (Table 1 of the folds paper). |
+| `rh_rigidity.py` | Sensitivity of positivity to displacing a single prime. |
+| `rh_symbol_sign.py` | Where the truncated Weil symbol is negative, relative to the horizon. |
+| `rh_decay_fit.py` | Fits of −log λ(a) against T\*(a) and T\* log T\*. |
+| `rh_mobius_green.py`, `rh_mobius_zeros.py`, `rh_mobius_analyze.py` | The Möbius Green energy to 5×10⁷, the zero-side constants from the first 4000 zeros, and the comparison. |
 
-Here is a dictionary representing the city of Greenville, North Carolina in the USA.  The population is in units of 1000 people. The area is in units of kilometers squared.
+## Status
 
+Reviewed items are marked in the documents. External reviews of 2026-09-29 (independent referee on §12 of the Möbius paper; a four-branch review of the atlas and the folds paper) have been applied; see the commit history.
 
-```python
-greenville = {'Area': 68, 'City': 'Greenville', 'Country': 'USA', 'Population': 93}
-```
+## Building the papers
 
-> Remember to press shift + enter to run the code.
-
-Let's retrieve the population of the city and assign it to the variable `greenville_population`.
-
-
-```python
-greenville_population = None # change None
-greenville_population # 93
-```
-
-Now retrieve the area of Greenville and assign it to the variable `greenville_area`.
-
-
-```python
-greenville_area = None
-greenville_area # 68
-```
-
-Now let's take a look at all of the keys in the `greenville` dictionary and coerce them into a list.  Assign this variable to the list `city_keys`.
-
-
-```python
-city_keys = None
-city_keys # ['Area', 'City', 'Country', 'Population']
-```
-
-Alright, next let's get all of the values in our greenville dictionary and coerce it into a list.  Assign that list to the variable `city_values`.
-
-
-```python
-city_values = None
-city_values # [68, 'Greenville', 'USA', 93]
-```
-
-### Working with multiple cities
-
-We can retrieve our data from an excel or Google sheets like the one [shown here](https://docs.google.com/spreadsheets/d/1kv8z2lZ3NLWbJcdE6ysd40BZLresdl5W6mWrtIunMn4/edit?usp=sharing) named Travel Cities and Countries.
-
-<img src="./countries-cities.png" width="500">
-
-Lukily for us, we already have the spreadsheet downloaded and located in the current folder.  You can find the file [in the github repository](https://github.com/learn-co-curriculum/python-dictionaries-lab/tree/solution). Next, we will use a Library called **Pandas** to get this data from the excel file into Python code. We already have the code for reading an excel file into Python written for us below. Let's check it out.
-
-> **Note:** To import a library or module in Python, we do so by writing `import` followed by the name of the thing we want to import. We can optionally include an *alias* for our import, which is done by writing **as** after the name of the thing we are importing followed by the name we would like to use for our *alias*. **Do not worry** about aliases right now. Just know that the *convention* for importing the pandas library is to import it and alias it as `pd` like we see below. 
-
-
-```python
-import pandas as pd
-file_name = './cities.xlsx'
-travel_df = pd.read_excel(file_name)
-cities = travel_df.to_dict('records')
-```
-
-> Remember to press shift + enter.
-
-Great! We just used pandas to read the data from our excel file and turn each row of data into a dictionary. Again, don't worry about exactly how pandas is doing this, but know that pandas is a great tool when trying to accomplish a task such as turning data from an excel file into data we can use in Python.
-
-Run the cell below to see what our data looks like now.
-
-
-```python
-cities
-```
-
-Ok, so the list of countries associated with each city has been assigned to the variable `cities`.  Now we will work with reading and manipulating this list of cities.
-
-### Working with our list of cities
-
-First, access the third to last element and set it equal to the variable `salina`.
-
-
-```python
-salina = None 
-salina
-# {'City': 'Salina Island', 'Country': 'Italy', 'Population': 3, 'Area': 26}
-```
-
-Now access the fifth country in the list, and set it's population equal to a variable called `los_cabos_pop`.
-
-
-```python
-los_cabos_pop = None
-los_cabos_pop # 288
-```
-
-Now calculate the number of cities in the list and assign the number to the variable `city_count`.
-
-
-```python
-city_count = None
-city_count # 12
-```
-
-Finally, change the spelling of the South Korean city, Pyeongchang, to the string `'PyeongChang'`, its alternative spelling.
-
-
-```python
-cities[7]['City'] = None
-cities[7]['City'] # 'PyeongChang'
-```
-
-Now let's work on retrieving a collection of information about a dictionary.  Use the appropriate dictionary function to return a list of values in the dictionary regarding Pyeongchang.   Assign the list to the variable `pyeongchang_values`.
-
-
-```python
-pyeongchang_values = None
-
-pyeongchang_values # ['PyeongChang', 'South Korea', 44, 1464]
-```
-
-
-```python
-type(pyeongchang_values) # list
-```
-
-And now set `pyeongchang_keys` equal to a list of keys in the dictionary regarding Pyeongchang.
-
-
-```python
-pyeongchang_keys = None
-
-pyeongchang_keys # ['City', 'Country', 'Population', 'Area']
-```
-
-
-```python
-type(pyeongchang_keys) # list
-```
-
-### Summary
-
-In this section we saw how to retrieve and re-assign data in a dictionary.  We saw how we can retrieve a collection of information from a dictionary, like a list of it's keys and values, and we saw how we can work with a list of dictionaries.
+`tectonic mobius_modifier_v2.tex` or `pdflatex` (packages: amsmath, amssymb, amsthm, booktabs, hyperref, enumitem, graphicx).
