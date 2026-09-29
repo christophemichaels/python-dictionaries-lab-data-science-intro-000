@@ -596,6 +596,10 @@ Put $\varphi(u)=F_N(e^u)e^{-u/2}$ for $u\ge0$ and $\varphi(u)=0$ for $u<0$. Sinc
 where the exchange of the finite sum and the integral is justified by absolute convergence for $\Ree s>0$. Plancherel's theorem $\int\varphi_f\overline{\varphi_g}=\frac1{2\pi}\int\widehat{\varphi_f}\overline{\widehat{\varphi_g}}$ and $|s|^2=\frac14+t^2$ give \eqref{eq:plancherel}.
 \end{proof}
 
+\begin{remark}[A direct verification]
+Expanding $D_f(\frac12+it)\overline{D_g(\frac12+it)}=\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}e^{-it\log(m/n)}$ and using $\frac1{2\pi}\int_{-\infty}^\infty e^{ita}\,\frac{dt}{\frac14+t^2}=e^{-|a|/2}$ turns the right side of \eqref{eq:plancherel} into $\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}\big(\min(m,n)/\max(m,n)\big)^{1/2}=\sum_{m,n\le N}f(m)\overline{g(n)}/\max(m,n)$, which is \eqref{eq:green}. This second proof shows that the weight $dt/(\frac14+t^2)$ is forced: it is the unique weight on the critical line whose Fourier transform in $\log x$ is the kernel $1/\max(m,n)$.
+\end{remark}
+
 \begin{remark}[The Nyman--Beurling--B\'aez-Duarte space]\label{rem:nb}
 The weighted space $L^2\big(\R,\,dt/(\frac14+t^2)\big)$ on the critical line is the space in which B\'aez-Duarte's strengthening of the Nyman--Beurling criterion is stated: the Riemann Hypothesis holds if and only if
 \[
@@ -648,11 +652,11 @@ Theorem~\ref{thm:revisit} guarantees that every block closes and says nothing ab
 \subsection{What the explicit formula predicts}
 
 \begin{theorem}[Explicit formula for $M$; Titchmarsh {\cite[\S14.27]{titchmarsh}}]\label{thm:explicitM}
-Assume the Riemann Hypothesis and that all zeros are simple. Then for $x>1$ not an integer,
+Assume the Riemann Hypothesis and that all zeros are simple. Then there is an increasing sequence $T_\nu\to\infty$ such that for $x>1$,
 \begin{equation}\label{eq:explicitM}
-M(x)=\sum_{\rho}\frac{x^{\rho}}{\rho\,\zeta'(\rho)}-2+\sum_{k\ge1}\frac{(-1)^{k-1}(2\pi/x)^{2k}}{(2k)!\,k\,\zeta(2k+1)},
+M^*(x)=\lim_{\nu\to\infty}\sum_{|\gamma|<T_\nu}\frac{x^{\rho}}{\rho\,\zeta'(\rho)}-2+\sum_{k\ge1}\frac{(-1)^{k-1}(2\pi/x)^{2k}}{(2k)!\,k\,\zeta(2k+1)},
 \end{equation}
-where the sum over zeros is taken symmetrically and converges conditionally.
+where $M^*(x)=M(x)$ for $x$ not an integer and $M^*(x)=M(x)-\tfrac12\mu(x)$ for $x$ an integer. The sum over zeros converges only conditionally, along the stated sequence.
 \end{theorem}
 
 Dividing by $\sqrt x$ and writing $u=\log x$, the zero sum becomes $\sum_\rho e^{i\gamma u}/(\rho\zeta'(\rho))$: an almost periodic function of $u$ with frequencies the ordinates $\gamma$ and amplitudes $1/|\rho\zeta'(\rho)|$. This is the scaling of \cite[Proposition 13.1]{michaels-folds} with $\Lambda$ replaced by $\mu$, and with the amplitudes now involving $\zeta'(\rho)$. Two consequences for the dynamic blocks follow, the first a theorem and the second a heuristic.
@@ -731,7 +735,7 @@ Under the Riemann Hypothesis the Green energy grows, by Theorem~\ref{thm:rhcrit}
 Assume the Riemann Hypothesis and $J_{-1}(T):=\sum_{0<\gamma\le T}|\zeta'(\rho)|^{-2}\ll T$. Then $e^{-y/2}M(e^y)$ has a limiting distribution on $\R$ as $y\to\infty$.
 \end{theorem}
 
-The hypothesis $J_{-1}(T)\ll T$ is a weak form of Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^2}T$ \cite{ng}; it implies that
+The hypothesis $J_{-1}(T)\ll T$ is a weak form of Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^3}T$, equivalently a mean value $\frac{6}{\pi^2}(\log T)^{-1}$ of $|\zeta'(\rho)|^{-2}$ per zero \cite{ng,gonek}; it implies that
 \begin{equation}\label{eq:CM}
 C_M:=\sum_{\gamma>0}\frac{2}{|\rho\,\zeta'(\rho)|^2}
 \end{equation}
@@ -743,9 +747,9 @@ We do not claim \eqref{eq:RNasymp} as a theorem: it requires uniform integrabili
 
 \begin{computation}[The M\"obius mean-square constant]\label{comp:constant}
 \begin{enumerate}[label=(\arabic*)]
-\item Zero side. The partial sums of \eqref{eq:CM} over the first $10,100,1000,2000,3000,4000$ zeros are $0.02531$, $0.02829$, $0.02891$, $0.02896$, $0.02898$, $0.02899$ (heights to $4506$); the increment per thousand zeros has fallen to $1.2\times10^{-5}$. Under Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^2}T$ the tail beyond height $T$ is about $2\cdot\frac{3}{\pi^2}/T=1.4\times10^{-4}$ at $T=4506$; the observed increments are about a third of what that asymptotic predicts on this range, so we record
+\item Zero side. The partial sums of \eqref{eq:CM} over the first $10,100,1000,2000,3000,4000$ zeros are $0.02531$, $0.02829$, $0.02891$, $0.02896$, $0.02898$, $0.02899$ (heights to $4506$); the increment per thousand zeros has fallen to $1.2\times10^{-5}$. Under Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^3}T$ the tail beyond height $T$ is about $2\cdot\frac{3}{\pi^3}/T$. Between heights $2515$ and $4506$ this predicts an increment of $3.4\times10^{-5}$; the observed increment is $3.1\times10^{-5}$. The predicted tail beyond $4506$ is $4.3\times10^{-5}$, so we record
 \[
-C_M\approx0.0290\ \text{to}\ 0.0291.
+C_M\approx0.02904.
 \]
 The same zeros give $\sum_{\gamma\le4506}2/|\rho|^2=0.045656$, and adding the tail $\frac1\pi\log(T/2\pi)/T=0.000464$ reproduces Cram\'er's constant $2+\gamma-\log4\pi=0.046191$ to $0.15\%$, which calibrates the zero computation.
 \item Prime side. By Computation~\ref{comp:blocks}(4) the increment of $\int_1^N M(x)^2x^{-2}dx$ per unit of $\log N$ is $0.0300$, $0.0281$, $0.0285$, $0.0299$ on the four successive ranges from $10^4$ to $5\times10^7$, and by Computation~\ref{comp:recon}(3) the mean of $(M/\sqrt x)^2$ over the logarithmic grid is $0.02907$.
@@ -806,6 +810,7 @@ The computations of Sections~\ref{sec:closure}--\ref{sec:constant}, the identifi
 \bibitem{burnol} J.-F. Burnol, A lower bound in an approximation problem involving the zeros of the Riemann zeta function, Adv. Math. 170 (2002), 56--70.
 \bibitem{bbls} L. B\'aez-Duarte, M. Balazard, B. Landreau and E. Saias, Notes sur la fonction $\zeta$ de Riemann, 3, Adv. Math. 149 (2000), 130--144.
 \bibitem{ng} N. Ng, The distribution of the summatory function of the M\"obius function, Proc. London Math. Soc. (3) 89 (2004), 361--389.
+\bibitem{gonek} S. M. Gonek, On negative moments of the Riemann zeta-function, Mathematika 36 (1989), 71--88.
 \bibitem{cramer} H. Cram\'er, Ein Mittelwertsatz in der Primzahltheorie, Math. Z. 12 (1922), 147--153.
 \bibitem{kotnik-teriele} T. Kotnik and H. te Riele, The Mertens conjecture revisited, in: Algorithmic Number Theory (ANTS VII), Lecture Notes in Comput. Sci. 4076, Springer, 2006, 156--167.
 \bibitem{ingham} A. E. Ingham, On two conjectures in the theory of numbers, Amer. J. Math. 64 (1942), 313--319.

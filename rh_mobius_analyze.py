@@ -9,7 +9,7 @@ print(f"N={N}: M(N)={g['M_N']}, R(N)={g['R_N']:.5f}, R/logN={g['R_over_logN']:.5
 print("checkpoint   M(N)      R(N)        R/log N")
 for c, (Mc, Rc, r) in sorted(g["checkpoints"].items(), key=lambda kv: int(kv[0])):
     print(f"{int(c):>10d} {Mc:>7d} {Rc:>10.5f} {r:>10.5f}")
-print(f"C_M partial sum from {len(zd)} zeros (T={z['T']:.1f}): {z['S2']:.6f}; Gonek-tail estimate 2*(3/pi^2)/T = {2*3/np.pi**2/z['T']:.2e}")
+print(f"C_M partial sum from {len(zd)} zeros (T={z['T']:.1f}): {z['S2']:.6f}; Gonek-tail estimate 2*(3/pi^3)/T = {2*3/np.pi**3/z['T']:.2e}")
 print(f"Cramer sum partial: {z['S1']:.6f} vs 2+gamma-log 4pi = {2+0.5772156649-np.log(4*np.pi):.6f}")
 
 print("\n=== Blocks (a0=0) ===")
