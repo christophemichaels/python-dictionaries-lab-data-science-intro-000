@@ -5,7 +5,7 @@ For each a: the three lowest eigenvalues of the K-mode form, the endpoint value 
 minimizer, and the number of negative eigenvalues.  Grid step 0.0125 on [0.30, 1.20] plus the prime-power
 entries a_n = (1/2) log n with a_n +- 0.004, so that the drop of Phi' = -lambda'/lambda at each entry is resolved.
 
-Usage: python3 rh_floor_grid.py CHUNK NCHUNKS [K] [dps]   -> writes floor_grid_CHUNK.json
+Usage: python3 rh_floor_grid.py CHUNK NCHUNKS [K] [dps] [a0 a1 step]   -> writes floor_grid_[K..._]CHUNK.json
 """
 import sys, json, math, time
 import mpmath as mp
@@ -16,11 +16,16 @@ K = int(sys.argv[3]) if len(sys.argv) > 3 else 40
 dps = int(sys.argv[4]) if len(sys.argv) > 4 else 60
 mp.mp.dps = dps
 
-grid = [round(0.30 + 0.0125*i, 6) for i in range(73)]
-for n in (2, 3, 4, 5, 7, 8, 9, 11):
-    an = math.log(n)/2
-    grid += [round(an - 0.004, 8), round(an, 8), round(an + 0.004, 8)]
+if len(sys.argv) > 7:                      # custom uniform range: a0 a1 step (no entry points)
+    a0, a1, st = float(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7])
+    grid = [round(a0 + st*i, 6) for i in range(int(round((a1 - a0)/st)) + 1)]
+else:
+    grid = [round(0.30 + 0.0125*i, 6) for i in range(73)]
+    for n in (2, 3, 4, 5, 7, 8, 9, 11):
+        an = math.log(n)/2
+        grid += [round(an - 0.004, 8), round(an, 8), round(an + 0.004, 8)]
 grid = sorted(set(grid))
+tag = f"K{K}_" if len(sys.argv) > 7 else ""
 mine = grid[chunk::nch]
 
 W = eng.OddWeil(K=K)
@@ -36,5 +41,5 @@ for a in mine:
            "fa": mp.nstr(fa, 12), "neg": sum(1 for e in E if e < 0)}
     out.append(row)
     print(f"a={a:.4f} lam0={row['lam0']} lam1={row['lam1']} f(a)={row['fa']} neg={row['neg']} ({time.time()-t0:.0f}s)", flush=True)
-    json.dump({"K": K, "dps": dps, "rows": out}, open(f"floor_grid_{chunk}.json", "w"))
+    json.dump({"K": K, "dps": dps, "rows": out}, open(f"floor_grid_{tag}{chunk}.json", "w"))
 print("done", flush=True)
