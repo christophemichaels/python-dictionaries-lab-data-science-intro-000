@@ -600,6 +600,14 @@ where the exchange of the finite sum and the integral is justified by absolute c
 Expanding $D_f(\frac12+it)\overline{D_g(\frac12+it)}=\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}e^{-it\log(m/n)}$ and using $\frac1{2\pi}\int_{-\infty}^\infty e^{ita}\,\frac{dt}{\frac14+t^2}=e^{-|a|/2}$ turns the right side of \eqref{eq:plancherel} into $\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}\big(\min(m,n)/\max(m,n)\big)^{1/2}=\sum_{m,n\le N}f(m)\overline{g(n)}/\max(m,n)$, which is \eqref{eq:green}. This second proof shows that the weight $dt/(\frac14+t^2)$ is forced: after the normalization $1/\max(m,n)=(mn)^{-1/2}e^{-|\log(m/n)|/2}$, it is the unique finite measure on the critical line whose Fourier transform in $\log x$ is $e^{-|a|/2}$.
 \end{remark}
 
+\begin{remark}[Propagation form]\label{rem:propagation}
+In the variable $u=\log x$ the function $\varphi_f$ of the proof of Theorem~\ref{thm:plancherel} is
+\[
+\varphi_f(u)=\sum_{n\le N}\frac{f(n)}{\sqrt n}\,h(u-\log n),\qquad h(u)=e^{-u/2}\mathbf 1_{u\ge0},
+\]
+and $\|f\|_N^2=\int\varphi_f^2\,du$. Every integer contributes one response of the fixed shape $h$, launched at the delay $\log n=\sum_p v_p(n)\log p$ that its prime valuations prescribe, with amplitude $f(n)n^{-1/2}$. For $f=\mu$ a completed zero-mass block is a packet of such responses that cancels exactly for $u$ beyond $\log b$ (Theorem~\ref{thm:future}), while its internal energy \eqref{eq:EB} remains in the total. This representation, pointed out in review, is the concrete form of the propagation picture of \cite{michaels-colors}: factorization sets the delays, the block rule sets the cancellations, and the Green norm is the energy of the resulting signal.
+\end{remark}
+
 \begin{remark}[The Nyman--Beurling--B\'aez-Duarte space]\label{rem:nb}
 The weighted space $L^2\big(\R,\,dt/(\frac14+t^2)\big)$ on the critical line is the space in which B\'aez-Duarte's strengthening of the Nyman--Beurling criterion is stated: the Riemann Hypothesis holds if and only if
 \[
@@ -731,19 +739,15 @@ The second item is the quantitative form of the statement that late closure is a
 
 Under the Riemann Hypothesis the Green energy grows, by Theorem~\ref{thm:rhcrit}, slower than any power of $N$. The expected growth is logarithmic, with a constant determined by the zeros.
 
-\begin{theorem}[Ng {\cite{ng}}]\label{thm:ng}
-Assume the Riemann Hypothesis and $J_{-1}(T):=\sum_{0<\gamma\le T}|\zeta'(\rho)|^{-2}\ll T$. Then $e^{-y/2}M(e^y)$ has a limiting distribution on $\R$ as $y\to\infty$.
+\begin{theorem}[Ng {\cite[Theorems 2 and 3]{ng}}]\label{thm:ng}
+Assume the Riemann Hypothesis and $J_{-1}(T):=\sum_{0<\gamma\le T}|\zeta'(\rho)|^{-2}\ll T$, a hypothesis which presupposes that all zeros are simple. Then $e^{-y/2}M(e^y)$ has a limiting distribution on $\R$ as $y\to\infty$, and
+\begin{equation}\label{eq:CM}
+\int_1^X\Big(\frac{M(x)}{x}\Big)^2dx\sim C_M\log X,\qquad C_M:=\sum_{\gamma>0}\frac{2}{|\rho\,\zeta'(\rho)|^2},
+\end{equation}
+the series converging under the same hypothesis.
 \end{theorem}
 
-The hypothesis $J_{-1}(T)\ll T$ is a weak form of Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^3}T$, equivalently a mean value $\frac{6}{\pi^2}(\log T)^{-1}$ of $|\zeta'(\rho)|^{-2}$ per zero \cite{ng,gonek}; it implies that
-\begin{equation}\label{eq:CM}
-C_M:=\sum_{\gamma>0}\frac{2}{|\rho\,\zeta'(\rho)|^2}
-\end{equation}
-converges, and $C_M$ is the second moment of the limiting distribution. Since $R(N)=\int_1^N M(x)^2x^{-2}dx+M(N)^2/N$ and $\int_1^N M(x)^2x^{-2}dx=\int_0^{\log N}\big(e^{-y/2}M(e^y)\big)^2dy$, one expects
-\begin{equation}\label{eq:RNasymp}
-\frac{R(N)}{\log N}\longrightarrow C_M .
-\end{equation}
-We do not claim \eqref{eq:RNasymp} as a theorem: it requires uniform integrability of the squares in addition to Theorem~\ref{thm:ng}, and the constant itself is conditional on the convergence of \eqref{eq:CM}. It is the M\"obius twin of Cram\'er's theorem that $\frac1{\log X}\int_2^X(\psi(x)-x)^2x^{-2}dx\to\sum_\rho|\rho|^{-2}=2+\gamma-\log4\pi$ under the Riemann Hypothesis \cite{cramer}, measured in \cite[Computation 13.3]{michaels-folds}. The difference between the two constants is the factor $\zeta'(\rho)$ in every term: the M\"obius energy is sensitive to the derivative of $\zeta$ at each zero, and its largest terms come from close pairs of zeros.
+The hypothesis $J_{-1}(T)\ll T$ is a weak form of Gonek's conjecture $J_{-1}(T)\sim\frac3{\pi^3}T$, equivalently a mean value $\frac{6}{\pi^2}(\log T)^{-1}$ of $|\zeta'(\rho)|^{-2}$ per zero \cite{ng,gonek}. In the notation of Computation~\ref{comp:blocks}(4), \eqref{eq:CM} says $I(N)\sim C_M\log N$ for $I(N)=\int_1^N M(x)^2x^{-2}dx=R(N)-M(N)^2/N$: under Ng's hypotheses the integral part of the Green energy grows at exactly the zero-side rate. The terminal term $M(N)^2/N$ is separate. It has a limiting distribution by the first part of the theorem, but it is not $o(\log N)$ uniformly in $N$; if $M(x)/\sqrt x$ is unbounded, as expected (its $\limsup$ is at least $1.826$ \cite{hurst}), then $R(N)/\log N$ fails to converge along a sparse sequence of cutoffs while $I(N)/\log N$ converges. The quantity to measure is therefore the slope of $I(N)$, as in Computation~\ref{comp:blocks}(4). This is the M\"obius twin of Cram\'er's theorem that $\frac1{\log X}\int_2^X(\psi(x)-x)^2x^{-2}dx\to\sum_\rho|\rho|^{-2}=2+\gamma-\log4\pi$ under the Riemann Hypothesis and the simplicity of the zeros \cite{cramer} (with a multiple zero the constant becomes $\sum m_\rho^2/|\rho|^2$ over distinct zeros), measured in \cite[Computation 13.3]{michaels-folds}, where the simplicity hypothesis should be added to the statement. The difference between the two constants is the factor $\zeta'(\rho)$ in every term: the M\"obius energy is sensitive to the derivative of $\zeta$ at each zero, and its largest terms come from close pairs of zeros.
 
 \begin{computation}[The M\"obius mean-square constant]\label{comp:constant}
 \begin{enumerate}[label=(\arabic*)]
@@ -754,7 +758,7 @@ C_M\approx0.02904.
 The same zeros give $\sum_{\gamma\le4506}2/|\rho|^2=0.045656$, and adding the tail $\frac1\pi\log(T/2\pi)/T=0.000464$ reproduces Cram\'er's constant $2+\gamma-\log4\pi=0.046191$ to $0.15\%$, which calibrates the zero computation.
 \item Prime side. By Computation~\ref{comp:blocks}(4) the increment of $\int_1^N M(x)^2x^{-2}dx$ per unit of $\log N$ is $0.0300$, $0.0281$, $0.0285$, $0.0299$ on the four successive ranges from $10^4$ to $5\times10^7$, and by Computation~\ref{comp:recon}(3) the mean of $(M/\sqrt x)^2$ over the logarithmic grid is $0.02907$.
 \item The two sides agree to within one percent, at the same level as the corresponding comparison $0.0458$ against $0.0462$ for $\psi$ in \cite[Computation 13.3]{michaels-folds}. The M\"obius constant is smaller than Cram\'er's by the factor $|\zeta'(\rho)|^{-2}$ in each term; the ratio of the two partial sums over the first thousand zeros is $0.65$.
-\item Caveats. The constant is conditional (Theorem~\ref{thm:ng} and the convergence of \eqref{eq:CM}); the cross terms between zeros in the running mean decay only like $1/\log N$, so the slope on individual decades fluctuates by about $\pm4\%$; and, as noted in Computation~\ref{comp:blocks}(4), the ratio $R(N)/\log N$ approaches the same limit only for $\log N\gg40$.
+\item Caveats. The constant is conditional (Theorem~\ref{thm:ng}); the cross terms between zeros in the running mean decay only like $1/\log N$, so the slope on individual decades fluctuates by about $\pm4\%$; and the ratio $R(N)/\log N$ is the wrong quantity to watch, since it carries the constant contributed by $x<10^4$ (Computation~\ref{comp:blocks}(4)) and the terminal term $M(N)^2/N$, which need not be $o(\log N)$.
 \end{enumerate}
 \end{computation}
 
@@ -770,7 +774,7 @@ In \cite[\S3]{michaels-folds} the prime comb $\sum_n2\Lambda(n)n^{-1/2}\cos(t\lo
 \end{remark}
 
 \begin{remark}[Backward propagation]
-An off-line zero $\rho_0=\beta_0+i\gamma_0$ is present in \eqref{eq:explicitM} at every $x$, with the term $x^{\beta_0}/|\rho_0\zeta'(\rho_0)|$. On the block side it is invisible until $x^{\beta_0-1/2}$ exceeds the amplitude of the on-line sum, and then it dominates every later block: by \eqref{eq:offline} the energy budget changes its growth exponent. There is no backward propagation in $x$ in the sense of blocks below the detection scale being affected, and there is unrestricted forward propagation. The same dichotomy holds for the odd Weil form of \cite[\S12]{michaels-folds}, whose floor is unaffected below the horizon of an off-line zero and negative for every support above it.
+An off-line zero $\rho_0=\beta_0+i\gamma_0$ is present in \eqref{eq:explicitM} at every $x$, with the term $x^{\beta_0}/|\rho_0\zeta'(\rho_0)|$. On the block side it is invisible until $x^{\beta_0-1/2}$ exceeds the amplitude of the on-line sum. What is proved beyond that point is \eqref{eq:offline}: the energy budget exceeds $N^{2\beta_0-1-\delta}$ along a sequence of cutoffs $N\to\infty$, a $\limsup$ statement, not a bound on every later block. There is no backward propagation in $x$ in the sense of blocks below the detection scale being affected. The same dichotomy holds for the odd Weil form of \cite[\S12]{michaels-folds}, whose floor is unaffected below the horizon of an off-line zero and negative for every support above it.
 \end{remark}
 
 \begin{remark}[What a finite computation certifies]
