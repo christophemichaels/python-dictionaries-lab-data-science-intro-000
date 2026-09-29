@@ -597,7 +597,7 @@ where the exchange of the finite sum and the integral is justified by absolute c
 \end{proof}
 
 \begin{remark}[A direct verification]
-Expanding $D_f(\frac12+it)\overline{D_g(\frac12+it)}=\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}e^{-it\log(m/n)}$ and using $\frac1{2\pi}\int_{-\infty}^\infty e^{ita}\,\frac{dt}{\frac14+t^2}=e^{-|a|/2}$ turns the right side of \eqref{eq:plancherel} into $\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}\big(\min(m,n)/\max(m,n)\big)^{1/2}=\sum_{m,n\le N}f(m)\overline{g(n)}/\max(m,n)$, which is \eqref{eq:green}. This second proof shows that the weight $dt/(\frac14+t^2)$ is forced: it is the unique weight on the critical line whose Fourier transform in $\log x$ is the kernel $1/\max(m,n)$.
+Expanding $D_f(\frac12+it)\overline{D_g(\frac12+it)}=\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}e^{-it\log(m/n)}$ and using $\frac1{2\pi}\int_{-\infty}^\infty e^{ita}\,\frac{dt}{\frac14+t^2}=e^{-|a|/2}$ turns the right side of \eqref{eq:plancherel} into $\sum_{m,n\le N}f(m)\overline{g(n)}(mn)^{-1/2}\big(\min(m,n)/\max(m,n)\big)^{1/2}=\sum_{m,n\le N}f(m)\overline{g(n)}/\max(m,n)$, which is \eqref{eq:green}. This second proof shows that the weight $dt/(\frac14+t^2)$ is forced: after the normalization $1/\max(m,n)=(mn)^{-1/2}e^{-|\log(m/n)|/2}$, it is the unique finite measure on the critical line whose Fourier transform in $\log x$ is $e^{-|a|/2}$.
 \end{remark}
 
 \begin{remark}[The Nyman--Beurling--B\'aez-Duarte space]\label{rem:nb}
@@ -631,7 +631,7 @@ Moreover, if $\zeta$ has a zero of real part $\beta_0>\frac12$, then for every $
 \[
 \int_{2^k}^{2^{k+1}}|M(x)|\,x^{-\sigma-1}dx\le\Big(\int_{2^k}^{2^{k+1}}\frac{M(x)^2}{x^2}dx\Big)^{1/2}\Big(\int_{2^k}^{2^{k+1}}x^{-2\sigma}dx\Big)^{1/2}\le\big(C2^{(k+1)\varepsilon}\big)^{1/2}\Big(\frac{2^{k(1-2\sigma)}}{2\sigma-1}\Big)^{1/2}.
 \]
-The right side is summable over $k$ when $2\sigma>1+\varepsilon$. Hence $I(s)=\int_1^\infty M(x)x^{-s-1}dx$ converges absolutely and locally uniformly for $\Ree s>\frac{1+\varepsilon}2$ and defines an analytic function there. For $\Ree s>1$, partial summation gives $I(s)=\frac1s\sum_{n\ge1}\mu(n)n^{-s}=\frac1{s\zeta(s)}$. By analytic continuation $1/\zeta(s)=sI(s)$ is analytic on $\Ree s>\frac{1+\varepsilon}2$, so $\zeta$ has no zero there. As $\varepsilon>0$ is arbitrary, (i) follows.
+The right side is summable over $k$ when $2\sigma>1+\varepsilon$. Hence $I(s)=\int_1^\infty M(x)x^{-s-1}dx$ converges absolutely and locally uniformly for $\Ree s>\frac{1+\varepsilon}2$ and defines an analytic function there (each dyadic piece is entire, and the series of pieces converges uniformly on $\Ree s\ge\sigma_0$ for every $\sigma_0>\frac{1+\varepsilon}2$). For $\Ree s>1$, partial summation gives $I(s)=\frac1s\sum_{n\ge1}\mu(n)n^{-s}=\frac1{s\zeta(s)}$. By analytic continuation $1/\zeta(s)=sI(s)$ is analytic on $\Ree s>\frac{1+\varepsilon}2$, so $\zeta$ has no zero there. As $\varepsilon>0$ is arbitrary, $\zeta$ has no zeros in $\Ree s>\frac12$, and by the functional equation none in $\Ree s<\frac12$; (i) follows.
 
 Finally, \eqref{eq:offline} is the contrapositive of the last argument: if $R(N)\ll N^{2\beta_0-1-\delta}$ then $1/\zeta$ is analytic on $\Ree s>\beta_0-\delta/2$, contradicting the zero at real part $\beta_0$.
 \end{proof}
@@ -641,7 +641,7 @@ Statement (iv) is the precise sense in which the native block budget is a Rieman
 \end{remark}
 
 \begin{remark}[Heights versus energies]
-Theorem~\ref{thm:height} bounds each block energy by its height. The converse direction is weaker: a unit-step excursion of height $H$ attained near position $k$ spends at least $H/2$ steps at depth $\ge H/2$, so $E_B\ge H^3/(8(k+H)^2)$ when $H\le k$. A height $H\ge k^{1/2+\delta}$ therefore forces $E_B\gg k^{3\delta-1/2}$, which grows only when $\delta>1/6$. The proof of Theorem~\ref{thm:rhcrit} does not pass through heights; it passes through the Mellin transform, and that is why the mean-square statement (iii) is as strong as the pointwise statement (ii).
+Theorem~\ref{thm:height} bounds each block energy by its height. The converse direction is weaker: a unit-step excursion of height $H$ attained near position $k$ spends at least $H/2$ steps at depth $\ge H/2$, so $E_B\ge H^3/(8(k+H)^2)$. A height $H\ge k^{1/2+\delta}$ with $H\le k$ therefore forces $E_B\gg k^{3\delta-1/2}$, which grows only when $\delta>1/6$. The proof of Theorem~\ref{thm:rhcrit} does not pass through heights; it passes through the Mellin transform, and that is why the mean-square statement (iii) is as strong as the pointwise statement (ii).
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
