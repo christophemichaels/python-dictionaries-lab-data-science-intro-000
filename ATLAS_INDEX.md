@@ -4,7 +4,7 @@ Christophe Michaels, complete research compilation through Checkpoint 20, dated 
 
 ## Provenance and integrity
 
-Uploaded on 2026-09-29 as `Document_Cloud.zip`, containing the document split into ten PDFs (`Michaels_Consolidated_Theta_Local_Amplitude_Proof 2-part-1.pdf` … `part-10.pdf`). The archive arrived truncated at 5,323,686 bytes, without its central directory. Each part was recovered directly from its deflate stream: parts 1–8 and 10 are complete with their CRC verified; part 9's stream was cut, its PDF trailer lost, and PyMuPDF's repair recovered all 63 of its pages (printed 522–584, continuous with parts 8 and 10). The ten parts were merged into the single file above. No page is missing; if a figure or font on printed pages 522–584 renders wrongly, part 9 should be re-uploaded.
+Uploaded on 2026-09-29 as `Document_Cloud.zip`, containing the document split into ten PDFs (`Michaels_Consolidated_Theta_Local_Amplitude_Proof 2-part-1.pdf` … `part-10.pdf`). The archive arrived truncated at 5,323,686 bytes, without its central directory; each part was recovered directly from its deflate stream (parts 1–8 and 10 complete with their CRC verified, part 9 cut at its trailer and repaired). Parts 9 and 10 were then re-uploaded intact: part 10 is byte-identical to the recovered copy, and part 9 has the same 63 pages with identical text and fonts, the cut having removed only its trailer. The merged file above is built from the ten intact parts, with no repaired file among them. Printed pages run continuously from 1 to 678.
 
 ## Contents
 
