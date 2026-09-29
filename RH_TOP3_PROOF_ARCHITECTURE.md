@@ -123,7 +123,7 @@ Two ratios stay in narrow bands across a = 0.35 to 1.2:
 - **Φ′(a)/T\*(a) ≈ 2.8 to 4.1** (from your Table 8 differences: 2.8–3.7; at the entries of 2 and 3: 3.3→2.8 and 4.1→3.3).
 - **f_a(a)²/λ(a) ≈ 0.16–0.32 · T\*(a)** (values 2.2, 4.4, 5.0, 7.0, 9.9 at a = 0.4, …, 0.8).
 
-Together these give [conjecture] **J_n/Φ′ ≈ c·Λ(n)/√n with c ≈ 0.3**, a fractional drop independent of a. Individually the drops vanish as n grows, but the entries become dense (about e^{2a}/a per unit of a), and Σ_{n ≤ x} Λ(n)/√n ~ 2√x says the total fractional kick per unit of a is about 0.6 e^{a}, growing without bound. The smooth drift must grow at the same rate for Φ′ to stay ≈ 3.5 T\*. **The relay is this balance.** Your Open Question 1 becomes:
+Together these give [conjecture] **J_n/Φ′ ≈ c·Λ(n)/√n with c ≈ 0.3**, a fractional drop independent of a. *Note added with §2.7:* on the 40-mode grid at scale 0.004 the fractional drop is 0.165 at n = 2 (c = 0.34) but 0.054 at n = 3 and zero within the drift at n = 4, 5, 7, so this conjecture fails beyond the first entry; the entering term is absorbed by reorganization below the crossover scale, and Φ′/T\* shows a plateau rather than a sawtooth. The budget below is kept as the form a relay would take; §2.7 states what is actually observed. Individually the drops vanish as n grows, but the entries become dense (about e^{2a}/a per unit of a), and Σ_{n ≤ x} Λ(n)/√n ~ 2√x says the total fractional kick per unit of a is about 0.6 e^{a}, growing without bound. The smooth drift must grow at the same rate for Φ′ to stay ≈ 3.5 T\*. **The relay is this balance.** Your Open Question 1 becomes:
 
 > **Relay inequality.** For all a: 2 Σ_{log n<2a} Λ(n)(log n) n^{−1/2} g′_{f_a}(log n) + A′(f_a) + P′(f_a) ≥ −C · a · T\*(a) · λ(a).
 
@@ -242,6 +242,64 @@ The measured increment falls by about 22% per decade, as 1/(log(1/ε) + β) does
 and the edge-FEM rows above give its law, C = 1.3089, β = -1.49. This is the first place in the program where the archimedean place acts *alone* on the mechanism, which is what §1.2 said any proof would need; the primes enter the edge law only through the amplitude C(a). (A first K = 40 Legendre run returned nonsense because the inner quadrature rule had 64 nodes, exact only to polynomial degree 127; the engine now scales the rule with K. Nothing at K ≤ 32 was affected.)
 
 **What a certified transition needs, revised.** The earlier list (interval enclosures of the K-mode matrix at a₃ ± h, of its lowest eigenvalue, and of the endpoint value of the enclosed eigenvector, plus Zhu's complementary-space floor for λ and f(a₃)) would certify the K-mode kick, which is now known to be a quantity of the truncation with limit zero. What is worth certifying: (i) the floor λ(a) itself, unchanged, where Zhu's tail control is the tool; (ii) for the relay, the soft law, whose inputs are the theorem in item 1 (nothing to certify) and the edge amplitude C(a), a property of the exact eigenvector. Enclosing C needs an a posteriori eigenvector bound on the graded mesh, which is a harder certificate than an eigenvalue enclosure; whether the relay inequality of §2.3 needs C certified at all, or only bounded below, is the question to settle before building that certificate. E0 and E1 of §5 are the measurements that decide it.
+
+---
+
+### 2.7 The relay conjecture [statement; evidence to a = 1.03]
+
+Everything in §2 is about one function. Let λ(a) be the floor of the odd Weil form on [−a, a] (the normalization of `rh_weil_odd.py`, which is also that of Checkpoints 15–20 of the atlas and of Zhu's paper: the 40-mode value λ(0.8) = 1.59×10⁻¹⁴ lies inside Zhu's certified odd interval [8.2×10⁻¹⁵, 2.35×10⁻¹⁴]), Φ(a) = −log λ(a), and T\*(a) = 2πe^{2a} the horizon. Two facts frame the conjecture. Positivity of the odd form on every finite support implies RH (Weil's criterion with Yoshida's odd-test reduction, as recorded in Suzuki, arXiv:2606.09096). And no estimate that treats the polar term and the reflected primes separately can prove positivity (G3.39 of the atlas; the rigidity of §2.4 is the same fact in another coordinate). So the only quantity worth a conjecture is the floor of the whole coupled form.
+
+**Conjecture A (bounded relay).** There are a₀ and c such that, for all a ≥ a₀,
+
+  Φ′(a) ≤ c · T\*(a).
+
+Φ is locally Lipschitz and Φ′ is continuous across every entry a_n (§2.6: the kink is soft), so no one-sided derivatives are needed. Integrating, λ(a) ≥ λ(a₀) exp(−c(T\*(a) − T\*(a₀))) > 0 for all a ≥ a₀; with a₀ = 0.8 from Zhu's certificate, **Conjecture A implies RH**. It is strictly stronger than RH: it fixes the rate at which the floor may decay.
+
+**Conjecture B (decay law).** Φ′(a)/T\*(a) is bounded above and below by positive constants for a ≥ a₀. In its sharp form Φ′(a)/T\*(a) → c₀ ≈ 3.4, i.e. Φ(a) ∼ 1.7·T\*(a): the floor decays like exp(−1.7·2πe^{2a}). Zhu's paper proposes, from his own upper bounds on 0.5 ≤ a ≤ 2, the law −log λ ≃ 2π²·N(T\*)/log N(T\*), which differs from the sharp form by a slowly varying factor; the weak form of B covers both, and the data below cannot separate them.
+
+**Observation C (the relay is continuous, not a sequence of kicks).** Beyond the entries of 2 and 3, the entries a_n leave no visible drop in Φ′ at scale 0.004 or 0.0125: the measured drops at n = 4, 5, 7 are zero within the smooth drift Φ″·Δa. The reason is the crossover scale of §2.5, gap/‖dT/da‖, which is 3×10⁻⁵ at a₃ and about 10⁻⁹ at a = 0.7: the minimizer absorbs an entering prime power by reorganization long before any macroscopic scale, so the kink of §2.1 and the soft kink of §2.6 are microscopic structure. The Φ′ budget of §2.3 in its "drift up, drop at entries" form is therefore not what the data show beyond n = 2 (see the note added there); what they show is a plateau. The edge amplitude keeps its law, C(a)² ≍ λ(a)·T\*(a), within a factor two over 0.5 ≤ a ≤ 1.03.
+
+**Why the decay law is natural under RH [heuristic].** A function of exponential type a can vanish on a real sequence of density at most a/π (Beurling–Malliavin). The zeros have density (1/2π) log(T/2π) at height T, which equals a/π exactly at T = T\*(a). So a test function with Fourier support in [−a, a] can cancel the zeros below the horizon but not above it; the floor is set by the zeros near T\*, and its logarithm should scale with the number of constraints there, N(T\*) ≍ a·T\*, up to the logarithm that separates T\* from T\* log T\* in the fits of `RH_ROUTES.md`.
+
+**Evidence.** `rh_floor_grid.py` (data in `floor_grid_K40.csv`): K = 40 modes, 60 digits, 97 supports on [0.30, 1.20] with the eight entries a_n = ½ log n, n ≤ 11, resolved at ±0.004. Φ′ is a centered difference on the uniform grid, never straddling an entry. K-mode floors are upper bounds on the true floor (ground rules). Convergence: K = 56 changes λ by 3% at a = 0.9 (7.30 against 7.51 ×10⁻²⁰), but by a factor 200 at a = 1.1 (9.3×10⁻³⁵ against 1.9×10⁻³²; the 72-mode value of the folds paper is 7.7×10⁻³⁵) and by five orders at a = 1.2, where Zhu needed 950 modes. The table therefore stops at a = 1.03; the last rows of the grid are truncation artifacts and are shown separately. [verified]
+
+| a | T\* | λ (K = 40) | Φ = −log λ | Φ′ | Φ′/T\* | f_K(a)²/(λ T\*) | λ₁/λ₀ |
+|---|---|---|---|---|---|---|---|
+| 0.3125 | 11.7 | 1.805e-01 | 1.71 | 18.6 | 1.58 | 0.10 | 5.7e+00 |
+| 0.3625 | 13.0 | 4.521e-02 | 3.10 | 29.4 | 2.27 | 0.14 | 2.0e+01 |
+| 0.4125 | 14.3 | 9.791e-03 | 4.63 | 33.6 | 2.34 | 0.15 | 9.2e+01 |
+| 0.4625 | 15.8 | 1.388e-03 | 6.58 | 46.1 | 2.91 | 0.19 | 4.7e+02 |
+| 0.5125 | 17.5 | 9.404e-05 | 9.27 | 55.8 | 3.19 | 0.21 | 3.0e+03 |
+| 0.5625 | 19.4 | 6.847e-06 | 11.89 | 60.3 | 3.12 | 0.21 | 6.4e+03 |
+| 0.6125 | 21.4 | 2.475e-07 | 15.21 | 70.6 | 3.30 | 0.23 | 1.9e+04 |
+| 0.6625 | 23.6 | 7.376e-09 | 18.72 | 80.9 | 3.42 | 0.23 | 2.8e+04 |
+| 0.7125 | 26.1 | 8.442e-11 | 23.20 | 86.8 | 3.32 | 0.23 | 7.8e+04 |
+| 0.7625 | 28.9 | 8.881e-13 | 27.75 | 110.7 | 3.83 | 0.27 | 1.0e+05 |
+| 0.8375 | 33.5 | 2.193e-16 | 36.06 | 119.7 | 3.57 | 0.23 | 2.7e+05 |
+| 0.8875 | 37.1 | 4.831e-19 | 42.17 | 141.7 | 3.82 | 0.29 | 3.8e+05 |
+| 0.9375 | 41.0 | 3.799e-22 | 49.32 | 149.5 | 3.65 | 0.27 | 6.4e+05 |
+| 0.9875 | 45.3 | 1.548e-25 | 57.13 | 166.5 | 3.68 | 0.31 | 1.1e+06 |
+| 1.0250 | 48.8 | 3.166e-28 | 63.32 | 162.2 | 3.32 | 0.23 | 1.2e+06 |
+
+Φ′/T\* rises from 1.6 at a = 0.31 to 3.2 by a = 0.49 and then stays in [2.75, 3.83] for 0.46 ≤ a ≤ 1.03, mean 3.16 on [0.5, 0.65] and 3.56 on [0.85, 1.03]. That 13% rise sits between the pure-T\* law (no rise) and the T\* log T\* law (24% over the same range), and the truncation error, which grows with a and lowers Φ′, biases it downward; the sharp form of B is a working hypothesis, the weak form is the conjecture. The ratio λ₁/λ₀ grows without interruption, so the ground state stays simple and isolated (Lemma L2) across every entry in the range.
+
+| a | 1.0625 | 1.0750 | 1.1125 | 1.1250 | 1.1375 | 1.1500 | 1.1625 | 1.1750 |
+|---|---|---|---|---|---|---|---|---|
+| Φ′/T\* (K = 40, unconverged) | 1.94 | 2.56 | 1.12 | 1.66 | 2.44 | 2.63 | 2.49 | 1.84 |
+
+**Entries at scale 0.004** (Φ′ from the points a_n ± 0.004; drop = Φ′(a_n⁻) − Φ′(a_n⁺); the smooth drift over 0.008 is about −Φ″·0.008 ≈ −1.4 at a = 0.7):
+
+| n | a_n | Φ′(a_n⁻) | Φ′(a_n⁺) | drop | drop/Φ′ |
+|---|---|---|---|---|---|
+| 2 | 0.3466 | 38.3 | 32.0 | 6.3 | 0.165 |
+| 3 | 0.5493 | 62.8 | 59.4 | 3.4 | 0.054 |
+| 4 | 0.6931 | 88.7 | 90.7 | −2.0 | −0.02 |
+| 5 | 0.8047 | 101.6 | 109.9 | −8.3 | −0.08 |
+| 7 | 0.9730 | 155.1 | 157.5 | −2.4 | −0.02 |
+
+The entries of 8, 9 and 11 lie in the unconverged range and are not reported.
+
+**What the conjecture is not.** It is not a route to a proof by estimates: the band in Φ′/T\* is a property of the minimizer of the coupled form, and any attempt to bound Φ′ by bounding the polar and prime terms separately fails by G3.39. It is a target for two kinds of work. Numerically, the band can be followed to a ≈ 1.5 (height ≈ 130) only with far more modes, of the order Zhu used, and any violation would kill the sharp form of B while leaving A open; the cheaper test is the drift of the ratio between a = 0.5 and 1.0 at K = 72, which decides between T\* and T\* log T\*. Analytically, Conjecture A is a differential inequality for the ground state of a one-parameter family of self-adjoint operators whose parameter is the support, which is the form in which Suzuki's limit conjecture and this program meet.
 
 ---
 
