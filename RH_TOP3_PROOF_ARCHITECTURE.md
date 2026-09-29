@@ -168,7 +168,37 @@ The floor converges (its steps shrink: 2.0, 1.5, 0.9, 0.5, 0.4 ×10⁻⁸). The 
 | K = 40 | 1.3664 | 0.11690 | 0.04873 | 0.02379 | 0.01745 | 0.01422 | 0.01093 | 0.00865 |
 | K = 64 | 1.3664 | 0.11689 | 0.04875 | 0.02381 | 0.01747 | 0.01429 | 0.01100 | 0.00821 |
 
-For y ≤ 0.99a the minimizer is converged to better than 0.1% and is nonzero (f(0.99a) = 0.0175). The last one percent of the window is a boundary layer where the K-mode minimizer is still adjusting: f(0.999a) drifts up (0.0107 → 0.0110) while f(a) drifts down (0.0095 → 0.0082), the two closing toward each other. A vanishing endpoint value would require the drop to occur inside the last 0.1% of the window, against that trend. The reading the data support is a finite limit f(a₃) ≈ 0.008–0.011, hence a real kick of order 1.4–2.7×10⁻⁴; the analytical question above remains the way to make that a statement rather than a reading. A certified transition should enclose f on [0.99a, a], not only at a. [verified: profiles; the limit is a reading] (A first K = 40 run returned nonsense because the inner quadrature rule had 64 nodes, exact only to polynomial degree 127; the engine now scales the rule with K. Nothing at K ≤ 32 was affected.)
+For y ≤ 0.99a the minimizer is converged to better than 0.1% and is nonzero (f(0.99a) = 0.0175). The last one percent of the window is a boundary layer where the K-mode minimizer is still adjusting: f(0.999a) drifts up (0.0107 → 0.0110) while f(a) drifts down (0.0095 → 0.0082), the two closing toward each other. A vanishing endpoint value would require the drop to occur inside the last 0.1% of the window, against that trend. Taken alone, the profiles suggest a finite limit f(a₃) ≈ 0.008–0.011. The structural fact below argues the other way, and it is the more reliable guide. [verified: profiles]
+
+### 2.6 The archimedean wall [verified identity; reading conjectural]
+
+For f supported in [−a, a], the archimedean form in x-space is c₁‖f‖² + ½∬_{ℝ²} J_Γ(u−v)|f(u)−f(v)|² du dv with J_Γ(s) = e^{−|s|/2}/(1−e^{−2|s|}). Splitting the double integral according to whether v lies inside the window gives an exact decomposition of the window form:
+
+**A(f) = c₁‖f‖² + ½∬_{[−a,a]²} J_Γ(u−v)|f(u)−f(v)|² + ∫_{−a}^{a} V(y)|f(y)|² dy,  V(y) = ∫_{|v|>a} J_Γ(y−v) dv.**
+
+Since J_Γ(s) ~ 1/(2|s|), the potential diverges logarithmically at the edge. Numerically, at a = a₃:
+
+| y/a | 0.5 | 0.9 | 0.99 | 0.999 | 0.9999 | 0.99999 |
+|---|---|---|---|---|---|---|
+| V(y) | 3.4390 | 4.1342 | 5.2650 | 6.4143 | 7.5654 | 8.7166 |
+| V − ½log(1/(a−y)) | 2.7929 | 2.6834 | 2.6628 | 2.6608 | 2.6607 | 2.6606 |
+
+So **V(y) = ½ log(1/(a−|y|)) + 2.6606 + o(1)**: the odd Weil form on a window is a logarithmic kinetic form (the interior J_Γ Dirichlet form, which has symbol ~ log|t|, the logarithmic Laplacian of Chen–Weth) plus a logarithmic confining wall, plus the prime shifts and the rank-one polar term, both bounded.
+
+Consequences:
+
+- The minimizer is pushed off the edge by a divergent potential. The Euler–Lagrange equation [c₁ + V(y) − λ] f(y) + (kinetic term)(y) = (bounded) forces either f(y) → 0 as |y| → a or a compensating divergence of the nonlocal kinetic term. The simplest consistent behaviour is f(y) ≈ C/log(1/(a−|y|)), i.e. **f(a) = 0 with logarithmic approach**. The K = 64 profile is consistent with this on the converged range (f·log(1/δ) = 0.081, 0.076, 0.076 at δ = 0.01, 0.005, 0.001 in units of a), and a Legendre truncation resolving scales ~1/K² would then show f_K(a) ~ c/log K, which is exactly the slow, non-shrinking decrease observed from K = 24 to 64. A finite limit f(a₃) ≈ 0.008 is not excluded by the numerics, but it would require the kinetic term to diverge at the edge.
+- If f(a) = 0 for the exact form, the kink of §2.1 is a **truncation feature of the K-mode form**: exact for every K, vanishing in the limit. The entering prime power then enters at *zero* first-order rate, with the term −2Λ(n)n^{−1/2} g(log n) growing like (a − a_n)·C²/log²(1/(a − a_n)): a soft kink, a derivative that is continuous but whose slope diverges. The relay is real but gentler than a kick, and the Φ′ budget of §2.3 must be re-derived with this growth law. The rigidity results (§2.4) are unaffected, since they rest on negative values of the finite form.
+- The boundary layer seen in §2.5 is then **archimedean**, and the prime-free form confirms it. Ground state of the archimedean-plus-polar odd form at a = 0.3 (no prime inside the window; λ = 0.2226), values of f at y/a: [verified]
+
+| K | 0.5 | 0.9 | 0.99 | 0.995 | 0.999 | 1.0 |
+|---|---|---|---|---|---|---|
+| 24 | 1.6068 | 1.2553 | 0.7477 | 0.6777 | 0.5518 | 0.4966 |
+| 40 | 1.6067 | 1.2562 | 0.7479 | 0.6724 | 0.5591 | 0.4647 |
+
+  Same signature with no primes present: interior converged, endpoint value falling with K (−6.4% from 24 to 40 modes), f(0.999a) rising toward it. The edge law differs between the two cases (f(0.99a)/f(0.999a) is 1.34 here against 1.59 at a₃), so the edge behaviour is not a universal power; that is what one expects from logarithmic corrections and is a further reason to settle it analytically rather than by fitting.
+
+This is the point at which the numerics stop being informative and the analysis takes over: the edge asymptotics of the first eigenfunction of "log-Laplacian + ½log(1/dist) wall" on an interval is a well-posed problem, and settling it settles the kink. It is also the first place in this program where the archimedean place acts *alone* on the mechanism, which is what §1.2 said any proof would need. (A first K = 40 run returned nonsense because the inner quadrature rule had 64 nodes, exact only to polynomial degree 127; the engine now scales the rule with K. Nothing at K ≤ 32 was affected.)
 
 **What a certified transition needs.** Interval enclosures of (i) the K-mode matrix at a₃ ± h for h ≤ 10⁻⁵ (the archimedean integrals reduce to incomplete-gamma series, so this is elementary-function interval arithmetic), (ii) the lowest eigenvalue by interval LDLᵀ from both sides, (iii) the endpoint value of the enclosed eigenvector, and (iv) Zhu's complementary-space floor for both λ and f(a₃). Items (i)–(iii) are within reach of `rh_weil_odd.py` rewritten over `mpmath.iv`; item (iv) is your team's certificate machinery.
 
