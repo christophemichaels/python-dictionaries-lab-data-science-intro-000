@@ -86,7 +86,13 @@ where f_{a_n}(a_n) is the endpoint value of the normalized minimizer at entry.
 | 2 | 0.34657 | 7.31×10⁻² | 0.4652 | −3.011 | −2.575 | 0.436 | 0.424 | 1.03 |
 | 3 | 0.54931 | 1.50×10⁻⁵ | −0.00947 | −1.160×10⁻³ | −0.945×10⁻³ | 2.16×10⁻⁴ | 2.28×10⁻⁴ | 0.95 |
 
-The residual is finite-difference error (h = 5×10⁻⁴). Monotonicity (your Proposition 12.2) holds as it must: |λ′(a_n⁻)| ≥ jump.
+Monotonicity (your Proposition 12.2) holds as it must: |λ′(a_n⁻)| ≥ jump. The residual is **not** finite-difference error in the ordinary sense; it is real and it shrinks with the step. At the entry of 3 (K = 24), the jump/prediction ratio is
+
+| h | 5×10⁻⁴ | 2.5×10⁻⁴ | 1.25×10⁻⁴ | 6.25×10⁻⁵ | 2×10⁻⁵ | 1×10⁻⁵ |
+|---|---|---|---|---|---|---|
+| ratio | 0.948 | 0.962 | 0.984 | 0.994 | 0.9993 | 0.9998 |
+
+so the proposition is exact in the limit (verified to 2×10⁻⁴), and the deficit at coarser steps is the reorganization of the minimizer described in §2.5. [verified]
 
 ### 2.2 What Table 1 measures
 
@@ -131,6 +137,29 @@ Extrapolating with the same slope, at a = 1.1 the margin corresponds to a displa
 **Consequence.** Any statement about primes that is insensitive to displacements of relative size 10⁻³⁵ is too coarse to prove λ(1.1) > 0. That rules out every distributional input (PNT with any error term, short-interval results, sieve bounds, moment estimates) as the *engine* of a relay proof. The only things that fine are (i) the exact multiplicative structure of Λ, and (ii) identities. This is Zhu's "resolution threshold" and the Beurling filter, in one number.
 
 It also explains why the odd-sector positivity looks like a "barely true" statement: it is the finite-a shadow of Newman's Λ_dBN ≥ 0 (Rodgers–Tao), which says RH, if true, is true with no room to spare.
+
+### 2.5 The reorganization scale, and the cost of omitted directions [verified]
+
+The entering term at a_n has derivative dT/da = 4Λ(n)n^{−1/2}·φ_i(1)φ_j(1)/a in the normalized Legendre basis: a **rank-one** matrix whose entries are products of endpoint values. At the entry of 3 with K = 24 modes:
+
+- spectrum of the form: λ₀ = 1.499×10⁻⁵, λ₁ = 0.0785, λ₂ = 0.833, so λ₁/λ₀ = 5239 (the ground state is simple and well isolated; Lemma L2 holds here);
+- ‖dT/da‖ = 2716, while its ground-state matrix element is 2.276×10⁻⁴ (the predicted kick): the excited states have endpoint values of order 1–10, the ground state 0.009;
+- second-order coefficient Σ_k |⟨k|dT/da|0⟩|²/(λ_k − λ₀) = 0.118, so λ(a) ≈ λ₀ + (λ′_old + kick)(a − a_n) − 0.118(a − a_n)² just after entry;
+- crossover scale gap/‖dT/da‖ ≈ 2.9×10⁻⁵, beyond which the entering term mixes the excited states among themselves and the polynomial expansion of λ(a) fails. This is why finite differences with h ≥ 6×10⁻⁵ see 95–99% of the kick and h = 10⁻⁵ sees 99.98%.
+
+So the relay kick is instantaneous and exact, and within Δa ≈ 3×10⁻⁵ the minimizer reorganizes and absorbs a few percent of it. The kick is a rank-one perturbation whose ground-state part is tiny because the ground state is small at the endpoint; that smallness is what the tail of F above the horizon is made of (your Computation 12.5 estimates the tail from f(a)).
+
+**Mode dependence.** The floor converges fast in K; the endpoint value does not:
+
+| K | λ(a₃) | f(a₃) | predicted kick 4Λ(3)3^{−1/2} f(a₃)² |
+|---|---|---|---|
+| 24 | 1.49863×10⁻⁵ | 0.009471 | 2.276×10⁻⁴ |
+| 32 | 1.49662×10⁻⁵ | 0.009077 | 2.090×10⁻⁴ |
+| 40 | see note below | | |
+
+From 24 to 32 modes the floor moves by 0.13% and the endpoint value by 4.2%, hence the kick by 8%. A Legendre expansion converges slowest at the endpoint, and the endpoint is exactly where the relay lives. This is the concrete form of the reviewers' point about omitted directions: a certified relay transition must enclose f(a_n), not only λ(a_n), and the complementary-space debit for f(a_n) is larger than for λ. (A first K = 40 run returned nonsense because the inner quadrature rule had 64 nodes, exact only to polynomial degree 127; the engine now scales the rule with K. Nothing at K ≤ 32 was affected.)
+
+**What a certified transition needs.** Interval enclosures of (i) the K-mode matrix at a₃ ± h for h ≤ 10⁻⁵ (the archimedean integrals reduce to incomplete-gamma series, so this is elementary-function interval arithmetic), (ii) the lowest eigenvalue by interval LDLᵀ from both sides, (iii) the endpoint value of the enclosed eigenvector, and (iv) Zhu's complementary-space floor for both λ and f(a₃). Items (i)–(iii) are within reach of `rh_weil_odd.py` rewritten over `mpmath.iv`; item (iv) is your team's certificate machinery.
 
 ---
 
