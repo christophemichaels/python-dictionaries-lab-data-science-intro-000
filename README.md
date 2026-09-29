@@ -11,6 +11,8 @@ Research repository of Christophe Michaels. Everything here surrounds the Rieman
 | `RH_ROUTES.md` | One hundred research routes toward RH, tiered by credibility, each with its known obstruction and a publishable next step; seven filters any route must pass. |
 | `RH_TOP3_PROOF_ARCHITECTURE.md` | The Weil-floor program as one object Φ(a) = −log λ(a): the derivative formula, the kink proposition for finite-mode forms and the soft kink of the exact form (the archimedean wall, the (log)^{−1/2} edge law, and its consequence for the relay), the Φ′ budget, rigidity of positivity under displacement of a prime, and the four-lemma architecture with the lemma equivalent to RH isolated. |
 | `FOLDS_ERRATA.md` | Corrections and additions for *Primes, Folds, and the One Dot* (draft of 2026-09-28). |
+| `atlas/Michaels_Theta_Atlas_CP20.pdf` | *Theta Kernels, Weil Positivity, and the Mathematical Theory Atlas*, complete research compilation through Checkpoint 20 (23 September 2026), 679 pages, bookmarked. Foundations (Sections 1–20, Appendices A–G), Checkpoints 9–20, the 301 atlas entries, ten earlier notes, and the research record. |
+| `ATLAS_INDEX.md` | Index of the atlas: contents with PDF page numbers, the 301 entries grouped as the atlas groups them, provenance of the recovered file, and where the atlas meets the work in this repository. |
 
 ## Code
 
