@@ -245,7 +245,7 @@ and the edge-FEM rows above give its law, C = 1.3089, β = -1.49. This is the fi
 
 ---
 
-### 2.7 The relay conjecture [statement; evidence to a = 1.03]
+### 2.7 The relay conjecture [statement; evidence to a = 1.05]
 
 Everything in §2 is about one function. Let λ(a) be the floor of the odd Weil form on [−a, a] (the normalization of `rh_weil_odd.py`, which is also that of Checkpoints 15–20 of the atlas and of Zhu's paper: the 40-mode value λ(0.8) = 1.59×10⁻¹⁴ lies inside Zhu's certified odd interval [8.2×10⁻¹⁵, 2.35×10⁻¹⁴]), Φ(a) = −log λ(a), and T\*(a) = 2πe^{2a} the horizon. Two facts frame the conjecture. Positivity of the odd form on every finite support implies RH (Weil's criterion with Yoshida's odd-test reduction, as recorded in Suzuki, arXiv:2606.09096). And no estimate that treats the polar term and the reflected primes separately can prove positivity (G3.39 of the atlas; the rigidity of §2.4 is the same fact in another coordinate). So the only quantity worth a conjecture is the floor of the whole coupled form.
 
@@ -287,6 +287,26 @@ Everything in §2 is about one function. Let λ(a) be the floor of the odd Weil 
 |---|---|---|---|---|---|---|---|---|
 | Φ′/T\* (K = 40, unconverged) | 1.94 | 2.56 | 1.12 | 1.66 | 2.44 | 2.63 | 2.49 | 1.84 |
 
+**Drift test at K = 72.** `rh_floor_grid.py` with 72 modes on 0.475 ≤ a ≤ 1.05, step 0.025 (`floor_grid_K72.csv`). The 72-mode floor differs from the 40-mode floor by 0.1–5% for a ≤ 0.925 and by 26% at a = 1.0, so the 40-mode grid above is reliable to a = 1.0 (the entry of 7 at 0.973 and of 8 at 1.040 are straddled by the coarser step and their neighbours are omitted). [verified]
+
+| a | λ (K = 72) | λ₄₀/λ₇₂ | Φ′ (72) | Φ′/T\* (72) | Φ′/T\* (40-mode grid) |
+|---|---|---|---|---|---|
+| 0.500 | 1.938e-04 | 1.001 | 55.2 | 3.23 | 3.35 |
+| 0.575 | 3.162e-06 | 1.002 | 63.6 | 3.20 | 3.20 |
+| 0.600 | 5.956e-07 | 1.003 | 68.7 | 3.29 | 3.33 |
+| 0.625 | 1.018e-07 | 1.004 | 69.6 | 3.17 | 3.19 |
+| 0.650 | 1.837e-08 | 1.004 | 74.8 | 3.24 | 3.06 |
+| 0.725 | 2.919e-11 | 1.008 | 86.5 | 3.23 | 3.11 |
+| 0.750 | 3.372e-12 | 1.010 | 98.6 | 3.50 | 3.51 |
+| 0.775 | 2.105e-13 | 1.017 | 107.5 | 3.63 | 3.55 |
+| 0.850 | 4.800e-17 | 1.038 | 119.7 | 3.48 | 3.41 |
+| 0.875 | 2.463e-18 | 1.054 | 130.1 | 3.60 | 3.53 |
+| 0.900 | 7.176e-20 | 1.046 | 138.4 | 3.64 | 3.81 |
+| 0.925 | 2.428e-21 | 1.032 | 144.5 | 3.62 | 3.53 |
+| 1.000 | 1.491e-26 | 1.258 | 172.6 | 3.72 | 3.59 |
+
+The ratio at 72 modes drifts from 3.23 (mean on [0.5, 0.7]) to 3.61 (mean on [0.85, 1.05]), +12%; the 40-mode ratio at the same points drifts +11%, so the drift is a property of the form, not of the truncation. Least squares on 0.5 ≤ a ≤ 1.05: Φ′ = c·T\* fits with c = 3.53 and 6.7% rms relative residual; Φ′ = c·T\* log T\* fits with 17% residual and would have produced a drift of about 25% over this range (58% with log(T\*/2π)). The pure law is favored, the residual drift is half of what a logarithm would give, and neither is excluded at height 50. The sharp form of Conjecture B stands as the working hypothesis with c₀ ≈ 3.5.
+
 **Entries at scale 0.004** (Φ′ from the points a_n ± 0.004; drop = Φ′(a_n⁻) − Φ′(a_n⁺); the smooth drift over 0.008 is about −Φ″·0.008 ≈ −1.4 at a = 0.7):
 
 | n | a_n | Φ′(a_n⁻) | Φ′(a_n⁺) | drop | drop/Φ′ |
@@ -299,7 +319,7 @@ Everything in §2 is about one function. Let λ(a) be the floor of the odd Weil 
 
 The entries of 8, 9 and 11 lie in the unconverged range and are not reported.
 
-**What the conjecture is not.** It is not a route to a proof by estimates: the band in Φ′/T\* is a property of the minimizer of the coupled form, and any attempt to bound Φ′ by bounding the polar and prime terms separately fails by G3.39. It is a target for two kinds of work. Numerically, the band can be followed to a ≈ 1.5 (height ≈ 130) only with far more modes, of the order Zhu used, and any violation would kill the sharp form of B while leaving A open; the cheaper test is the drift of the ratio between a = 0.5 and 1.0 at K = 72, which decides between T\* and T\* log T\*. Analytically, Conjecture A is a differential inequality for the ground state of a one-parameter family of self-adjoint operators whose parameter is the support, which is the form in which Suzuki's limit conjecture and this program meet.
+**What the conjecture is not.** It is not a route to a proof by estimates: the band in Φ′/T\* is a property of the minimizer of the coupled form, and any attempt to bound Φ′ by bounding the polar and prime terms separately fails by G3.39. It is a target for two kinds of work. Numerically, the band can be followed to a ≈ 1.5 (height ≈ 130) only with far more modes, of the order Zhu used, and any violation would kill the sharp form of B while leaving A open; the drift test at K = 72 above favors the pure law at height 50, and following the band to height 130 is the next numerical test. Analytically, Conjecture A is a differential inequality for the ground state of a one-parameter family of self-adjoint operators whose parameter is the support, which is the form in which Suzuki's limit conjecture and this program meet.
 
 ---
 
