@@ -11,6 +11,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Ree}{Re}
 
 \title{The potential set of the light cone\\ \large A remark for the Mathematical Theory Atlas}
 \author{Christophe Michaels}
@@ -79,7 +80,73 @@ Nothing in Proposition~\ref{prop:basic} uses the Euler product. For the Davenpor
 The symbolic line ``$1=A\Omega$'' reads: at $a=0^+$ the potential set is everything with the right density; ``the first distinction is $2$'' is Computation~\ref{comp:identity}; ``potential defined by the primes'' is Definition~\ref{def:P}; and the subscript $\alpha,\omega$ is the limit $a\to\infty$ of Proposition~\ref{prop:limit}. The line is not an equation and should not be presented as one; the definition is.
 \end{remark}
 
+\section*{Second remark: the ground-state transform and the spectral form of positivity}
+
+\noindent\emph{Status.} This section re-derives, from the explicit formula alone, the identity that the external review of 29 September 2026 attributes to the source of the atlas entries T51--T53. Proposition~\ref{prop:gs} and Corollary~\ref{cor:gap} are proved here; the facts about the theta kernel are classical and cited. The inequality in Corollary~\ref{cor:gap} is not proved.
+
+\subsection*{The theta kernel}
+Let $\phi$ be the even function on $\R$ whose Fourier transform is Riemann's $\Xi$: $\widehat\phi(z)=\int\phi(u)e^{izu}du=\Xi(z)=\xi(\tfrac12+iz)$. Explicitly $\phi(u)=\sum_{n\ge1}(2\pi^2n^4e^{9u/2}-3\pi n^2e^{5u/2})\exp(-\pi n^2e^{2u})$ for $u\ge0$ \cite[\S10.1]{titchmarsh}. Three facts are used: $\phi>0$ on $\R$ (for $u\ge0$ each term is positive since $2\pi n^2e^{2u}>3$, and $\phi$ is even); $\phi$ and all its derivatives decay like $\exp(-\pi e^{2|u|})$; and $\widehat\phi(\pm i/2)=\xi(0)=\xi(1)=\tfrac12$. Put
+\[
+d\nu(u)=2\cosh(u/2)\,\phi(u)\,du,\qquad \nu(1)=2\,\widehat\phi(i/2)=1,
+\]
+a probability measure, and for $h$ in $L^2(\nu)$ write $\nu(h)=\int h\,d\nu$, $\operatorname{Var}_\nu(h)=\int|h|^2d\nu-|\nu(h)|^2$, and $b(h)=\int\tanh(u/2)\,h\,d\nu=\int2\sinh(u/2)\phi h\,du$.
+
+\subsection*{Null directions}
+For $j\ge0$ the Fourier transform of $\phi^{(j)}$ is $(-iz)^j\Xi(z)$, which vanishes at every zero of $\Xi$, on or off the critical line. Since $\phi^{(j)}$ and any $q\in C_c^\infty(\R)$ satisfy the hypotheses of the explicit formula, the completed Weil form obeys
+\begin{equation}\label{eq:null}
+Q(\phi^{(j)},q)=\sum_\rho\overline{\widehat{\phi^{(j)}}(\gamma_\rho)}\,\widehat q(\gamma_\rho)=0\qquad(j\ge0,\ q\in C_c^\infty(\R)\ \text{or}\ q=\phi^{(k)},\ k\ge0),
+\end{equation}
+where $Q(f,q)=\langle W,f*\tilde q\rangle$ is the sesquilinear form of the Weil distribution. In particular ($j=0$) $W*\phi=0$ pointwise, which in the $x$-space form of the archimedean term reads
+\begin{equation}\label{eq:gseq}
+c_1\phi(u)+\int_\R\big(\phi(u)-\phi(v)\big)J_\Gamma(u-v)\,dv+\cosh(u/2)=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\big(\phi(u+\log n)+\phi(u-\log n)\big),
+\end{equation}
+with $J_\Gamma(s)=e^{-|s|/2}/(1-e^{-2|s|})$ and a constant $c_1$ (namely $-(\gamma+\log\pi)+\int_\R(e^{-2|s|}-e^{-|s|/2})(1-e^{-2|s|})^{-1}ds$); the term $\cosh(u/2)$ is the polar kernel $2\cosh((u-v)/2)$ applied to $\phi$, using $\int\cosh(v/2)\phi=\tfrac12$ and $\int\sinh(v/2)\phi=0$.
+
+\begin{proposition}[Ground-state transform]\label{prop:gs}
+For $h\in C_c^\infty(\R)$, with $f=\phi h$,
+\begin{equation}\label{eq:gs}
+Q(f)=E_\Gamma(h)+E_P(h)-\tfrac12\operatorname{Var}_\nu(h)-\tfrac12|b(h)|^2,
+\end{equation}
+where
+\[
+E_\Gamma(h)=\frac12\iint J_\Gamma(u-v)\,\phi(u)\phi(v)\,|h(u)-h(v)|^2\,du\,dv,\qquad
+E_P(h)=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\int\phi(u)\phi(u+\log n)\,|h(u+\log n)-h(u)|^2\,du.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $Q(f)=A(f)+P_r(f)+P_o(f)$ with $A$ the archimedean part, $P_r$ the prime part and $P_o$ the polar part. In $x$-space, for $g=f*\tilde f$, $A(f)=c_1\|f\|^2+\int(g(0)-g(s))J_\Gamma(s)\,ds=c_1\|f\|^2+\frac12\iint J_\Gamma(u-v)|f(u)-f(v)|^2$, the last step by expanding the square; the singularity $J_\Gamma(s)\sim1/(2|s|)$ is integrable against $|f(u)-f(v)|^2=O(|u-v|^2)$. Next, $P_r(f)=-\sum_n\frac{\Lambda(n)}{\sqrt n}\big(g(\log n)+g(-\log n)\big)=-2\sum_n\frac{\Lambda(n)}{\sqrt n}\Ree\!\int\overline{f(u)}f(u-\log n)\,du$. Expanding the square in $E_P$ and substituting $u\mapsto u+\log n$ in one term,
+\[
+E_P(h)=\int\phi(u)|h(u)|^2\sum_n\frac{\Lambda(n)}{\sqrt n}\big(\phi(u+\log n)+\phi(u-\log n)\big)\,du+P_r(f).
+\]
+Insert \eqref{eq:gseq} for the inner sum: $E_P(h)=c_1\|f\|^2+\int\phi(u)|h(u)|^2\!\int(\phi(u)-\phi(v))J_\Gamma(u-v)\,dv\,du+\int\cosh(u/2)\phi|h|^2+P_r(f)$. Hence
+\[
+A(f)+P_r(f)=E_P(h)+\frac12\iint J_\Gamma|\phi h(u)-\phi h(v)|^2-\int\phi(u)|h(u)|^2\!\int(\phi(u)-\phi(v))J_\Gamma(u-v)\,dv\,du-\tfrac12\int|h|^2d\nu,
+\]
+and the two $J_\Gamma$ terms combine, after symmetrizing in $u,v$, to $\frac12\iint J_\Gamma\phi(u)\phi(v)|h(u)-h(v)|^2=E_\Gamma(h)$. Finally $\cosh((u-v)/2)=\cosh(u/2)\cosh(v/2)-\sinh(u/2)\sinh(v/2)$ gives $P_o(f)=2|\!\int\cosh(u/2)\phi h|^2-2|\!\int\sinh(u/2)\phi h|^2=\tfrac12|\nu(h)|^2-\tfrac12|b(h)|^2$. Adding the pieces gives \eqref{eq:gs}. All interchanges are justified by the superexponential decay of $\phi$ and the compact support of $h$.
+\end{proof}
+
+Put $D(h,k)=2\big(E_\Gamma+E_P\big)(h,k)-\operatorname{Cov}_\nu(h,k)$, so that $Q(\phi h,\phi k)=\tfrac12\big[D(h,k)-\overline{b(h)}b(k)\big]$, and let $h_*=\phi'/\phi$. Then $\nu(h_*)=\int2\cosh(u/2)\phi'=0$ and $b(h_*)=\int2\sinh(u/2)\phi'=-\int\cosh(u/2)\phi=-\tfrac12$ by parts, and \eqref{eq:null} with $j=1$ gives $D(h_*,h)=\overline{b(h_*)}b(h)=-\tfrac12b(h)$ and $D(h_*,h_*)=\tfrac14$. Let $\mathcal H$ be the span of $C_c^\infty(\R)$ and $h_*$ (the form \eqref{eq:gs} extends to it by the decay of $\phi$), and define $\mathcal Ph=h+2b(h)h_*$.
+
+\begin{corollary}[Spectral form of Weil positivity]\label{cor:gap}
+$b(\mathcal Ph)=0$, $D(h,h)=D(\mathcal Ph,\mathcal Ph)+|b(h)|^2$, and $Q(\phi h)=\tfrac12D(\mathcal Ph,\mathcal Ph)$ for $h\in\mathcal H$. Consequently the Riemann Hypothesis is equivalent to
+\begin{equation}\label{eq:gap}
+E_\Gamma(h)+E_P(h)\ \ge\ \tfrac12\operatorname{Var}_\nu(h)\qquad\text{for all }h\in\mathcal H .
+\end{equation}
+Moreover, if \eqref{eq:gap} holds, equality is attained on the infinite-dimensional space spanned by the centered functions $\phi^{(j)}/\phi-\nu(\phi^{(j)}/\phi)$, $j\ge2$.
+\end{corollary}
+
+\begin{proof}
+$b(\mathcal Ph)=b(h)+2b(h)b(h_*)=0$. Expanding $D(h+ch_*,h+ch_*)$ with $c=2b(h)$ and the two relations above gives $D(h,h)-2|b(h)|^2+|b(h)|^2$. The third identity is \eqref{eq:gs} rewritten. If \eqref{eq:gap} holds, $D\ge0$ on $\mathcal H$ and $Q(\phi h)\ge0$ for every $h\in C_c^\infty$; since $\phi>0$, every $f\in C_c^\infty$ is of the form $\phi h$, and Weil's criterion gives RH. Conversely, under RH $Q\ge0$ on $C_c^\infty$, and $Q(\phi\mathcal Ph)=Q(\phi h+2b(h)\phi')=Q(\phi h)$ by \eqref{eq:null}, so $D(\mathcal Ph,\mathcal Ph)\ge0$ for $h\in C_c^\infty$, whence $D(h,h)\ge|b(h)|^2\ge0$; on $\mathcal H$ the same follows by the Cauchy--Schwarz inequality in the nonnegative form $D$ applied to $h$ and $h_*$. For the last claim, \eqref{eq:null} for $\phi^{(j)}$ gives $D(\phi^{(j)}/\phi,\,h)=\overline{b(\phi^{(j)}/\phi)}\,b(h)$ for all $h$; integrating by parts, $b(\phi^{(2k)}/\phi)=0$ and $\nu(\phi^{(2k+1)}/\phi)=0$, so the centered even-order quotients are null vectors of $D$, and $D=0$ on a vector means equality in \eqref{eq:gap}. Linear independence holds because a finite relation would make a nonzero polynomial times $\Xi$ vanish identically.
+\end{proof}
+
+\begin{remark}
+The form $E_\Gamma+E_P$ is the Dirichlet form of a reversible Markov generator $L$ on $L^2(\nu)$: gamma couples nearby positions with conductance $J_\Gamma(u-v)\phi(u)\phi(v)$, and each prime power couples $u$ with $u\pm\log n$ with conductance $\frac{\Lambda(n)}{\sqrt n}\phi(u)\phi(u\pm\log n)$. In that language \eqref{eq:gap} says that the bottom of the spectrum of $L$ on mean-zero functions is exactly $\tfrac12$, and Corollary~\ref{cor:gap} adds that $\tfrac12$ is then an eigenvalue of infinite multiplicity. This is why no uniform improvement of the constant is possible, and it is the same fact as the rigidity of \cite[\S2.4]{memo}: positivity of the Weil form has no slack. The atlas entries T51--T53 and the review's inequality IR-7 are this corollary. What is missing is a proof of \eqref{eq:gap}; the identity \eqref{eq:gs} only relocates the difficulty from the sign of $Q$ to a spectral gap, in a form where the equality directions are known.
+\end{remark}
+
 \begin{thebibliography}{9}
+\bibitem{titchmarsh} E. C. Titchmarsh, The Theory of the Riemann Zeta-Function, 2nd ed., revised by D. R. Heath-Brown, Oxford University Press, 1986.
+\bibitem{memo} C. Michaels (with Claude), Three routes, one mechanism: what an unconditional proof through the Weil floor would have to look like, note, September 29, 2026 (\texttt{RH\_TOP3\_PROOF\_ARCHITECTURE.md}).
 \bibitem{weil} A. Weil, Sur les ``formules explicites'' de la th\'eorie des nombres premiers, Comm. S\'em. Math. Univ. Lund, tome suppl\'ementaire (1952), 252--265.
 \bibitem{bombieri} E. Bombieri, Remarks on Weil's quadratic functional in the theory of prime numbers, I, Rend. Mat. Acc. Lincei (9) 11 (2000), 183--233.
 \bibitem{krein} M. G. Krein, Sur le probl\`eme du prolongement des fonctions hermitiennes positives et continues, Dokl. Akad. Nauk SSSR 26 (1940), 17--22.
