@@ -33,14 +33,14 @@ Your Heuristic 12.4 and Remark 12.7 point this way, and Zhu's abstract says so e
 | probe half-width *a* | T\*(a) = 2πe^{2a} | λ(a) |
 |---|---|---|
 | 1.1 (your range) | 57 | 7.7 × 10⁻³⁵ |
-| 1.2 (Zhu) | 69 | 4.8 × 10⁻⁴⁵ |
+| 1.19 (Zhu, exploratory, 950 modes) | 68 | between 10⁻⁴⁸ and 10⁻⁴⁶ |
 | 13.4 | 3 × 10¹² (Platt–Trudgian) | ≈ 10^(−2.3 × 10¹²) (extrapolated) |
 
 Matching the existing verification height would need an eigenvalue with about 2.3 trillion digits. So the computational side of this route can't compete with direct zero verification. Its value is in suggesting a mechanism that is uniform in *a*, and in testing controls (route 4).
 
 ### 2. Question 12.8: the data can't yet support a constant C
 
-I refit your Table 8 values plus Zhu's a = 1.2 value (`rh_decay_fit.py`, numpy least squares on a ≥ 0.6).
+I refit your Table 8 values plus a value at a = 1.2 that an earlier reading attributed to Zhu (`rh_decay_fit.py`, numpy least squares on a ≥ 0.6). Correction: Zhu's paper reports an exploratory, non-certified floor between 10⁻⁴⁸ and 10⁻⁴⁶ at half-width 1.19 (950 modes, 70 digits) and certified two-sided bounds at 0.8 only (odd sector 8.2×10⁻¹⁵ ≤ λ ≤ 2.35×10⁻¹⁴); the fit below should be read with the last point replaced by that interval, which does not change its conclusion that the data cannot separate T\* from T\* log T\*. Zhu's own proposed law is −log λ ≃ 2π²·N(T\*)/log N(T\*), fitted on his upper bounds for 0.5 ≤ L ≤ 2.0.
 
 | a | T\* | −log λ | ratio −log λ / T\* | local slope d(−log λ)/dT\* |
 |---|---|---|---|---|
