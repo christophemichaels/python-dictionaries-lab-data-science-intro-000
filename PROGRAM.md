@@ -11,7 +11,21 @@ Littlewood's bound S_1(t) = O(log t/(log log t)^2). With the boundary law lambda
 Still open inside item 1: the edge law as an asymptotic equality with derivatives (only the upper bound is a theorem,
 under (H_inf)); the boundary law itself (Conjecture 8.1).
 
-## 2. The sum rule  [OPEN]
+## 2. The sum rule  [OPEN; route found 2026-09-30]
+Route: the Euler-Lagrange equation in Fourier form. On the window, K f = lambda f + 4P sinh(x/2); outside it, K f =: g_out
+is unconstrained (K the operator with symbol Psi; g_out contains the archimedean kernel acting on the edge, which
+behaves like -2C L(delta)^{1/2} just outside the edge, and the reflected primes, smooth). Hence
+  (Psi - lambda) F = G + 4P Sigma      (G = transform of g_out, Sigma = transform of sinh(x/2) 1_[-a,a]),
+and, since f and g_out have disjoint supports, for every T the exact identity
+  int_{|t|>T} |F|^2 (Psi - lambda) dt = 4P int_{|t|>T} conj(F) Sigma dt - 2 pi < f_T , g_out >,
+where f_T is the low-pass of f at T. The leak of f_T outside the edge is ~ C L(1/T)^{-1/2} (pi/2 - Si(T delta))/pi and
+g_out ~ -2C L(delta)^{1/2}: their overlap is -2C^2/(pi T) with L^{-1/2} L^{1/2} = 1, no logarithm, and
+-2 pi times it is 4C^2/T, which is the tail law (2 pi int |F|^2 rho = 4C^2/T). The O(C L^{-1/2}/T) pieces (smooth part
+of g_out against the leak, and the polar tail) must cancel each other; the first-order 1/L correction from the
+overlap is not yet derived correctly (a naive estimate gives 1 + 0.79/L, five times the measured 0.07 at L = 2).
+Next step: compute g_out for the FEM minimizer (archimedean convolution with J_Gamma plus reflected primes) and verify
+the exact identity and the size of each piece at T = 5..100 horizons; then derive the boundary overlap with a smooth
+cutoff to get the correction coefficient. If it comes out as measured, the sum rule is this identity.
 The law holds at 1% from five horizons on, where the proof's O(1/log T) correction is 7% (density integral at a = 0.5:
 1.068, 1.060, 1.032, 1.020, 1.012, 1.006 of the law at 5-100 horizons; zero sums 1.00 +- 0.02). The zero sum is
 sharper than the density integral. Target: an exact identity for T int_{|t|>T} |F|^2 rho dt, or for the zero sum, valid
