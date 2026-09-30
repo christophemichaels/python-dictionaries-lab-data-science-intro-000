@@ -11,7 +11,7 @@ Littlewood's bound S_1(t) = O(log t/(log log t)^2). With the boundary law lambda
 Still open inside item 1: the edge law as an asymptotic equality with derivatives (only the upper bound is a theorem,
 under (H_inf)); the boundary law itself (Conjecture 8.1).
 
-## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13]
+## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
@@ -52,6 +52,24 @@ rank-one term as regular perturbations, the prime cosines as a bounded perturbat
 exact beyond the decoupling height and the boundary law is the flux identity. Numerical first step: compute sigma_+ for
 the prime-free symbol at a = 0.5 by the Cauchy integral of log sigma and compare t sigma_+(t) F(t) e^{-ita} with a
 constant.
+DONE 2026-09-30 (Computation 7.20, rh_wiener_hopf.py, data/wiener_hopf_a0.5_*.log): the numerical step, and it is decisive. With
+sigma~ the symbol with its real zeros divided out and theta = (1/2) H[log sigma~] (Hilbert transform, odd; ~ -pi/(4 log(t/2pi))),
+the nulls of S = int f sin(tx) on the prime-free critical point at a = 0.5 sit at t a = pi/2 + k pi - theta(t) + kappa/t with rms
+residual 1.2e-4 rad over 319 nulls (2.8-120 T*), kappa = 4.34 (vs t_lambda = 4.56, the arctan of the zero's factor); the raw shift is
+0.34 -> 0.14, the local law c/log leaves 3.5e-3. Pointwise, S = -|A| cos(ta + theta - kappa/t)/(t sigma~^{1/2}) with |A|^2 = -lambda'/2
+and nothing else fitted: L^2 error 4.5e-3, 3.4e-4, 8e-5, 3e-5 at 3, 10, 20, 50 horizons, decaying like T^-2. With the prime 2 the
+phase oscillates at frequency log 2 (amplitude ~0.98/2sigma~) and the nulls follow it (rms 0.010 vs 0.070 for the prime-free phase).
+Conjecture 7.19 is now stated in this sharp form: A purely imaginary (no free phase), one real kappa. The paper carries the
+half-line derivation: cutoff chi, (K - lambda)(chi f) = h with h = 2P chi sinh + [K, chi] f smooth up to the edge; sigma F~ = G~ + H~
+with F~ analytic below (O(1/t)), G~ above (O(t^-1 log^1/2 t), Lemma 7.12), H~ = i h(a)/t + O(t^-2); factor, split, Liouville
+=> F~ = i h(a)/(sigma_+(0) t sigma_-(t)) + O(t^-2); real zeros of the symbol = standing waves of the interior = simple poles of E;
+the reality symmetry keeps A imaginary and makes the next term a real phase kappa/t; |A| is fixed by the far edge (quantization of
+lambda(a)) and |A|^2 = -lambda'/2 is the boundary law as a flux (|A| = C).
+NEXT for item 2 (the last analytic piece, now a proof to write, not a computation to run): (a) the factorization of a symbol growing
+like log t, factors (log t)^{1/2} e^{+-i theta}, theta = O(1/log t); (b) the a priori decay of the three transforms: F~ = O(1/t) is the
+edge-law upper bound (Theorem 3.2 under (H_inf)), G~ from Lemma 7.12, H~ from the smoothness of the commutator [K, chi] f near the
+edge; (c) Liouville with the poles at the real zeros, and the far edge at relative order t^-2. Then the tail law is exact beyond the
+decoupling height and the boundary law is the flux identity |A|^2 = -lambda'/2.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -81,9 +99,9 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.21, Proposition 7.22; NEXT]
-Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.21). Data: medians of the floor's mass 2.39 ... 2.74 T*
-(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.22: under RH, (S_kappa) [zeros above kappa T* sample the tail
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.22, Proposition 7.23; NEXT]
+Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.22). Data: medians of the floor's mass 2.39 ... 2.74 T*
+(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.23: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
 c = pi kappa M M'. Measured: M ~ 1, M' ~ 1, kappa = e -> bound pi e = 8.5 against the observed 3.3-3.9 = pi e theta(e T*).
 Remaining: prove (S_e) (a sampling inequality on the half-line above e T* for high-pass window functions with a log
@@ -96,7 +114,7 @@ above the edge law at delta = 1/(e T*)); it holds because the tail law is analyt
 So ALL the arithmetic of Conjecture A is in (S_e): the zeros above e T* sample the analytic tail of F at their mean
 density, constant ~1. NEXT for item 3: the analytic form of M through the explicit formula for the high-pass part of
 f (the fluctuation is the prime sum on frequencies above kappa T*, whose only structure between entries is the
-alignment of Computation 7.23), and the gap condition it needs (no gap wider than pi/a above e T*).
+alignment of Computation 7.24), and the gap condition it needs (no gap wider than pi/a above e T*).
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
