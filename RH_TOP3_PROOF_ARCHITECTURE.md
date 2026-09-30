@@ -367,9 +367,9 @@ The K-mode basis of the engines is a dilation family: φ_i(y/a)/√a. For any di
 
   d/da (1/2π)∫|F_a|² Ψ_a = −(1/a)·D_a(f_a),  D_a(f) := (1/2π)∫|F(t)|²·t·Ψ_a′(t) dt,
 
-and for the polar term P_a = √a ∫ g(y) sinh(ay/2) dy gives P_a′ = P_a/(2a) + (1/2a²)·M(f_a), M(f) := ∫ f(x)·x·cosh(x/2) dx. Hellmann–Feynman on the minimizer (the matrix family Q(a) is exactly this dilation family, so the K-mode statement is exact) then reads
+and for the polar term P_a = √a ∫ g(y) sinh(ay/2) dy gives P_a′ = (P_a + M(f_a))/(2a), M(f) := ∫ f(x)·x·cosh(x/2) dx. Hellmann–Feynman on the minimizer (the matrix family Q(a) is exactly this dilation family, so the K-mode statement is exact) then reads
 
-  **a·λ′(a) = −[ D_∞(f) + D_P(f) + 2P² + (2P/a)·M ],**
+  **a·λ′(a) = −[ D_∞(f) + D_P(f) + 2P² + 2P·M ],**
 
 where the symbol t·Ψ_a′(t) splits into an archimedean part t·∂_t Re ψ(¼ + it/2), which tends to 1, so that D_∞(f) = ‖f‖² + O(∫|F|²/t²) ≈ 1, and a prime part Σ 2Λ(n)n^{−1/2}·(t log n)·sin(t log n), which in x-space is
 
@@ -377,9 +377,9 @@ where the symbol t·Ψ_a′(t) splits into an archimedean part t·∂_t Re ψ(¼
 
 the Euler product differentiated, acting on the derivative of the minimizer's autocorrelation at the prime-power positions. So
 
-  **Φ′(a) = −λ′/λ = [D_∞(f) + D_P(f) + 2P² + (2P/a)M] / (a·λ),**
+  **Φ′(a) = −λ′/λ = [D_∞(f) + D_P(f) + 2P² + 2PM] / (a·λ),**
 
-and **Conjecture A is the inequality D_∞(f) + D_P(f) + 2P² + (2P/a)M ≤ c·a·T\*(a)·Q_a(f) on the minimizer.** Since Q_a(f) = λ is 10⁻⁹⁰ at a = 1.5 while D_∞(f) ≈ 1, the prime dilation form must cancel the archimedean one to ninety digits: D_P(f) = −D_∞(f) − 2P² − (2P/a)M + O(a T\* λ). Together with the explicit formula on the same function, Σ 2Λ(n)n^{−1/2} g_f(log n) = W_∞(g_f) − 2P² − λ, the minimizer's autocorrelation has both its values and its log-weighted derivatives at the prime-power positions pinned by the archimedean side. Each further a-derivative of λ pins the next weighted derivative; the relay is this hierarchy, and a proof of A is a bound on its first level.
+and **Conjecture A is the inequality D_∞(f) + D_P(f) + 2P² + 2PM ≤ c·a·T\*(a)·Q_a(f) on the minimizer.** Since Q_a(f) = λ is 10⁻⁹⁰ at a = 1.5 while D_∞(f) ≈ 1, the prime dilation form must cancel the archimedean one to ninety digits: D_P(f) = −D_∞(f) − 2P² − 2PM + O(a T\* λ). Together with the explicit formula on the same function, Σ 2Λ(n)n^{−1/2} g_f(log n) = W_∞(g_f) − 2P² − λ, the minimizer's autocorrelation has both its values and its log-weighted derivatives at the prime-power positions pinned by the archimedean side. Each further a-derivative of λ pins the next weighted derivative; the relay is this hierarchy, and a proof of A is a bound on its first level.
 
 **Verified on the K-mode minimizer** (`rh_dilation.py`, central differences of the three parts of Q(a) at step 10⁻³⁰ in ball arithmetic, contracted with the eigenvector; every entry is a ball with the radius shown, and the sum reproduces Φ′ of the grids): [verified]
 
@@ -410,7 +410,7 @@ The strong form is false, and not by a little: the largest eigenvalue of the pen
 
 Since Q does not depend on a, λ(a) is the infimum of a fixed form over the growing family L²(−a, a), and its derivative is a domain variation. For the Dirichlet fractional Laplacian, Hadamard's formula expresses such a derivative through the boundary trace u/dist^s of the eigenfunction (Djitte–Fall–Weth); for the logarithmic Laplacian the trace is the amplitude C of §2.6. A Pohozaev identity for L_Δ with the local boundary term ∫u²·log(δ⁻²)(x·ν) was claimed in a 2024 preprint that was withdrawn for an error in its proof, so the law is stated here as a conjecture with its evidence.
 
-**Conjecture (boundary law).** For a not an entry, λ′(a) = −(C₊² + C₋²) = −2C(a)², where C_± are the edge amplitudes lim √log(1/δ)·|f(±(a−δ))| of the minimizer. Equivalently, with §2.8, D_∞(f) + D_P(f) + 2P² + (2P/a)M = 2a·C(a)² on the minimizer: a Pohozaev identity for the Weil form on a window.
+**Conjecture (boundary law).** For a not an entry, λ′(a) = −(C₊² + C₋²) = −2C(a)², where C_± are the edge amplitudes lim √log(1/δ)·|f(±(a−δ))| of the minimizer. Equivalently, with §2.8, D_∞(f) + D_P(f) + 2P² + 2PM = 2a·C(a)² on the minimizer: a Pohozaev identity for the Weil form on a window.
 
 **Evidence** (`rh_hadamard.py`, data in `boundary_law.csv`): C from the edge FEM on the two-stage mesh, λ′ exact from `rh_dilation.py`: [verified]
 

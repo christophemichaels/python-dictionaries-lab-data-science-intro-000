@@ -39,7 +39,7 @@
 \begin{abstract}
 Let $\lambda(a)$ be the floor of the odd-sector Weil form over test functions supported in $[-a,a]$. Weil's criterion, in Yoshida's odd-test form, says that $\lambda(a)\ge 0$ for every $a$ is equivalent to the Riemann Hypothesis; the floor is certified positive to $a=0.8$ (Zhu) and decays doubly exponentially in $a$. We study the floor as a function of the window. Three results are exact. First, the archimedean part of the form on a window is one half of the Dirichlet form of the logarithmic Laplacian plus a bounded form, with an explicit confining wall $\tfrac12\log(1/(a-|y|))$ at the edge; by the boundary theory of the logarithmic Laplacian (Chen--Weth; Hern\'andez-Santamar\'ia, L\'opez R\'ios, Salda\~na) the minimizer vanishes at the edge like $C(a)\,(\log(a/\delta))^{-1/2}$, and we measure the amplitude $C(a)$ on meshes graded to $10^{-12}$ of the edge. Consequently the entry of a prime power into the window produces no kink in $\lambda$ but a soft kink, $\lambda'$ continuous with an increment $4\Lambda(n)n^{-1/2}C^2/\log(1/\varepsilon)$ at scale $\varepsilon$, which we verify over four decades. Second, between entries the floor obeys the sliding-window identity
 \[
-a\,\lambda'(a) \;=\; -\Big[\,D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}{a}M(f)\Big],
+a\,\lambda'(a) \;=\; -\Big[\,D_\infty(f)+D_P(f)+2P(f)^2+2P(f)M(f)\Big],
 \]
 where $f$ is the minimizer, $D_\infty$ is the archimedean dilation form (its symbol tends to $1$), $D_P(f)=-\sum_n 2\Lambda(n)n^{-1/2}\log n\; g_f'(\log n)$ is the Euler product differentiated against the derivative of the autocorrelation of $f$ at the prime-power positions, and $P,M$ are the polar moments; we verify it to twenty digits in ball arithmetic, exhibiting the cancellation of three order-one quantities to the size of $\lambda$. Third, the derivative is a boundary quantity: on eight supports, with and without primes, $\lambda'(a)=-2C(a)^2$ to a part in a thousand, so $\Phi'=2C^2/\lambda$ and the conjecture below becomes a bound on the edge amplitude of the minimizer by its energy times the horizon. Fourth, the derivative of the floor is a property of the ground state alone: the pencil $(-Q',Q)$ has eigenvalues of size $6\times10^{10}\,\Tst$ at $a=1$ while the minimizer's direction gives $3.7\,\Tst$, so no inequality between the two forms can hold. With $\Phi=-\log\lambda$ and the horizon $\Tst(a)=2\pi e^{2a}$, a certified computation of the floor from height $17$ to height $130$ (down to $\lambda=10^{-93}$, with $230$ modes and rigorous eigenvalue enclosures) shows $\Phi'/\Tst$ rising from $3.2$ to $3.9$ by shrinking steps on the coarse grids, and the exact derivative resolves a sawtooth around every prime-power entry, a rise of $30$--$45\%$ into the entry as the form without the entering prime heads toward indefiniteness, then a drop of $9$--$16\%$ across it, with peaks between $4.1$ and $4.3$ and dips to $2.3$. We state the bounded-relay conjecture $\Phi'(a)\le c\,\Tst(a)$, which implies the Riemann Hypothesis by integration from Zhu's certified support, and the decay law $\Phi'/\Tst\to c_0$; the data exclude the raw phase-space count, disfavour a logarithmic law, and cannot separate a constant from Zhu's Landau--Widom form, whose asymptotes differ ($4$ against $7$). Under the Riemann Hypothesis the floor is the inverse of a sampling constant for the zeros above the horizon, and a prolate-type count gives $\Phi\gtrsim \pi\Tst/\log(4a\Tst)$, one quarter of what is observed. Nothing in this paper proves the Riemann Hypothesis. Theorems, computations with their precision, and conjectures are distinguished throughout.
 \end{abstract}
@@ -206,7 +206,7 @@ The relay is therefore the sawtooth described in \cite{michaels-folds}, measured
 \begin{theorem}[sliding-window identity]\label{thm:identity}
 Let $a$ lie strictly between two consecutive entries and let $f$ be a minimizer at support $a$ (exact, or the $K$-mode minimizer, in which case $\lambda$ means $\lambda_K$). Then
 \begin{equation}\label{eq:identity}
-a\,\lambda'(a)\;=\;-\Big[\,D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}{a}M(f)\Big],
+a\,\lambda'(a)\;=\;-\Big[\,D_\infty(f)+D_P(f)+2P(f)^2+2P(f)M(f)\Big],
 \end{equation}
 where, with $F=\hat f$ and $g=g_f$,
 \[
@@ -221,7 +221,7 @@ For the dilation family $f_b(x)=b^{-1/2}f(x/b)$, $b$ near $1$, one has $\widehat
 
 Since $t\,\partial_t\Ree\psi(\tfrac14+\tfrac{it}2)\to1$, $D_\infty(f)=\|f\|^2+O(\int|F|^2t^{-2})$; on a minimizer $\|f\|=1$ while $\lambda$ is $10^{-90}$ at $a=1.5$, so \eqref{eq:identity} forces
 \begin{equation}\label{eq:cancel}
-D_P(f)=-D_\infty(f)-2P^2-\tfrac{2P}{a}M+O(a\Tst\lambda):
+D_P(f)=-D_\infty(f)-2P^2-2PM+O(a\Tst\lambda):
 \end{equation}
 the Euler product, differentiated and applied to the derivative of the minimizer's autocorrelation at the prime-power positions, cancels the archimedean dilation form to ninety digits. Together with the explicit formula on the same function, $\sum 2\Lambda(n)n^{-1/2}g(\log n)=W_\infty(g)-2P^2-\lambda$, both the values and the log-weighted derivatives of $g_f$ at the prime powers are pinned by the archimedean side.
 
@@ -313,7 +313,7 @@ Computation~\ref{comp:grid} supports the weak form from height $17$ to $130$ and
 
 By Theorem~\ref{thm:identity}, Conjecture~\ref{conj:A} is the inequality
 \begin{equation}\label{eq:Aform}
-D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}aM(f)\;\le\;c\,a\,\Tst(a)\,Q(f)\qquad\text{on the minimizer } f,
+D_\infty(f)+D_P(f)+2P(f)^2+2P(f)M(f)\;\le\;c\,a\,\Tst(a)\,Q(f)\qquad\text{on the minimizer } f,
 \end{equation}
 and by Computation~\ref{comp:pencil} it holds only there.
 
@@ -343,7 +343,7 @@ For $a$ not an entry, with $C_\pm(a)=\lim_{\delta\to0}\sqrt{\log(1/\delta)}\,|f(
 \lambda'(a)=-\big(C_+(a)^2+C_-(a)^2\big)=-2\,C(a)^2 .
 \]
 Equivalently, with Theorem~\ref{thm:identity}, the Weil form on a window satisfies the Pohozaev-type identity
-$D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}{a}M(f)=2a\,C(a)^2$ on its minimizer.
+$D_\infty(f)+D_P(f)+2P(f)^2+2P(f)M(f)=2a\,C(a)^2$ on its minimizer.
 \end{conjecture}
 
 \begin{computation}[the boundary law]\label{comp:hadamard}
