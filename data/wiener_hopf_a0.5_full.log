@@ -29,3 +29,28 @@ Hilbert-transform self-test: max error 4.69e-10
       20      0.01583        0.17806        0.34640      0.3165   +1
       50      0.01026        0.07270        0.24486      0.5131   +1
      100      0.01227        0.03949        0.18325      1.2271   +1
+
+(iii) the echo form: sigma_eff = sigma_inf - c^2/sigma_inf with c = [0.4901], real zeros [ 3.86   6.291 10.264]; phase theta_eff + arg(1 + sum (c/sigma_inf) e^(-it log n)); kappa = 62.1918
+    t_k/T*      r_k    -phase   r+phase-kappa/t
+      2.91    1.2870    0.0344      0.00124
+      3.98    0.9898    0.0740      0.00061
+      5.06    0.7806    0.0611     -0.00047
+      6.88    0.6277    0.0995     -0.00113
+      9.81    0.5376    0.1677     -0.00116
+     14.96    0.5213    0.2788     -0.00087
+     20.08    0.2440    0.0632     -0.00060
+     30.01    0.2470    0.1258     -0.00010
+     49.87    0.2077    0.1351     -0.00048
+     70.11    0.2490    0.1982     -0.00120
+     99.91    0.2619    0.2278     -0.00238
+    119.76    0.1152    0.0668      0.01799
+    rms r+phase-kappa/t: 0.00478 (t >= 10 T*), 0.00463 (t >= 3 T*)   [window's symbol: 0.00885, 0.01026]
+    rms on 5-80 T* (204 nulls): echo form 0.00111, window's symbol 0.00975, no shift 0.3249; largest |residual| of the echo form below 80 T*: 0.00358, above: 0.02090
+    relative L^2 distance of S from the echo form over one period (|A| = (-lambda'/2)^(1/2), kappa fitted):
+    T/T*   dist(echo)   dist(window symbol)   dist(echo)*T/T*
+       3      0.15177          0.14387         0.4553
+       5      0.04386          0.05139         0.2193
+      10      0.01011          0.02375         0.1011
+      20      0.00208          0.01583         0.0415
+      50      0.00068          0.01026         0.0339
+     100      0.00985          0.01227         0.9848

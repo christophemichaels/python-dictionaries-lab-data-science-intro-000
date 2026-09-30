@@ -65,11 +65,23 @@ with F~ analytic below (O(1/t)), G~ above (O(t^-1 log^1/2 t), Lemma 7.12), H~ = 
 => F~ = i h(a)/(sigma_+(0) t sigma_-(t)) + O(t^-2); real zeros of the symbol = standing waves of the interior = simple poles of E;
 the reality symmetry keeps A imaginary and makes the next term a real phase kappa/t; |A| is fixed by the far edge (quantization of
 lambda(a)) and |A|^2 = -lambda'/2 is the boundary law as a flux (|A| = C).
+DONE 2026-09-30, second pass (the derivation rewritten in the paper; rh_wiener_hopf.py part (iii)): the exact two-edge equation
+needs no cutoff: sigma_a F~ = H~ + G~_+ with F~ = e^{-ita} F analytic below, G~_+ (outside force on the right) analytic above,
+H~ = polar step - 2iP sinh(a/2)/t + e^{-2ita}(far edge) analytic below; the primes OUTSIDE the window cancel identically (their
+copies of f lie in g_out), so the symbol is sigma_a = Psi_a - lambda with the entries log n < 2a only. Liouville + the reality
+symmetry F~(-t) = conj F~(t) => A(t) = A_0 + A_1/t with A_0 imaginary, A_1 REAL: the first correction is a pure phase kappa/t
+(proved at the level of the expansion). With primes: the entries inside the window copy the edge to a - log n (echo), the echo
+feeds back on the edge as a real term -c^2/sigma_inf (c = Lambda(n)/sqrt n), so the edge's symbol is sigma_eff = sigma_inf -
+c^2/sigma_inf and the echo piece is (c/sigma_inf) e^{-it log n} times the edge piece; longer chains give a finite continued
+fraction; the window's symbol sigma_inf - 2c cos = the INFINITE chain (fixed point). Verified at a = 0.5 with the prime 2: null
+residual 1.1e-3 rms on 5-80 T* (window's symbol 9.8e-3), pointwise 0.010, 0.0021, 0.0007 at 10, 20, 50 T*, ~T^-2 (window's
+symbol 0.024, 0.016, 0.010, not decaying). Conjecture 7.19 restated: (i) prime-free sharp form, (ii) the echo form.
 NEXT for item 2 (the last analytic piece, now a proof to write, not a computation to run): (a) the factorization of a symbol growing
 like log t, factors (log t)^{1/2} e^{+-i theta}, theta = O(1/log t); (b) the a priori decay of the three transforms: F~ = O(1/t) is the
 edge-law upper bound (Theorem 3.2 under (H_inf)), G~ from Lemma 7.12, H~ from the smoothness of the commutator [K, chi] f near the
-edge; (c) Liouville with the poles at the real zeros, and the far edge at relative order t^-2. Then the tail law is exact beyond the
-decoupling height and the boundary law is the flux identity |A|^2 = -lambda'/2.
+edge; (c) Liouville with the poles at the real zeros, and the far edge at relative order t^-2; (d) with primes, the echo chains
+in general (several entries, chains of several links, the mirror chains, coincidences at the entries a = a_n). Then the tail law
+is exact beyond the decoupling height and the boundary law is the flux identity |A|^2 = -lambda'/2.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading

@@ -45,40 +45,45 @@ def sigma(t):
     t = np.atleast_1d(np.asarray(t, float))
     return repsi(t) - math.log(math.pi) - sum(2*vm(n)/math.sqrt(n)*np.cos(t*math.log(n)) for n in primes) - lam
 
-# --- real zeros of the symbol ---
-tz = np.arange(0.005, 3000, 0.01); sz = sigma(tz); zeros = []
-for i in np.nonzero(np.sign(sz[:-1]) != np.sign(sz[1:]))[0]:
-    lo, hi = tz[i], tz[i+1]; slo = sz[i]
-    for _ in range(60):
-        mid = 0.5*(lo + hi); sm_ = sigma(mid)[0]
-        if np.sign(sm_) == np.sign(slo): lo = mid
-        else: hi = mid
-    zeros.append(0.5*(lo + hi))
-zeros = np.array(zeros)
-def u_of(t):                                     # log sigma~, the positive symbol with the real zeros divided out
-    t = np.atleast_1d(np.asarray(t, float)); s = sigma(t)
-    for tj in zeros: s = s*(t*t + tj*tj)/(t*t - tj*tj)
-    return np.log(s)
 # --- master grid for the Hilbert transform ---
 tau = np.concatenate([np.arange(0.0, 8000, 0.01), np.geomspace(8000, 1e11, 40000)[1:]])
-U = u_of(tau); dtau = np.diff(tau); w = np.zeros_like(tau); w[:-1] += dtau/2; w[1:] += dtau/2      # trapezoid weights
-def theta(t):                                    # (1/2) H[u](t) = (t/pi) int_0^inf (u(tau) - u(t)) / (t^2 - tau^2) dtau, odd in t
-    t = np.atleast_1d(np.asarray(t, float)); ut = u_of(t); out = np.empty_like(t)
-    for i, (ti, ui) in enumerate(zip(t, ut)):
-        den = ti*ti - tau*tau; h = (U - ui)/np.where(np.abs(den) < 1e-12, 1.0, den)
-        near = np.abs(tau - ti) < 1e-6
-        if near.any():
-            up = (u_of(ti + 1e-3)[0] - u_of(ti - 1e-3)[0])/2e-3; h[near] = -up/(2*ti)
-        out[i] = ti/math.pi*np.dot(w, h)
-    return out
-def theta_local(t):                              # the adiabatic value -(pi/4) t u'(t)
-    t = np.atleast_1d(np.asarray(t, float)); return -(math.pi/4)*t*(u_of(t*(1 + 1e-4)) - u_of(t*(1 - 1e-4)))/(2e-4*t)
+dtau = np.diff(tau); w = np.zeros_like(tau); w[:-1] += dtau/2; w[1:] += dtau/2                     # trapezoid weights
+def real_zeros(sig):
+    tz = np.arange(0.005, 3000, 0.01); sz = sig(tz); zs = []
+    for i in np.nonzero(np.sign(sz[:-1]) != np.sign(sz[1:]))[0]:
+        lo, hi = tz[i], tz[i+1]; slo = sz[i]
+        for _ in range(60):
+            mid = 0.5*(lo + hi); sm_ = sig(mid)[0]
+            if np.sign(sm_) == np.sign(slo): lo = mid
+            else: hi = mid
+        zs.append(0.5*(lo + hi))
+    return np.array(zs)
+def hilbert_phase(sig):
+    """For a real even symbol sig: its real zeros, u = log sigma~ (zeros divided out), and theta = (1/2) H[u],
+    theta(t) = (t/pi) int_0^inf (u(tau) - u(t)) / (t^2 - tau^2) dtau, odd in t; also the adiabatic value -(pi/4) t u'(t)."""
+    zs = real_zeros(sig)
+    def u_of(t):
+        t = np.atleast_1d(np.asarray(t, float)); s = sig(t)
+        for tj in zs: s = s*(t*t + tj*tj)/(t*t - tj*tj)
+        return np.log(s)
+    U = u_of(tau)
+    def theta(t):
+        t = np.atleast_1d(np.asarray(t, float)); ut = u_of(t); out = np.empty_like(t)
+        for i, (ti, ui) in enumerate(zip(t, ut)):
+            den = ti*ti - tau*tau; h = (U - ui)/np.where(np.abs(den) < 1e-12, 1.0, den)
+            near = np.abs(tau - ti) < 1e-6
+            if near.any():
+                up = (u_of(ti + 1e-3)[0] - u_of(ti - 1e-3)[0])/2e-3; h[near] = -up/(2*ti)
+            out[i] = ti/math.pi*np.dot(w, h)
+        return out
+    def theta_local(t):
+        t = np.atleast_1d(np.asarray(t, float)); return -(math.pi/4)*t*(u_of(t*(1 + 1e-4)) - u_of(t*(1 - 1e-4)))/(2e-4*t)
+    return zs, u_of, theta, theta_local
+zeros, u_of, theta, theta_local = hilbert_phase(sigma)
 
 # --- self-test of the Hilbert transform on log((tau^2+1)/(tau^2+4)) -> arctan(1/t) - arctan(2/t) ---
-Usave = U.copy(); U = np.log((tau**2 + 1)/(tau**2 + 4))
-_u = u_of; u_of = lambda t: np.log((np.atleast_1d(np.asarray(t, float))**2 + 1)/(np.atleast_1d(np.asarray(t, float))**2 + 4))
-tt_ = np.array([0.7, 3.0, 25.0]); err = np.abs(theta(tt_) - (np.arctan(1/tt_) - np.arctan(2/tt_))).max()
-U = Usave; u_of = _u
+_, _, theta_test, _ = hilbert_phase(lambda t: (np.atleast_1d(np.asarray(t, float))**2 + 1)/(np.atleast_1d(np.asarray(t, float))**2 + 4))
+tt_ = np.array([0.7, 3.0, 25.0]); err = np.abs(theta_test(tt_) - (np.arctan(1/tt_) - np.arctan(2/tt_))).max()
 print(f"{fn}: a = {a}, lambda = {lam:.6f}, lambda' = {lam_prime}, primes {primes}, T* = {Ts:.3f}; nodes {len(f)}")
 print(f"real zeros of the symbol: {np.array2string(zeros, precision=3)}  (t/T*: {np.array2string(zeros/Ts, precision=3)})")
 print(f"Hilbert-transform self-test: max error {err:.2e}")
@@ -109,16 +114,8 @@ for k in [3, 4, 5, 7, 10, 15, 20, 30, 50, 70, 100, 120]:
     print(f"   {tk[i]/Ts:7.2f}  {r[i]:8.4f}  {-th[i]:8.4f}  {-thl[i]:8.4f}  {-thn[i]:9.4f}     {r[i]+th[i]:8.4f}  {r[i]+th[i]-kappa/tk[i]:11.5f}   {r[i]-kappa0/tk[i]:9.4f}  {r[i]-c_log*np.log(tk[i]/(2*math.pi))**-1:8.4f}")
 rms = lambda v: math.sqrt(np.mean(v*v))
 if primes:                                       # the smooth alternative: the phase of the prime-free symbol at the same lambda, plus kappa/t
-    primes_save = primes; primes = []; zeros_save = zeros
-    tz = np.arange(0.005, 3000, 0.01); sz = sigma(tz); zeros = []
-    for i in np.nonzero(np.sign(sz[:-1]) != np.sign(sz[1:]))[0]:
-        lo, hi = tz[i], tz[i+1]; slo = sz[i]
-        for _ in range(60):
-            mid = 0.5*(lo + hi); sm_ = sigma(mid)[0]
-            if np.sign(sm_) == np.sign(slo): lo = mid
-            else: hi = mid
-        zeros.append(0.5*(lo + hi))
-    zeros = np.array(zeros); zeros_inf = zeros; U = u_of(tau); th_inf = theta(tk); primes = primes_save; zeros = zeros_save; U = u_of(tau)
+    sigma_inf = lambda t: repsi(t) - math.log(math.pi) - lam
+    zeros_inf, _, theta_inf, _ = hilbert_phase(sigma_inf); th_inf = theta_inf(tk)
     kap_inf = np.sum((r + th_inf)[sel]/tk[sel])/np.sum(1/tk[sel]**2)
     print(f"    smooth alternative (phase of the prime-free symbol at the same lambda, zeros {np.array2string(zeros_inf, precision=3)}, plus kappa/t, kappa = {kap_inf:.3f}):"
           f" rms r+theta_inf-kappa/t = {rms((r+th_inf-kap_inf/tk)[sel]):.4f} (t >= 10 T*), {rms(r+th_inf-kap_inf/tk):.4f} (t >= 3 T*)")
@@ -140,3 +137,38 @@ for k in (3, 5, 10, 20, 50, 100):
     d0 = math.sqrt(np.trapezoid((s + sign*amp*np.cos(tt*a + thv))**2, tt)/np.trapezoid(s*s, tt))
     dn = math.sqrt(np.trapezoid((s + sign*amp*np.cos(tt*a))**2, tt)/np.trapezoid(s*s, tt))
     print(f"   {k:5d}   {best[0]:10.5f}   {d0:12.5f}   {dn:12.5f}   {best[0]*k:9.4f}   {sign:+d}")
+
+
+# --- the echo form with primes: the edge plus its echoes inside the window (paper, the derivation after Conjecture 7.19) ---
+# For an entry n with a < log n < 2a the only echo of the right edge inside the window is at a - log n, so the edge piece has the
+# effective symbol sigma_eff = sigma_inf - c^2/sigma_inf (c = Lambda(n) n^{-1/2}; the echo's return) and the echo piece is
+# (c/sigma_inf) e^{-it log n} times the edge piece; hence S = -|A| |1 + rho e^{-i tau}| cos(ta + theta_eff + arg(1 + rho e^{-i tau}) - kappa/t)
+# / (t sigma_eff^{1/2}), rho = c/sigma_inf(t), tau = t log n.  To first order in rho this is the form with the window's symbol.
+if primes:
+    assert all(a < math.log(n) < 2*a for n in primes), "the single-echo form needs a < log n < 2a for every entry in the window"
+    cs = {n: vm(n)/math.sqrt(n) for n in primes}; c2 = sum(c*c for c in cs.values())
+    sigma_eff = lambda t: sigma_inf(t) - c2/sigma_inf(t)
+    zeros_eff, _, theta_eff, _ = hilbert_phase(sigma_eff)
+    def echo(t):
+        t = np.atleast_1d(np.asarray(t, float)); si = sigma_inf(t)
+        return 1 + sum(cs[n]/si*np.exp(-1j*t*math.log(n)) for n in primes)
+    th_e = theta_eff(tk) + np.angle(echo(tk))
+    kap_e = np.sum((r + th_e)[sel]/tk[sel])/np.sum(1/tk[sel]**2)
+    print(f"\n(iii) the echo form: sigma_eff = sigma_inf - c^2/sigma_inf with c = {[round(c, 4) for c in cs.values()]}, real zeros {np.array2string(zeros_eff, precision=3)};"
+          f" phase theta_eff + arg(1 + sum (c/sigma_inf) e^(-it log n)); kappa = {kap_e:.4f}")
+    print("    t_k/T*      r_k    -phase   r+phase-kappa/t")
+    for k in [3, 4, 5, 7, 10, 15, 20, 30, 50, 70, 100, 120]:
+        i = np.argmin(np.abs(tk/Ts - k))
+        if abs(tk[i]/Ts - k) > 0.6: continue
+        print(f"   {tk[i]/Ts:7.2f}  {r[i]:8.4f}  {-th_e[i]:8.4f}  {r[i]+th_e[i]-kap_e/tk[i]:11.5f}")
+    print(f"    rms r+phase-kappa/t: {rms((r+th_e-kap_e/tk)[sel]):.5f} (t >= 10 T*), {rms(r+th_e-kap_e/tk):.5f} (t >= 3 T*)   [window's symbol: {rms((r+th-kappa/tk)[sel]):.5f}, {rms(r+th-kappa/tk):.5f}]")
+    mid = (tk >= 5*Ts) & (tk <= 80*Ts)
+    print(f"    rms on 5-80 T* ({mid.sum()} nulls): echo form {rms((r+th_e-kap_e/tk)[mid]):.5f}, window's symbol {rms((r+th-kappa/tk)[mid]):.5f}, no shift {rms(r[mid]):.4f};"
+          f" largest |residual| of the echo form below 80 T*: {np.abs(r+th_e-kap_e/tk)[tk <= 80*Ts].max():.5f}, above: {np.abs(r+th_e-kap_e/tk)[tk > 80*Ts].max():.5f}")
+    print("    relative L^2 distance of S from the echo form over one period (|A| = (-lambda'/2)^(1/2), kappa fitted):")
+    print("    T/T*   dist(echo)   dist(window symbol)   dist(echo)*T/T*")
+    for k in (3, 5, 10, 20, 50, 100):
+        T = k*Ts; tt = np.linspace(T - Wd/2, T + Wd/2, 801); s = S(tt); ec = echo(tt); ph = tt*a + theta_eff(tt) + np.angle(ec) - kap_e/tt
+        swh = -Aabs*np.abs(ec)*np.cos(ph)/(tt*np.sqrt(sigma_eff(tt))); de = math.sqrt(np.trapezoid((s - swh)**2, tt)/np.trapezoid(s*s, tt))
+        sg = sigma(tt); thv = theta(tt); sw0 = -Aabs*np.cos(tt*a + thv - kappa/tt)/(tt*np.sqrt(sg)); d0 = math.sqrt(np.trapezoid((s - sw0)**2, tt)/np.trapezoid(s*s, tt))
+        print(f"   {k:5d}   {de:10.5f}   {d0:14.5f}   {de*k:12.4f}")
