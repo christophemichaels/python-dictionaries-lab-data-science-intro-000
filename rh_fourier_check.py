@@ -1,5 +1,5 @@
 """
-Independent Fourier-side check of the sliding-window identity (paper Computation 5.5, memo section 2.8) at K = 12, a = 0.6.
+Independent Fourier-side check of the sliding-window identity (paper Computation 5.9, memo section 2.8) at K = 12, a = 0.6.
 
 Matrix side: a*lambda_K' = a <c, Q_K'(a) c> from rh_weil_arb.parts (central differences at step 1e-30 in ball
 arithmetic), and, independently of any identity, central differences of the K-mode floor lambda_K(a +- 1e-8).
