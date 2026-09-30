@@ -11,13 +11,15 @@ Littlewood's bound S_1(t) = O(log t/(log log t)^2). With the boundary law lambda
 Still open inside item 1: the edge law as an asymptotic equality with derivatives (only the upper bound is a theorem,
 under (H_inf)); the boundary law itself (Conjecture 8.1).
 
-## 2. The sum rule  [IDENTITY PROVED AND VERIFIED; edge-overlap expansion done (Lemma 7.11); one local statement remains]
+## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
-(b) OPEN, local: the smooth overlap cancels the polar piece iff g_reg(a) = 2P sinh(a/2), i.e. the regular part of K f
-is continuous across the edge (the singularity -/+ C L^{1/2} carried by the outside). Supported to ~20%. A property of
-the log-Laplacian kernel on the (log)^{-1/2} edge; provable by a local computation.
+(b) DONE (Lemma 7.12): the regular part of K_inf f is continuous across the edge; inside, the wall's +(1/2)log(1/delta) f
+and the log-Laplacian's -C L^{1/2} cancel, outside -C L^{1/2} stands alone, same regular remainder (the difference is
+-C(beta + log 2a) L^{-1/2} -> 0). Hence g_reg(a) = (K f)(a-) = 2P sinh(a/2), h = 2P s + g_reg is continuous at the edge,
+and polar + smooth overlap = <f, h_{>T}> = O(C^2/(T L)). Corollary 7.13: tail energy = 2C^2/(pi T)(1 + O(1/L)).
+Loose end (not blocking): the coefficient of the O(1/L) term; the data say it is small.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -47,15 +49,22 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.13, Proposition 7.14]
-Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.13). Data: medians of the floor's mass 2.39 ... 2.74 T*
-(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.14: under RH, (S_kappa) [zeros above kappa T* sample the tail
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.15, Proposition 7.16; NEXT]
+Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.15). Data: medians of the floor's mass 2.39 ... 2.74 T*
+(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.16: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
 c = pi kappa M M'. Measured: M ~ 1, M' ~ 1, kappa = e -> bound pi e = 8.5 against the observed 3.3-3.9 = pi e theta(e T*).
 Remaining: prove (S_e) (a sampling inequality on the half-line above e T* for high-pass window functions with a log
 edge; density (2a+1)/2pi vs Nyquist a/pi; needs no gaps wider than pi/a) and (E_e) (the minimizer's edge layer is no
 narrower than 1/(e T*): it hides from no zero above the exhaustion height). To prove RH by A, both must eventually be
 replaced by their prime-side forms.
+First concrete step for (E_e): show that the minimizer's edge layer has width >= c/T*, i.e. that the edge law
+(with the same C) holds for delta >= 1/(e T*): compare the FEM profiles f(a - delta) with C L(delta)^{-1/2} for
+delta between 1/(10 T*) and 1/T* at a = 0.4 ... 0.55, and the K-mode ones at 0.6 ... 1.5; then look for the reason
+(the interior structure of f lives at frequencies below e T* because that is where hiding is possible).
+First concrete step for (S_e): the sampling constant M(kappa) = int_{|t|>kappa T*} |F|^2 rho / sum_{|gamma|>kappa T*}
+|F(gamma)|^2 as a function of kappa and a from the existing zero-side data (it is ~1 for kappa >= 5; measure it at
+kappa = e, 2, 1.5), and its analytic form through the explicit formula for the high-pass of f.
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
