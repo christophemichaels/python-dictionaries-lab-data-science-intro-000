@@ -28,6 +28,8 @@ All scripts are Python 3 and need only `numpy` and `mpmath` (plus `pymupdf` for 
 | `rh_weil_arb.py`, `rh_arb_grid.py` | Ball-arithmetic engine for the same form (python-flint), hundreds of times faster, with rigorous eigenvalue enclosures; the drift test to a = 1.5 (height 130) in `floor_grid_arb.csv`. |
 | `rh_hadamard.py` | The boundary law λ′(a) = −2C(a)² (memo §2.9): the edge amplitude from the FEM against the exact derivative; data in `boundary_law.csv`. `relay_scan.csv`: the exact derivative at ten offsets around each of the first five entries (memo §2.9, paper Computation 4.4). |
 | `rh_dilation.py` | The sliding-window identity (memo §2.8): the dilation derivative of the floor split into archimedean, prime and polar parts on the minimizer, verified to twenty digits, and the pencil (−Q′, Q) showing that the relay is a ground-state property, not an inequality between forms. |
+| `data/` | The inputs of `rh_hadamard.py` and of the soft-kink table: the edge-FEM minimizers (`fem_a*.json`, prime-free at a = 0.3–0.6 and with primes at 0.4, 0.45, 0.5, a₃) with their edge fits, the ball-arithmetic dilation logs at the same supports (`dilation_a*.log`), and the 134-node soft-kink finite differences (`softkink_134node.json`). `python3 rh_hadamard.py data/fem_a0.3_primefree.json data/dilation_a0.3_primefree.log data/fem_a3_full.json data/dilation_a0.549_full.log` reproduces the boundary-law table. |
+| `rh_fourier_check.py` | Independent Fourier-side check of the sliding-window identity at K = 12, a = 0.6 (paper Computation 5.5): D_∞ from (1/2π)∫|F|² t ∂_t Re ψ with F through spherical Bessel functions and the Parseval tail, D_P from g′(log n) of the exact autocorrelation, against the matrix-side a·λ_K′; twelve digits. |
 | `rh_soft_kink.py` | The soft kink at the entry of 3: finite differences of the edge-FEM floor across a₃ at scales 10⁻³ … 10⁻⁷, against the first-order entering energy and the law 4Λ(3)3^{−1/2}C²/(log(1/ε) + β). |
 | `rh_deleted_form.py` | Failure points of the form with the newest prime power deleted (Table 1 of the folds paper). |
 | `rh_rigidity.py` | Sensitivity of positivity to displacing a single prime. |
@@ -37,7 +39,7 @@ All scripts are Python 3 and need only `numpy` and `mpmath` (plus `pymupdf` for 
 
 ## Status
 
-Reviewed items are marked in the documents. External reviews of 2026-09-29 (independent referee on §12 of the Möbius paper; a four-branch review of the atlas and the folds paper) have been applied; see the commit history.
+Reviewed items are marked in the documents. External reviews of 2026-09-29 (independent referee on §12 of the Möbius paper; a four-branch review of the atlas and the folds paper) and of 2026-09-30 (independent referee on the Weil-window paper, whose report is applied in the revised `weil_window.pdf` and in memo §§2.6–2.9) have been applied; see the commit history.
 
 ## Building the papers
 
