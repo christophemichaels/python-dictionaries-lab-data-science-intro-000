@@ -20,6 +20,15 @@ and the log-Laplacian's -C L^{1/2} cancel, outside -C L^{1/2} stands alone, same
 -C(beta + log 2a) L^{-1/2} -> 0). Hence g_reg(a) = (K f)(a-) = 2P sinh(a/2), h = 2P s + g_reg is continuous at the edge,
 and polar + smooth overlap = <f, h_{>T}> = O(C^2/(T L)). Corollary 7.13: tail energy = 2C^2/(pi T)(1 + O(1/L)).
 Loose end (not blocking): the coefficient of the O(1/L) term; the data say it is small.
+(c) NEW 2026-09-30, reframes 2 and 3: the tail law is ANALYTIC. On the prime-free critical points (form W_inf - 2P^2,
+no zeros, floors of either sign) T (1/2pi) int_{|t|>T} |F|^2 (Psi_inf - lambda) / (-lambda'/pi) = 1 +- 0.02 from three
+horizons on (Computation 7.14). And the profile is NOT in its asymptotic edge regime at delta = 1/T for T = 5-20 T*
+(f^2 L / C^2 = 1.5-3.2 at delta = 1/(e T*)); Lemma 7.11 + 7.12 explain only the far field. So the finite-T sum rule is
+an exact analytic identity still to be found: a Pohozaev-type identity for the eigen-equation (the edge pairing of f
+with the dilation generator x f' gives -lambda' by the boundary law; the same pairing cut at height T gives the tail).
+NEXT for item 2: derive it. Start from tail(T) = 2P <f, s_{>T}> - <f_T, g_out> and the dilation identity
+a lambda' = -(D_inf + 2P^2 + 2PM), D_inf = (1/2pi) int |F|^2 t dPsi_inf/dt, and look for the identity
+T tail(T) = -lambda'/pi + (terms that vanish like the prime-free data say, i.e. by 3 horizons).
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -49,22 +58,22 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.15, Proposition 7.16; NEXT]
-Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.15). Data: medians of the floor's mass 2.39 ... 2.74 T*
-(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.16: under RH, (S_kappa) [zeros above kappa T* sample the tail
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.16, Proposition 7.17; NEXT]
+Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.16). Data: medians of the floor's mass 2.39 ... 2.74 T*
+(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.17: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
 c = pi kappa M M'. Measured: M ~ 1, M' ~ 1, kappa = e -> bound pi e = 8.5 against the observed 3.3-3.9 = pi e theta(e T*).
 Remaining: prove (S_e) (a sampling inequality on the half-line above e T* for high-pass window functions with a log
 edge; density (2a+1)/2pi vs Nyquist a/pi; needs no gaps wider than pi/a) and (E_e) (the minimizer's edge layer is no
 narrower than 1/(e T*): it hides from no zero above the exhaustion height). To prove RH by A, both must eventually be
 replaced by their prime-side forms.
-First concrete step for (E_e): show that the minimizer's edge layer has width >= c/T*, i.e. that the edge law
-(with the same C) holds for delta >= 1/(e T*): compare the FEM profiles f(a - delta) with C L(delta)^{-1/2} for
-delta between 1/(10 T*) and 1/T* at a = 0.4 ... 0.55, and the K-mode ones at 0.6 ... 1.5; then look for the reason
-(the interior structure of f lives at frequencies below e T* because that is where hiding is possible).
-First concrete step for (S_e): the sampling constant M(kappa) = int_{|t|>kappa T*} |F|^2 rho / sum_{|gamma|>kappa T*}
-|F(gamma)|^2 as a function of kappa and a from the existing zero-side data (it is ~1 for kappa >= 5; measure it at
-kappa = e, 2, 1.5), and its analytic form through the explicit formula for the high-pass of f.
+Measured 2026-09-30 (Computation 7.14): (E_kappa) is not about the profile's asymptotic regime (the profile is 1.5-3x
+above the edge law at delta = 1/(e T*)); it holds because the tail law is analytic (item 2c), from ~3 T* on, at 1%.
+(S_kappa): M(kappa) = 1.01-1.09 for kappa >= e at a = 0.4, 0.45, 0.5 (8.9, 3.6, 1.8 at kappa = 1; 0.7-1.5 at 1.5-2).
+So ALL the arithmetic of Conjecture A is in (S_e): the zeros above e T* sample the analytic tail of F at their mean
+density, constant ~1. NEXT for item 3: the analytic form of M through the explicit formula for the high-pass part of
+f (the fluctuation is the prime sum on frequencies above kappa T*, whose only structure between entries is the
+alignment of Computation 7.18), and the gap condition it needs (no gap wider than pi/a above e T*).
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
