@@ -29,7 +29,7 @@ for a, K, prec in mine:
     W = engines[(K, prec)]
     lam0, lam1, fa = W.floor(a)
     row = {"a": a, "K": K, "prec": prec, "lam0": lam0.mid().str(30, radius=False), "lam0_rad": lam0.rad().str(3),
-           "lam1": lam1.mid().str(15, radius=False), "fa": fa.mid().str(15, radius=False), "seconds": round(time.time() - t0)}
+           "lam1": lam1.mid().str(15, radius=False), "fa": (fa.mid().str(15, radius=False) if fa is not None else None), "seconds": round(time.time() - t0)}
     open(f"arb_grid_{chunk}.jsonl", "a").write(json.dumps(row) + "\n")
     print(json.dumps(row), flush=True)
 print("done", flush=True)
