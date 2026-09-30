@@ -9,7 +9,10 @@ Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|
 of the transform (splitting at delta = 1/t), then the sum over zeros through the Riemann-von Mangoldt formula with
 Littlewood's bound S_1(t) = O(log t/(log log t)^2). With the boundary law lambda' = -2C^2 this is Conjecture 7.7.
 Still open inside item 1: the edge law as an asymptotic equality with derivatives (only the upper bound is a theorem,
-under (H_inf)); the boundary law itself (Conjecture 8.1).
+under (H_inf)). The boundary law is now a theorem under that same hypothesis (paper Proposition 8.3, 2026-09-30): B_T ->
+a C^2 by the overlap of the leak of the dilation generator with the edge force, J_1(L) = 1 + O(1/L^2) with no 1/L term (the
+antisymmetry of Lemma 7.11 again), and Lemma 8.2 (the edge force to second order). So under the edge law with derivatives:
+boundary law => tail law (Prop 7.8), and both are the flux identity 2|A_0|^2 = -lambda' of the Wiener-Hopf form.
 
 ## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
@@ -87,12 +90,16 @@ far-edge feedback through the kernel of 1/sigma_+ beyond 2a; the mirror: F = A e
 critical point the tail energy is 2|A_0|^2/(pi T)(1 + o(1)) at every height beyond the onset, so the tail law is the single
 identity 2|A_0|^2 = -lambda' (the boundary law as a flux, |A_0| = C). What the theorem does not decide: |A_0|^2 = -lambda'/2;
 kappa constant (bound O(log t), data 1e-4); the rate (O(log t/t) against the measured t^-2); the echo form with primes.
-NEXT for item 2: (a) the flux identity |A_0|^2 = -lambda'/2 from the pairing identity (Proposition 7.15: -a lambda' = 2 B_inf,
-B_inf = <g_out, (xf)'>), computed from the exact representation: G~_+ = sigma_+ A/t + 2iP sinh(a/2)/t + O(t^-2 log^1/2) is now
-a theorem, so B_T = (1/2pi) int_{|t|<T} conj(G) (-t F') dt is an explicit Wiener-Hopf integral whose limit should be a |A_0|^2;
-this would prove the boundary law and the tail law together. (b) the echo form with primes as a theorem (the exact representation
-holds with the window's symbol; the edge asymptotics reorganize into the finite echo chain). Old list, still valid for the
-remaining parts: (a) the factorization of a symbol growing
+DONE 2026-09-30 (a): the flux identity B_inf = a C^2 is Proposition 8.3, proved in x-space (not from the Fourier tail, which
+only gives the rate: B_inf - B_T ~ a C g_reg L_T^{-1/2}, the polar cross term, g_reg = 2P sinh(a/2)); it needs the edge law
+with two derivatives (the hypothesis of Prop 7.8) and Lemma 8.2. Verified: C from the edge nodes 1.0615, C^2 = 1.127 vs
+-lambda'/2 = 1.129; the gap a C^2 - B_T = 0.014-0.0125 at 5-20 T* against the leading term 0.024-0.019 (L_T only 2-4 there).
+NEXT for item 2 (what now separates the tail law from a theorem for the prime-free critical points): the DERIVATIVE CONTROL of
+the edge from the representation: show that the inverse transform of A(t)/(t sigma_-(t)) with A - A_0 = O(log t/t) (Corollary
+7.24) is C(L + beta)^{-1/2} + psi with psi^{(k)} = o(delta^{-k} L^{-3/2}), k <= 2, and C = |A_0|. Then Prop 8.3 gives
+2|A_0|^2 = -lambda', Corollary 7.24 gives the tail energy 2|A_0|^2/(pi T), and the tail law is a theorem without primes.
+(b) the echo form with primes as a theorem (the exact representation holds with the window's symbol; the edge asymptotics
+reorganize into the finite echo chain). Old list, still valid for the remaining parts: (a) the factorization of a symbol growing
 like log t, factors (log t)^{1/2} e^{+-i theta}, theta = O(1/log t); (b) the a priori decay of the three transforms: F~ = O(1/t) is the
 edge-law upper bound (Theorem 3.2 under (H_inf)), G~ from Lemma 7.12, H~ from the smoothness of the commutator [K, chi] f near the
 edge; (c) Liouville with the poles at the real zeros, and the far edge at relative order t^-2; (d) with primes, the echo chains

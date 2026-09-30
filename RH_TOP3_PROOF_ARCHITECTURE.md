@@ -430,11 +430,13 @@ the rate of decay of the floor is π times the effective height of the zeros tha
 
 ---
 
-### 2.9 The boundary law: λ′(a) = −2C(a)² [conjecture; verified to 10⁻³ in eight cases]
+### 2.9 The boundary law: λ′(a) = −2C(a)² [theorem under the edge law with two derivatives, paper Proposition 8.3; verified to 10⁻³ in eight cases]
 
 Since Q does not depend on a, λ(a) is the infimum of a fixed form over the growing family L²(−a, a), and its derivative is a domain variation. For the Dirichlet fractional Laplacian, Hadamard's formula expresses such a derivative through the boundary trace u/dist^s of the eigenfunction (Djitte–Fall–Weth); for the logarithmic Laplacian the trace is the amplitude C of §2.6. A Pohozaev identity for L_Δ with the local boundary term ∫u²·log(δ⁻²)(x·ν) was claimed in a 2024 preprint that was withdrawn for an error in its proof, so the law is stated here as a conjecture with its evidence.
 
 **Conjecture (boundary law).** For a not an entry, λ′(a) = −(C₊² + C₋²) = −2C(a)², where C_± are the edge amplitudes lim √log(1/δ)·|f(±(a−δ))| of the minimizer. Equivalently, with §2.8, D_∞(f) + D_P(f) + 2P² + 2PM = 2a·C(a)² on the minimizer: a Pohozaev identity for the Weil form on a window.
+
+**Proved (2026-09-30, paper Lemma 8.2 and Proposition 8.3) under the edge law with two derivatives (the hypothesis of Proposition 7.8):** B_T = ⟨g_out, ((xf)′)_T⟩ → aC². The boundary term of the Pohozaev identity is the overlap, at scale 1/T, of the leak of the dilation generator −af′ through the low-pass with the singular edge force −CL^{1/2}: the double integral J₁(L) = −(2/π)∫∫[(L+log 1/v)/(L+log 1/s)]^{1/2}k′(s+v) ds dv equals 1 + O(1/L²) with no 1/L term (the antisymmetry of Lemma 7.11), the regular value g_reg = 2P sinh(a/2) of the force gives the rate aC g_reg L_T^{−1/2}, and Lemma 8.2 controls the remainder of the force (o(L^{−1/2}), derivative o(δ^{−1}L^{−3/2})). With Proposition 7.15 (𝒟 = 2B_∞) and the sliding-window identity, λ′ = −2C². For the prime-free form, Corollary 7.24 gives the edge in the form A₀/(tσ₋), i.e. the edge law with C = |A₀|; what separates the tail law from a theorem is the derivative control of the remainder ψ of the profile (ψ^{(k)} = o(δ^{−k}L^{−3/2}), k ≤ 2) from A(t) − A₀ = O(log t/t).
 
 **Evidence** (`rh_hadamard.py`, data in `boundary_law.csv`): C from the edge FEM on the two-stage mesh, λ′ exact from `rh_dilation.py`: [verified]
 
