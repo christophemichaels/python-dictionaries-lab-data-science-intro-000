@@ -388,8 +388,9 @@ and **Conjecture A is the inequality D_∞(f) + D_P(f) + 2P² + (2P/a)M ≤ c·a
 | 0.6 | 48 | 5.9659e-07 | -1.014313 | +1.086974 | -0.072687 | -2.493408e-05 | 3.51e-20 | 3.3391 |
 | 0.8 | 64 | 1.5659e-14 | -1.016605 | +1.103966 | -0.087361 | -1.295854e-12 | 3.62e-27 | 3.3239 |
 | 1.0 | 80 | 1.4820e-26 | -1.018057 | +1.114966 | -0.096909 | -2.516852e-24 | 3.15e-39 | 3.6579 |
+| 1.25 | 140 | 1.5442e-50 | -1.019178 | +1.123585 | -0.104407 | -1.233712e-48 | 2.32e-63 | 3.7744 |
 
-The archimedean dilation form sits at 1.014–1.02, the 1–2% above ‖f‖² being the finite-t correction to t·∂_t Re ψ; the prime dilation form grows with the primes present and cancels it; the polar term is 7–9% and grows. The sum is a·λ′ = −a·Φ′·λ to the last digit.
+The archimedean dilation form sits at 1.014–1.019, the 1–2% above ‖f‖² being the finite-t correction to t·∂_t Re ψ; the prime dilation form grows with the primes present, from −1.087 to −1.124, and cancels it; the polar term grows from 7% to 10%. The sum is a·λ′ = −a·Φ′·λ to the last digit.
 
 **Is the law an operator inequality?** The strong form of A would be −Q′(a) ≤ c·T\*(a)·Q(a) as forms on the whole window space, not only in the minimizer's direction. That is a generalized eigenvalue problem for the pencil (−Q′, Q), and its largest eigenvalue divided by T\* answers it: [verified]
 
