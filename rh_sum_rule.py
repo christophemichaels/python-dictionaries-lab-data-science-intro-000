@@ -53,6 +53,23 @@ def envelope(fn, lam_prime, primes):
 if len(sys.argv) > 1 and sys.argv[1] == "envelope":     # python3 rh_sum_rule.py envelope data/fem_a0.5_primefree.json -2.25815 0|1
     envelope(sys.argv[2], float(sys.argv[3]), bool(int(sys.argv[4]))); sys.exit(0)
 
+def J1L(L):
+    """J_1(L) of paper Proposition 8.2: the overlap of the leak of the low-pass of the edge profile's derivative with the edge force,
+    -(2/pi) int int [(L+log 1/v)/(L+log 1/s)]^{1/2} k'(s+v) ds dv, k(w) = sin(w)/w; = 1 + O(1/L^2) (no 1/L term, by the antisymmetry)."""
+    def gL(w, n=4000):
+        sg = (np.arange(n) + 0.5)/n
+        num = L + np.log(1/(w*(1-sg))); den = L + np.log(1/(w*sg))
+        return np.mean(np.sqrt(np.clip(num, 1e-9, None)/np.clip(den, 1e-9, None)))
+    W = 0.5*math.exp(L); eps = 5.0/W
+    w = np.linspace(1e-6, W, int(min(4e6, 200*W)) + 1); wc = w[::max(1, len(w)//2000)]
+    g = np.interp(w, wc, np.array([gL(x) for x in wc]))
+    wk = np.cos(w) - np.sin(w)/w                                       # w k'(w), the Jacobian w of s = w sigma, v = w(1 - sigma) included
+    return -(2/math.pi)*np.trapezoid(wk*np.exp(-eps*w)*g, w)/(-(2/math.pi)*np.trapezoid(wk*np.exp(-eps*w), w))
+
+if len(sys.argv) > 1 and sys.argv[1] == "j1":
+    for L in (3, 4, 5, 6, 7, 8): print(f"L={L}: J1(L) = {J1L(L):.5f}")
+    sys.exit(0)
+
 if len(sys.argv) > 1 and sys.argv[1] == "jl":
     for L in (3, 4, 5, 6, 7, 8): print(f"L={L}: J(L) = {JL(L):.5f}   1 + pi^2/(24 L^2) = {1 + math.pi**2/(24*L*L):.5f}")
     sys.exit(0)
