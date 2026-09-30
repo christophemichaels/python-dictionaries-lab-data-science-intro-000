@@ -10,7 +10,7 @@ Galerkin residual.  The last piece is the boundary overlap: the leak of f_T just
 against the singular part of g_out ~ -C L^{1/2}, which has no logarithm and is the tail law; the overlap with the
 smooth part of g_out (regular part of the kernel, left half-window, reflected primes) and the polar piece cancel.
 
-Usage: python3 rh_sum_rule.py data/fem_a0.5_full.json [T/T* list] [lambda'] [C beta]      or: python3 rh_sum_rule.py jl
+Usage: python3 rh_sum_rule.py data/fem_a0.5_full.json [T/T* list] [lambda'] [C beta]      or: python3 rh_sum_rule.py jl   or: python3 rh_sum_rule.py envelope FEM.json lambda' primes(0/1)
 """
 import sys, json, math, numpy as np
 from numpy.polynomial.legendre import leggauss
@@ -26,6 +26,32 @@ def JL(L):
     w = np.linspace(1e-6, W, int(min(4e6, 200*W)) + 1); wc = w[::max(1, len(w)//2000)]
     g = np.interp(w, wc, np.array([gL(x) for x in wc]))
     return np.trapezoid(np.sin(w)*np.exp(-eps*w)*g, w)/np.trapezoid(np.sin(w)*np.exp(-eps*w), w)
+
+def envelope(fn, lam_prime, primes):
+    """Computation 7.18: <t^2 (Psi - lambda) |F|^2> over a window of width 4 pi/a at T = k T*, divided by -lambda'."""
+    d = json.load(open(fn)); a = d["a"]; lam = d["lambda"]
+    dl = np.array(d["deltas"]); f = np.array(d["f"]); x = a - dl; o = np.argsort(x); x, f = x[o], f[o]
+    if x[0] > 0: x = np.concatenate([[0.0], x]); f = np.concatenate([[0.0], f])
+    B = np.diff(f)/np.diff(x); fa = f[-1]
+    def F2(t):
+        t = np.atleast_1d(t)[:, None]
+        S = (-fa*np.cos(t[:, 0]*a)/t[:, 0]) + (B[None, :]*(np.sin(t*x[1:][None, :]) - np.sin(t*x[:-1][None, :]))).sum(1)/t[:, 0]**2
+        return 4*S**2
+    tg = np.concatenate([np.linspace(0.02, 60, 3000), np.linspace(60, 40000, 8000)[1:]])
+    psi_g = np.array([float(mp.re(mp.psi(0, mp.mpf(1)/4 + 1j*mp.mpf(float(t))/2))) for t in tg])
+    def vm(n):
+        q = min(p for p in range(2, n+1) if n % p == 0); m = n
+        while m % q == 0: m //= q
+        return math.log(q) if m == 1 else 0.0
+    pr = [n for n in range(2, 60) if math.log(n) < 2*a and vm(n)] if primes else []
+    Psi = lambda t: np.interp(t, tg, psi_g) - math.log(math.pi) - sum(2*vm(n)/math.sqrt(n)*np.cos(t*math.log(n)) for n in pr)
+    Ts = 2*math.pi*math.exp(2*a); W = 4*math.pi/a
+    for k in (1, 2, 3, 5, 10, 20, 50, 100, 300):
+        T = k*Ts; tt = np.linspace(T - W/2, T + W/2, 20001)
+        print(f"  T/T*={k:4d}: <t^2 (Psi - lambda) |F|^2> / (-lambda') = {np.trapezoid(tt**2*(Psi(tt) - lam)*F2(tt), tt)/W/(-lam_prime):.4f}")
+
+if len(sys.argv) > 1 and sys.argv[1] == "envelope":     # python3 rh_sum_rule.py envelope data/fem_a0.5_primefree.json -2.25815 0|1
+    envelope(sys.argv[2], float(sys.argv[3]), bool(int(sys.argv[4]))); sys.exit(0)
 
 if len(sys.argv) > 1 and sys.argv[1] == "jl":
     for L in (3, 4, 5, 6, 7, 8): print(f"L={L}: J(L) = {JL(L):.5f}   1 + pi^2/(24 L^2) = {1 + math.pi**2/(24*L*L):.5f}")

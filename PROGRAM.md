@@ -34,11 +34,24 @@ Verified on the prime-free FEM critical point at a = 0.5: D = 1.129084 (engine: 
 identity to 1-2% (rh_cutoff_identity.py, data/cutoff_identity_a0.5_primefree.log). The tail law is the statement
 B_inf - B_T = B_inf/(pi a T)(1 + o(1)) up to explicit oscillating terms: the Hadamard pairing converges at the rate set
 by its own value.
-NEXT for item 2: the asymptotics of B_inf - B_T = <g_out, ((xf)')_{>T}>: the overlap of the outside force -C L^{1/2}
-with the high-pass leak of the dilation generator (edge singularity -(a/2) C L^{-3/2}/delta) through the Dirichlet
-kernel: Lemma 7.11's computation with (L^{-3/2}/delta, L^{1/2}) in place of (L^{-1/2}, L^{1/2}); the oscillating
-terms must cancel the boundary term (1/pi) T |F(T)|^2 Psi(T) ~ (2C^2/(pi T))(1 + cos 2Ta) and the polar high-pass.
-Numerically, B_T is needed to 1e-4 to separate the terms (the leak of a 1/delta singularity is delicate).
+CORRECTION: the polar high-pass term in the pairing identity is O(L^{-1/2}), five times the tail, and B_inf - B_T
+cancels it at that order; the tail is the O(1/T) remainder. The pairing identity is the dilation identity in Fourier
+form; it does not simplify the law.
+THE SHARP FORM (Computation 7.18, Conjecture 7.19): the LOCAL envelope <t^2 (Psi - lambda) |F(t)|^2> over one
+interference period equals -lambda' from ~5 horizons on: to 0.1% with no drift over two decades on the prime-free
+critical points, +-3% with primes. Mechanism: Wiener-Hopf. Near an edge the eigen-equation is a half-line problem with
+symbol sigma = Psi - lambda; its solution has transform e^{ita} Phi_+(t)/(t sigma_+(t)) with sigma = |sigma_+|^2, so
+t^2 sigma |F|^2 = |Phi_+|^2 -> |A|^2 with NO logarithms (they all sit in sigma_+; the edge law C L^{-1/2} is the x-space
+asymptotics of 1/sigma_+, which is why the profile can be 1.5-3x above its asymptotic law at scale 1/T while the tail
+law holds there). |A_+|^2 + |A_-|^2 = -lambda' is the boundary law as a flux. The onset is NOT the last sign change of
+the symbol (0.7, 2.2, 3.5, 33, >150 T* at a = 0.5, 0.6, 0.8, 1.0, 1.25): the oscillating part of the symbol is a bounded
+perturbation whose effect averages out.
+NEXT for item 2 (the last analytic piece): prove Conjecture 7.19. Wiener-Hopf factorization of sigma = Psi_inf - lambda
+(order-zero symbol with logarithmic growth; index from its sign change near t_lambda), the two edges and the polar
+rank-one term as regular perturbations, the prime cosines as a bounded perturbation averaging out; then the tail law is
+exact beyond the decoupling height and the boundary law is the flux identity. Numerical first step: compute sigma_+ for
+the prime-free symbol at a = 0.5 by the Cauchy integral of log sigma and compare t sigma_+(t) F(t) e^{-ita} with a
+constant.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -68,9 +81,9 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.19, Proposition 7.20; NEXT]
-Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.19). Data: medians of the floor's mass 2.39 ... 2.74 T*
-(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.20: under RH, (S_kappa) [zeros above kappa T* sample the tail
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.21, Proposition 7.22; NEXT]
+Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.21). Data: medians of the floor's mass 2.39 ... 2.74 T*
+(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.22: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
 c = pi kappa M M'. Measured: M ~ 1, M' ~ 1, kappa = e -> bound pi e = 8.5 against the observed 3.3-3.9 = pi e theta(e T*).
 Remaining: prove (S_e) (a sampling inequality on the half-line above e T* for high-pass window functions with a log
@@ -83,7 +96,7 @@ above the edge law at delta = 1/(e T*)); it holds because the tail law is analyt
 So ALL the arithmetic of Conjecture A is in (S_e): the zeros above e T* sample the analytic tail of F at their mean
 density, constant ~1. NEXT for item 3: the analytic form of M through the explicit formula for the high-pass part of
 f (the fluctuation is the prime sum on frequencies above kappa T*, whose only structure between entries is the
-alignment of Computation 7.21), and the gap condition it needs (no gap wider than pi/a above e T*).
+alignment of Computation 7.23), and the gap condition it needs (no gap wider than pi/a above e T*).
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
