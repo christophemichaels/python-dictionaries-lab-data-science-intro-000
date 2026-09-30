@@ -245,7 +245,7 @@ and the edge-FEM rows above give its law, C = 1.3089, β = -1.49. This is the fi
 
 ---
 
-### 2.7 The relay conjecture [statement; evidence to a = 1.05]
+### 2.7 The relay conjecture [statement; evidence to a = 1.5]
 
 Everything in §2 is about one function. Let λ(a) be the floor of the odd Weil form on [−a, a] (the normalization of `rh_weil_odd.py`, which is also that of Checkpoints 15–20 of the atlas and of Zhu's paper: the 40-mode value λ(0.8) = 1.59×10⁻¹⁴ lies inside Zhu's certified odd interval [8.2×10⁻¹⁵, 2.35×10⁻¹⁴]), Φ(a) = −log λ(a), and T\*(a) = 2πe^{2a} the horizon. Two facts frame the conjecture. Positivity of the odd form on every finite support implies RH (Weil's criterion with Yoshida's odd-test reduction, as recorded in Suzuki, arXiv:2606.09096). And no estimate that treats the polar term and the reflected primes separately can prove positivity (G3.39 of the atlas; the rigidity of §2.4 is the same fact in another coordinate). So the only quantity worth a conjecture is the floor of the whole coupled form.
 
@@ -255,7 +255,7 @@ Everything in §2 is about one function. Let λ(a) be the floor of the odd Weil 
 
 Φ is locally Lipschitz and Φ′ is continuous across every entry a_n (§2.6: the kink is soft), so no one-sided derivatives are needed. Integrating, λ(a) ≥ λ(a₀) exp(−c(T\*(a) − T\*(a₀))) > 0 for all a ≥ a₀; with a₀ = 0.8 from Zhu's certificate, **Conjecture A implies RH**. It is strictly stronger than RH: it fixes the rate at which the floor may decay.
 
-**Conjecture B (decay law).** Φ′(a)/T\*(a) is bounded above and below by positive constants for a ≥ a₀. In its sharp form Φ′(a)/T\*(a) → c₀ ≈ 3.4, i.e. Φ(a) ∼ 1.7·T\*(a): the floor decays like exp(−1.7·2πe^{2a}). Zhu's paper proposes, from his own upper bounds on 0.5 ≤ a ≤ 2, the law −log λ ≃ 2π²·N(T\*)/log N(T\*), which differs from the sharp form by a slowly varying factor; the weak form of B covers both, and the data below cannot separate them.
+**Conjecture B (decay law).** Φ′(a)/T\*(a) is bounded above and below by positive constants for a ≥ a₀. In its sharp form Φ′(a)/T\*(a) → c₀, i.e. Φ(a) ∼ (c₀/2)·T\*(a): the floor decays like exp(−(c₀/2)·2πe^{2a}); the data to height 130 give c₀ ≥ 3.9 and do not fix it (see the ball-arithmetic run below). Zhu's paper proposes, from his own upper bounds on 0.5 ≤ a ≤ 2, the law −log λ ≃ 2π²·N(T\*)/log N(T\*), which differs from the sharp form by a slowly varying factor; the weak form of B covers both, and the data below cannot separate them.
 
 **Observation C (the relay is continuous, not a sequence of kicks).** Beyond the entries of 2 and 3, the entries a_n leave no visible drop in Φ′ at scale 0.004 or 0.0125: the measured drops at n = 4, 5, 7 are zero within the smooth drift Φ″·Δa. The reason is the crossover scale of §2.5, gap/‖dT/da‖, which is 3×10⁻⁵ at a₃ and about 10⁻⁹ at a = 0.7: the minimizer absorbs an entering prime power by reorganization long before any macroscopic scale, so the kink of §2.1 and the soft kink of §2.6 are microscopic structure. The Φ′ budget of §2.3 in its "drift up, drop at entries" form is therefore not what the data show beyond n = 2 (see the note added there); what they show is a plateau. The edge amplitude keeps its law, C(a)² ≍ λ(a)·T\*(a), within a factor two over 0.5 ≤ a ≤ 1.03.
 
@@ -305,7 +305,41 @@ Everything in §2 is about one function. Let λ(a) be the floor of the odd Weil 
 | 0.925 | 2.428e-21 | 1.032 | 144.5 | 3.62 | 3.53 |
 | 1.000 | 1.491e-26 | 1.258 | 172.6 | 3.72 | 3.59 |
 
-The ratio at 72 modes drifts from 3.23 (mean on [0.5, 0.7]) to 3.61 (mean on [0.85, 1.05]), +12%; the 40-mode ratio at the same points drifts +11%, so the drift is a property of the form, not of the truncation. Least squares on 0.5 ≤ a ≤ 1.05: Φ′ = c·T\* fits with c = 3.53 and 6.7% rms relative residual; Φ′ = c·T\* log T\* fits with 17% residual and would have produced a drift of about 25% over this range (58% with log(T\*/2π)). The pure law is favored, the residual drift is half of what a logarithm would give, and neither is excluded at height 50. The sharp form of Conjecture B stands as the working hypothesis with c₀ ≈ 3.5.
+The ratio at 72 modes drifts from 3.23 (mean on [0.5, 0.7]) to 3.61 (mean on [0.85, 1.05]), +12%; the 40-mode ratio at the same points drifts +11%, so the drift is a property of the form, not of the truncation. Least squares on 0.5 ≤ a ≤ 1.05: Φ′ = c·T\* fits with c = 3.53 and 6.7% rms relative residual; Φ′ = c·T\* log T\* fits with 17% residual and would have produced a drift of about 25% over this range (58% with log(T\*/2π)). The pure law is favored, the residual drift is half of what a logarithm would give, and neither is excluded at height 50. At height 50 the sharp form with c₀ ≈ 3.5 looked like the working hypothesis; the run to height 130 below shows the ratio still rising slowly and leaves c₀ undetermined.
+
+**To a = 1.5 with the ball-arithmetic engine.** `rh_weil_arb.py` (python-flint; Appendix) makes the same matrices hundreds of times faster, so the band can be followed to height 130 with the mode counts the truncation needs: K = 110 for a ≤ 1.15, 140 to 1.33, 180 to 1.5, with checks at K = 180 (a = 1.25) and K = 230 (a = 1.5). Φ′ at each centre is the difference over the pair a ± 0.005; no pair straddles an entry except the one at 1.10 (a₉ = 1.0986), where the K-mode kick is below 1% of Φ′ and is in any case absorbed (Observation C). Each eigenvalue carries a rigorous enclosure of the assembled matrix's lowest eigenvalue (radius ≈ 10⁻¹⁴³ at 500 bits); the polynomial evaluations and the outer quadrature are not enclosed. Data: `floor_grid_arb.csv`. [verified]
+
+| centre a | K | T\* | λ(a − 0.005) | λ(a + 0.005) | Φ | Φ′ | Φ′/T\* |
+|---|---|---|---|---|---|---|---|
+| 1.060 | 110 | 52 | 7.922e-31 | 1.119e-31 | 70.3 | 195.8 | 3.740 |
+| 1.100 | 110 | 57 | 2.029e-34 | 2.654e-35 | 78.6 | 203.4 | 3.587 |
+| 1.150 | 110 | 63 | 3.459e-39 | 3.130e-40 | 89.8 | 240.3 | 3.834 |
+| 1.250 | 140 | 77 | 1.563e-50 | 8.602e-52 | 116.1 | 290.0 | 3.788 |
+| 1.330 | 140 | 90 | 1.950e-61 | 6.557e-63 | 141.5 | 339.2 | 3.776 |
+| 1.400 | 180 | 103 | 1.269e-72 | 2.362e-74 | 167.5 | 398.4 | 3.856 |
+| 1.450 | 180 | 114 | 1.123e-81 | 1.332e-83 | 188.6 | 443.5 | 3.884 |
+| 1.500 | 180 | 126 | 1.248e-91 | 1.118e-93 | 211.7 | 471.5 | 3.736 |
+| 1.250 | 180 | 77 | 1.526e-50 | 8.419e-52 | 116.2 | 289.7 | 3.785 |
+| 1.500 | 230 | 126 | 1.094e-91 | 8.058e-94 | 211.9 | 491.1 | 3.891 |
+
+convergence at 1.25: lambda(K=140)/lambda(K=180) = 1.0217;  Phi'/T*: 3.788 -> 3.785
+convergence at 1.5: lambda(K=180)/lambda(K=230) = 1.3872;  Phi'/T*: 3.736 -> 3.891
+
+Combined with the 72-mode data below a = 1 (heights 17 to 130):
+
+- mean Phi'/T* on [0.5,0.7]: 3.229  (5 pts)
+- mean Phi'/T* on [0.85,1.05]: 3.611  (5 pts)
+- mean Phi'/T* on [1.06,1.25]: 3.736  (4 pts)
+- mean Phi'/T* on [1.33,1.5]: 3.852  (4 pts)
+
+One-parameter fits of Φ′/T\* against a for a ≥ 0.85, by rms relative residual:
+
+- Phi' = c T*  (pure horizon)                                    c = 3.7237  rms rel resid = 0.034
+- Phi' = c T* log T*                                             c = 0.8979  rms rel resid = 0.078
+- Phi ~ N(T*):  ratio = c (4a-1)                                 c = 0.9954  rms rel resid = 0.214
+- Phi ~ N/log N (Zhu shape): ratio = c (2a-1)/(2a+log(2a-1))     c = 7.2157  rms rel resid = 0.030
+
+Reading. Convergence is complete at a = 1.25 (2% in λ, 0.1% in the ratio) and incomplete at a = 1.5 (39% in λ between 180 and 230 modes, +4% in the ratio, and more modes raise it further), so the last ratio is a lower bound of about 3.9. The ratio rises across the whole range, 3.23 → 3.61 → 3.74 → 3.85, by shrinking steps. The raw phase-space count Φ ∝ N(T\*), whose ratio would grow linearly in a, is excluded (21% residual); the logarithmic law is disfavored (7.8%); the pure horizon law (3.4%, c = 3.72) and Zhu's Landau–Widom form Φ ∝ N(T\*)/log N(T\*) (3.0%) fit equally well. They agree on the data and disagree on the asymptote: the pure law says the ratio saturates near 3.8–4 now, while the Landau–Widom shape c·(2a − 1)/(2a + log(2a − 1)) with its fitted c = 7.2 says it keeps rising, to about 7, over a range of a far beyond the resolution wall. Height 130 cannot separate the two. So what the numerics establish is the weak form of Conjecture B, a ratio bounded between 3 and 8 with a slow rise, and they leave the sharp constant undetermined: c₀ is at least 3.9, and the two natural laws put it at 4 and at 7. This is the strongest statement the numerics can make below the wall, and it is the correct place to stop: the constant is not the content of the conjecture, the boundedness is.
 
 **Entries at scale 0.004** (Φ′ from the points a_n ± 0.004; drop = Φ′(a_n⁻) − Φ′(a_n⁺); the smooth drift over 0.008 is about −Φ″·0.008 ≈ −1.4 at a = 0.7):
 
@@ -319,7 +353,7 @@ The ratio at 72 modes drifts from 3.23 (mean on [0.5, 0.7]) to 3.61 (mean on [0.
 
 The entries of 8, 9 and 11 lie in the unconverged range and are not reported.
 
-**What the conjecture is not.** It is not a route to a proof by estimates: the band in Φ′/T\* is a property of the minimizer of the coupled form, and any attempt to bound Φ′ by bounding the polar and prime terms separately fails by G3.39. It is a target for two kinds of work. Numerically, the band can be followed to a ≈ 1.5 (height ≈ 130) only with far more modes, of the order Zhu used, and any violation would kill the sharp form of B while leaving A open; the drift test at K = 72 above favors the pure law at height 50, and following the band to height 130 is the next numerical test. Analytically, Conjecture A is a differential inequality for the ground state of a one-parameter family of self-adjoint operators whose parameter is the support, which is the form in which Suzuki's limit conjecture and this program meet.
+**What the conjecture is not.** It is not a route to a proof by estimates: the band in Φ′/T\* is a property of the minimizer of the coupled form, and any attempt to bound Φ′ by bounding the polar and prime terms separately fails by G3.39. It is a target for two kinds of work. Numerically, the band has now been followed to a = 1.5 (height 130) with the ball-arithmetic engine; the next test is the approach to c₀ beyond height 130, which needs several hundred modes and is within reach of the same engine. Analytically, Conjecture A is a differential inequality for the ground state of a one-parameter family of self-adjoint operators whose parameter is the support, which is the form in which Suzuki's limit conjecture and this program meet.
 
 ---
 
@@ -431,3 +465,5 @@ All cheap at your precision, all new, and each one either strengthens or kills a
 It agrees with your Table 1 to 4–6 digits with 24 modes and takes about 18 s per floor at 50 digits. The scripts `rh_kink_test.py`, `rh_deleted_form.py`, `rh_rigidity.py`, `rh_symbol_sign.py` reproduce every [verified] number above.
 
 `rh_edge_fem.py` is the second engine, built for the edge. It uses odd-extended hat functions on a mesh of the half window that is uniform in the interior and geometrically graded to 10⁻¹² of the endpoint (350–490 nodes), computes every cross-correlation of basis functions exactly (piecewise cubic, Simpson on merged breakpoints), integrates the archimedean kernel piece by piece with Gauss–Legendre where the cross-correlation is a single cubic and in closed form (∫ₓ^∞ J_Γ = artanh e^{−x/2} + arctan e^{−x/2}) elsewhere, and keeps every breakpoint near the edge exact in floating point by working in a coordinate whose origin is the edge. It reproduces the Legendre floor at a = 0.3 to 6×10⁻⁶ and the converged Legendre profile at a₃ to 10⁻³, and resolves the minimizer to log(a/δ) ≈ 25 where a K-mode expansion stops at 2 log K. `rh_soft_kink.py` measures the entering term across a₃ on this engine.
+
+`rh_weil_arb.py` is the third engine: the same odd-Legendre matrices in ball arithmetic (python-flint), with certified Gauss–Legendre rules, M = 2K + 8 inner and 2K + 100 outer nodes, and rigorous enclosures of the lowest eigenvalue of the assembled matrix; it reproduces the mpmath floors to twenty digits and runs a 180-mode point in six minutes. `rh_arb_grid.py` drives it.
