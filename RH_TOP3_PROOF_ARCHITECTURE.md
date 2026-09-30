@@ -353,7 +353,55 @@ Reading. Convergence is complete at a = 1.25 (2% in λ, 0.1% in the ratio) and i
 
 The entries of 8, 9 and 11 lie in the unconverged range and are not reported.
 
-**What the conjecture is not.** It is not a route to a proof by estimates: the band in Φ′/T\* is a property of the minimizer of the coupled form, and any attempt to bound Φ′ by bounding the polar and prime terms separately fails by G3.39. It is a target for two kinds of work. Numerically, the band has now been followed to a = 1.5 (height 130) with the ball-arithmetic engine; the next test is the approach to c₀ beyond height 130, which needs several hundred modes and is within reach of the same engine. Analytically, Conjecture A is a differential inequality for the ground state of a one-parameter family of self-adjoint operators whose parameter is the support, which is the form in which Suzuki's limit conjecture and this program meet.
+**What the conjecture is not.** It is not a route to a proof by estimates: the band in Φ′/T\* is a property of the minimizer of the coupled form, and any attempt to bound Φ′ by bounding the polar and prime terms separately fails by G3.39. It is a target for two kinds of work. Numerically, the band has now been followed to a = 1.5 (height 130) with the ball-arithmetic engine; the next test is the approach to c₀ beyond height 130, which needs several hundred modes and is within reach of the same engine. Analytically, Conjecture A is a differential inequality for the ground state of a one-parameter family of self-adjoint operators whose parameter is the support, which is the form in which Suzuki's limit conjecture and this program meet; §2.8 derives the exact identity behind it, verifies it to twenty digits, and shows that it is a property of the ground state and not an inequality between forms.
+
+---
+
+### 2.8 The sliding-window identity: Conjecture A as a law [derived; verified to 20 digits]
+
+Conjecture A is a statement about a rate, and the rate has an exact, unconditional expression. Write the odd form on the window as Q_a(f) = (1/2π)∫|F(t)|² Ψ_a(t) dt − 2P(f)², F = f̂, P(f) = ∫ f(x) sinh(x/2) dx, with the symbol
+
+  Ψ_a(t) = Re ψ(¼ + it/2) − log π − Σ_{log n < 2a} 2Λ(n) n^{−1/2} cos(t log n).
+
+The K-mode basis of the engines is a dilation family: φ_i(y/a)/√a. For any dilation family f_a(x) = a^{−1/2} g(x/a) one has F_a(t) = √a·G(at) exactly, jumps at the edge included, so between two entries (where the prime set in Ψ_a is fixed) the substitution s = at gives
+
+  d/da (1/2π)∫|F_a|² Ψ_a = −(1/a)·D_a(f_a),  D_a(f) := (1/2π)∫|F(t)|²·t·Ψ_a′(t) dt,
+
+and for the polar term P_a = √a ∫ g(y) sinh(ay/2) dy gives P_a′ = P_a/(2a) + (1/2a²)·M(f_a), M(f) := ∫ f(x)·x·cosh(x/2) dx. Hellmann–Feynman on the minimizer (the matrix family Q(a) is exactly this dilation family, so the K-mode statement is exact) then reads
+
+  **a·λ′(a) = −[ D_∞(f) + D_P(f) + 2P² + (2P/a)·M ],**
+
+where the symbol t·Ψ_a′(t) splits into an archimedean part t·∂_t Re ψ(¼ + it/2), which tends to 1, so that D_∞(f) = ‖f‖² + O(∫|F|²/t²) ≈ 1, and a prime part Σ 2Λ(n)n^{−1/2}·(t log n)·sin(t log n), which in x-space is
+
+  D_P(f) = −Σ_n 2Λ(n) n^{−1/2} · log n · g_f′(log n),  g_f = f ⋆ f̃:
+
+the Euler product differentiated, acting on the derivative of the minimizer's autocorrelation at the prime-power positions. So
+
+  **Φ′(a) = −λ′/λ = [D_∞(f) + D_P(f) + 2P² + (2P/a)M] / (a·λ),**
+
+and **Conjecture A is the inequality D_∞(f) + D_P(f) + 2P² + (2P/a)M ≤ c·a·T\*(a)·Q_a(f) on the minimizer.** Since Q_a(f) = λ is 10⁻⁹⁰ at a = 1.5 while D_∞(f) ≈ 1, the prime dilation form must cancel the archimedean one to ninety digits: D_P(f) = −D_∞(f) − 2P² − (2P/a)M + O(a T\* λ). Together with the explicit formula on the same function, Σ 2Λ(n)n^{−1/2} g_f(log n) = W_∞(g_f) − 2P² − λ, the minimizer's autocorrelation has both its values and its log-weighted derivatives at the prime-power positions pinned by the archimedean side. Each further a-derivative of λ pins the next weighted derivative; the relay is this hierarchy, and a proof of A is a bound on its first level.
+
+**Verified on the K-mode minimizer** (`rh_dilation.py`, central differences of the three parts of Q(a) at step 10⁻³⁰ in ball arithmetic, contracted with the eigenvector; every entry is a ball with the radius shown, and the sum reproduces Φ′ of the grids): [verified]
+
+| a | K | λ | a⟨c, A′c⟩ (archimedean) | a⟨c, P′c⟩ (primes) | a⟨c, S′c⟩ (polar) | sum = a·λ′ | radius | Φ′/T\* |
+|---|---|---|---|---|---|---|---|---|
+| 0.6 | 48 | 5.9659e-07 | -1.014313 | +1.086974 | -0.072687 | -2.493408e-05 | 3.51e-20 | 3.3391 |
+| 0.8 | 64 | 1.5659e-14 | -1.016605 | +1.103966 | -0.087361 | -1.295854e-12 | 3.62e-27 | 3.3239 |
+| 1.0 | 80 | 1.4820e-26 | -1.018057 | +1.114966 | -0.096909 | -2.516852e-24 | 3.15e-39 | 3.6579 |
+
+The archimedean dilation form sits at 1.014–1.02, the 1–2% above ‖f‖² being the finite-t correction to t·∂_t Re ψ; the prime dilation form grows with the primes present and cancels it; the polar term is 7–9% and grows. The sum is a·λ′ = −a·Φ′·λ to the last digit.
+
+**Is the law an operator inequality?** The strong form of A would be −Q′(a) ≤ c·T\*(a)·Q(a) as forms on the whole window space, not only in the minimizer's direction. That is a generalized eigenvalue problem for the pencil (−Q′, Q), and its largest eigenvalue divided by T\* answers it: [verified]
+
+| a | −Q′/Q on the minimizer, over T\* | largest pencil eigenvalue over T\* | second, third | smallest |
+|---|---|---|---|---|
+| 0.6 | 3.339 | 74.7 | 4.26, 3.69 | -70.5 |
+| 0.8 | 3.323 | 1.46e+05 | 332, 6.08 | -1.46e+05 |
+| 1.0 | 3.657 | 6.2e+10 | 3.06e+07, 8.17e+04 | -6.2e+10 |
+
+The strong form is false, and not by a little: the largest eigenvalue of the pencil grows from 75·T\* at a = 0.6 to 6×10¹⁰·T\* at a = 1.0, in ± pairs of nearly equal size. Those are near-null directions of Q whose dilation derivative is enormous relative to their value, the reorganization directions of §2.5, and the pencil measures their rate; it is the inverse of the crossover scale gap/‖dT/da‖ (≈ 10⁻⁷ at a = 0.8, ≈ 10⁻¹³ at a = 1.0). The ground state is neither the largest nor the smallest direction of the pencil; it is a special interior direction in which the dilation derivative is anomalously small, by ten orders of magnitude at a = 1.0. So **Conjecture A is a statement about the ground-state eigenvector alone**, exactly λ′ = ⟨f₀, Q′f₀⟩, and cannot be an inequality between the two forms. Any proof must use that f₀ minimizes Q, through its Euler–Lagrange equation, to control the single diagonal matrix element ⟨f₀, Q′f₀⟩; the off-diagonal elements that the pencil sees drive the rotation of the minimizer and do not enter λ′ at first order. That is the exact shape of the shadow: a variational identity for the minimizer, not a law for the form.
+
+**Under RH, what the identity says.** With all zeros real, Q_a(f) = Σ_γ |F(γ)|², and the same dilation computation on the zero side gives a·λ′ = λ + Σ_γ γ·(|F|²)′(γ), so Conjecture A becomes Σ_γ γ·∂_t|F|²(γ) ≥ −(1 + c a T\*)·Σ_γ |F(γ)|²: the minimizer must be small at the zeros to the same order in its derivative as in its value. And λ(a) itself becomes the inverse of a sampling constant: Φ(a) = −log inf{Σ_γ|F(γ)|² : F ∈ PW_a, ‖f‖ = 1}. The zeros have density (1/2π) log(T/2π), which exceeds the Nyquist density a/π exactly above T\*(a), so only the zeros above the horizon sample PW_a, and the floor measures how well a band-limited function can hide from them. A prolate-type lower bound follows from Landau–Pollak–Slepian: the number of zeros in [−T\*, T\*] is 2N(T\*) = (T\*/π)(2a − 1), short of the Shannon number 2aT\*/π by T\*/π, so a function can vanish on all of them and leak past the horizon only exp(−πT\*/log(4aT\*))-much; hence Φ(a) ≳ πT\*/log(4aT\*) ≈ 0.5·T\* at a = 1, against the observed 1.85·T\*: the zeros are a much more expensive constraint set than the prolate count alone, by a factor near four, which is the arithmetic in the problem. Conjecture A is the matching upper bound, an explicit sampling inequality for the zeros above the horizon with constant e^{cT\*}. None of this is a proof; it is the exact statement of what a proof must show, in both the unconditional (symbol) and the conditional (sampling) form.
 
 ---
 
@@ -466,4 +514,4 @@ It agrees with your Table 1 to 4–6 digits with 24 modes and takes about 18 s p
 
 `rh_edge_fem.py` is the second engine, built for the edge. It uses odd-extended hat functions on a mesh of the half window that is uniform in the interior and geometrically graded to 10⁻¹² of the endpoint (350–490 nodes), computes every cross-correlation of basis functions exactly (piecewise cubic, Simpson on merged breakpoints), integrates the archimedean kernel piece by piece with Gauss–Legendre where the cross-correlation is a single cubic and in closed form (∫ₓ^∞ J_Γ = artanh e^{−x/2} + arctan e^{−x/2}) elsewhere, and keeps every breakpoint near the edge exact in floating point by working in a coordinate whose origin is the edge. It reproduces the Legendre floor at a = 0.3 to 6×10⁻⁶ and the converged Legendre profile at a₃ to 10⁻³, and resolves the minimizer to log(a/δ) ≈ 25 where a K-mode expansion stops at 2 log K. `rh_soft_kink.py` measures the entering term across a₃ on this engine.
 
-`rh_weil_arb.py` is the third engine: the same odd-Legendre matrices in ball arithmetic (python-flint), with certified Gauss–Legendre rules, M = 2K + 8 inner and 2K + 100 outer nodes, and rigorous enclosures of the lowest eigenvalue of the assembled matrix; it reproduces the mpmath floors to twenty digits and runs a 180-mode point in six minutes. `rh_arb_grid.py` drives it.
+`rh_dilation.py` verifies the sliding-window identity of §2.8 on the K-mode minimizer and computes the pencil (−Q′, Q). `rh_weil_arb.py` is the third engine: the same odd-Legendre matrices in ball arithmetic (python-flint), with certified Gauss–Legendre rules, M = 2K + 8 inner and 2K + 100 outer nodes, and rigorous enclosures of the lowest eigenvalue of the assembled matrix; it reproduces the mpmath floors to twenty digits and runs a 180-mode point in six minutes. `rh_arb_grid.py` drives it.
