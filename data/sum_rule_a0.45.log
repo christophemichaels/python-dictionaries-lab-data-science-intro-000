@@ -1,1 +1,12 @@
 data/fem_a0.45_full.json: a=0.45 lambda_FEM=2.40457766e-03 primes in window [2] P=0.095666 f(a-)=0.04253 T*=15.454
+/home/user/python-dictionaries-lab-data-science-intro-000/rh_sum_rule.py:92: RuntimeWarning: invalid value encountered in sqrt
+  gmodel = -Cfit*np.sqrt(np.log(a/(yy - a)) + bfit) if Cfit else np.zeros_like(yy)        # the edge-law force -C L(delta)^{1/2}, valid for small delta only
+  T/T*=   5.0: lhs = (1/2pi)int_{|t|>T}|F|^2(Psi-lam) = 4.24799e-04  [2 int_T |F|^2 rho = 4.34444e-04; law -lambda'/(pi T) = 4.17226e-04]   rhs = polar 3.956e-05 + overlap 3.89963e-04 = 4.29519e-04   rhs/lhs = 1.0111
+           model edge overlap -<f_T, -C L^(1/2)> on delta < a/10 = 4.44340e-04 = 1.0650 of the law (2C^2/(pi T) = 4.16868e-04);  rest of the overlap + polar = -1.482e-05 = -0.0355 of the law
+           leak f_T(a + 1/T) = 2.7875e-02   g_out(a + 1/T) = -1.6204e-01   g_out(a+1e-6) = -7.8758e-01   f_T(a+1e-6) = 8.6243e-02
+  T/T*=  20.0: lhs = (1/2pi)int_{|t|>T}|F|^2(Psi-lam) = 1.03960e-04  [2 int_T |F|^2 rho = 1.00834e-04; law -lambda'/(pi T) = 1.04306e-04]   rhs = polar 8.557e-06 + overlap 9.42490e-05 = 1.02806e-04   rhs/lhs = 0.9889
+           model edge overlap -<f_T, -C L^(1/2)> on delta < a/10 = 1.04866e-04 = 1.0054 of the law (2C^2/(pi T) = 1.04217e-04);  rest of the overlap + polar = -2.060e-06 = -0.0198 of the law
+           leak f_T(a + 1/T) = 2.0868e-02   g_out(a + 1/T) = -3.1411e-01   g_out(a+1e-6) = -7.8758e-01   f_T(a+1e-6) = 6.1415e-02
+  T/T*= 100.0: lhs = (1/2pi)int_{|t|>T}|F|^2(Psi-lam) = 2.08400e-05  [2 int_T |F|^2 rho = 1.58166e-05; law -lambda'/(pi T) = 2.08613e-05]   rhs = polar 1.183e-06 + overlap 2.01000e-05 = 2.12833e-05   rhs/lhs = 1.0213
+           model edge overlap -<f_T, -C L^(1/2)> on delta < a/10 = 2.32240e-05 = 1.1133 of the law (2C^2/(pi T) = 2.08434e-05);  rest of the overlap + polar = -1.941e-06 = -0.0930 of the law
+           leak f_T(a + 1/T) = 1.7247e-02   g_out(a + 1/T) = -4.3325e-01   g_out(a+1e-6) = -7.8758e-01   f_T(a+1e-6) = 4.9179e-02

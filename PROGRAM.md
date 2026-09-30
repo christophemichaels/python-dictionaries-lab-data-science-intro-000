@@ -13,7 +13,7 @@ under (H_inf)); the boundary law itself (Conjecture 8.1).
 
 ## 2. The sum rule  [IDENTITY PROVED AND VERIFIED 2026-09-30; two asymptotic facts remain]
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
-to 1-3% at 5-50 horizons (Computation 7.10). The edge overlap alone is the law to +-10%, and the smooth overlap plus
+to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
 term log-free; the naive first-order estimate 0.79/L is too large, the data allow at most 0.2/L); (b) the cancellation of
 the smooth overlap against the polar piece, analytically. The polar coefficient in the eigen-equation is 2P sinh(y/2),
