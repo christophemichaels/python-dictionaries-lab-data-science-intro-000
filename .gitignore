@@ -1,6 +1,7 @@
 # LaTeX build artifacts
 *.aux
 *.log
+!data/*.log
 *.out
 *.toc
 *.synctex.gz
