@@ -11,7 +11,10 @@ Differences from the mpmath engine: every number is an arb ball (rounding is tra
 inner Gauss-Legendre rule has M = 2K+8 nodes (exact for the polynomial products), the outer rule for the
 archimedean integral has Mx = 2K+100 nodes (its truncation error is not enclosed; it is far below the
 working precision for a <= 1.5), and the lowest eigenvalue is returned as a rigorous enclosure of the
-lowest eigenvalue of the assembled ball matrix (acb_mat.eig).  Hundreds of times faster than mpmath.
+lowest eigenvalue of the assembled ball matrix (acb_mat.eig).  The Legendre recurrence is evaluated with a midpoint
+reset at each degree (its ball version doubles the radius per degree), so the enclosure covers the assembly and the
+eigenvalue computation but not the polynomial evaluations, which are 500-bit floating point.  Hundreds of times
+faster than mpmath.
 
 Usage: python3 rh_weil_arb.py a K [prec_bits]
 """
@@ -44,8 +47,8 @@ class OddWeilArb:
             p0, p1 = arb(1), u
             vals = [p1]
             for k in range(2, deg + 1):
-                p0, p1 = p1, ((2*k - 1)*u*p1 - (k - 1)*p0)/k
-                if k % 2 == 1: vals.append(p1)
+                p0, p1 = p1, arb((((2*k - 1)*u*p1 - (k - 1)*p0)/k).mid())   # midpoint reset: the ball
+                if k % 2 == 1: vals.append(p1)                                # recurrence doubles radii per degree
             sc = scale[m] if scale is not None else None
             rows.append([(self.N[i]*vals[i]*sc if sc is not None else self.N[i]*vals[i]) for i in range(K)])
         return rows
@@ -99,16 +102,23 @@ class OddWeilArb:
         E = sorted(E, key=lambda z: z.real.mid())
         lam0, lam1 = E[0].real, E[1].real
         fa = None
-        if eigvec:
-            sigma = lam0.mid()*(1 - arb(2)**(-40))
-            Qs = arb_mat(Q)
-            for i in range(self.K): Qs[i, i] = Qs[i, i] - sigma
-            b = arb_mat(self.K, 1, [arb(1) for _ in range(self.K)])
-            v = Qs.solve(b)
-            nrm = sum(v[i, 0]*v[i, 0] for i in range(self.K)).sqrt()
-            c = [v[i, 0]/nrm for i in range(self.K)]
-            if c[self.K//2] < 0: c = [-x for x in c]
-            fa = sum(c[i]*self.N[i] for i in range(self.K))/a.sqrt()
+        if eigvec:                                  # inverse iteration on the midpoint matrix (not rigorous)
+            K = self.K
+            Qm = arb_mat(K, K, [arb(Q[i, j].mid()) for i in range(K) for j in range(K)])
+            for shift in (1 - arb(2)**(-20), arb(1)/2):
+                sigma = lam0.mid()*shift
+                Qs = arb_mat(Qm)
+                for i in range(K): Qs[i, i] = Qs[i, i] - sigma
+                try:
+                    v = Qs.solve(arb_mat(K, 1, [arb(1) for _ in range(K)]), nonstop=True)
+                    if any(v[i, 0].is_nan() for i in range(K)): continue
+                    nrm = sum(v[i, 0]*v[i, 0] for i in range(K)).sqrt()
+                    c = [v[i, 0]/nrm for i in range(K)]
+                    if c[K//2] < 0: c = [-x for x in c]
+                    fa = sum(c[i]*self.N[i] for i in range(K))/a.sqrt()
+                    break
+                except ZeroDivisionError:
+                    continue
         return lam0, lam1, fa
 
 def vonmangoldt(n):

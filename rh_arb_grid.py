@@ -17,7 +17,13 @@ plan += [(1.245, 180, 500), (1.255, 180, 500), (1.495, 230, 560), (1.505, 230, 5
 plan.sort(key=lambda t: t[1]*t[1]*t[1])                                                 # cheap first
 mine = plan[chunk::nch]
 engines = {}
+import os
+done = set()
+if os.path.exists(f"arb_grid_{chunk}.jsonl"):
+    for l in open(f"arb_grid_{chunk}.jsonl"):
+        if l.strip(): r = json.loads(l); done.add((round(r["a"], 6), r["K"]))
 for a, K, prec in mine:
+    if (round(a, 6), K) in done: continue
     t0 = time.time()
     if (K, prec) not in engines: engines[(K, prec)] = OddWeilArb(K=K, prec=prec)
     W = engines[(K, prec)]
