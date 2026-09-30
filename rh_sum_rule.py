@@ -82,7 +82,7 @@ for k in ks:
     # (A) lhs = (1/2pi) int_{|t|>T} |F|^2 (Psi - lambda) = (1/pi) int_T^inf 4 S^2 (Psi - lambda)
     tt = np.concatenate([np.linspace(T, 4*T, 20001), np.linspace(4*T, Tmax, 40001)[1:]])
     F2 = 4*S(tt)**2; Ps = Psi(tt)
-    lhs = np.trapezoid(F2*(Ps - lam), tt)/math.pi + 4*fa**2*(np.log(Tmax/(2*math.pi)) + 1)/(2*math.pi*Tmax)*2/math.pi*math.pi/2  # crude tail beyond Tmax
+    lhs = np.trapezoid(F2*(Ps - lam), tt)/math.pi + (-lam_prime/(math.pi*Tmax) if lam_prime else 4*fa**2*(np.log(Tmax/(2*math.pi)) + 1)/(2*math.pi*Tmax))  # tail beyond Tmax: the tail law (Computation 7.6), else the jump estimate
     rhoT = np.trapezoid(F2*np.log(tt/(2*math.pi))/(2*math.pi), tt)/math.pi                                                   # (1/pi) int_T |F|^2 rho: the tail law's object
     # (B) polar = (4P/2pi) int_{|t|>T} conj(F) Sigma = (4P/pi) int_T^inf (2 S)(2 Sig_im) -> conj(2iS)(2i Sig_im) = 4 S Sig_im
     pol = (2*P/math.pi)*np.trapezoid(4*S(tt)*Sig_im(tt), tt)

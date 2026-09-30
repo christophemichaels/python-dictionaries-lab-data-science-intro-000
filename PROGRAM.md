@@ -11,7 +11,13 @@ Littlewood's bound S_1(t) = O(log t/(log log t)^2). With the boundary law lambda
 Still open inside item 1: the edge law as an asymptotic equality with derivatives (only the upper bound is a theorem,
 under (H_inf)); the boundary law itself (Conjecture 8.1).
 
-## 2. The sum rule  [OPEN; route found 2026-09-30]
+## 2. The sum rule  [IDENTITY PROVED AND VERIFIED 2026-09-30; two asymptotic facts remain]
+Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
+to 1-3% at 5-50 horizons (Computation 7.10). The edge overlap alone is the law to +-10%, and the smooth overlap plus
+the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
+term log-free; the naive first-order estimate 0.79/L is too large, the data allow at most 0.2/L); (b) the cancellation of
+the smooth overlap against the polar piece, analytically. The polar coefficient in the eigen-equation is 2P sinh(y/2),
+not 4P (the gradient); with 4P the identity fails by 30%.
 Route: the Euler-Lagrange equation in Fourier form. On the window, K f = lambda f + 4P sinh(x/2); outside it, K f =: g_out
 is unconstrained (K the operator with symbol Psi; g_out contains the archimedean kernel acting on the edge, which
 behaves like -2C L(delta)^{1/2} just outside the edge, and the reflected primes, smooth). Hence
