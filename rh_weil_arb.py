@@ -65,6 +65,34 @@ class OddWeilArb:
         G = A.transpose()*B
         return (G + G.transpose())/2
 
+    def parts(self, a):
+        """The archimedean matrix, the prime matrices {n: -2 Lambda(n) n^{-1/2} g(log n)} and the polar vector s
+        (so that Q = A + sum_n P_n - 2 s s^T)."""
+        a = arb(a) if not isinstance(a, arb) else a
+        K = self.K
+        A = arb_mat(K, K)
+        for x, w in zip(self.xx, self.wx):
+            xv = a + a*x
+            G = self.gmat(xv/a)
+            e2 = (-2*xv).exp(); eh = (-xv/2).exp(); den = 1 - e2
+            c = 2*w*a/den
+            A = A - G*(c*eh)
+            d = c*e2
+            for i in range(K): A[i, i] = A[i, i] + d
+        tail = -(1 - (-4*a).exp()).log()/2
+        diag = -(arb.const_euler() + arb.pi().log()) + 2*tail
+        for i in range(K): A[i, i] = A[i, i] + diag
+        P = {}
+        n = 2
+        while math.log(n) < 2*float(a.mid()):
+            lam = vonmangoldt(n)
+            if lam: P[n] = self.gmat(arb(n).log()/a)*(-2*lam/arb(n).sqrt())
+            n += 1
+        sh = [(a*x/2).sinh() for x in self.xs]
+        rows = self.phi_rows(self.xs)
+        s = [sum(w*rows[m][i]*sh[m] for m, w in enumerate(self.ws))*a.sqrt() for i in range(K)]
+        return A, P, arb_mat(K, 1, s)
+
     def matrix(self, a, primes=True):
         a = arb(a) if not isinstance(a, arb) else a
         K = self.K
