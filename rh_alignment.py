@@ -1,5 +1,5 @@
 """
-The zeros' rotation and the entries (paper Computation 7.24): the tail of the floor carries the average of cos(2 gamma a)
+The zeros' rotation and the entries (paper Computation 7.28): the tail of the floor carries the average of cos(2 gamma a)
 over the zeros, weighted by the tail envelope 1/(gamma^2 log(gamma/2pi)).  R(a)/W = <cos(2 gamma a)> from the first
 6000 zeros, on a grid of a and at the entries a_n = (1/2) log n; the zeros anti-align (R/W = -0.5 to -0.6) at the
 primes 2, 3, 5, 7, 11 and nowhere else, and around an entry R(a) is a V-shaped cusp: the kink of the floor at the

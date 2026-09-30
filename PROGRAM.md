@@ -76,7 +76,23 @@ c^2/sigma_inf and the echo piece is (c/sigma_inf) e^{-it log n} times the edge p
 fraction; the window's symbol sigma_inf - 2c cos = the INFINITE chain (fixed point). Verified at a = 0.5 with the prime 2: null
 residual 1.1e-3 rms on 5-80 T* (window's symbol 9.8e-3), pointwise 0.010, 0.0021, 0.0007 at 10, 20, 50 T*, ~T^-2 (window's
 symbol 0.024, 0.016, 0.010, not decaying). Conjecture 7.19 restated: (i) prime-free sharp form, (ii) the echo form.
-NEXT for item 2 (the last analytic piece, now a proof to write, not a computation to run): (a) the factorization of a symbol growing
+DONE 2026-09-30, third pass: THE PRIME-FREE FORM IS A THEOREM. Paper Lemma 7.21 (the factor of a logarithmic symbol: the
+outer function of sigma~^{1/2}, bounds c <= |sigma_+| <= C (log)^{1/2}), Lemma 7.22 (the kernel of 1/sigma_+ beyond the origin
+decays like e^{-eta xi}: sigma~ has no zeros in a strip below the line), Proposition 7.23 (exact Wiener-Hopf representation:
+for EVERY L^2 odd critical point of W_inf - 2P^2, F~ = P_-[H^_-/sigma_+]/sigma_-, with the real zero of the symbol removed by
+the rational factor and Liouville on an entire function of growth (log)^{1/2}), Corollary 7.24 (the form of the edge: F~ =
+A(t)/(t sigma_-) + e^{-2ita} Phi_-/sigma~ exactly, A(t) = A_0 + O(log t/t), A_0 purely imaginary, A(-t) = -conj A(t); the
+far-edge feedback through the kernel of 1/sigma_+ beyond 2a; the mirror: F = A e^{ita}/(t sigma_-) - conj(A) e^{-ita}/(t sigma_+)
++ O(t^-2 (log t)^{-1/2}), hence S = -|A_0| cos(ta + theta - kappa(t)/t)/(t sigma~^{1/2}) + ...). Consequence: for every prime-free
+critical point the tail energy is 2|A_0|^2/(pi T)(1 + o(1)) at every height beyond the onset, so the tail law is the single
+identity 2|A_0|^2 = -lambda' (the boundary law as a flux, |A_0| = C). What the theorem does not decide: |A_0|^2 = -lambda'/2;
+kappa constant (bound O(log t), data 1e-4); the rate (O(log t/t) against the measured t^-2); the echo form with primes.
+NEXT for item 2: (a) the flux identity |A_0|^2 = -lambda'/2 from the pairing identity (Proposition 7.15: -a lambda' = 2 B_inf,
+B_inf = <g_out, (xf)'>), computed from the exact representation: G~_+ = sigma_+ A/t + 2iP sinh(a/2)/t + O(t^-2 log^1/2) is now
+a theorem, so B_T = (1/2pi) int_{|t|<T} conj(G) (-t F') dt is an explicit Wiener-Hopf integral whose limit should be a |A_0|^2;
+this would prove the boundary law and the tail law together. (b) the echo form with primes as a theorem (the exact representation
+holds with the window's symbol; the edge asymptotics reorganize into the finite echo chain). Old list, still valid for the
+remaining parts: (a) the factorization of a symbol growing
 like log t, factors (log t)^{1/2} e^{+-i theta}, theta = O(1/log t); (b) the a priori decay of the three transforms: F~ = O(1/t) is the
 edge-law upper bound (Theorem 3.2 under (H_inf)), G~ from Lemma 7.12, H~ from the smoothness of the commutator [K, chi] f near the
 edge; (c) Liouville with the poles at the real zeros, and the far edge at relative order t^-2; (d) with primes, the echo chains
@@ -111,9 +127,9 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.22, Proposition 7.23; NEXT]
-Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.22). Data: medians of the floor's mass 2.39 ... 2.74 T*
-(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.23: under RH, (S_kappa) [zeros above kappa T* sample the tail
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.26, Proposition 7.27; NEXT]
+Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.26). Data: medians of the floor's mass 2.39 ... 2.74 T*
+(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.27: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
 c = pi kappa M M'. Measured: M ~ 1, M' ~ 1, kappa = e -> bound pi e = 8.5 against the observed 3.3-3.9 = pi e theta(e T*).
 Remaining: prove (S_e) (a sampling inequality on the half-line above e T* for high-pass window functions with a log
@@ -126,7 +142,7 @@ above the edge law at delta = 1/(e T*)); it holds because the tail law is analyt
 So ALL the arithmetic of Conjecture A is in (S_e): the zeros above e T* sample the analytic tail of F at their mean
 density, constant ~1. NEXT for item 3: the analytic form of M through the explicit formula for the high-pass part of
 f (the fluctuation is the prime sum on frequencies above kappa T*, whose only structure between entries is the
-alignment of Computation 7.24), and the gap condition it needs (no gap wider than pi/a above e T*).
+alignment of Computation 7.28), and the gap condition it needs (no gap wider than pi/a above e T*).
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
