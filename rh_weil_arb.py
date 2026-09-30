@@ -99,6 +99,10 @@ class OddWeilArb:
     def floor(self, a, eigvec=True):
         a = arb(a); Q = self.matrix(a)
         E = acb_mat(Q).eig(nonstop=True)
+        self.eig_kind = "rigorous"
+        if any(z.real.is_nan() for z in E):          # certification fails when lambda_0/||Q|| is below ~2^-prec/4:
+            E = acb_mat(Q).eig(algorithm="approx")     # fall back to the uncertified QR eigenvalues (or raise prec)
+            self.eig_kind = "approx"
         E = sorted(E, key=lambda z: z.real.mid())
         lam0, lam1 = E[0].real, E[1].real
         fa = None
