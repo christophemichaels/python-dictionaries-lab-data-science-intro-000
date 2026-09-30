@@ -14,13 +14,14 @@ from flint import arb, arb_mat, acb_mat, ctx
 from rh_weil_arb import OddWeilArb
 
 K = int(sys.argv[2]); prec = int(sys.argv[3]) if len(sys.argv) > 3 else 500
+PRIMES = not (len(sys.argv) > 4 and sys.argv[4] == 'noprimes')
 ctx.prec = prec
 a = arb(sys.argv[1])                       # after setting the precision: an exact-to-prec ball
 t0 = time.time()
 W = OddWeilArb(K=K, prec=prec)
-lam0, lam1, fa = W.floor(a)
+Q = W.matrix(a, primes=PRIMES)
+E = acb_mat(Q).eig(nonstop=True); E = sorted(E, key=lambda z: z.real.mid()); lam0 = E[0].real
 # eigenvector by inverse iteration (midpoint matrix)
-Q = W.matrix(a)
 Qm = arb_mat(K, K, [arb(Q[i, j].mid()) for i in range(K) for j in range(K)])
 sigma = lam0.mid()*(1 - arb(2)**(-20))
 for i in range(K): Qm[i, i] = Qm[i, i] - sigma
@@ -30,6 +31,7 @@ c = arb_mat(K, 1, [v[i, 0]/nrm for i in range(K)])
 def quad(X): return (c.transpose()*X*c)[0, 0]
 h = arb(10)**(-30)
 Ap, Pp, sp = W.parts(a + h); Am, Pm, sm = W.parts(a - h); A0, P0, s0 = W.parts(a)
+if not PRIMES: Pp, Pm, P0 = {}, {}, {}
 dA = (Ap - Am)/(2*h); dP = {n: (Pp[n] - Pm[n])/(2*h) for n in P0}
 dS = (sp*sp.transpose() - sm*sm.transpose())/(2*h)
 qA, qP, qS = quad(dA), {n: quad(dP[n]) for n in dP}, quad(dS)*(-2)

@@ -1,0 +1,389 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{computation}[theorem]{Computation}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{heuristic}[theorem]{Heuristic}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\DeclareMathOperator{\Ree}{Re}
+\DeclareMathOperator{\Imm}{Im}
+\newcommand{\Tst}{T^{*}}
+\newcommand{\PW}{\mathrm{PW}}
+
+\title{\textsc{Prime DNA}\\[1ex]
+\textbf{The Odd Weil Form on a Window}\\[1ex]
+\large The sliding-window identity, the logarithmic edge law,\\ and the bounded-relay conjecture}
+\author{Christophe Michaels\\ Independent Researcher\\ Houston, Texas}
+\date{September 30, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $\lambda(a)$ be the floor of the odd-sector Weil form over test functions supported in $[-a,a]$. Weil's criterion, in Yoshida's odd-test form, says that $\lambda(a)\ge 0$ for every $a$ is equivalent to the Riemann Hypothesis; the floor is certified positive to $a=0.8$ (Zhu) and decays doubly exponentially in $a$. We study the floor as a function of the window. Three results are exact. First, the archimedean part of the form on a window is one half of the Dirichlet form of the logarithmic Laplacian plus a bounded form, with an explicit confining wall $\tfrac12\log(1/(a-|y|))$ at the edge; by the boundary theory of the logarithmic Laplacian (Chen--Weth; Hern\'andez-Santamar\'ia, L\'opez R\'ios, Salda\~na) the minimizer vanishes at the edge like $C(a)\,(\log(a/\delta))^{-1/2}$, and we measure the amplitude $C(a)$ on meshes graded to $10^{-12}$ of the edge. Consequently the entry of a prime power into the window produces no kink in $\lambda$ but a soft kink, $\lambda'$ continuous with an increment $4\Lambda(n)n^{-1/2}C^2/\log(1/\varepsilon)$ at scale $\varepsilon$, which we verify over four decades. Second, between entries the floor obeys the sliding-window identity
+\[
+a\,\lambda'(a) \;=\; -\Big[\,D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}{a}M(f)\Big],
+\]
+where $f$ is the minimizer, $D_\infty$ is the archimedean dilation form (its symbol tends to $1$), $D_P(f)=-\sum_n 2\Lambda(n)n^{-1/2}\log n\; g_f'(\log n)$ is the Euler product differentiated against the derivative of the autocorrelation of $f$ at the prime-power positions, and $P,M$ are the polar moments; we verify it to twenty digits in ball arithmetic, exhibiting the cancellation of three order-one quantities to the size of $\lambda$. Third, the derivative is a boundary quantity: on eight supports, with and without primes, $\lambda'(a)=-2C(a)^2$ to a part in a thousand, so $\Phi'=2C^2/\lambda$ and the conjecture below becomes a bound on the edge amplitude of the minimizer by its energy times the horizon. Fourth, the derivative of the floor is a property of the ground state alone: the pencil $(-Q',Q)$ has eigenvalues of size $6\times10^{10}\,\Tst$ at $a=1$ while the minimizer's direction gives $3.7\,\Tst$, so no inequality between the two forms can hold. With $\Phi=-\log\lambda$ and the horizon $\Tst(a)=2\pi e^{2a}$, a certified computation of the floor from height $17$ to height $130$ (down to $\lambda=10^{-93}$, with $230$ modes and rigorous eigenvalue enclosures) shows $\Phi'/\Tst$ rising from $3.2$ to $3.9$ by shrinking steps. We state the bounded-relay conjecture $\Phi'(a)\le c\,\Tst(a)$, which implies the Riemann Hypothesis by integration from Zhu's certified support, and the decay law $\Phi'/\Tst\to c_0$; the data exclude the raw phase-space count, disfavour a logarithmic law, and cannot separate a constant from Zhu's Landau--Widom form, whose asymptotes differ ($4$ against $7$). Under the Riemann Hypothesis the floor is the inverse of a sampling constant for the zeros above the horizon, and a prolate-type count gives $\Phi\gtrsim \pi\Tst/\log(4a\Tst)$, one quarter of what is observed. Nothing in this paper proves the Riemann Hypothesis. Theorems, computations with their precision, and conjectures are distinguished throughout.
+\end{abstract}
+
+\noindent\emph{Standalone research paper. Companion to} Primes, Folds, and the One Dot \emph{and to} Theta Kernels, Weil Positivity, and the Mathematical Theory Atlas.
+
+\tableofcontents
+
+\section*{Status conventions}
+A \textbf{Theorem} or \textbf{Proposition} without citation is proved in the text. A statement with a citation is taken from the literature and its hypotheses are stated. A \textbf{Computation} is a numerical result with its method, precision and cross-checks; a finite-mode minimum is a minimum over a subspace and hence an upper bound on the floor, and every such value is labelled by its mode count. A \textbf{Conjecture} is a precise statement with the evidence for it. A \textbf{Heuristic} or \textbf{Remark} makes no mathematical claim.
+
+\section{The form, the floor and the horizon}\label{sec:form}
+
+For $f\in L^2(\R)$ real with compact support write $F=\hat f$, $F(t)=\int f(x)e^{itx}\,dx$, and $g=f\star\tilde f$, $g(u)=\int f(x)f(x-u)\,dx$, so that $\hat g=|F|^2$. The Weil form in the normalization used throughout is
+\begin{equation}\label{eq:Q}
+Q(f) \;=\; W_\infty(g)\;-\;\sum_{n\ge2}\Lambda(n)n^{-1/2}\big(g(\log n)+g(-\log n)\big)\;+\;\big(\hat g(i/2)+\hat g(-i/2)\big),
+\end{equation}
+\begin{equation}\label{eq:Winf}
+W_\infty(g) \;=\; -(\gamma+\log\pi)\,g(0)\;+\;2\int_0^\infty \frac{g(0)e^{-2x}-g(x)e^{-x/2}}{1-e^{-2x}}\,dx .
+\end{equation}
+By the explicit formula, $Q(f)=\sum_\rho \hat g\big((\rho-\tfrac12)/i\big)$ over the nontrivial zeros; on the geometric side, in Fourier form,
+\begin{equation}\label{eq:symbol}
+Q(f)=\frac1{2\pi}\int_\R |F(t)|^2\,\Psi(t)\,dt \;+\;\text{polar},\qquad
+\Psi(t)=\Ree\psi\big(\tfrac14+\tfrac{it}{2}\big)-\log\pi-\sum_{n}\frac{2\Lambda(n)}{\sqrt n}\cos(t\log n),
+\end{equation}
+where the polar term is $2F(i/2)^2$ for even $f$ and $-2P(f)^2$, $P(f)=\int f(x)\sinh(x/2)\,dx$, for odd $f$. This is the normalization of Zhu \cite{zhu} and of Checkpoints 15--20 of \cite{michaels-atlas}; Computation~\ref{comp:zhu} confirms the identification numerically.
+
+\begin{definition}
+For $a>0$ the \emph{odd floor} is
+\[
+\lambda(a)=\inf\{\,Q(f):\ f \text{ odd},\ \operatorname{supp}f\subset[-a,a],\ \|f\|_2=1\,\},\qquad \Phi(a)=-\log\lambda(a),
+\]
+and the \emph{horizon} is $\Tst(a)=2\pi e^{2a}$.
+\end{definition}
+
+Since $g$ is supported in $[-2a,2a]$, only the prime powers with $\log n<2a$ enter $Q(f)$; the \emph{entries} are $a_n=\tfrac12\log n$. The form $Q$ itself does not depend on $a$, so $\lambda$ is non-increasing.
+
+\begin{theorem}[Weil; Yoshida; see Suzuki \cite{suzuki-screw}]\label{thm:weil}
+The Riemann Hypothesis holds if and only if $Q(f)\ge0$ for every compactly supported smooth $f$; and it suffices that $Q(f)\ge0$ for every odd such $f$. Hence $\mathrm{RH}\iff \lambda(a)\ge0$ for all $a>0$.
+\end{theorem}
+
+\begin{theorem}[Zhu \cite{zhu}, Theorem 6.2]\label{thm:zhu}
+For $a=0.8$, $8.206\times10^{-15}\le\lambda(0.8)\le 2.347\times10^{-14}$, certified by interval arithmetic. In particular $\lambda(a)>0$ for $0<a\le0.8$.
+\end{theorem}
+
+The horizon is the height at which the zeros become too dense for the window. A function of exponential type $a$ can vanish on a real sequence of upper density at most $a/\pi$ (Beurling--Malliavin \cite{beurling-malliavin}); the zeros have density $(2\pi)^{-1}\log(t/2\pi)$ at height $t$, which equals $a/\pi$ exactly at $t=\Tst(a)$. Zhu's abstract states the same fact as a resolution threshold: a certificate at half-width $a$ must resolve frequencies of order $\Tst(a)$, doubly exponential in $a$ \cite{zhu}. Everything below is organized around the pair $(\lambda(a),\Tst(a))$.
+
+\section{Three engines}\label{sec:engines}
+
+All computations use the orthonormal odd Legendre basis on the window, $f(y)=a^{-1/2}\sum_{i<K}c_iN_iP_{2i+1}(y/a)$, $N_i=\sqrt{(4i+3)/2}$, in which the matrix of \eqref{eq:Q} is assembled from the exact cross-correlations $g_{ij}(x)=\int\phi_i(u)\phi_j(u-x)\,du$ by Gauss--Legendre rules exact for the polynomial products. Three implementations are used, all in the repository accompanying this paper \cite{michaels-repo}.
+
+\begin{enumerate}[leftmargin=2em]
+\item \texttt{rh\_weil\_odd.py}: mpmath, 50--60 digits, $K\le72$. Reproduces the floors and the failure points of \cite{michaels-folds} to 4--6 digits.
+\item \texttt{rh\_weil\_arb.py}: ball arithmetic (python-flint/arb), $K\le230$, 500--800 bits, with certified Gauss--Legendre rules, $M=2K+8$ inner and $2K+100$ outer nodes, and a rigorous enclosure of the lowest eigenvalue of the assembled matrix. The Legendre recurrence is evaluated with a midpoint reset at each degree, since its ball version doubles the radius per degree; the enclosure therefore covers the assembly and the eigenvalue computation but not the polynomial evaluations, which are 500-bit floating point, nor the truncation of the outer rule. It reproduces the mpmath floors to twenty digits and runs a $180$-mode point in six minutes.
+\item \texttt{rh\_edge\_fem.py}: odd-extended hat functions on a mesh of the half window graded geometrically to $10^{-12}a$ (350--490 nodes), exact cross-correlations, closed-form archimedean tails, double precision. Built to read the minimizer at the edge, where a Legendre truncation resolves only $\delta\gtrsim a/K^2$.
+\end{enumerate}
+
+\begin{computation}\label{comp:zhu}
+The $40$-mode floor at $a=0.8$ is $1.5935\times10^{-14}$ and the $64$-mode floor is $1.5659\times10^{-14}$, both inside Zhu's certified interval of Theorem~\ref{thm:zhu}, which fixes the normalization and shows the truncation error at that support. At $a=0.3$, where no prime is inside the window, the $64$-mode floor $0.2225569$ and the edge-FEM floor $0.2225566$ agree to $1.3\times10^{-6}$; at $a_3=\tfrac12\log3$ the $64$-mode profile and the FEM profile agree to $10^{-4}$ for $|y|\le0.99a$.
+\end{computation}
+
+\section{The archimedean wall and the edge law}\label{sec:edge}
+
+\begin{proposition}[decomposition on the window]\label{prop:wall}
+Let $J_\Gamma(s)=e^{-|s|/2}/(1-e^{-2|s|})$ and $c_1=-(\gamma+\log\pi)-\tfrac{\pi}{2}-3\log2$. For $f$ supported in $[-a,a]$,
+\[
+W_\infty(g_f)=c_1\|f\|^2+\tfrac12\iint_{[-a,a]^2}J_\Gamma(u-v)|f(u)-f(v)|^2\,du\,dv+\int_{-a}^a V_a(y)|f(y)|^2\,dy,\qquad
+V_a(y)=\int_{|v|>a}J_\Gamma(y-v)\,dv,
+\]
+and $V_a(y)=\tfrac12\log\frac1{a-|y|}+\kappa_a+o(1)$ as $|y|\to a$, with $\kappa_a=\tfrac12\log4+\tfrac\pi4+\operatorname{artanh}(e^{-a})+\arctan(e^{-a})$.
+\end{proposition}
+\begin{proof}
+With $g(0)-g(x)=\tfrac12\int|f(u)-f(u-x)|^2du$, the integral in \eqref{eq:Winf} is $\tfrac12\iint_{\R^2}J_\Gamma(u-v)|f(u)-f(v)|^2$, and $2\int_0^\infty(e^{-2x}-e^{-x/2})/(1-e^{-2x})\,dx=-\pi/2-3\log2$ by the digamma series $\psi(\tfrac14)=-\gamma-\tfrac\pi2-3\log2$. Splitting the double integral according to whether $v$ lies in the window gives the three terms. Since $\int_x^\infty J_\Gamma=\operatorname{artanh}(e^{-x/2})+\arctan(e^{-x/2})$, $V_a(y)=F(a-y)+F(a+y)$ with this $F$, and $\operatorname{artanh}(e^{-x/2})=\tfrac12\log(4/x)+o(1)$ gives the constant; at $a=a_3$ it is $2.6606$, which the direct evaluation of $V_a$ confirms to five digits.
+\end{proof}
+
+The symbol of the whole-line form $\tfrac12\iint J_\Gamma|f(u)-f(v)|^2$ is $\sigma(\xi)=\int J_\Gamma(s)(1-\cos s\xi)\,ds=\log|\xi|+O(1)$, so on the window the archimedean form is one half of the Dirichlet form $\int\log(\xi^2)|\hat f|^2$ of the logarithmic Laplacian $L_\Delta$ of Chen--Weth \cite{chen-weth} plus a bounded quadratic form; the prime terms are bounded translation operators and the polar term has rank one. The Euler--Lagrange equation of a minimizer is therefore $L_\Delta f=F$ with $F\in L^\infty$ whenever $f\in L^\infty$.
+
+\begin{theorem}[edge law; Chen--Weth \cite{chen-weth}, Thm.\ 1.11; Hern\'andez-Santamar\'ia--L\'opez R\'ios--Salda\~na \cite{hls}, Thm.\ 1.1]\label{thm:edge}
+Let $f$ be a bounded minimizer of $Q$ over odd functions supported in $[-a,a]$. Then $f$ is continuous on $\R$ and
+\[
+|f(y)|\le C\,\big(\log\tfrac1{a-|y|}\big)^{-1/2}\qquad(|y|<a),
+\]
+for some $C$. In particular $f(\pm a)=0$. The exponent $\tfrac12$ is sharp for the torsion function of a small interval \cite[Thm.\ 1.2]{hls}, and a Hopf-type lemma gives the same rate from below for nonnegative supersolutions \cite[Thm.\ 1.4]{hls}.
+\end{theorem}
+
+The same exponent comes out of the Euler--Lagrange equation directly. In $t=\log(1/\delta)$, $\delta=a-y$, the equation near the edge reads $t\,h(t)-\tfrac12\int_0^t h(\tau)\,d\tau=O(h)+O(1)$, the coefficient $t$ being $\tfrac12$ from the wall and $\tfrac12$ from the interior kernel, and the nonlocal term coming from the long-range part of the kernel, which in the variable $t$ is the constant $\tfrac12$ on one side; its solutions are $h=Ct^{-1/2}(1+O(1/t))$. Checkpoint 17 of \cite{michaels-atlas} applied Theorem~\ref{thm:edge} to the forced solutions of the same operator and left open the existence of the normalized trace $\lim\sqrt{\log(1/\delta)}\,f(a-\delta)$; the following computation is the numerical answer for the ground state.
+
+\begin{computation}[the edge amplitude]\label{comp:edge}
+On every mesh and with or without primes, $1/f(a-\delta)^2$ is linear in $t=\log(a/\delta)$ with relative residual below $10^{-4}$ over $14\le t\le20$; the local exponent $-d\log f/d\log t$ descends toward $\tfrac12$ exactly as $\tfrac12 t/(t+\beta)$ does. Writing $f(a-\delta)=C\,(t+\beta)^{-1/2}(1+o(1))$:
+\begin{center}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+form & $a$ & $\lambda$ (FEM) & $C$ & $\beta$ & mesh dependence of $C$\\
+\midrule
+prime-free & $0.3$ & $0.2225566$ & $1.3089$ & $-1.49$ & $10^{-3}$\\
+full & $a_3=0.5493$ & $1.4914\times10^{-5}$ & $0.02412$ & $-1.87$ & $10^{-2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The six $K$-mode endpoint values of \cite{michaels-folds} at $a_3$ ($f_K(a_3)=0.009471,\dots,0.008207$ for $K=24,\dots,64$) are this law read at the truncation's resolution: with the fitted $C,\beta$, the effective $t_K=C^2/f_K^2-\beta$ equals $2\log K+2.0$ within $0.3$ for all six, with and without primes, so a degree-$2K$ expansion resolves $\delta\approx e^{-2}a/K^2$ at the edge and $f_K(a)^2=C^2/(2\log K+\beta')$.
+\end{computation}
+
+\section{The relay is a soft kink}\label{sec:kink}
+
+At an entry $a_n$ the new term $-2\Lambda(n)n^{-1/2}g(\log n)$ vanishes and grows with $a$.
+
+\begin{proposition}[$K$-mode kink]\label{prop:kink}
+For the $K$-mode form, $\lambda_K$ is continuous at $a_n$ and $\lambda_K'(a_n^+)-\lambda_K'(a_n^-)=4\Lambda(n)n^{-1/2}f_K(a_n)^2$, where $f_K$ is the normalized $K$-mode minimizer at entry.
+\end{proposition}
+\begin{proof}
+For $a=a_n+\varepsilon$ and odd $f$, $g(\log n)=\int_{a-2\varepsilon}^{a}f(y)f(y-\log n)\,dy=-\int_0^{2\varepsilon}f(a-\delta)f(a-2\varepsilon+\delta)\,d\delta$, which is $-2\varepsilon f(a)^2+O(\varepsilon^2)$ for a function continuous at the edge with $f(a)\ne0$; the $K$-mode minimizer is a polynomial. Hellmann--Feynman with the minimizer frozen gives the jump.
+\end{proof}
+
+\begin{computation}
+With $24$ modes at the entry of $3$, the measured jump is $0.948$ of the prediction at step $5\times10^{-4}$ and $0.9998$ at step $10^{-5}$ \cite{michaels-repo}; the deficit at coarser steps is the reorganization of the minimizer within the crossover scale $\text{gap}/\|dT/da\|\approx3\times10^{-5}$.
+\end{computation}
+
+For the exact form, Theorem~\ref{thm:edge} gives $f(a_n)=0$ and the proposition's jump is a quantity of the truncation. What replaces it follows from Computation~\ref{comp:edge}: with $f(a-\delta)=C(t+\beta)^{-1/2}$,
+\begin{equation}\label{eq:soft}
+-2\Lambda(n)n^{-1/2}g(\log n)=\frac{4\Lambda(n)C^2}{\sqrt n}\,\frac{\varepsilon}{\log(1/\varepsilon)+\beta}\,(1+o(1)),
+\end{equation}
+so $\lambda'$ is continuous across the entry and its increment at scale $\varepsilon$ is $4\Lambda(n)n^{-1/2}C^2/(\log(1/\varepsilon)+\beta)$: a soft kink, vanishing only logarithmically.
+
+\begin{computation}[the soft kink]\label{comp:soft}
+On the edge FEM at the entry of $3$ ($C=0.0241$, $\beta=-1.93$), with $D(\varepsilon)=[\lambda(a_3+\varepsilon)-2\lambda(a_3)+\lambda(a_3-\varepsilon)]/\varepsilon$, all entries $\times10^{-4}$:
+\begin{center}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+$\varepsilon$ & $10^{-3}$ & $10^{-4}$ & $10^{-5}$ & $10^{-6}$ & $10^{-7}$\\
+\midrule
+measured $D(\varepsilon)$ & $2.45$ & $1.90$ & $1.48$ & $1.21$ & $1.01$\\
+first-order energy on the $a_3$ minimizer & $3.42$ & $2.13$ & $1.59$ & $1.27$ & $1.06$\\
+law \eqref{eq:soft} & $2.96$ & $2.02$ & $1.54$ & $1.24$ & $1.04$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The increment falls by $22\%$ per decade as $1/(\log(1/\varepsilon)+\beta)$ does and agrees with the law to $2$--$6\%$ from $\varepsilon=10^{-4}$ down; at $10^{-3}$ the smooth curvature $\lambda''\varepsilon\approx0.9\times10^{-4}$ is still inside $D$. The $24$-mode form gives the constant $2.28\times10^{-4}$.
+\end{computation}
+
+Beyond the entries of $2$ and $3$ the entries leave no visible trace in $\lambda'$ at any macroscopic scale (Computation~\ref{comp:grid}): the crossover scale is $10^{-9}$ at $a=0.7$ and the minimizer absorbs an entering prime power by reorganization long before. The relay is continuous.
+
+\section{The sliding-window identity}\label{sec:identity}
+
+\begin{theorem}[sliding-window identity]\label{thm:identity}
+Let $a$ lie strictly between two consecutive entries and let $f$ be a minimizer at support $a$ (exact, or the $K$-mode minimizer, in which case $\lambda$ means $\lambda_K$). Then
+\begin{equation}\label{eq:identity}
+a\,\lambda'(a)\;=\;-\Big[\,D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}{a}M(f)\Big],
+\end{equation}
+where, with $F=\hat f$ and $g=g_f$,
+\[
+D_\infty(f)=\frac1{2\pi}\int|F(t)|^2\,t\,\partial_t\Ree\psi\big(\tfrac14+\tfrac{it}2\big)\,dt,\qquad
+D_P(f)=-\sum_{\log n<2a}\frac{2\Lambda(n)}{\sqrt n}\,\log n\;g'(\log n),
+\]
+$P(f)=\int f(x)\sinh(x/2)\,dx$ and $M(f)=\int f(x)\,x\cosh(x/2)\,dx$.
+\end{theorem}
+\begin{proof}
+For the dilation family $f_b(x)=b^{-1/2}f(x/b)$, $b$ near $1$, one has $\widehat{f_b}(t)=\sqrt b\,F(bt)$ exactly, jumps included. Between entries the prime set in $\Psi$ of \eqref{eq:symbol} is fixed, and the substitution $s=bt$ gives $\frac{d}{db}\frac1{2\pi}\int|\widehat{f_b}|^2\Psi=-\frac1b\cdot\frac1{2\pi}\int|\widehat{f_b}(t)|^2\,t\Psi'(t)\,dt$. The symbol $t\Psi'(t)$ is $t\,\partial_t\Ree\psi(\tfrac14+\tfrac{it}2)+\sum 2\Lambda(n)n^{-1/2}(t\log n)\sin(t\log n)$, and $\frac1{2\pi}\int|F|^2 t\sin(tu)\,dt=-g'(u)$ for real $f$, which gives $D_\infty$ and $D_P$. For the polar term, $P(f_b)=\sqrt b\int f(y)\sinh(by/2)\,dy$ gives $\frac{d}{db}P(f_b)|_{b=1}=\tfrac12P(f)+\tfrac12M(f)$, so $\frac{d}{db}(-2P(f_b)^2)=-2P^2-2PM$. The $K$-mode basis of Section~\ref{sec:engines} is a dilation family, so the matrix $Q_K(a)$ is $Q$ on $\{f_{a/a_0}\}$ and Hellmann--Feynman for the simple lowest eigenvalue gives $\lambda_K'(a)=\ip{c}{Q_K'(a)c}$, which is the right side divided by $a$; the exact form is the same computation on the exact minimizer, whose lowest eigenvalue is simple in the range considered (Computation~\ref{comp:grid}).
+\end{proof}
+
+Since $t\,\partial_t\Ree\psi(\tfrac14+\tfrac{it}2)\to1$, $D_\infty(f)=\|f\|^2+O(\int|F|^2t^{-2})$; on a minimizer $\|f\|=1$ while $\lambda$ is $10^{-90}$ at $a=1.5$, so \eqref{eq:identity} forces
+\begin{equation}\label{eq:cancel}
+D_P(f)=-D_\infty(f)-2P^2-\tfrac{2P}{a}M+O(a\Tst\lambda):
+\end{equation}
+the Euler product, differentiated and applied to the derivative of the minimizer's autocorrelation at the prime-power positions, cancels the archimedean dilation form to ninety digits. Together with the explicit formula on the same function, $\sum 2\Lambda(n)n^{-1/2}g(\log n)=W_\infty(g)-2P^2-\lambda$, both the values and the log-weighted derivatives of $g_f$ at the prime powers are pinned by the archimedean side.
+
+\begin{computation}[the identity on the minimizer]\label{comp:identity}
+\texttt{rh\_dilation.py} differentiates the three parts of $Q_K(a)$ by central differences with step $10^{-30}$ in ball arithmetic and contracts them with the eigenvector; every entry is a ball with the radius shown.
+\begin{center}
+\begin{tabular}{@{}rrcrrrcc@{}}
+\toprule
+$a$ & $K$ & $\lambda_K$ & $a\ip{c}{A'c}$ & $a\ip{c}{P'c}$ & $a\ip{c}{S'c}$ & sum $=a\lambda'$ & radius\\
+\midrule
+$0.6$ & $48$ & $5.9659\times10^{-7}$ & $-1.014313$ & $+1.086974$ & $-0.072687$ & $-2.493408\times10^{-5}$ & $4\times10^{-20}$\\
+$0.8$ & $64$ & $1.5659\times10^{-14}$ & $-1.016605$ & $+1.103966$ & $-0.087361$ & $-1.295854\times10^{-12}$ & $4\times10^{-27}$\\
+$1.0$ & $80$ & $1.4820\times10^{-26}$ & $-1.018057$ & $+1.114966$ & $-0.096909$ & $-2.516852\times10^{-24}$ & $3\times10^{-39}$\\
+$1.25$ & $140$ & $1.5442\times10^{-50}$ & $-1.019178$ & $+1.123585$ & $-0.104407$ & $-1.233712\times10^{-48}$ & $2\times10^{-63}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $A,P,S$ are the archimedean, prime and polar matrices, so $a\ip{c}{A'c}=-D_\infty$ and $a\ip{c}{P'c}=-D_P$. The archimedean dilation form sits at $1.014$--$1.019$, the excess over $\|f\|^2$ being the finite-$t$ correction; the prime dilation form grows with the primes present and cancels it; the sum equals $-a\Phi'\lambda$ with $\Phi'/\Tst=3.339,\,3.324,\,3.658,\,3.774$, matching the grids of Section~\ref{sec:grid}.
+\end{computation}
+
+\subsection{The derivative is a property of the ground state}
+
+Is there an inequality $-Q'\le c\,\Tst\,Q$ between the two forms, which would give the derivative bound for every $f$ at once? The pencil $(-Q',Q)$ answers this.
+
+\begin{computation}[the pencil]\label{comp:pencil}
+Largest and smallest eigenvalues of $Q^{-1}(-Q')$ in the $K$-mode space, divided by $\Tst$:
+\begin{center}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$a$ & minimizer direction & largest & second, third & smallest\\
+\midrule
+$0.6$ & $3.34$ & $74.7$ & $4.26,\ 3.69$ & $-70.5$\\
+$0.8$ & $3.32$ & $1.46\times10^{5}$ & $332,\ 6.08$ & $-1.46\times10^{5}$\\
+$1.0$ & $3.66$ & $6.2\times10^{10}$ & $3.1\times10^7,\ 8.2\times10^4$ & $-6.2\times10^{10}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{computation}
+
+The extreme eigenvalues come in $\pm$ pairs and grow explosively; they are near-null directions of $Q$ whose dilation derivative is enormous relative to their value, the reorganization directions of the minimizer, and their size is the inverse of the crossover scale ($10^{-7}$ at $a=0.8$, $10^{-13}$ at $a=1$). The ground state is neither extreme; it is a special interior direction in which the dilation derivative is anomalously small, by ten orders at $a=1$. Hence the derivative bound of Section~\ref{sec:conj} is a statement about the ground-state eigenvector alone, $\lambda'=\ip{f_0}{Q'f_0}$, and cannot be an inequality between forms. A proof must pass through the Euler--Lagrange equation of the minimizer.
+
+\section{The floor to height 130}\label{sec:grid}
+
+\begin{computation}[the band]\label{comp:grid}
+$\Phi'$ is computed from pairs $a\pm h$ ($h=0.0125$ on a uniform grid with $40$ modes on $[0.30,1.20]$, $h=0.0125$ with $72$ modes on $[0.475,1.05]$, $h=0.005$ with the ball-arithmetic engine at $110$--$230$ modes on $[1.055,1.505]$), never across an entry. Convergence: the $40$-mode floor agrees with $72$ modes to $5\%$ up to $a=0.925$ and $26\%$ at $1.0$; the $140$-mode floor agrees with $180$ modes to $2\%$ at $1.25$; at $1.5$, $180$ against $230$ modes differ by $39\%$ in $\lambda$ and $4\%$ in the ratio, more modes raising it, so the last ratio is a lower bound. Every eigenvalue beyond $a=1$ carries a rigorous enclosure of the assembled matrix's lowest eigenvalue, radius $\approx10^{-143}$ at $500$ bits and $10^{-140}$ at $800$ bits.
+\begin{center}
+\begin{tabular}{@{}rrrcrc@{}}
+\toprule
+$a$ & $K$ & $\Tst$ & $\lambda$ & $\Phi'$ & $\Phi'/\Tst$\\
+\midrule
+$0.500$ & $72$ & $17.1$ & $1.938\times10^{-4}$ & $55.2$ & $3.23$\\
+$0.650$ & $72$ & $23.1$ & $1.837\times10^{-8}$ & $74.8$ & $3.24$\\
+$0.775$ & $72$ & $29.6$ & $2.105\times10^{-13}$ & $107.5$ & $3.63$\\
+$0.900$ & $72$ & $38.0$ & $7.176\times10^{-20}$ & $138.5$ & $3.64$\\
+$1.000$ & $72$ & $46.4$ & $1.491\times10^{-26}$ & $172.6$ & $3.72$\\
+$1.060$ & $110$ & $52.4$ & $2.97\times10^{-31}$ & $195.8$ & $3.74$\\
+$1.150$ & $110$ & $62.7$ & $1.04\times10^{-39}$ & $240.3$ & $3.83$\\
+$1.250$ & $180$ & $76.5$ & $3.59\times10^{-51}$ & $289.7$ & $3.79$\\
+$1.330$ & $140$ & $89.8$ & $3.58\times10^{-62}$ & $339.2$ & $3.78$\\
+$1.400$ & $180$ & $103.3$ & $1.73\times10^{-73}$ & $398.4$ & $3.86$\\
+$1.450$ & $180$ & $114.2$ & $1.22\times10^{-82}$ & $443.5$ & $3.88$\\
+$1.500$ & $230$ & $126.2$ & $2.97\times10^{-93}$ & $491.1$ & $3.89$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $\lambda$ at a centre is the geometric mean of the pair. Means of $\Phi'/\Tst$: $3.23$ on $[0.5,0.7]$, $3.61$ on $[0.85,1.05]$, $3.74$ on $[1.06,1.25]$, $3.85$ on $[1.33,1.5]$. Least squares of $\Phi'/\Tst$ against $a$ for $a\ge0.85$, by rms relative residual: $\Phi'=c\Tst$ with $c=3.72$, $3.4\%$; Zhu's form $\Phi\simeq C\,N(\Tst)/\log N(\Tst)$, whose ratio is $c\,(2a-1)/(2a+\log(2a-1))$, $3.0\%$ with $c=7.2$; $\Phi'=c\Tst\log\Tst$, $7.8\%$; the raw count $\Phi\propto N(\Tst)$, ratio $\propto 4a-1$, $21\%$. The ratio $\lambda_1/\lambda_0$ grows without interruption ($5.7$ at $a=0.31$, $10^6$ at $a=1$), so the ground state stays simple across every entry.
+\end{computation}
+
+Beyond the entries of $2$ and $3$, the entries leave no drop in $\Phi'$ at scale $0.004$ (the measured drops at $n=4,5,7$ are $-0.02$, $-0.08$, $-0.02$ of $\Phi'$, zero within the smooth drift), and the fractional-drop rule conjectured in \cite{michaels-folds} fails beyond $n=2$.
+
+\section{The conjectures}\label{sec:conj}
+
+\begin{conjecture}[bounded relay]\label{conj:A}
+There are $a_0>0$ and $c>0$ such that $\Phi'(a)\le c\,\Tst(a)$ for all $a\ge a_0$.
+\end{conjecture}
+
+\begin{proposition}\label{prop:AimpliesRH}
+Conjecture~\ref{conj:A} with any $a_0\le0.8$ implies the Riemann Hypothesis.
+\end{proposition}
+\begin{proof}
+$\Phi$ is locally Lipschitz and, by Theorem~\ref{thm:edge} and \eqref{eq:soft}, $\Phi'$ is continuous across every entry, so the inequality integrates: $\lambda(a)\ge\lambda(a_0)\exp\big(-c(\Tst(a)-\Tst(a_0))\big)>0$ for $a\ge a_0$, using Theorem~\ref{thm:zhu} at $a_0=0.8$. Theorem~\ref{thm:weil} concludes.
+\end{proof}
+
+\begin{conjecture}[decay law]\label{conj:B}
+$\Phi'(a)/\Tst(a)$ is bounded above and below by positive constants for $a\ge a_0$. In its sharp form, $\Phi'(a)/\Tst(a)\to c_0$, i.e.\ $\lambda(a)=\exp\big(-(c_0/2+o(1))\,2\pi e^{2a}\big)$.
+\end{conjecture}
+
+Computation~\ref{comp:grid} supports the weak form from height $17$ to $130$ and leaves the sharp constant undetermined: the ratio rises by shrinking steps, the pure horizon law and Zhu's Landau--Widom form fit equally well, and they disagree on the asymptote ($c_0\approx4$ against $c_0\approx7$, the second reached only far beyond any computable height). The raw phase-space count is excluded and the logarithmic law is disfavoured two to one. Conjecture~\ref{conj:A} is the one that implies the Riemann Hypothesis; the constant is not its content.
+
+By Theorem~\ref{thm:identity}, Conjecture~\ref{conj:A} is the inequality
+\begin{equation}\label{eq:Aform}
+D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}aM(f)\;\le\;c\,a\,\Tst(a)\,Q(f)\qquad\text{on the minimizer } f,
+\end{equation}
+and by Computation~\ref{comp:pencil} it holds only there.
+
+\begin{remark}[what a proof cannot be]
+Positivity of $Q$ on a window is destroyed by displacing $\log2$ by $3\times10^{-14}$ at $a=0.8$ and by $\exp(-c\Tst(a))$ in general \cite{michaels-folds,michaels-repo}, so no statement about the primes that is invariant under such displacements can imply it; and Checkpoint 20 of \cite{michaels-atlas} shows that bounding the reflected prime terms separately from the polar term yields $-\infty$ on translated tests. A proof of Conjecture~\ref{conj:A} must therefore use the exact multiplicative structure of $\Lambda$, and by Computation~\ref{comp:pencil} it must use that $f$ minimizes $Q$.
+\end{remark}
+
+\subsection{Under the Riemann Hypothesis}
+
+If all zeros are real, $Q(f)=\sum_\gamma|F(\gamma)|^2$ and the same dilation computation gives $a\lambda'=\lambda+\sum_\gamma\gamma\,\partial_t|F|^2(\gamma)$, so Conjecture~\ref{conj:A} reads $\sum_\gamma\gamma\,\partial_t|F|^2(\gamma)\ge-(1+ca\Tst)\sum_\gamma|F(\gamma)|^2$: the minimizer is small at the zeros to the same order in its derivative as in its value. And
+\[
+\Phi(a)=-\log\,\inf\{\textstyle\sum_\gamma|F(\gamma)|^2:\ F\in\PW_a,\ \|f\|=1\}
+\]
+is the logarithm of a sampling constant for the zeros above the horizon.
+
+\begin{heuristic}[prolate lower bound]
+The number of zeros in $[-\Tst,\Tst]$ is $2N(\Tst)\approx(\Tst/\pi)(2a-1)$, short of the Shannon number $2a\Tst/\pi$ of $[-a,a]\times[-\Tst,\Tst]$ by $\Tst/\pi$. By Landau--Pollak--Slepian \cite{lps} and the asymptotics of the prolate spectrum \cite{landau-widom}, a function in $\PW_a$ can vanish on all of them and keep all but $\exp(-\pi\Tst/\log(4a\Tst))$ of its energy below the horizon; under RH this bounds $\lambda$ from above, i.e.\ $\Phi\gtrsim\pi\Tst/\log(4a\Tst)\approx0.5\,\Tst$ at $a=1$, against the observed $1.85\,\Tst$. The zeros are about four times more expensive a constraint set than the count alone predicts. Conjecture~\ref{conj:A} is the matching upper bound.
+\end{heuristic}
+
+\section{The boundary law}\label{sec:hadamard}
+
+The derivative of the floor is a boundary quantity. Since $Q$ does not depend on $a$, $\lambda(a)$ is the infimum of a fixed form over the growing family $L^2(-a,a)$, and its derivative is a domain variation. For the Dirichlet fractional Laplacian, Hadamard's formula expresses such a derivative through the boundary trace $u/\mathrm{dist}^s$ of the eigenfunction \cite{djitte-fall-weth}; for the logarithmic Laplacian the boundary trace is the amplitude $C$ of Theorem~\ref{thm:edge} and Computation~\ref{comp:edge}, and a Pohozaev identity with the local boundary term $\int_{\partial\Omega}u^2\ln(\delta^{-2})\,(x\cdot\nu)$ has been announced but, to our knowledge, not established (a 2024 preprint claiming it was withdrawn). We therefore state the law as a conjecture and give the evidence.
+
+\begin{conjecture}[boundary law]\label{conj:hadamard}
+For $a$ not an entry, with $C_\pm(a)=\lim_{\delta\to0}\sqrt{\log(1/\delta)}\,|f(\pm(a-\delta))|$ the edge amplitudes of the minimizer,
+\[
+\lambda'(a)=-\big(C_+(a)^2+C_-(a)^2\big)=-2\,C(a)^2 .
+\]
+Equivalently, with Theorem~\ref{thm:identity}, the Weil form on a window satisfies the Pohozaev-type identity
+$D_\infty(f)+D_P(f)+2P(f)^2+\tfrac{2P(f)}{a}M(f)=2a\,C(a)^2$ on its minimizer.
+\end{conjecture}
+
+\begin{computation}[the boundary law]\label{comp:hadamard}
+$C$ from the edge FEM (two-stage mesh to $10^{-12}a$, fit of $1/f^2$ against $\log(a/\delta)$ on $14\le t\le20$, residual $\le5\times10^{-5}$) and $\lambda'$ from \texttt{rh\_dilation.py} (exact, ball arithmetic, $48$ modes):
+\begin{center}
+\begin{tabular}{@{}rcrccrc@{}}
+\toprule
+$a$ & primes & $\lambda$ (FEM) & $C$ & $\beta$ & $\lambda'$ & $\kappa=-\lambda'/2C^2$\\
+\midrule
+$0.3$ & no & $+0.2225566$ & $1.30891$ & $-1.49$ & $-3.42881$ & $1.0007$\\
+$0.4$ & no & $-0.0780502$ & $1.15425$ & $-1.48$ & $-2.66640$ & $1.0007$\\
+$0.5$ & no & $-0.3222425$ & $1.06222$ & $-1.45$ & $-2.25815$ & $1.0007$\\
+$0.6$ & no & $-0.5358860$ & $1.00932$ & $-1.42$ & $-2.03880$ & $1.0007$\\
+$0.4$ & yes & $1.470510\times10^{-2}$ & $0.48266$ & $-1.57$ & $-0.465947$ & $1.0001$\\
+$0.45$ & yes & $2.404578\times10^{-3}$ & $0.22494$ & $-1.67$ & $-0.101283$ & $1.0009$\\
+$0.5$ & yes & $1.936801\times10^{-4}$ & $0.07493$ & $-1.78$ & $-1.123556\times10^{-2}$ & $1.0005$\\
+$0.549$ & yes & $1.491447\times10^{-5}$ & $0.02412$ & $-1.87$ & $-1.143529\times10^{-3}$ & $0.983$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Seven cases give $\kappa=1$ to better than $10^{-3}$, across supports where the prime-free floor is positive and negative and with the primes present; the common offset $7\times10^{-4}$ is the mesh bias of $C$. The last case measures $C$ at $a_3=0.54931$ and $\lambda'$ at $0.549$, in the region where $\Phi'$ changes by $6\%$ per $0.001$ (Section~\ref{sec:grid}), which accounts for its $1.7\%$.
+\end{computation}
+
+An exactly solvable check: for one half of the Dirichlet form of $L_\Delta$ on $(-a,a)$, the scaling $L_\Delta(u(\cdot/a))=(L_\Delta u)(\cdot/a)+2\log a\,u(\cdot/a)$ gives $\lambda(a)=\lambda(1)-\log a$, so the law predicts $C(a)^2=1/(2a)$; the prime-free amplitudes above give $2aC^2=1.028,\,1.066,\,1.129,\,1.223$ at $a=0.3,\dots,0.6$, and the exact derivatives give $-a\lambda'=1.029,\,1.067,\,1.129,\,1.223$: the departures from $1$ are the bounded corrections (the polar term and $\Ree\psi-\log|t|$), identical on both sides.
+
+\begin{corollary}[of Conjecture~\ref{conj:hadamard}]
+$\Phi'(a)=2C(a)^2/\lambda(a)$, and Conjecture~\ref{conj:A} is equivalent to
+\[
+C(a)^2\le\tfrac{c}{2}\,\Tst(a)\,\lambda(a)\qquad(a\ge a_0):
+\]
+the edge amplitude of the minimizer is bounded by its energy times the horizon.
+\end{corollary}
+
+This is the form in which the conjecture is a statement about one function at one place. The relay of Section~\ref{sec:kink} reads: as $a$ approaches an entry from below, the form without the entering prime power is heading to indefiniteness at $a_{\mathrm{fail}}$ (the deleted-form failure points of \cite{michaels-folds}), $\lambda$ falls roughly linearly while $C$ stays of the same order, and $\Phi'=2C^2/\lambda$ rises like $1/(a_{\mathrm{fail}}-a)$ until the entry rescues the floor; Section~\ref{sec:grid} records the rise ($\Phi'/\Tst$ from $3.20$ at $a=0.547$ to $3.97$ at $a=0.549$, verified both by the identity and by finite differences of step $2\times10^{-4}$). Under the Riemann Hypothesis, $C(a)$ is the boundary trace of the band-limited function that best hides from the zeros above the horizon, and the corollary says that this trace, squared, never exceeds a horizon-multiple of the residual energy at the zeros.
+
+\section{Relation to the literature}\label{sec:lit}
+
+Suzuki \cite{suzuki-screw} organizes the Weil form on $[-a,a]$ as a family of self-adjoint operators and conjectures that an operator with the zeros as spectrum is their limit as $a\to\infty$; Conjecture~\ref{conj:A} is a differential inequality for the ground state of that family. Zhu \cite{zhu} certifies both parity sectors at $a=0.8$, proposes the Landau--Widom decay law from his own upper bounds on $0.5\le a\le2$, and states the resolution threshold; his exploratory $950$-mode value at $a=1.19$ lies between $10^{-48}$ and $10^{-46}$. Connes--Consani \cite{connes-consani} treat the range $a\le\tfrac12\log2$ where only the archimedean place acts; the wall of Proposition~\ref{prop:wall} is that place acting alone at the edge for every $a$. The atlas \cite{michaels-atlas} contains an exact-rational certificate of the odd floor to $a=3/8$ with constant $1/200$, inside Zhu's range, and the first application of Theorem~\ref{thm:edge} to this operator. The folds paper \cite{michaels-folds} computed the floors to $a=1.1$, the deleted-form failure points, and the symbol's negative set, and stated the relay as a sequence of kicks, which Sections~\ref{sec:kink} and~\ref{sec:grid} replace by the continuous reorganization measured here.
+
+\section*{Reproducibility}
+All scripts, data files and the memo from which this paper is drawn are in \cite{michaels-repo}: \texttt{rh\_weil\_odd.py}, \texttt{rh\_weil\_arb.py}, \texttt{rh\_edge\_fem.py}, \texttt{rh\_soft\_kink.py}, \texttt{rh\_floor\_grid.py}, \texttt{rh\_arb\_grid.py}, \texttt{rh\_dilation.py}, and the grids \texttt{floor\_grid\_K40.csv}, \texttt{floor\_grid\_K72.csv}, \texttt{floor\_grid\_arb.csv}.
+
+\begin{thebibliography}{99}
+\bibitem{weil} A. Weil, Sur les ``formules explicites'' de la th\'eorie des nombres premiers, Comm. S\'em. Math. Univ. Lund (1952), 252--265.
+\bibitem{yoshida} H. Yoshida, On Hermitian forms attached to zeta functions, in: Zeta Functions in Geometry, Adv. Stud. Pure Math. 21, 1992, 281--325.
+\bibitem{bombieri} E. Bombieri, Remarks on Weil's quadratic functional in the theory of prime numbers I, Rend. Mat. Acc. Lincei (9) 11 (2000), 183--233.
+\bibitem{suzuki-screw} M. Suzuki, Weil's quadratic form via the screw function, arXiv:2606.09096 (2026).
+\bibitem{suzuki-hilbert} M. Suzuki, On the Hilbert space derived from the Weil distribution, arXiv:2301.00421.
+\bibitem{zhu} X. Zhu, Weil positivity in compact windows: a finite reduction, certified two-sided bounds, and a Landau--Widom decay law, arXiv:2608.24827 (2026).
+\bibitem{connes-consani} A. Connes and C. Consani, Weil positivity and trace formula, the archimedean place, Selecta Math. (N.S.) 27 (2021), no. 4, Paper No. 77.
+\bibitem{chen-weth} H. Chen and T. Weth, The Dirichlet problem for the logarithmic Laplacian, Comm. Partial Differential Equations 44 (2019), 1100--1139.
+\bibitem{hls} V. Hern\'andez-Santamar\'ia, L. F. L\'opez R\'ios and A. Salda\~na, Optimal boundary regularity and a Hopf-type lemma for Dirichlet problems involving the logarithmic Laplacian, Discrete Contin. Dyn. Syst. 45 (2025), arXiv:2401.18033.
+\bibitem{beurling-malliavin} A. Beurling and P. Malliavin, On the closure of characters and the zeros of entire functions, Acta Math. 118 (1967), 79--93.
+\bibitem{lps} H. J. Landau and H. O. Pollak, Prolate spheroidal wave functions, Fourier analysis and uncertainty II, III, Bell System Tech. J. 40 (1961), 65--84; 41 (1962), 1295--1336.
+\bibitem{landau-widom} H. J. Landau and H. Widom, Eigenvalue distribution of time and frequency limiting, J. Math. Anal. Appl. 77 (1980), 469--481.
+\bibitem{djitte-fall-weth} S. M. Djitte, M. M. Fall and T. Weth, A generalized fractional Pohozaev identity and applications, Adv. Calc. Var. (2023), arXiv:2112.10653.
+\bibitem{michaels-folds} C. Michaels, Primes, Folds, and the One Dot: A Computational Atlas of Weil Positivity, Prime-Sieve Geometry and the Zeta Zeros, manuscript, September 28, 2026.
+\bibitem{michaels-atlas} C. Michaels, Theta Kernels, Weil Positivity, and the Mathematical Theory Atlas, complete research compilation through Checkpoint 20, September 23, 2026.
+\bibitem{michaels-mobius} C. Michaels, The Michaels M\"obius Modifier and the Michaels Dynamic DNA Sieve, version 2, September 29, 2026.
+\bibitem{michaels-repo} C. Michaels, research repository (scripts, data and memo), 2026.
+\end{thebibliography}
+
+\end{document}

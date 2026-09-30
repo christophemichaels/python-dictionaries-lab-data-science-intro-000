@@ -406,6 +406,33 @@ The strong form is false, and not by a little: the largest eigenvalue of the pen
 
 ---
 
+### 2.9 The boundary law: λ′(a) = −2C(a)² [conjecture; verified to 10⁻³ in eight cases]
+
+Since Q does not depend on a, λ(a) is the infimum of a fixed form over the growing family L²(−a, a), and its derivative is a domain variation. For the Dirichlet fractional Laplacian, Hadamard's formula expresses such a derivative through the boundary trace u/dist^s of the eigenfunction (Djitte–Fall–Weth); for the logarithmic Laplacian the trace is the amplitude C of §2.6. A Pohozaev identity for L_Δ with the local boundary term ∫u²·log(δ⁻²)(x·ν) was claimed in a 2024 preprint that was withdrawn for an error in its proof, so the law is stated here as a conjecture with its evidence.
+
+**Conjecture (boundary law).** For a not an entry, λ′(a) = −(C₊² + C₋²) = −2C(a)², where C_± are the edge amplitudes lim √log(1/δ)·|f(±(a−δ))| of the minimizer. Equivalently, with §2.8, D_∞(f) + D_P(f) + 2P² + (2P/a)M = 2a·C(a)² on the minimizer: a Pohozaev identity for the Weil form on a window.
+
+**Evidence** (`rh_hadamard.py`, data in `boundary_law.csv`): C from the edge FEM on the two-stage mesh, λ′ exact from `rh_dilation.py`: [verified]
+
+| a | primes | λ (FEM) | C | β | λ′ (exact) | κ = −λ′/2C² |
+|---|---|---|---|---|---|---|
+| 0.3 | no | +0.2225566 | 1.30891 | −1.49 | −3.42881 | 1.0007 |
+| 0.4 | no | −0.0780502 | 1.15425 | −1.48 | −2.66640 | 1.0007 |
+| 0.5 | no | −0.3222425 | 1.06222 | −1.45 | −2.25815 | 1.0007 |
+| 0.6 | no | −0.5358860 | 1.00932 | −1.42 | −2.03880 | 1.0007 |
+| 0.4 | yes | 1.4705×10⁻² | 0.48266 | −1.57 | −0.465947 | 1.0001 |
+| 0.45 | yes | 2.4046×10⁻³ | 0.22494 | −1.67 | −0.101283 | 1.0009 |
+| 0.5 | yes | 1.9368×10⁻⁴ | 0.07493 | −1.78 | −1.12356×10⁻² | 1.0005 |
+| 0.549 | yes | 1.4914×10⁻⁵ | 0.02412 | −1.87 | −1.14353×10⁻³ | 0.983 |
+
+Seven cases give κ = 1 to better than 10⁻³ (the common 7×10⁻⁴ is the mesh bias of C), across positive and negative prime-free floors and with primes; the last measures C at a₃ = 0.54931 and λ′ at 0.549, where Φ′ moves 6% per 0.001 (below), which accounts for its 1.7%. Exactly solvable check: for one half of the Dirichlet form of L_Δ on (−a, a), λ(a) = λ(1) − log a by the scaling identity, so the law predicts C² = 1/(2a); the prime-free 2aC² = 1.028, 1.066, 1.129, 1.223 at a = 0.3…0.6 against −aλ′ = 1.029, 1.067, 1.129, 1.223, the departures from 1 being the bounded corrections, identical on both sides.
+
+**Consequences.** Φ′(a) = 2C(a)²/λ(a). **Conjecture A ⟺ C(a)² ≤ (c/2)·T\*(a)·λ(a):** the edge amplitude of the minimizer is bounded by its energy times the horizon. The amplitude law of §2.7 ("C² ≍ λT\*") is therefore not a separate observation but Conjecture A itself. Under RH, C is the boundary trace of the band-limited function that best hides from the zeros above the horizon.
+
+**The relay, resolved.** The exact derivative (`rh_dilation.py`, 48 modes) just below the entry of 3: Φ′/T\* = 3.393 (a = 0.5), 3.197 (0.547), 3.527 (0.548), 3.731 (0.5485), 3.969 (0.549), each confirmed by a finite difference of step 2×10⁻⁴ to four digits. Approaching an entry from below, the form without the entering prime power is heading to indefiniteness at a_fail (Table 1 of the folds paper: 0.5574 for n = 3), λ falls roughly linearly (λ′ ≈ −1.14×10⁻³ at 0.549, hitting zero at 0.562 by linear extrapolation) while C stays of the same order, and Φ′ = 2C²/λ rises like 1/(a_fail − a) until the entry rescues the floor. The 0.0125 and 0.004 grids of §2.7 averaged over this rise (their 62.8 at a₃⁻ is the mean of 60 → 75 over the last 0.004); Observation C there stands at those scales, and the fine structure is this. The scan of the exact derivative around the first five entries at offsets 10⁻⁴ to 10⁻² is reported below when complete.
+
+---
+
 ## 3. Proof architecture
 
 Here is the only architecture I can see along these routes. Four lemmas; three are within reach; the fourth is where RH lives.
