@@ -10,11 +10,26 @@ Galerkin residual.  The last piece is the boundary overlap: the leak of f_T just
 against the singular part of g_out ~ -C L^{1/2}, which has no logarithm and is the tail law; the overlap with the
 smooth part of g_out (regular part of the kernel, left half-window, reflected primes) and the polar piece cancel.
 
-Usage: python3 rh_sum_rule.py data/fem_a0.5_full.json [T/T* list] [lambda']
+Usage: python3 rh_sum_rule.py data/fem_a0.5_full.json [T/T* list] [lambda'] [C beta]      or: python3 rh_sum_rule.py jl
 """
 import sys, json, math, numpy as np
 from numpy.polynomial.legendre import leggauss
 import mpmath as mp
+
+def JL(L):
+    """J(L) of paper Lemma 7.11: the edge overlap is 2C^2/(pi T) J(L(1/T)); no 1/L term, J = 1 + O(1/L^2)."""
+    def gL(w, n=4000):
+        sg = (np.arange(n) + 0.5)/n
+        num = L + np.log(1/(w*(1-sg))); den = L + np.log(1/(w*sg))
+        return np.mean(np.sqrt(np.clip(num, 1e-9, None)/np.clip(den, 1e-9, None)))
+    W = 0.5*math.exp(L); eps = 5.0/W
+    w = np.linspace(1e-6, W, int(min(4e6, 200*W)) + 1); wc = w[::max(1, len(w)//2000)]
+    g = np.interp(w, wc, np.array([gL(x) for x in wc]))
+    return np.trapezoid(np.sin(w)*np.exp(-eps*w)*g, w)/np.trapezoid(np.sin(w)*np.exp(-eps*w), w)
+
+if len(sys.argv) > 1 and sys.argv[1] == "jl":
+    for L in (3, 4, 5, 6, 7, 8): print(f"L={L}: J(L) = {JL(L):.5f}   1 + pi^2/(24 L^2) = {1 + math.pi**2/(24*L*L):.5f}")
+    sys.exit(0)
 
 fn = sys.argv[1]; ks = [float(k) for k in sys.argv[2].split(",")] if len(sys.argv) > 2 else [5, 10, 20, 50, 100]
 lam_prime = float(sys.argv[3]) if len(sys.argv) > 3 else 0.0     # exact derivative at the support (data/dilation_*.log), for the law
