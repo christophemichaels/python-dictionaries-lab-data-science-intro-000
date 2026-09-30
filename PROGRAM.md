@@ -26,9 +26,19 @@ horizons on (Computation 7.14). And the profile is NOT in its asymptotic edge re
 (f^2 L / C^2 = 1.5-3.2 at delta = 1/(e T*)); Lemma 7.11 + 7.12 explain only the far field. So the finite-T sum rule is
 an exact analytic identity still to be found: a Pohozaev-type identity for the eigen-equation (the edge pairing of f
 with the dilation generator x f' gives -lambda' by the boundary law; the same pairing cut at height T gives the tail).
-NEXT for item 2: derive it. Start from tail(T) = 2P <f, s_{>T}> - <f_T, g_out> and the dilation identity
-a lambda' = -(D_inf + 2P^2 + 2PM), D_inf = (1/2pi) int |F|^2 t dPsi_inf/dt, and look for the identity
-T tail(T) = -lambda'/pi + (terms that vanish like the prime-free data say, i.e. by 3 horizons).
+DONE (Proposition 7.15, Corollary 7.16, Computation 7.17): the exact identity. Cutting the dilation integral at T,
+integrating by parts and using the eigen-equation on |t| < T:
+  D = tail(T) + (1/pi) T |F(T)|^2 (Psi(T)-lambda) + tailD(T) - 4P <s, ((xf)')_{>T}> + 2 B_T,
+  B_T = <g_out, ((xf)')_T>,  D = 2 B_inf,  so  -a lambda' = 2 lim <g_out, ((xf)')_T>  and  B_inf = a C^2.
+Verified on the prime-free FEM critical point at a = 0.5: D = 1.129084 (engine: 1.129075), B_T -> 0.551 vs D/2 = 0.5645,
+identity to 1-2% (rh_cutoff_identity.py, data/cutoff_identity_a0.5_primefree.log). The tail law is the statement
+B_inf - B_T = B_inf/(pi a T)(1 + o(1)) up to explicit oscillating terms: the Hadamard pairing converges at the rate set
+by its own value.
+NEXT for item 2: the asymptotics of B_inf - B_T = <g_out, ((xf)')_{>T}>: the overlap of the outside force -C L^{1/2}
+with the high-pass leak of the dilation generator (edge singularity -(a/2) C L^{-3/2}/delta) through the Dirichlet
+kernel: Lemma 7.11's computation with (L^{-3/2}/delta, L^{1/2}) in place of (L^{-1/2}, L^{1/2}); the oscillating
+terms must cancel the boundary term (1/pi) T |F(T)|^2 Psi(T) ~ (2C^2/(pi T))(1 + cos 2Ta) and the polar high-pass.
+Numerically, B_T is needed to 1e-4 to separate the terms (the leak of a 1/delta singularity is delicate).
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -58,9 +68,9 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.16, Proposition 7.17; NEXT]
-Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.16). Data: medians of the floor's mass 2.39 ... 2.74 T*
-(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.17: under RH, (S_kappa) [zeros above kappa T* sample the tail
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.19, Proposition 7.20; NEXT]
+Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.19). Data: medians of the floor's mass 2.39 ... 2.74 T*
+(rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.20: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
 c = pi kappa M M'. Measured: M ~ 1, M' ~ 1, kappa = e -> bound pi e = 8.5 against the observed 3.3-3.9 = pi e theta(e T*).
 Remaining: prove (S_e) (a sampling inequality on the half-line above e T* for high-pass window functions with a log
@@ -73,7 +83,7 @@ above the edge law at delta = 1/(e T*)); it holds because the tail law is analyt
 So ALL the arithmetic of Conjecture A is in (S_e): the zeros above e T* sample the analytic tail of F at their mean
 density, constant ~1. NEXT for item 3: the analytic form of M through the explicit formula for the high-pass part of
 f (the fluctuation is the prime sum on frequencies above kappa T*, whose only structure between entries is the
-alignment of Computation 7.18), and the gap condition it needs (no gap wider than pi/a above e T*).
+alignment of Computation 7.21), and the gap condition it needs (no gap wider than pi/a above e T*).
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
