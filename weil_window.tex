@@ -456,6 +456,26 @@ whenever the last sum converges absolutely, so Conjecture~\ref{conj:A} reads $\s
 \]
 is the lower sampling constant of the zeros for $\PW_a$. The zeros have density $(2\pi)^{-1}\log(t/2\pi)$, which exceeds $a/\pi$ exactly above $\Tst(a)$, so only the zeros above the horizon can sample $\PW_a$, and the floor measures how well a band-limited function can hide from them.
 
+Both statements can be evaluated on the zeros themselves. The explicit formula is unconditional, and every zero used below lies on the line, so for the $K$-mode minimizer the sum over the zeros of $|F_K(\gamma)|^2$ must return $Q(f_K)=\lambda_K$ up to the contribution of the zeros above the last one used; this closes the loop on the object the form was built from.
+
+\begin{computation}[the floor and the identity on the zeros]\label{comp:zeros}
+\texttt{rh\_zero\_side.py}, with the first $6000$ zeros ($\gamma\le6365.85$; \texttt{data/zeros\_6000.txt}, from \texttt{mpmath.zetazero}, the first $400$ to $36$ digits and the rest to $21$). For the $K$-mode minimizers of Computation~\ref{comp:identity}, $F_K$ is evaluated in closed form through spherical Bessel functions at $35$ digits; the sums run over $\gamma>0$ with the factor $2$; the tail above $\gamma_{6000}$ is the Riemann--von Mangoldt density integrated against $|F_K|^2$, with $|F_K(t)|^2$ replaced by its mean $2f_K(a)^2/t^2$ beyond $\gamma_{6000}+60$, and the derivative tail is the corresponding $-2\times$ that.
+\begin{center}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+$a$ & $K$ & $\lambda_K$ & $2\sum_{\gamma>0}|F_K(\gamma)|^2+\text{tail}$ & ratio & $a\lambda_K'$ (Computation~\ref{comp:identity}) & $\lambda_K+2\sum_{\gamma>0}\gamma\,\partial_t|F_K|^2(\gamma)+\text{tail}$ & ratio\\
+\midrule
+$0.6$ & $48$ & $5.96594\times10^{-7}$ & $5.96554\times10^{-7}$ & $0.99993$ & $-2.49341\times10^{-5}$ & $-2.49310\times10^{-5}$ & $0.99988$\\
+ZSROW08
+ZSROW10
+\bottomrule
+\end{tabular}
+\end{center}
+At $a=0.6$ the value ratio with $N=10,\,30,\,100,\,300,\,1000,\,3000,\,6000$ zeros (tail included) is $0.977,\,0.952,\,0.973,\,0.989,\,0.9974,\,0.99967,\,0.99993$; the residual is the fluctuation of the zeros about their mean density, of the size of the tail. The derivative sum is first-order sensitive to the positions of the zeros, by $4\gamma|F_K'(\gamma)|^2\varepsilon$ per zero for an error $\varepsilon$ in $\gamma$, while the value sum is not; with all zeros at $21$ digits the derivative sum at $a=1$ came out $+7\times10^{-22}$ against $-2.5\times10^{-24}$, stable from $N=30$ on, and the $36$-digit zeros cure it. ZSTEXT10
+\end{computation}
+
+Where the floor sits among the zeros is the second reading of the same computation. ZSSHARE
+
 \begin{heuristic}[prolate lower bound]\label{heur:prolate}
 The number of zeros in $[-\Tst,\Tst]$ is $2N(\Tst)\approx(\Tst/\pi)(2a-1)$, short of the Shannon number $2a\Tst/\pi$ of $[-a,a]\times[-\Tst,\Tst]$ by $\Tst/\pi$. By the Landau--Pollak--Slepian theory \cite{slepian-pollak,lps}, with the asymptotics of the prolate spectrum in the plunge region \cite{slepian65,landau-widom} (about $(2/\pi^2)\log c$ eigenvalues between $\varepsilon$ and $1-\varepsilon$ for $c=a\Tst$), a function in $\PW_a$ constrained to vanish on all zeros below the horizon can still keep all but $\eta\gtrsim\exp(-\pi\Tst/(\log(a\Tst)+O(1)))$ of its energy below the horizon; under RH this bounds $\lambda$ from above, i.e.\ $\Phi\gtrsim\pi\Tst/\log(a\Tst)$, which is $0.7\,\Tst$ at $a=1$. The observed value is $\Phi(1)=59.5=1.28\,\Tst$ (Computation~\ref{comp:grid}); the zeros are about twice as expensive a constraint set as the count alone predicts, and the difference is arithmetic. Conjecture~\ref{conj:A} is the matching upper bound.
 \end{heuristic}
@@ -511,7 +531,7 @@ Suzuki \cite{suzuki-screw} organizes the Weil form on $[-a,a]$ as a family of se
 An independent referee report on the first version of this paper identified the gaps corrected here: the identity had been asserted for the exact form on numerical grounds (now Theorem~\ref{thm:identity} for the $K$-mode form and Proposition~\ref{prop:dini} for the exact one), Conjecture~\ref{conj:A} had been phrased in terms of $\Phi$ and so presupposed $\lambda>0$, the abstract overstated several computations, the resolution threshold had been misattributed, the scaling identity carried a sign error, \eqref{eq:soft} lacked the constant $1-\log2$, and Computation~\ref{comp:grid} misdescribed its data; the report's own recomputations of every table from the data files are gratefully acknowledged.
 
 \section*{Reproducibility}
-All scripts and data are in \cite{michaels-repo}: \texttt{rh\_weil\_odd.py}, \texttt{rh\_weil\_arb.py} (python-flint 0.9.0), \texttt{rh\_edge\_fem.py} (numpy 2), \texttt{rh\_soft\_kink.py}, \texttt{rh\_floor\_grid.py}, \texttt{rh\_arb\_grid.py}, \texttt{rh\_dilation.py} (\texttt{python3 rh\_dilation.py a K [bits] [noprimes]}), \texttt{rh\_hadamard.py}, \texttt{rh\_fourier\_check.py} (the Fourier-side check of Computation~\ref{comp:identity}), and the data \texttt{floor\_grid\_K40.csv}, \texttt{floor\_grid\_K72.csv}, \texttt{floor\_grid\_arb.csv}, \texttt{boundary\_law.csv}, \texttt{relay\_scan.csv} and the folder \texttt{data/} (edge-FEM outputs and dilation logs behind Computation~\ref{comp:hadamard}).
+All scripts and data are in \cite{michaels-repo}: \texttt{rh\_weil\_odd.py}, \texttt{rh\_weil\_arb.py} (python-flint 0.9.0), \texttt{rh\_edge\_fem.py} (numpy 2), \texttt{rh\_soft\_kink.py}, \texttt{rh\_floor\_grid.py}, \texttt{rh\_arb\_grid.py}, \texttt{rh\_dilation.py} (\texttt{python3 rh\_dilation.py a K [bits] [noprimes]}), \texttt{rh\_hadamard.py}, \texttt{rh\_fourier\_check.py} (the Fourier-side check of Computation~\ref{comp:identity}), \texttt{rh\_bv\_check.py}, \texttt{rh\_zero\_side.py} (Computation~\ref{comp:zeros}, with the zeros in \texttt{data/zeros\_6000.txt}), and the data \texttt{floor\_grid\_K40.csv}, \texttt{floor\_grid\_K72.csv}, \texttt{floor\_grid\_arb.csv}, \texttt{boundary\_law.csv}, \texttt{relay\_scan.csv} and the folder \texttt{data/} (edge-FEM outputs and dilation logs behind Computation~\ref{comp:hadamard}).
 
 \begin{thebibliography}{99}
 \bibitem{weil} A. Weil, Sur les ``formules explicites'' de la th\'eorie des nombres premiers, Comm. S\'em. Math. Univ. Lund, Tome Suppl\'ementaire (1952), 252--265.
