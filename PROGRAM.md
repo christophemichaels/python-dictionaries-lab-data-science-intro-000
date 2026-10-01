@@ -41,6 +41,10 @@ be within y_c of the line, a resolution e^{-cT*/2}; the growth of |q| into the s
 3-4 digits at every y <= 0.45 (the plane reads the edge), and departs from it in the mass region; Re q < 0 on 7-15% of the
 heights at y = 0.2 and 19-27% at 0.45, independent of height and support.
 THE BOUNDARY LAW AT EVERY SUPPORT (2026-10-01, paper 9.2: Lemma 9.6, Proposition 9.7, Theorem 9.8, Corollary 9.9, Computation 9.10;
+UPGRADED 2026-10-01 evening: the Diophantine condition DROPPED, Theorem 9.8 holds at EVERY support that is not an entry, resonant
+supports included (the chain landing exactly on the edge is a relative O(L^-2) correction inside the remainder class; near-misses
+are words of length >= 3 for small eps at a non-resonant support, weight O(s^-3), by Lemma 9.6(i) applied to w concatenated with the
+reverse of the resonant word): no exceptional set at all;
 rh_mirror_chains.py, rh_band_phase.py). The one conditional link of Theorem 9.1 beyond a_inf removed. Lemma 9.6: the lattice
 Lambda_a = {log(M/M')} of the entries; a walk of k steps cannot return to within (1/2) e^{-2ak} of its start (|log(M/M')| >= 1/(2 min)
 for M != M' < e^{2ak}); a is Diophantine if |2a - u_w| >= c e^{-kappa |w|} for all words, which holds outside a null set
@@ -96,7 +100,7 @@ change = a zero off the line. The all-support comparison the Atlas leaves open I
 NOT done: the transfer of the quantitative witness delta = -lambda(a)|f|^2 ~ e^{2 delta_max a} to the Suzuki defect E_N needs the
 Suzuki norm S(f,f) of the minimizer; the Atlas's complete energy identity (1/tau_R) K_a(I - K_a) = eta_p W*W + N_a + sum b_n P_{a,log n}
 is not yet related to the edge/echo structure of the minimizer.
-TWO TRANSFERS AND THE BLIND SPOT (2026-10-01, paper 9.4: Proposition 9.14, Proposition 9.15, Theorem 9.16, Computation 9.17;
+TWO TRANSFERS AND THE BLIND SPOT (2026-10-01, paper 9.4: Proposition 9.14, Proposition 9.15, Proposition 9.16, Theorem 9.17, Computation 9.18;
 rh_blind_spot.py). (1) The Suzuki transfer done: with S(f,f) <= M_a^2 |f'|_1^2/pi (Atlas (B.7)) and the Atlas's CP9 (D1) transfer
 applied to a mollified minimizer, lambda(a) < 0 gives E_N >= (1 + pi(1-eps)|lambda(a)|/(3 M_a^2 V_a^2))^2 for N >= N_0, V_a = |f'|_1 =
 4 sup|f| (sup|f| = 1.46, 1.42, 1.40, 1.38 at a = 0.6-1.25, at the fixed position u = 0.22-0.23); with Theorem 9.3(iii) the defect's
@@ -105,7 +109,7 @@ negative-branch minimizer. (2) The paired-prime matrices done: <q, Pi_a q> = 2 s
 defect, Prop 7.29); on the minimizer with a finite tree its tail part is (M_chi - 1) x density = <e^T C_a e / sigma~> (Cor 8.14(vi)),
 C_a the tree's weighted adjacency with the edges; in the periodic model the mean of 2cos(tau d)|E|^2 is e^T C^{(d)} e: THE ATLAS'S
 PAIRED-PRIME MATRIX OF THE ENTRY n, COMPRESSED TO THE EDGE AND ITS ECHOES, IS THE ADJACENCY OF THE STEP log n; P_a is C_a.
-(3) THE BLIND SPOT IS A THEOREM (9.16): 16 Re S(gamma - i delta)^2 = 16 S^2 - 16 delta^2 (S'^2 + S S'') + O(delta^4): every
+(3) THE BLIND SPOT IS A THEOREM (9.17): 16 Re S(gamma - i delta)^2 = 16 S^2 - 16 delta^2 (S'^2 + S S'') + O(delta^4): every
 explicit-formula functional (floor, Mobius energy) is EVEN in the distance from the line - no first-order detector exists anywhere.
 The floor's single-zero sensitivity delta_c(gamma) = (lambda/16 S'(gamma)^2)^{1/2} is e^{-cT*/2} below the horizon (3.5e-12 for
 the first zero at a = 1, 2e-24 at a = 1.25: NO BLIND SPOT BELOW THE HORIZON) and exceeds 1/2 from about 1.5 T* on (10-100 from
@@ -290,9 +294,11 @@ points), so what enters sigma_eff = s - R(s) is the SPECTRAL MEASURE mu_b OF C A
 supp mu_b, complex inside (the edge radiates) (Prop 8.22; the moments of mu_b are exact under truncation to depth g up to order
 2g - 2, so Lanczos from b resolves it). Computed (rh_spectral_measure.py, Lanczos 80 steps on 150000 points, checked against the
 dense eigenproblem on 6000): mu_b sits at the BOTTOM of the spectrum (mean 0.1-0.25, width 1-2.3 against rho(C) = 2-8), its
-weight above the horizon's height 2a is <= 6% at every a, and its 1% quantile (the band the edge sees) ends at 0.8, 1.3, 1.7,
-2.1 T* for a = 1.0-1.75 (depth adequate) and 4-5 T* for a = 2-2.5 (depth 4-5 links; the 5% quantile, 1.0-1.5 T*, is stable with
-depth). At 5 T* the weight above s is zero at every support up to 2.5. So THE PREDICTION OF A RECEDING ONSET IS WITHDRAWN: the
+weight above the horizon's height 2a is <= 6% at every a, and its 1% quantile ends at 0.8, 1.3 T* for a = 1.0, 1.25 (where
+rho(C) itself is resolved: 1.94, 2.93 < 2a + log 5); at a >= 1.5 the Lanczos measure's top node lies below 2a + log 5, so its
+'zero weight above 5 T*' is the truncation's [CORRECTED 2026-10-01, Proposition 9.16]: the support of mu_b reaches rho(C) >=
+rho_bar(a) (connected lattice), which exceeds 2a + log 5 from a = 1.75; what the EXACT moments bound is the MASS above 5 T*:
+<= 2e-6, 1e-4, 1e-3, 0.8%, 2.2%, 4.7%, 5.6% at a = 1.0 ... 2.5 (Chebyshev with the highest exact even moment, orders 14,14,14,10,8,6,6). So THE PREDICTION OF A RECEDING ONSET IS WITHDRAWN: the
 spectral radius is the band of the worst coupling, the edge's coupling sits far below it. What remains predicted for a = 2:
 the onset of the law a little above five horizons (7-10 T*, where sigma_eff/s = 0.72-0.77; at 5 T* s is just above the resolved
 top of supp mu_b and the return is large, sigma_eff/s = 0.5), and the sampling defect sigma_eff/s at ten horizons going from
@@ -377,8 +383,10 @@ where the tree is infinite; c = pi e M'' at kappa = e is again 8.5 against the o
 NEXT for item 3: UNIFORMITY IN a of the onset of the sharp form, i.e. (T_kappa) with one kappa and one M'' for all a. The band
 analysis makes this concrete: the onset is where the archimedean symbol 2a + log kappa clears the band the edge sees, the upper
 tail of the spectral measure mu_b of the confined lattice at the edge's coupling. Measured, that tail ends within a few horizons
-up to a = 2.5 (1% quantile at 0.8-4.6 T*), so a fixed kappa ~ 10 suffices as far as computed. The prime-side statement to prove:
-the weight of mu_b above 2a + log kappa is zero (or below a fixed fraction) for all a, a statement about closed walks through the
+up to a = 2.5 (mass above 5 T* <= 2e-6 ... 5.6% by the exact moments; the SUPPORT reaches rho(C) ~ 4e^a/a, Proposition 9.16),
+so a fixed kappa ~ 10 suffices as far as computed. The prime-side statement to prove: the weight of mu_b above 2a + log kappa
+is below a fixed fraction eta < 1 for all a (it is NOT zero: the support outruns the horizon), i.e. m_k <= eta (2a + log kappa)^k
+for ONE even k and all a, a statement about closed walks through the
 edge of the window with steps log m and weights Lambda(m)/sqrt m, i.e. about the multiplicative structure of the integers below
 e^{2a}. Together with the finite-tree theorems this would make (T_kappa) uniform. The a = 2 minimizer checks the picture.
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
@@ -389,14 +397,17 @@ must eventually be replaced by its prime-side form: the dilation derivative of t
 using only the Euler product and the archimedean symbol.
 
 ## Next (as of 2026-10-01, evening)
-(a) [CLOSED by Theorem 9.16: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
+(a) [CLOSED by Theorem 9.17: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
 detection scale a_det ~ delta^{-1} log(1/delta), so the quantity must be visible at supports where lambda > 0 and the Mobius budget is
 tame; candidates: the stiffness kappa_2 = sum 16 S'(gamma)^2 against y_c (Comp 9.5); the overlap of the minimizer with the Mobius test
 function sum mu(n) n^{-1/2} phi(x - log n) (the global sequence evaluated in the local metric); the Suzuki norm S(f,f) of the minimizer.
 (b) The long multiplicative relations m_k^{1/k} for k ~ a (the uniformity of the onset, item 3).
 (c) The Atlas bridge [DONE in 9.4 up to Suzuki's constant M_a]: compute M_a from Suzuki's feature (B.2) and S(f,f) for the K-mode minimizer
 at a <= 1 to make Proposition 9.14 numerical; the paired-prime/echo-tree identification is Proposition 9.15.
-(d) An interior-resolving solver at a = 1 (FEM, spacing < 1/(50 T*)) before any further pointwise claim in the band.
+(d) An interior-resolving solver at a = 1 (FEM, spacing < 1/(50 T*)) before any further pointwise claim in the band; a K = 200
+    minimizer at a = 1 (interior resolved to 8.6 T*) is being computed (data/kmode_K200/) to see the echo phase appear at 4-8 T*.
+(e) The mass of mu_b above the horizon, rigorously: prove m_k <= eta (2a + log kappa)^k for one even k and all a (Proposition 9.16(iv));
+    the moments are explicit sums over closed walks, m_1 is in closed form (Prop 9.16(iii)), m_2 = |Cb|^2/|b|^2 next.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.

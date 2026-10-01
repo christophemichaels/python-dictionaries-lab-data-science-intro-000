@@ -1,5 +1,5 @@
 """
-The blind spot of the window (paper Theorem 9.16, Computation 9.17), and the variation of the K-mode minimizers (Proposition 9.14).
+The blind spot of the window (paper Theorem 9.17, Computation 9.18), and the variation of the K-mode minimizers (Proposition 9.14).
 
 The quartet of an off-line zero rho_0 = 1/2 + delta + i gamma contributes 16 Re S(gamma - i delta)^2 to the floor, against 16 S(gamma)^2
 for a double zero on the line at the same height: the difference is -16 delta^2 (S'(gamma)^2 + S(gamma) S''(gamma)) + O(delta^4), even in
