@@ -411,8 +411,16 @@ at a <= 1 to make Proposition 9.14 numerical; the paired-prime/echo-tree identif
     the K = 80 polynomial is in its transition zone there). Connectivity (rh_lattice_connect.py): the right edge's closure is one
     interior component from a = 0.9 on (24 first-generation points in one component at a = 2 within 10^5 points); at a = 0.85 the
     first generation still splits into two components within 10^5 points and chains of 9000 steps.
-(e) The mass of mu_b above the horizon, rigorously: prove m_k <= eta (2a + log kappa)^k for one even k and all a (Proposition 9.16(iv));
-    the moments are explicit sums over closed walks, m_1 is in closed form (Prop 9.16(iii)), m_2 = |Cb|^2/|b|^2 next.
+(e) The mass of mu_b above the horizon, rigorously: DONE FOR k = 2 WITH eta = 5/12 + o(1) (Proposition 9.16(v), 2026-10-01 evening):
+    m_2 |b|^2 = |Cb|^2 = sum over rational landing points of (sum of two-step weights)^2 <= 2 sum c_m^2 B(2a - log m) + sum c_m^2 B(log m)
+    + O(a) (swap multiplicity 2 inward, 1 outward, same-prime points O(a) in total), and Mertens gives m_2 <= (5/12)(2a)^2 (1 + O(1/a)):
+    THE EDGE'S MEASURE KEEPS AT LEAST 7/12 OF ITS MASS BELOW ANY FIXED NUMBER OF HORIZONS, UNIFORMLY IN a - the first uniform-in-a
+    arithmetic statement of the program. Computed exactly to a = 5 (rh_edge_moments.py, 2532 entries): m_2/(2a)^2 = 0.23 -> 0.385,
+    m_4^{1/4}/|b| = 1.10 stable from a = 2.5 (so the k = 4 bound tends to 0.36, no better), m_k^{1/k}/|b| rising with k: the moments
+    cap the provable mass bound near a third; the true mass above five horizons at a <= 1.25 is 1e-6 to 1e-4. NEXT: the shape of
+    mu_b (not its moments): a bound on the weight of mu_b above s from the resolvent / the structure of the walks that reach the
+    top of the component's band (the high-degree points sit near the edges, the Perron vector there), or a direct bound on
+    <b, (C - s)_+ b>.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.
