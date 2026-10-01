@@ -6,6 +6,30 @@ the horizon". Three items, in order; this file is updated at the end of every ro
 
 ## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.12, Corollary 9.13]
 
+REVIEW INPUT (2026-10-01, external reader of the paper; assessed): (1) CORRECT AND ADOPTED: the main theorem silently used
+(H_BV): Lemma 1.4 gives continuity and monotonicity of lambda, absolute continuity was Prop 5.6 under (H_BV); the hypothesis
+is now stated on page 4 and in Theorem 9.1's proof, with the removal route: Prop 5.3 + Prop 8.3 give a D^- lambda >= -D(f)
+= -2a|A_0|^2 at non-entry supports, continuous + non-increasing + lower Dini derivative >= -M off a countable set => Lipschitz;
+needs |A_0(a)| locally bounded from the source norms of Cor 7.24 (||f||_2 = 1). TO WRITE NEXT. (2) CORRECT AND ADOPTED: (H_inf)
+enters the Wiener-Hopf chain (Props 7.23, 7.24, 8.4, Theorem 9.12) only through f(a-) = 0 (Thm 3.2) fixing psi(0+); psi' is
+integrable so psi(0+) = c exists, c != 0 would put c/(it) into F~, the representation gives F~ = O(1/(t sqrt log t)) = o(1/t),
+so c = 0; interior C^inf by the commutator bootstrap ([K_inf, chi] of order -1). (H_inf) becomes a corollary of the
+representation, prime-free form immediately, every support modulo the three sketch-density items. Moser/De Giorgi is the wrong
+tool (gain per step is one logarithm). TO WRITE NEXT. (3) ASSESSED, PARTLY ADOPTED: the mass of mu_b above the horizon does
+NOT tend to zero: m_2 ~ (5/12)(2a)^2 gives a bulk of standard deviation 1.29 a, 2a is 1.55 standard deviations, ~6% above the
+horizon uniformly (our Chebyshev bounds rise 2e-6 -> 5.6% from a = 1 to 2.5 and Comp 8.23 saw 6%); the bulk edge 2 sqrt(m_2)
+~ 2.6 a recedes like e^{0.6 a} horizons, so the 1% onset of the sharp law is NOT uniform in a (prediction: ~3-4 T* at a = 2-2.5,
+~6 at a = 3; measured 4-5). TEST with rh_spectral_measure.py at a = 3-5. Consequence for the inequality: the natural rate may
+be c e^{2.6 a}, not c T*; Prop 9.17's integrable-excess form is the robust statement. The theorem to aim for is a local law
+for mu_b in the bulk (cavity recursion, cycles only from p^i p^j = p^{i+j}, O(1) weight against |b|^2 ~ 2a^2). (4) AGREED:
+RH => (25) (the converse of Theorem 9.1) is the reachable theorem, making (25) <=> RH; it needs the uniform onset, i.e. (3).
+(5) AGREED: the sign is the Hypothesis, not a bottleneck of the same kind; the function-field toy 1 - 7T + 9T^2 over F_9
+(positive place counts, Euler product, functional equation, Hasse violated) shows no counting on the lattice produces it.
+(6) NEW DIRECTION NOTED: the even sector has the polar term +2|c><c|, c = cosh(y/2), and K_a^even is an M-operator on the
+half window (negative off-diagonal kernel), ground state positive; RH <=> at most one negative eigenvalue and
+2<c, (K_a^even)^{-1} c> <= -1. Compute mu_2^even(a) and that number before anything else is said. ORDER NOW: (1), (2), then
+the three sketch-density items, then (3)'s test and local law.
+
 VERIFICATION PASS 1 (2026-10-01 night; paper 9.2 rewritten: Lemma 9.8 kernel of a symbol with finitely many derivatives
 (explicit c_m), Lemma 9.9 Hilbert transform of a modulated symbol (error e_k M/(|u| t^{k+1}) with all derivatives), Lemma 9.10
 frozen coefficients along the archimedean symbol (Cauchy on the disc |z - t| <= t/2, Stirling with DLMF error bound; H[g_0] =
