@@ -11,14 +11,16 @@ echo phase directly: its regression coefficients vanish, where the FEM at a = 0.
 therefore measure the edge of the minimizer, at heights up to several hundred horizons, against the sharp form with the archimedean symbol
 and against the window's symbol with the asymptotic amplitude.
 
-Usage: python3 rh_band_phase.py [a] [kmin_T* kmax_T*]      (default a = 1.0, 3-400 T*)
+Usage: python3 rh_band_phase.py [a] [kmin_T* kmax_T*] [coefs.json] [band of the echo regression klo khi]      (default a = 1.0, 3-400 T*, data/tail_law_kmode/coefs_a.json, 10-30 T*)
 """
 import json, math, sys, numpy as np, mpmath as mp
 from rh_band import S_kmode, repsi, vm
 
 a_s = sys.argv[1] if len(sys.argv) > 1 else "1.0"
 kmin, kmax = (float(sys.argv[2]), float(sys.argv[3])) if len(sys.argv) > 3 else (3.0, 400.0)
-d = json.load(open(f"data/tail_law_kmode/coefs_{a_s}.json")); a = float(d["a"]); K = d["K"]; coef = d["c"]
+cf = sys.argv[4] if len(sys.argv) > 4 else f"data/tail_law_kmode/coefs_{a_s}.json"                  # optional coefficient file
+d = json.load(open(cf)); a = float(d["a"]); K = d["K"]; coef = d["c"]
+klo, khi = (float(sys.argv[5]), float(sys.argv[6])) if len(sys.argv) > 6 else (10.0, 30.0)         # the band of the echo regression
 lam = float(d["lambda"]); lam_prime = float(d["a_lambda_prime"])/a; Ts = 2*math.pi*math.exp(2*a)
 ent = [(math.log(m), vm(m)/math.sqrt(m), m) for m in range(2, 400) if vm(m) and math.log(m) < 2*a]
 S2c = 2*sum(c for _, c, _ in ent); t_band = 2*math.pi*math.exp(S2c + lam)
@@ -118,9 +120,9 @@ for lo_k, hi_k in ((3, 10), (10, 30), (30, 47), (47, 100), (100, 200), (200, 400
 
 # --- (iv) the first-generation echo phase: regression of r + theta_inf - kappa/t on (alpha_d sin(td) + beta_d cos(td))/sigma~_inf on 10-30 T*;
 #     the echo form (Corollary 8.14(iii)) has alpha_d = c_d, beta_d = 0, which the FEM at a = 0.6 reproduces (rh_mirror_chains.py) ---
-m = (tk >= 10*Ts) & (tk < 30*Ts); s_ = np.exp(u_i(tk[m]))
+m = (tk >= klo*Ts) & (tk < khi*Ts); s_ = np.exp(u_i(tk[m]))
 cols = [1/tk[m]] + [np.sin(tk[m]*dd)/s_ for dd, _, _ in ent] + [np.cos(tk[m]*dd)/s_ for dd, _, _ in ent]
 Xm = np.array(cols).T; cf, *_ = np.linalg.lstsq(Xm, (r + th_i)[m], rcond=None); k0 = np.sum((r + th_i)[m]/tk[m])/np.sum(1/tk[m]**2)
-print(f"\n(iv) the echo phase on 10-30 T* ({m.sum()} nulls): rms r + theta_inf - kappa/t = {rms((r + th_i)[m] - k0/tk[m]):.4f}; regression on (alpha_d sin(td) + beta_d cos(td))/sigma~_inf:")
+print(f"\n(iv) the echo phase on {klo:g}-{khi:g} T* ({m.sum()} nulls): rms r + theta_inf - kappa/t = {rms((r + th_i)[m] - k0/tk[m]):.4f}; regression on (alpha_d sin(td) + beta_d cos(td))/sigma~_inf:")
 for j, (dd, c, mm) in enumerate(ent): print(f"      m = {mm}: alpha = {cf[1+j]:+.4f} (echo form: c_d = {c:.4f}), beta = {cf[1+len(ent)+j]:+.4f}")
 print(f"   rms after the regression {rms((r + th_i)[m] - Xm @ cf):.4f}; the polynomial resolves the interior to about (2K-1)/a = {(2*K-1)/a/Ts:.1f} T* and the edge to about (2K-1)^2/a = {(2*K-1)**2/a/Ts:.0f} T*", flush=True)
