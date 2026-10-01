@@ -4,6 +4,26 @@ Agreed 2026-09-30. The rate of decay of the floor is pi times the effective heig
 Phi' = pi T_eff (tail law, paper Conjecture 7.7). Conjecture A (which implies RH) is "T_eff is a bounded multiple of
 the horizon". Three items, in order; this file is updated at the end of every round so that the work does not drift.
 
+## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2]
+Nothing proves RH. What is proved (under (H_inf), at every support below a_inf = 0.843): the boundary law lambda' = -2|A_0|^2 and
+the analytic tail law, both with no zeros involved. So RH reduces to ONE INEQUALITY about the minimizer, 2|A_0(a)|^2 <= c T* lambda(a)
+for all a >= 0.8 (Theorem 9.1; beyond a_inf it also needs the boundary law, verified in seven cases and conjectured), equivalently:
+the energy of the minimizer against the shifted symbol above kappa horizons is at most c lambda/(pi kappa). Under RH this is the
+zero sum above kappa T*, bounded by lambda because its terms are squares (Props 7.27, 7.32) - that is the ONLY place RH is used.
+Unconditionally the inequality CONTAINS RH: if RH fails the floor is negative from some support on while the left side is >= 0.
+So no argument that treats lambda as a given number can work; a proof must use the minimality of f to exclude a negative floor,
+as the Rellich-Pohozaev identity does for the Laplacian (where the remainder is a sum of squares); here the identity is the
+dilation identity and the obstruction is the sign of the prime part D_P. A bootstrap in height from the verified zeros gives
+positivity only to a ~ (1/3) log(H/2pi) ~ 9 and gains O(1/T*) per step. The prime-side form: at a finite-tree support
+A_0 = P A_0^(1)(lambda, a), P^2 = 1/|phi_1|^2, lambda the lowest root of the secular equation <phi_1, s> = 1, so the inequality is
+2|A_0^(1)|^2 <= c T* lambda |phi_1|^2 at that root, with only the archimedean symbol and the entries entering; beyond a_inf the
+entries enter only through the spectral measure mu_b of the echo lattice at the edge, whose moments are sums over the closed
+walks through the edge: MULTIPLICATIVE RELATIONS m_1^{e_1} ... m_{k+2}^{e_{k+2}} = 1 among prime powers below e^{2a} with partial
+products in the window, weighted by prod Lambda(m_i)/sqrt m_i (Computation 9.2: m_1 = 0.1-0.25 since a ratio of prime powers is
+rarely a prime power; m_8^{1/8} sits 2.1-2.3 below 2a + log 5 at every a to 2.5, a factor 9 in height; Chebyshev with m_8 puts
+< 4% of mu_b above five horizons). The uniformity of the onset = these relations do not accumulate at the top of the spectrum:
+m_k^{1/k} <= 2a + log kappa - delta for k growing with a. This is where the problem is arithmetic and where the paper stops.
+
 ## 1. Edge law => tail law, as a proposition  [DONE 2026-09-30: paper Proposition 7.8]
 Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|^2 = 2C^2/pi. Proof: edge asymptotics
 of the transform (splitting at delta = 1/t), then the sum over zeros through the Riemann-von Mangoldt formula with

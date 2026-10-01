@@ -497,6 +497,10 @@ The off-line quartet turns *negative* as soon as the test function plants a zero
 
 **L4 (Grönwall).** [trivial] L2 + L3 ⇒ λ(a) ≥ λ(a₀)·exp(−C(T\*(a) − T\*(a₀))) > 0 for all a ≥ a₀, with a₀ = 0.8 from Zhu's certificate. Hence RH.
 
+### 3.0 The reduction, as of 2026-10-01 (paper Section 9)
+
+Theorem 9.1: under (H_∞), RH follows from the single inequality 2|A₀(a)|² ≤ c T\*(a) λ(a) for all a ≥ 0.8 (A₀ the edge amplitude of the minimizer's Wiener–Hopf representation), together with the boundary law λ′ = −2|A₀|², which is a theorem below a_∞ = 0.843 and verified in seven cases beyond. Everything else is proved: the boundary law and the analytic tail law involve no zeros; RH enters the program only to bound the tail energy above κ horizons by λ through the zero sum (squares). The inequality contains RH (it fails wherever the floor is negative), so its proof must use the minimality of f, as Rellich–Pohozaev does for the Laplacian; the obstruction is the sign of the prime part D_P of the dilation identity. Prime-side form: A₀ = P·A₀⁽¹⁾(λ, a) with λ the lowest root of the secular equation of the Wiener–Hopf solution with unit polar source; beyond a_∞ the entries enter only through the spectral measure μ_b of the echo lattice at the edge, whose moments are the weighted multiplicative relations among prime powers below e^{2a} with partial products in the window (Computation 9.2): m₁ = 0.1–0.25, m₈^{1/8} a constant 2.1–2.3 below 2a + log 5 at every a to 2.5, Chebyshev putting < 4% of μ_b above five horizons from the eighth moment alone. The uniform onset is the statement that these relations do not accumulate at the top of the spectrum for lengths k growing with a. This is the arithmetic form of L3.
+
 ### 3.1 Why a bootstrap in height can't replace L3
 
 One might hope to combine L1 with its converse (L1′: RH up to height H ⇒ λ(a) > 0 for a ≤ ½ log(H/2π) − E′) and induct: Platt–Trudgian gives RH to 3×10¹², so positivity to a ≈ 13.4, so (by L1) RH a bit higher, so positivity a bit further, and so on. It doesn't close. Each step gains
