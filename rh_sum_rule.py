@@ -54,7 +54,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "envelope":     # python3 rh_sum_rule.py
     envelope(sys.argv[2], float(sys.argv[3]), bool(int(sys.argv[4]))); sys.exit(0)
 
 def J1L(L):
-    """J_1(L) of paper Proposition 8.2: the overlap of the leak of the low-pass of the edge profile's derivative with the edge force,
+    """J_1(L) of paper Proposition 8.3: the overlap of the leak of the low-pass of the edge profile's derivative with the edge force,
     -(2/pi) int int [(L+log 1/v)/(L+log 1/s)]^{1/2} k'(s+v) ds dv, k(w) = sin(w)/w; = 1 + O(1/L^2) (no 1/L term, by the antisymmetry)."""
     def gL(w, n=4000):
         sg = (np.arange(n) + 0.5)/n

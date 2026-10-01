@@ -14,7 +14,7 @@ a C^2 by the overlap of the leak of the dilation generator with the edge force, 
 antisymmetry of Lemma 7.11 again), and Lemma 8.2 (the edge force to second order). So under the edge law with derivatives:
 boundary law => tail law (Prop 7.8), and both are the flux identity 2|A_0|^2 = -lambda' of the Wiener-Hopf form.
 
-## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20]
+## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
@@ -94,12 +94,21 @@ DONE 2026-09-30 (a): the flux identity B_inf = a C^2 is Proposition 8.3, proved 
 only gives the rate: B_inf - B_T ~ a C g_reg L_T^{-1/2}, the polar cross term, g_reg = 2P sinh(a/2)); it needs the edge law
 with two derivatives (the hypothesis of Prop 7.8) and Lemma 8.2. Verified: C from the edge nodes 1.0615, C^2 = 1.127 vs
 -lambda'/2 = 1.129; the gap a C^2 - B_T = 0.014-0.0125 at 5-20 T* against the leading term 0.024-0.019 (L_T only 2-4 there).
-NEXT for item 2 (what now separates the tail law from a theorem for the prime-free critical points): the DERIVATIVE CONTROL of
-the edge from the representation: show that the inverse transform of A(t)/(t sigma_-(t)) with A - A_0 = O(log t/t) (Corollary
-7.24) is C(L + beta)^{-1/2} + psi with psi^{(k)} = o(delta^{-k} L^{-3/2}), k <= 2, and C = |A_0|. Then Prop 8.3 gives
-2|A_0|^2 = -lambda', Corollary 7.24 gives the tail energy 2|A_0|^2/(pi T), and the tail law is a theorem without primes.
-(b) the echo form with primes as a theorem (the exact representation holds with the window's symbol; the edge asymptotics
-reorganize into the finite echo chain). Old list, still valid for the remaining parts: (a) the factorization of a symbol growing
+DONE 2026-10-01: THE TAIL LAW IS A THEOREM FOR THE PRIME-FREE FORM under (H_inf). Paper Proposition 8.4 (the edge law from the
+representation): the inverse transform of A_0/(t sigma_-(t)) is the edge law with its constants, C = |A_0| and
+beta = -gamma_E - log(2 pi a) - lambda, i.e. f(a - delta) = |A_0| (sigma_inf(1/delta) - gamma_E)^{-1/2} (1 + O(L^-2)): the
+profile is the inverse square root of the symbol at frequency 1/delta shifted by Euler's constant. Proof: Mellin expansion of
+the transform of (log 1/delta)^{-1/2} (the real L^-2 corrections cancel; the phase e^{-i pi/(4M)} appears with M = log t + gamma),
+the expansion theta = -pi/(4 l) - pi^3/(24 l^3) + O(l^-5) + O(log log t/t) from the x-integral form of the Hilbert phase (even
+powers vanish by x -> 1/x), matching to relative order l^-3, and a splitting lemma for the inverse transform of the remainder
+with three derivatives. Corollary 8.5: lambda_inf' = -2|A_0|^2 and T (1/2pi) int_{|t|>T} |F|^2 sigma -> -lambda'/pi: the
+analytic law of Computation 7.14 is a theorem, Conjecture 7.19(i) holds with |A|^2 = -lambda'/2. Computation 8.6 /
+rh_edge_constants.py: with NOTHING fitted, f / [(-lambda'/2)^{1/2} (L + beta)^{-1/2}] = 1.001-1.003 on 1e-10 < delta < 1e-5 at
+a = 0.3, 0.4, 0.5, 0.6 (1.0003-1.0009 on the finer mesh): the boundary law's C and the symbol's beta, both predicted.
+NEXT for item 2: the same for the full form (with primes): (b) the echo form as a theorem from the exact representation with
+the window's symbol (the edge asymptotics reorganize into the finite echo chain), then the edge law with derivatives for the
+full minimizer => boundary law (Prop 8.3) => with RH the zero-side tail law (Prop 7.8). The analytic side of the tail law is
+then closed and everything left is item 3. Old list, still valid for the remaining parts: (a) the factorization of a symbol growing
 like log t, factors (log t)^{1/2} e^{+-i theta}, theta = O(1/log t); (b) the a priori decay of the three transforms: F~ = O(1/t) is the
 edge-law upper bound (Theorem 3.2 under (H_inf)), G~ from Lemma 7.12, H~ from the smoothness of the commutator [K, chi] f near the
 edge; (c) Liouville with the poles at the real zeros, and the far edge at relative order t^-2; (d) with primes, the echo chains
