@@ -1,5 +1,5 @@
 """
-The continuum constants of the edge's spectral measure (paper, the local law after Proposition 9.32).
+The continuum constants of the edge's spectral measure (paper, the local law after Proposition 9.33).
 
 In the limit a -> inf the squared weights of the entries have the density dB(y) = y dy on (0, 2a) (Mertens), the closed walks through
 the edge of length 2k+2 are grouped by the rational they land on, and for k+1 steps on powers of k+1 DISTINCT primes all the walks of a
@@ -9,7 +9,7 @@ N_group is the number of orderings of the k+1 signed steps that stay inside the 
     kappa_{2k} := lim m_{2k}/(2a)^{2k} = 2 J_{k+1}/(k+1)!,   J_n = int_{[0,1]^n} x_1...x_n S_n(x) dx,   S_n = sum_{sign patterns} N(x, pattern)^2,
 
 N(x, pattern) = number of orderings of the n signed steps (in = towards the far edge, out = back) whose first step is 'in' and whose
-partial sums stay strictly in (0, 1), the landing point included.  J_2 = 5/12 exactly (Proposition 9.27(v)); the script checks it and
+partial sums stay strictly in (0, 1), the landing point included.  J_2 = 5/12 exactly (Proposition 9.28(v)); the script checks it and
 computes J_3, J_4, J_5 by Monte Carlo with standard errors, hence kappa_4, kappa_6, kappa_8 and the limiting kurtosis kappa_4/kappa_2^2.
 
 Usage: python3 rh_walk_constants.py [samples] [nmax]     (default 2e6 samples, nmax = 5)
