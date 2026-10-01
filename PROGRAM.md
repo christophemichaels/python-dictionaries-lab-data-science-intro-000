@@ -4,10 +4,11 @@ Agreed 2026-09-30. The rate of decay of the floor is pi times the effective heig
 Phi' = pi T_eff (tail law, paper Conjecture 7.7). Conjecture A (which implies RH) is "T_eff is a bounded multiple of
 the horizon". Three items, in order; this file is updated at the end of every round so that the work does not drift.
 
-## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2]
+## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.8, Corollary 9.9]
 Nothing proves RH. What is proved (under (H_inf), at every support below a_inf = 0.843): the boundary law lambda' = -2|A_0|^2 and
 the analytic tail law, both with no zeros involved. So RH reduces to ONE INEQUALITY about the minimizer, 2|A_0(a)|^2 <= c T* lambda(a)
-for all a >= 0.8 (Theorem 9.1; beyond a_inf it also needs the boundary law, verified in seven cases and conjectured), equivalently:
+for all a >= 0.8 (Theorem 9.1; the boundary law that links the two is now a THEOREM at every Diophantine support, i.e. almost
+everywhere, Theorem 9.8, so the reduction no longer depends on it: Corollary 9.9), equivalently:
 the energy of the minimizer against the shifted symbol above kappa horizons is at most c lambda/(pi kappa). Under RH this is the
 zero sum above kappa T*, bounded by lambda because its terms are squares (Props 7.27, 7.32) - that is the ONLY place RH is used.
 Unconditionally the inequality CONTAINS RH: if RH fails the floor is negative from some support on while the left side is >= 0.
@@ -39,6 +40,43 @@ critical displacement y_c = (lambda/kappa_2)^{1/2} = 1.1e-2, 2.8e-6, 3.5e-12: th
 be within y_c of the line, a resolution e^{-cT*/2}; the growth of |q| into the strip above the horizon is the edge's cosh(2ya) to
 3-4 digits at every y <= 0.45 (the plane reads the edge), and departs from it in the mass region; Re q < 0 on 7-15% of the
 heights at y = 0.2 and 19-27% at 0.45, independent of height and support.
+THE BOUNDARY LAW AT EVERY SUPPORT (2026-10-01, paper 9.2: Lemma 9.6, Proposition 9.7, Theorem 9.8, Corollary 9.9, Computation 9.10;
+rh_mirror_chains.py, rh_band_phase.py). The one conditional link of Theorem 9.1 beyond a_inf removed. Lemma 9.6: the lattice
+Lambda_a = {log(M/M')} of the entries; a walk of k steps cannot return to within (1/2) e^{-2ak} of its start (|log(M/M')| >= 1/(2 min)
+for M != M' < e^{2ak}); a is Diophantine if |2a - u_w| >= c e^{-kappa |w|} for all words, which holds outside a null set
+(Borel-Cantelli, kappa > log(2|D_a|)). Proposition 9.7: above the periodic band (s > X = sum 2c_d) the window's symbol has the
+absolutely convergent expansion log sigma_s = log s + sum_u beta_u e^{i tau u}, beta_u <= 0 indexed by the walks, sum |beta_u| =
+-log(1 - X/s), beta_0 = log G(s) - log s (the geometric mean of Lemma 8.18); the Wiener-Hopf factors are G^{1/2} exp(sum_{+-u>0}
+beta_u e^{i tau u}); 1/sigma_{s,+} = G^{-1/2} sum_{u>=0} rho_u e^{i tau u} with rho_u >= 0, the words of total length k weighing at
+most (X/s)^k, so the weight within eps of the edge is <= (2 eps)^{alpha(s)}, alpha = log(s/X)/2a, and within eps of 2a at a
+Diophantine support <= (eps/c)^{log(s/X)/kappa}; (s/G)^{1/2} = 1 + |b|^2/(2s^2) + ... = the effective symbol's correction, and
+rho_{+-d} = c_d/s + ...: the first-generation echoes. Theorem 9.8 (under (H_inf), a Diophantine, not an entry): (i) A_a(t) -> A_0,
+A_a = A_0 + (mirror chains: sum over lattice points v > 2a of m_v e^{it(v-2a)}, |m_v| <= C rho_v(s), the walks from the far edge
+across the window) + O(1/log^2 t); (ii) the edge law with two derivatives with the SAME constants C = |A_0|, beta = -gamma - log(2 pi a)
+- lambda, remainder O(delta^{-k} L^{-5/2}), the echoes within delta of the edge weighing O(delta^{alpha(L)}); (iii) lambda' = -2|A_0|^2
+at every point of differentiability and, under RH, the tail law. Hence lambda(a_2) - lambda(a_1) = -2 int |A_0|^2 for ALL a_1 < a_2:
+THE BOUNDARY LAW HOLDS ALMOST EVERYWHERE AT EVERY SUPPORT. Corollary 9.9: (H_inf) + the inequality at a.e. a >= 0.8 => RH. Proof
+method: Corollary 8.6 and Proposition 8.4 with the window's symbol, the lattice expansion replacing the kernel lemma; the factors on
+the line by the Hilbert estimate H[g e^{itu}] = -i sign(u) g e^{itu} + O(|g|/(|u| t)) summed with the Diophantine split; the far
+feedback through the kernel of 1/sigma_{a,+} (rho-weighted spikes at the lattice points), its singularities at v - 2a being the
+mirror chains; the inversion with the cutoff t_1 = delta^{-1/2} and the one-sided copies. The theorem is about lambda', NOT about the
+onset: its asymptotics begin at s > X e^{2a}, astronomically far; the onset is item 3. Computation 9.10 (FEM at a = 0.6, 114 nulls
+on 5-34 T*): the window's symbol phase residual 0.0365 (tree 0.0009, archimedean 0.145) is removed to 0.0186 by the two-step
+mirror chains at v - 2a = 0.186, 0.592, 0.997 (log 4, log 6, log 9 minus 1.2) with amplitudes 0.19, 0.51, 0.35 against the chain
+weights 0.24, 0.62, 0.40 (common factor 0.8); the tree's residual shows nothing at those frequencies (0.002); by height band the
+residual after the fit falls 0.033 -> 0.013 as (X/s)^3 falls 0.34 -> 0.13.
+WHAT THE K-MODE MINIMIZERS RESOLVE (2026-10-01, Computation 9.10; corrects Computation 8.19's pointwise claims). The K-mode
+minimizer is a polynomial of degree 2K-1: it resolves the edge to delta ~ a/(2K-1)^2 (heights ~ (2K-1)^2/a, 500-700 T*) but the
+interior cusps only to heights ~ (2K-1)/a (3-8 T*). At a = 0.6 the K-mode transform agrees with the FEM to 0.1-0.6% at 2-5 T* and
+departs at 7 T* (= (2K-1)/a = 7.6 T*) to 15-20% at 10-30 T*; the first-generation echo phase is in the FEM nulls with the predicted
+amplitudes (regression 0.502, 0.635 vs c_2 = 0.490, c_3 = 0.634; rms 0.139 -> 0.022) and absent from the K-mode nulls (-0.003,
+0.16); at a = 0.8 and 1.0 the K-mode nulls follow the archimedean phase alone to 0.01 rad from 10-30 T* to 400 T* with echo
+coefficients < 0.001. So above (2K-1)/a (3.4, 2.9, 2.4 T* at a = 1.0, 1.25, 1.5) the K-mode data say nothing about the pointwise
+structure of the minimizer; their envelope (a mean) is right to the few % of sigma_eff/sigma_inf - 1, their zero sums and tail laws
+stand, but the claims "|F|^2 uncorrelated with 1/sigma_a, the minimizer does not follow the window's symbol pointwise" of
+Computation 8.19 are WITHDRAWN (they describe the polynomial's edge). The true pointwise statement above the band top is Proposition
+9.7: |F|^2 ~ 1/sigma_a to first order in c_d/s. Testing the band's pointwise structure at a >= 1 needs an interior-resolving solver
+(FEM with spacing < 1/(50 T*)), not more K-modes.
 
 ## 1. Edge law => tail law, as a proposition  [DONE 2026-09-30: paper Proposition 7.8]
 Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|^2 = 2C^2/pi. Proof: edge asymptotics
@@ -53,7 +91,7 @@ DONE 2026-10-01: the edge law with derivatives is a THEOREM under (H_inf) for th
 form at a_2 < a < a_3, the prime 2 inside the window (Cor 8.8(ii)), with the constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda.
 At those supports item 1 is closed end to end: edge law (theorem) => boundary law (Prop 8.3) => with RH the tail law (Prop 7.8).
 
-## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8; THEOREM AT EVERY SUPPORT WITH A FINITE ECHO TREE, a < a_inf = 0.843, 2026-10-01: Lemma 8.12, Proposition 8.13, Corollary 8.14]
+## 2. The sum rule  [THEOREM AT ALMOST EVERY SUPPORT 2026-10-01: Theorem 9.8, the boundary law and the edge law at every Diophantine support; DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8; THEOREM AT EVERY SUPPORT WITH A FINITE ECHO TREE, a < a_inf = 0.843, 2026-10-01: Lemma 8.12, Proposition 8.13, Corollary 8.14]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
