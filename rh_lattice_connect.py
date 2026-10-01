@@ -1,5 +1,5 @@
 """
-Connectivity of the interior echo lattice (paper Proposition 9.22).  The closures of the two edges are disjoint as point sets at a
+Connectivity of the interior echo lattice (paper Proposition 9.26).  The closures of the two edges are disjoint as point sets at a
 non-resonant support (a common point would put 2a in the lattice), so the component that carries the edge's measure mu_b is the
 interior of the right edge's closure.  This script builds that closure by breadth-first search (rh_lattice_band.lattice, the
 points keyed by edge), removes the edge vertex, and counts the connected components of the interior among the first N points,
