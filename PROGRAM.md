@@ -13,8 +13,11 @@ under (H_inf)). The boundary law is now a theorem under that same hypothesis (pa
 a C^2 by the overlap of the leak of the dilation generator with the edge force, J_1(L) = 1 + O(1/L^2) with no 1/L term (the
 antisymmetry of Lemma 7.11 again), and Lemma 8.2 (the edge force to second order). So under the edge law with derivatives:
 boundary law => tail law (Prop 7.8), and both are the flux identity 2|A_0|^2 = -lambda' of the Wiener-Hopf form.
+DONE 2026-10-01: the edge law with derivatives is a THEOREM under (H_inf) for the prime-free form (Prop 8.4) and for the full
+form at a_2 < a < a_3, the prime 2 inside the window (Cor 8.8(ii)), with the constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda.
+At those supports item 1 is closed end to end: edge law (theorem) => boundary law (Prop 8.3) => with RH the tail law (Prop 7.8).
 
-## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5]
+## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
@@ -105,15 +108,28 @@ with three derivatives. Corollary 8.5: lambda_inf' = -2|A_0|^2 and T (1/2pi) int
 analytic law of Computation 7.14 is a theorem, Conjecture 7.19(i) holds with |A|^2 = -lambda'/2. Computation 8.6 /
 rh_edge_constants.py: with NOTHING fitted, f / [(-lambda'/2)^{1/2} (L + beta)^{-1/2}] = 1.001-1.003 on 1e-10 < delta < 1e-5 at
 a = 0.3, 0.4, 0.5, 0.6 (1.0003-1.0009 on the finer mesh): the boundary law's C and the symbol's beta, both predicted.
-NEXT for item 2: the same for the full form (with primes): (b) the echo form as a theorem from the exact representation with
-the window's symbol (the edge asymptotics reorganize into the finite echo chain), then the edge law with derivatives for the
-full minimizer => boundary law (Prop 8.3) => with RH the zero-side tail law (Prop 7.8). The analytic side of the tail law is
-then closed and everything left is item 3. Old list, still valid for the remaining parts: (a) the factorization of a symbol growing
-like log t, factors (log t)^{1/2} e^{+-i theta}, theta = O(1/log t); (b) the a priori decay of the three transforms: F~ = O(1/t) is the
-edge-law upper bound (Theorem 3.2 under (H_inf)), G~ from Lemma 7.12, H~ from the smoothness of the commutator [K, chi] f near the
-edge; (c) Liouville with the poles at the real zeros, and the far edge at relative order t^-2; (d) with primes, the echo chains
-in general (several entries, chains of several links, the mirror chains, coincidences at the entries a = a_n). Then the tail law
-is exact beyond the decoupling height and the boundary law is the flux identity |A|^2 = -lambda'/2.
+DONE 2026-10-01 (b): THE FULL FORM IS A THEOREM FOR a_2 < a < a_3. Paper Proposition 8.7: with exactly one entry n inside the
+window (a < d = log n < 2a, so n = 2) the entries outside the window move it off itself, and the eigen-equation on the whole
+line reads K_inf f = lambda f + 2P s 1_[-a,a] + c f_L(. - d) + c f_R(. + d) + g_inf 1_{|y|>a}, c = Lambda(n)/sqrt n: the copies
+of the two thirds L, R of the window are SOURCES for the archimedean operator, and Proposition 7.23 applies verbatim. The copy
+on L is the echo, f(a+u) = c (k * f_R(a + . + d))(u) + smooth near u = -d, k the kernel of 1/sigma~_inf (eq. 18). The copy on
+R near the edge is, by the echo at u - d, c^2 (k * f_R(a + .))(u) 1_{u<0} + a step + a far source, i.e. c^2 P_-[F~/sigma~_inf]
+up to smooth sources; moving c^2 F~/sigma~_inf to the left gives sigma_eff F~ = H'_- + G'_+ with
+sigma_eff = sigma~_inf - c^2/sigma~_inf and the representation F~ = P_-[H'_-/sigma_eff,+]/sigma_eff,- (eq. 19).
+Corollary 8.8: (i) the edge form of Cor 7.24 with sigma_eff, A_0 purely imaginary; (ii) the edge law with derivatives with
+the SAME constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda (the return term changes the symbol at relative order
+c^2/l^2 only), f smooth on the window except at the edges and at the echo points +-(a - d); (iii) the echo form of
+Conjecture 7.19(ii) with rho = c/sigma~_inf; (iv) lambda' = -2|A_0|^2; (v) under RH, T sum_{|gamma|>T} |F|^2 -> -lambda'/pi:
+CONJECTURE 7.7 IS A THEOREM FOR a_2 < a < a_3 under (H_inf) and RH. Computation 8.9 (rh_edge_constants.py,
+data/edge_constants.log): on the full minimizers at a = 0.4, 0.45, 0.5 (lambda' = -0.466, -0.101, -0.0112 from the dilation
+engine) the ratio f / [(-lambda'/2)^{1/2} (L + beta)^{-1/2}], beta = -1.514, -1.619, -1.722, nothing fitted, is 1.000-1.002 on
+1e-12 < delta < 1e-6 and 1.004-1.008 at 1e-4; the alternative beta - 2c (a first-order return of the echo) is off by 2-4%:
+the prime inside the window changes neither constant.
+NEXT for item 2 (what the theorem leaves open; none of it is needed for the tail law at these supports): (a) general supports:
+several entries and chains of several links (the echo tree: the return terms make the effective symbol a finite continued
+fraction, the window's symbol sigma_inf - 2c cos being its infinite limit), the mirror chains, the coincidences a = a_n;
+(b) kappa constant (bound O(log t), data 1e-4) and the rate (O(log t/t) proved against the measured t^-2). Item 2 is
+otherwise closed: edge law, boundary law and tail law are the one flux identity 2|A_0|^2 = -lambda'.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -143,7 +159,7 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.26, Proposition 7.27; NEXT]
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.26, Proposition 7.27; THE SAMPLING DEFECT IS THE PRIME SUM AT THE ENTRIES 2026-10-01: Proposition 7.29, Corollary 7.30; NEXT]
 Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.26). Data: medians of the floor's mass 2.39 ... 2.74 T*
 (rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.27: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
@@ -156,9 +172,31 @@ Measured 2026-09-30 (Computation 7.14): (E_kappa) is not about the profile's asy
 above the edge law at delta = 1/(e T*)); it holds because the tail law is analytic (item 2c), from ~3 T* on, at 1%.
 (S_kappa): M(kappa) = 1.01-1.09 for kappa >= e at a = 0.4, 0.45, 0.5 (8.9, 3.6, 1.8 at kappa = 1; 0.7-1.5 at 1.5-2).
 So ALL the arithmetic of Conjecture A is in (S_e): the zeros above e T* sample the analytic tail of F at their mean
-density, constant ~1. NEXT for item 3: the analytic form of M through the explicit formula for the high-pass part of
-f (the fluctuation is the prime sum on frequencies above kappa T*, whose only structure between entries is the
-alignment of Computation 7.28), and the gap condition it needs (no gap wider than pi/a above e T*).
+density, constant ~1. DONE 2026-10-01: THE ANALYTIC FORM OF M. Paper Proposition 7.29: under RH, with the entire high-pass chi_T(t) = 1 - exp(-(t/T)^4)
+and h = |F|^2 chi_T, the explicit formula gives EXACTLY
+  sum_gamma |F(gamma)|^2 chi_T(gamma) = (1/2pi) int |F|^2 chi_T Psi_inf - 2 sum_n Lambda(n) n^{-1/2} h^_T(log n) - 2P^2 (1 - e^{-1/(16 T^4)}),
+h^_T(x) = (1/2pi) int |F|^2 chi_T e^{itx} dt the autocorrelation of f with its structure below the scale 1/T removed. So the
+defect of the zeros against their density is the prime sum at the entries log n < 2a (the autocorrelation of f lives on
+[-2a, 2a] and is singular exactly at the entries, where the minimizer echoes its edge), and NO GAP CONDITION ON THE ZEROS
+ENTERS. Corollary 7.30: for one entry inside the window (a_2 < a < a_3), by the echo form, M_chi(T) = 1 + 2c^2/sigma_inf(T)^2
+(1 + o(1)), c = Lambda(n)/sqrt n: the defect is twice the square of the echo's amplitude rho = c/sigma_inf and tends to zero
+like 1/log^2 T. Computation 7.31 (rh_sampling_defect.py, data/sampling_defect.log): on the full minimizers at a = 0.4, 0.45,
+0.5 with the first 6000 zeros, every term evaluated independently at T = kappa T*, kappa = 1..20: the identity holds to 3e-5
+of the zero sum or better at every height; the prime sum is n = 2 to three digits from kappa = e on (92-97% at kappa = 1,
+the rest the smearing to n = 3 just outside the window); M_chi against 1 + 2c^2/sigma^2 is 1.045/1.050, 1.048/1.047,
+1.085/1.044 at kappa = 10 and 1.028/1.034, 1.027/1.032, 1.030/1.030 at kappa = 20. At kappa = e the entire cutoff still
+reaches the heights where the minimizer hides from the zeros (weight 0.21 at 0.7 T), so M_chi is 1.27, 1.50, 3.33 there
+while the sharp M(e) is 1.01, 1.09, 1.02.
+THE ARITHMETIC OF CONJECTURE A IN ONE PLACE: (S_kappa) with bounded M <=> the prime sum at the entries,
+2 sum_{log n < 2a} Lambda(n) n^{-1/2} h^_T(log n), is at most a fixed fraction of the tail at T = kappa T*, uniformly in a.
+A statement about the autocorrelation of the minimizer at the entries (the echoes), no longer about the zeros. For a window
+with many entries the echoes form a finite tree and sum_{log n < 2a} Lambda(n)^2/n ~ 2a^2 (Mertens), so the defect need not
+tend to zero, but it is bounded as long as each echo keeps its size c_n/sigma_inf.
+NEXT for item 3: (a) the uniform bound: the prime sum at the entries is at most a fixed fraction of the tail, uniformly in a,
+for the echo tree (this is the same analysis as the general-support part of item 2: the effective symbol as a finite continued
+fraction and the echo amplitudes c_n/sigma_inf along each chain); (b) (E_kappa) uniformly in a: the exact representation gives
+the tail energy 2|A_0|^2/(pi T)(1 + o(1)) at a fixed support, but not yet the height beyond which the o(1) is below a fixed
+fraction uniformly in a (measured M' = 1.10-1.15 at eT*). To prove RH by A, both must be in prime-side form: (a) already is.
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is

@@ -1,22 +1,24 @@
 """
-The constants of the edge from the Wiener-Hopf representation (paper Proposition 8.4, Computation 8.6).
+The constants of the edge from the Wiener-Hopf representation (paper Proposition 8.4, Computation 8.6; with the prime inside the window Proposition 8.7, Corollary 8.8, Computation 8.9).
 
 For the prime-free form, Corollary 7.24 gives the edge of the transform as A_0/(t sigma_-(t)), and the inverse transform of
 that factor is the edge law with its constants fixed:
     f(a - delta) = C (log(a/delta) + beta)^{-1/2} (1 + O(log^{-3})),   C = |A_0|,   beta = -gamma - log(2 pi a) - lambda,
 i.e. f(a - delta) = C (sigma_inf(1/delta) - gamma)^{-1/2}: the inverse square root of the symbol at frequency 1/delta, shifted by
-Euler's constant.  With the boundary law (Proposition 8.3) C^2 = -lambda'/2.  This script tests both constants, with nothing
-fitted, on the prime-free edge-FEM critical points: lambda from the FEM, lambda' from the arb dilation engine (data/dilation_*.log).
+Euler's constant.  With the boundary law (Proposition 8.3) C^2 = -lambda'/2.  The same constants hold for the full form with the entries inside the window (Corollary 8.8).  This script tests both
+constants, with nothing fitted, on the edge-FEM critical points without primes and on the minimizers with the prime 2 inside the window: lambda from the FEM, lambda' from the arb dilation engine (data/dilation_*.log).
 
 Usage: python3 rh_edge_constants.py
 """
 import json, math, re, numpy as np
 gamma = 0.5772156649015329
-cases = [(0.3, "data/fem_a0.3_primefree.json"), (0.4, "data/fem_a0.4_primefree.json"), (0.5, "data/fem_a0.5_primefree.json"),
-         (0.5, "data/fem_a0.5_primefree_471nodes.json"), (0.6, "data/fem_a0.6_primefree.json")]
-for a, fn in cases:
+cases = [(0.3, "data/fem_a0.3_primefree.json", "primefree"), (0.4, "data/fem_a0.4_primefree.json", "primefree"),
+         (0.5, "data/fem_a0.5_primefree.json", "primefree"), (0.5, "data/fem_a0.5_primefree_471nodes.json", "primefree"),
+         (0.6, "data/fem_a0.6_primefree.json", "primefree"),
+         (0.4, "data/fem_a0.4_full.json", "full"), (0.45, "data/fem_a0.45_full.json", "full"), (0.5, "data/fem_a0.5_full.json", "full")]
+for a, fn, kind in cases:
     d = json.load(open(fn)); lam = d["lambda"]; dl = np.array(d["deltas"]); f = np.array(d["f"])
-    txt = open(f"data/dilation_a{a}_primefree.log").read(); lp = float(re.search(r"a lambda' = \[([-0-9.e+]+)", txt).group(1))/a
+    txt = open(f"data/dilation_a{a}_{kind}.log").read(); lp = float(re.search(r"a lambda' = \[([-0-9.e+]+)", txt).group(1))/a
     C = math.sqrt(-lp/2); beta = -gamma - math.log(2*math.pi*a) - lam
     print(f"{fn}: a = {a}, lambda = {lam:+.6f}, lambda' = {lp:+.5f};  predicted C = (-lambda'/2)^(1/2) = {C:.4f}, beta = -gamma - log(2 pi a) - lambda = {beta:+.4f}")
     o = np.argsort(dl); dl, f = dl[o], f[o]
