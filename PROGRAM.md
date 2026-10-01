@@ -77,6 +77,25 @@ stand, but the claims "|F|^2 uncorrelated with 1/sigma_a, the minimizer does not
 Computation 8.19 are WITHDRAWN (they describe the polynomial's edge). The true pointwise statement above the band top is Proposition
 9.7: |F|^2 ~ 1/sigma_a to first order in c_d/s. Testing the band's pointwise structure at a >= 1 needs an interior-resolving solver
 (FEM with spacing < 1/(50 T*)), not more K-modes.
+THE GLOBAL AND THE LOCAL (2026-10-01, paper 9.3: Proposition 9.11, Theorem 9.12, Proposition 9.13). Two global objects in the
+companion work: the Atlas's complete Weil form W(q,q) on all of C_c^inf (positivity on every support = RH; Suzuki defect E_N; local
+support theorems, CP20: Q_a^-(q) > 5278/10^6 |q|^2 for a <= 3/8) and the Mobius Green energy R(N) = sum mu(m)mu(n)/max(m,n)
+(R(N) = O(N^eps) <=> RH; a zero at beta_0 forces R(N) > N^{2 beta_0 - 1 - delta} i.o.). Proposition 9.11: the Atlas's odd operator
+A_a^- = C_a - log 2pi - Pi_a - K_alpha - 2|s><s| IS the window form Q (Weil's kernel kappa, the shifts with b_n = c_n, the polar
+term), so CP20 is a CERTIFIED LOWER BOUND lambda(a) >= 5.28e-3 on (0, 3/8], against the engine's upper bound lambda_40(3/8) = 3.14e-2.
+Theorem 9.12 (two readings of delta_max): unconditionally limsup log^+ R(N)/(2 log N) = delta_max (Mobius paper + M(x) << x^{Theta+eps});
+and limsup log^+(-lambda(a))/(2a) = delta_max (Theorem 9.3): in the common variable a = log N the global energy and the local floor
+grow at the same rate 2 delta_max, both zero iff RH. Detection scales: the window's floor turns negative only from a_det =
+O(delta_0^{-1} log(1/delta_0)) (the quartet must outweigh the on-line zeros' O(a^2)), the Mobius budget exceeds C_M log N only from
+N^{delta_0} >> |rho_0 zeta'(rho_0)| sqrt(C_M): the same scale, exponentially late in 1/delta_0 - THE WINDOWS THAT TAKE INCREDIBLY LONG
+TO CLOSE. Proposition 9.13 (late windows are allowed): lambda' >= -(c T* + e(a)) lambda a.e. with ANY locally integrable excess e
+still gives lambda > 0 everywhere and RH (Gronwall); conversely RH <=> -lambda'/lambda in L^1_loc. So the content of Conjecture A
+is the RATE c T*, not positivity; windows where the rate is exceeded are permitted as long as the excess integrates: the resonant
+supports (null set) cost nothing, a late onset costs its excess over the interval of lateness; a NON-integrable excess is a sign
+change = a zero off the line. The all-support comparison the Atlas leaves open IS inequality (25) in the form of Proposition 9.13.
+NOT done: the transfer of the quantitative witness delta = -lambda(a)|f|^2 ~ e^{2 delta_max a} to the Suzuki defect E_N needs the
+Suzuki norm S(f,f) of the minimizer; the Atlas's complete energy identity (1/tau_R) K_a(I - K_a) = eta_p W*W + N_a + sum b_n P_{a,log n}
+is not yet related to the edge/echo structure of the minimizer.
 
 ## 1. Edge law => tail law, as a proposition  [DONE 2026-09-30: paper Proposition 7.8]
 Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|^2 = 2C^2/pi. Proof: edge asymptotics
@@ -349,6 +368,16 @@ explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no g
 edge-dominated (observed, no argument yet). Under RH this is Conjecture A at that support. To prove RH by A, item 3
 must eventually be replaced by its prime-side form: the dilation derivative of the ground state controlled by T* lambda
 using only the Euler product and the archimedean symbol.
+
+## Next (as of 2026-10-01, evening)
+(a) The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
+detection scale a_det ~ delta^{-1} log(1/delta), so the quantity must be visible at supports where lambda > 0 and the Mobius budget is
+tame; candidates: the stiffness kappa_2 = sum 16 S'(gamma)^2 against y_c (Comp 9.5); the overlap of the minimizer with the Mobius test
+function sum mu(n) n^{-1/2} phi(x - log n) (the global sequence evaluated in the local metric); the Suzuki norm S(f,f) of the minimizer.
+(b) The long multiplicative relations m_k^{1/k} for k ~ a (the uniformity of the onset, item 3).
+(c) The Atlas bridge: S(f,f) for the K-mode minimizer at a <= 1, and the complete energy identity's paired-prime matrices P_{a,log n}
+against the echo tree's adjacency C (they index the same prime shifts).
+(d) An interior-resolving solver at a = 1 (FEM, spacing < 1/(50 T*)) before any further pointwise claim in the band.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.
