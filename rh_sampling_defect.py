@@ -1,5 +1,5 @@
 """
-The sampling defect of the zeros above a height is the prime sum at the entries (paper Proposition 7.29, Corollary 7.30, Computation 7.31; the echo-tree form of the constant, Corollary 8.13).
+The sampling defect of the zeros above a height is the prime sum at the entries (paper Proposition 7.29, Corollary 7.30, Computation 7.31; the echo-tree form of the constant, Corollary 8.14(vi)).
 
 Under RH, Weil's explicit formula for the even test function h = |F|^2 chi, chi an entire even cutoff, reads
     sum_gamma h(gamma) = (1/2pi) int h Psi_inf - sum_n Lambda(n) n^{-1/2} [h^(log n) + h^(-log n)] + h(i/2) + h(-i/2),
