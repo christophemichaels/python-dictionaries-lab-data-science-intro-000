@@ -1,0 +1,2 @@
+a = 0.85: 100000 points (chains <= 8886), interior components 4, largest 49987 points; first-generation points of +a: 4, in 2 component(s) [0, 1]; -a's first generation in components [2, 3]
+a = 2.0: 100000 points (chains <= 5), interior components 2, largest 75789 points; first-generation points of +a: 24, in 1 component(s) [0]; -a's first generation in components [1]

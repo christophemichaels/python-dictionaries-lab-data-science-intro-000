@@ -405,7 +405,12 @@ function sum mu(n) n^{-1/2} phi(x - log n) (the global sequence evaluated in the
 (c) The Atlas bridge [DONE in 9.4 up to Suzuki's constant M_a]: compute M_a from Suzuki's feature (B.2) and S(f,f) for the K-mode minimizer
 at a <= 1 to make Proposition 9.14 numerical; the paired-prime/echo-tree identification is Proposition 9.15.
 (d) An interior-resolving solver at a = 1 (FEM, spacing < 1/(50 T*)) before any further pointwise claim in the band; a K = 200
-    minimizer at a = 1 (interior resolved to 8.6 T*) is being computed (data/kmode_K200/) to see the echo phase appear at 4-8 T*.
+    minimizer at a = 1 (interior resolved to 8.6 T*) was launched (python3 rh_tail_law.py coefs 1.0 200 600 data/kmode_K200/coefs_1.0.json,
+    > 17 CPU-minutes at the end of the session, not finished); then python3 rh_band_phase.py 1.0 3 9 data/kmode_K200/coefs_1.0.json 3 8
+    against the K = 80 baseline data/band_phase_a1.0_K80_3-8.log (rms 0.52 with the archimedean phase on 3-8 T*, no echo form fits:
+    the K = 80 polynomial is in its transition zone there). Connectivity (rh_lattice_connect.py): the right edge's closure is one
+    interior component from a = 0.9 on (24 first-generation points in one component at a = 2 within 10^5 points); at a = 0.85 the
+    first generation still splits into two components within 10^5 points and chains of 9000 steps.
 (e) The mass of mu_b above the horizon, rigorously: prove m_k <= eta (2a + log kappa)^k for one even k and all a (Proposition 9.16(iv));
     the moments are explicit sums over closed walks, m_1 is in closed form (Prop 9.16(iii)), m_2 = |Cb|^2/|b|^2 next.
 
