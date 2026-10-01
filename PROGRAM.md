@@ -170,17 +170,26 @@ Computation 8.19): <t^2 (Psi - lambda)|F|^2>/(-lambda') = 1.07/1.22/1.08 at 5 T*
 within 3% to 50 T*, with the window's symbol negative on 2.6-6% of the heights at 5 T* carrying -0.02 of the envelope, and
 |F|^2 UNCORRELATED with 1/|sigma_a| (|corr| < 0.04): the minimizer does not follow the symbol's sign changes; the law is
 carried by the mean. The prime part (envelope against sigma_inf minus the full one) is 15-30% at 5 T*, a few % at 10.
-THE PREDICTION (the output of this round): rhobar(a) - 2a = -0.25, +0.30, +1.1 at a = 1.0, 1.25, 1.5 but +3.5 at a = 2 and
-+7.6 at 2.5: the confined band's top e^{rho - 2a} T* is ~3 T* at 1.5 but ~35 T* at a = 2 and ~2000 T* at 2.5. If the onset of
-the tail law follows the band (as at every support computed, where it is 2-5 x the band top), T_eff outruns the horizon from
-a ~ 2, the universality of theta(T/T*) breaks, and the route of Prop 7.32 (sharp form at a FIXED kappa) fails; the floor's mass
-(1-3 T*) is inside the band at every a >= 1. If the onset stays at ~5 T*, the sharp form holds inside the band where the echo
-expansion diverges, and the mechanism is not the convergence of the echoes. DECISIVE TEST: a minimizer at a = 2 (T* = 343; ~500
-modes at ~1500 bits in the arb engine, or the edge FEM with the entries up to 54), reading the height at which T theta(T) becomes
-constant: a few horizons or tens. This is the one new support the analysis demands; it is not a refit.
-NEXT for item 2: the a = 2 test above; then, depending on its outcome, either the band regime proper (the sharp form where the
-resolvent (sigma~ - C)^{-1} does not exist: limiting absorption, the edge radiating into the lattice) or the growth of the onset
-with a. (b) kappa constant and the rate, not needed for the tail law.
+THE LATTICE'S BAND AGAINST THE EDGE'S (the output of this round, in two steps). (1) rhobar(a) - 2a = -0.25, +0.30, +1.1 at
+a = 1.0, 1.25, 1.5 but +3.5 at a = 2 and +7.6 at 2.5, so the confined lattice's band top e^{rho - 2a} T* is ~3 T* at 1.5, ~35 T*
+at 2, ~2000 T* at 2.5: if the onset followed the SPECTRAL RADIUS, T_eff would outrun the horizon from a ~ 2 and the route of
+Prop 7.32 (fixed kappa) would fail. (2) IT DOES NOT FOLLOW IT. The edge couples to the lattice through b alone (the first-generation
+points), so what enters sigma_eff = s - R(s) is the SPECTRAL MEASURE mu_b OF C AT b: R(s) = int dmu_b/(s - nu), real above
+supp mu_b, complex inside (the edge radiates) (Prop 8.22; the moments of mu_b are exact under truncation to depth g up to order
+2g - 2, so Lanczos from b resolves it). Computed (rh_spectral_measure.py, Lanczos 80 steps on 150000 points, checked against the
+dense eigenproblem on 6000): mu_b sits at the BOTTOM of the spectrum (mean 0.1-0.25, width 1-2.3 against rho(C) = 2-8), its
+weight above the horizon's height 2a is <= 6% at every a, and its 1% quantile (the band the edge sees) ends at 0.8, 1.3, 1.7,
+2.1 T* for a = 1.0-1.75 (depth adequate) and 4-5 T* for a = 2-2.5 (depth 4-5 links; the 5% quantile, 1.0-1.5 T*, is stable with
+depth). At 5 T* the weight above s is zero at every support up to 2.5. So THE PREDICTION OF A RECEDING ONSET IS WITHDRAWN: the
+spectral radius is the band of the worst coupling, the edge's coupling sits far below it. What remains predicted for a = 2:
+the onset of the law a little above five horizons (7-10 T*, where sigma_eff/s = 0.72-0.77; at 5 T* s is just above the resolved
+top of supp mu_b and the return is large, sigma_eff/s = 0.5), and the sampling defect sigma_eff/s at ten horizons going from
+0.89 (a = 1) to 0.77 (a = 2). Conjecture A's route through (T_kappa) with a fixed kappa ~ 10 survives this test; the a = 2
+minimizer remains the check.
+NEXT for item 2: (a) the a = 2 minimizer (the check of the edge's band: onset at 7-10 T*?); (b) the uniformity of the edge's band in
+a: prove that the upper tail of mu_b stays within a bounded multiple of the horizon, i.e. that the weight of mu_b above 2a + log kappa
+vanishes for a fixed kappa and all a (the first-generation points' walks that stay near the high-degree region are few: a counting
+statement about the entries); this is the prime-side form of item 3; (c) kappa constant and the rate, not needed for the tail law.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -254,12 +263,12 @@ At every support with a finite tree (T_kappa) holds for kappa large with M'' -> 
 algebraic identity of the echo amplitudes. The measured onset is a few horizons at every support computed, including a = 1.0, 1.25
 where the tree is infinite; c = pi e M'' at kappa = e is again 8.5 against the observed 3.3-3.9.
 NEXT for item 3: UNIFORMITY IN a of the onset of the sharp form, i.e. (T_kappa) with one kappa and one M'' for all a. The band
-analysis of item 2(d) makes this concrete and dangerous: the onset is bounded below by the top of the confined lattice's band,
-e^{rho(C_a) - 2a} horizons with rho(C_a) >= sum_d 2c_d(1 - d/2a) ~ 4e^a/a, which outruns every fixed kappa from a ~ 2 on. So
-(T_kappa) with fixed kappa can only hold if the sharp form holds INSIDE the band; whether it does is the a = 2 test. If it does
-not, item 3 must be reformulated around the mass region 1-3 T* (inside the band at every a >= 1), e.g. a lower bound on the
-zero sum at 1-3 T* in the band regime, and the constant c of Conjecture A is no longer pi kappa M''. The data at a <= 1.5 cannot
-decide; the next support is a = 2.
+analysis makes this concrete: the onset is where the archimedean symbol 2a + log kappa clears the band the edge sees, the upper
+tail of the spectral measure mu_b of the confined lattice at the edge's coupling. Measured, that tail ends within a few horizons
+up to a = 2.5 (1% quantile at 0.8-4.6 T*), so a fixed kappa ~ 10 suffices as far as computed. The prime-side statement to prove:
+the weight of mu_b above 2a + log kappa is zero (or below a fixed fraction) for all a, a statement about closed walks through the
+edge of the window with steps log m and weights Lambda(m)/sqrt m, i.e. about the multiplicative structure of the integers below
+e^{2a}. Together with the finite-tree theorems this would make (T_kappa) uniform. The a = 2 minimizer checks the picture.
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
