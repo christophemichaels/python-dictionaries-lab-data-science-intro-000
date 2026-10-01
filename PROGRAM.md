@@ -96,6 +96,25 @@ change = a zero off the line. The all-support comparison the Atlas leaves open I
 NOT done: the transfer of the quantitative witness delta = -lambda(a)|f|^2 ~ e^{2 delta_max a} to the Suzuki defect E_N needs the
 Suzuki norm S(f,f) of the minimizer; the Atlas's complete energy identity (1/tau_R) K_a(I - K_a) = eta_p W*W + N_a + sum b_n P_{a,log n}
 is not yet related to the edge/echo structure of the minimizer.
+TWO TRANSFERS AND THE BLIND SPOT (2026-10-01, paper 9.4: Proposition 9.14, Proposition 9.15, Theorem 9.16, Computation 9.17;
+rh_blind_spot.py). (1) The Suzuki transfer done: with S(f,f) <= M_a^2 |f'|_1^2/pi (Atlas (B.7)) and the Atlas's CP9 (D1) transfer
+applied to a mollified minimizer, lambda(a) < 0 gives E_N >= (1 + pi(1-eps)|lambda(a)|/(3 M_a^2 V_a^2))^2 for N >= N_0, V_a = |f'|_1 =
+4 sup|f| (sup|f| = 1.46, 1.42, 1.40, 1.38 at a = 0.6-1.25, at the fixed position u = 0.22-0.23); with Theorem 9.3(iii) the defect's
+permanent floor grows like e^{2 delta_max a}/(M_a^2 V_a^2). Uncontrolled: Suzuki's feature constant M_a and the variation of the
+negative-branch minimizer. (2) The paired-prime matrices done: <q, Pi_a q> = 2 sum c_n h_q(log n) (the prime part of Q = the sampling
+defect, Prop 7.29); on the minimizer with a finite tree its tail part is (M_chi - 1) x density = <e^T C_a e / sigma~> (Cor 8.14(vi)),
+C_a the tree's weighted adjacency with the edges; in the periodic model the mean of 2cos(tau d)|E|^2 is e^T C^{(d)} e: THE ATLAS'S
+PAIRED-PRIME MATRIX OF THE ENTRY n, COMPRESSED TO THE EDGE AND ITS ECHOES, IS THE ADJACENCY OF THE STEP log n; P_a is C_a.
+(3) THE BLIND SPOT IS A THEOREM (9.16): 16 Re S(gamma - i delta)^2 = 16 S^2 - 16 delta^2 (S'^2 + S S'') + O(delta^4): every
+explicit-formula functional (floor, Mobius energy) is EVEN in the distance from the line - no first-order detector exists anywhere.
+The floor's single-zero sensitivity delta_c(gamma) = (lambda/16 S'(gamma)^2)^{1/2} is e^{-cT*/2} below the horizon (3.5e-12 for
+the first zero at a = 1, 2e-24 at a = 1.25: NO BLIND SPOT BELOW THE HORIZON) and exceeds 1/2 from about 1.5 T* on (10-100 from
+five horizons: BLIND ABOVE, the slopes being the edge's cosine, delta_c^2 >= gamma^2 sigma~ lambda/(8a^2(-lambda'))). The Mobius
+energy (weight 1/|rho|^2) is blind in the same place. Verified: the second-order formula to 1.0000 at delta <= 1e-2 and 0.4% at 0.1.
+CONSEQUENCE FOR ITEM (a): the search for a branch-separating quantity BELOW the sign change is closed: at supports where lambda > 0
+every functional differs between the branches at second order, with the floor itself carrying the sharpest coefficient; the branch
+is decided only at the sign change. RH is not detection at any finite scale; it is the structure, i.e. inequality (25) in the form
+of Proposition 9.13. Item (a) is withdrawn in favour of (b), (c), (d).
 
 ## 1. Edge law => tail law, as a proposition  [DONE 2026-09-30: paper Proposition 7.8]
 Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|^2 = 2C^2/pi. Proof: edge asymptotics
@@ -370,13 +389,13 @@ must eventually be replaced by its prime-side form: the dilation derivative of t
 using only the Euler product and the archimedean symbol.
 
 ## Next (as of 2026-10-01, evening)
-(a) The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
+(a) [CLOSED by Theorem 9.16: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
 detection scale a_det ~ delta^{-1} log(1/delta), so the quantity must be visible at supports where lambda > 0 and the Mobius budget is
 tame; candidates: the stiffness kappa_2 = sum 16 S'(gamma)^2 against y_c (Comp 9.5); the overlap of the minimizer with the Mobius test
 function sum mu(n) n^{-1/2} phi(x - log n) (the global sequence evaluated in the local metric); the Suzuki norm S(f,f) of the minimizer.
 (b) The long multiplicative relations m_k^{1/k} for k ~ a (the uniformity of the onset, item 3).
-(c) The Atlas bridge: S(f,f) for the K-mode minimizer at a <= 1, and the complete energy identity's paired-prime matrices P_{a,log n}
-against the echo tree's adjacency C (they index the same prime shifts).
+(c) The Atlas bridge [DONE in 9.4 up to Suzuki's constant M_a]: compute M_a from Suzuki's feature (B.2) and S(f,f) for the K-mode minimizer
+at a <= 1 to make Proposition 9.14 numerical; the paired-prime/echo-tree identification is Proposition 9.15.
 (d) An interior-resolving solver at a = 1 (FEM, spacing < 1/(50 T*)) before any further pointwise claim in the band.
 
 ## Not to drift into
