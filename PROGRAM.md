@@ -23,6 +23,22 @@ products in the window, weighted by prod Lambda(m_i)/sqrt m_i (Computation 9.2: 
 rarely a prime power; m_8^{1/8} sits 2.1-2.3 below 2a + log 5 at every a to 2.5, a factor 9 in height; Chebyshev with m_8 puts
 < 4% of mu_b above five horizons). The uniformity of the onset = these relations do not accumulate at the top of the spectrum:
 m_k^{1/k} <= 2a + log kappa - delta for k growing with a. This is where the problem is arithmetic and where the paper stops.
+THE PLANE (2026-10-01, paper 9.1: Theorem 9.3, Corollary 9.4, Computation 9.5; rh_plane.py). The third leg of the triangulation
+taken unconditionally: lambda = sum over ALL zeros of q(gamma_rho), q(z) = 4 S(z)^2, the quadratic functional of the minimizer's
+transform on the plane; on the line q >= 0, off it a quartet +-gamma_0 +- i delta contributes 16 Re S(gamma_0 - i delta)^2, and to
+second order q(x + iy) has real part 4S^2 - 4y^2 S'^2, negative near the nulls of S, where the zeros are. Theorem 9.3: (i) RH <=>
+lambda(a) >= 0 for all a (Weil on the odd sector); (ii) under (H_inf) + exponential bound on the variation, limsup log^+(-lambda)/2a
+<= delta_max = sup(Re rho - 1/2) (Gallagher + Plancherel-Polya); (iii) if the sup is attained, lambda(a) <= -e^{2 delta_max a}/(2 delta_max)
+(the test function sinh(delta u) cos(gamma_0 u) phi(u/a)): THE FLOOR'S NEGATIVE RATE IS THE ZEROS' DISTANCE FROM THE LINE.
+Corollary 9.4 (with the boundary law): either the edge amplitude grows like e^{2 delta_max a} (RH false) or it decays faster than any
+exponential (RH + Conj A): no third behaviour; THE EDGE READS THE PLANE. Every unconditional theorem of the paper holds on both
+branches (none uses the sign of the floor): that is why they cannot decide, and why inequality (25) is exactly "the negative branch
+does not occur"; a proof must find a quantity the branches force apart BEFORE the floor changes sign. Computation 9.5 (K-mode
+minimizers, a = 0.6, 0.8, 1.0): the stiffness kappa_2 = sum 16 S'(gamma)^2 = 1-5e-3, entirely on the zeros below the horizon; the
+critical displacement y_c = (lambda/kappa_2)^{1/2} = 1.1e-2, 2.8e-6, 3.5e-12: the floor certifies the zeros below the horizon to
+be within y_c of the line, a resolution e^{-cT*/2}; the growth of |q| into the strip above the horizon is the edge's cosh(2ya) to
+3-4 digits at every y <= 0.45 (the plane reads the edge), and departs from it in the mass region; Re q < 0 on 7-15% of the
+heights at y = 0.2 and 19-27% at 0.45, independent of height and support.
 
 ## 1. Edge law => tail law, as a proposition  [DONE 2026-09-30: paper Proposition 7.8]
 Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|^2 = 2C^2/pi. Proof: edge asymptotics
