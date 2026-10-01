@@ -1,10 +1,10 @@
 """
-The mirror chains in the window's symbol amplitude, and what the K-mode minimizers resolve (paper Theorem 9.12, Computation 9.14).
+The mirror chains in the window's symbol amplitude, and what the K-mode minimizers resolve (paper Theorem 9.12, Computation 9.16).
 
-Proposition 8.17 represents the transform with the symbol of the window at every support, F~ = A_a(t)/(t sigma_{a,-}) + ...; Theorem 9.12
+Proposition 8.18 represents the transform with the symbol of the window at every support, F~ = A_a(t)/(t sigma_{a,-}) + ...; Theorem 9.12
 says that above the periodic band A_a(t) = A_0 + (mirror chains) + o(1), the mirror chains being the walks from the far edge that cross
 the window, oscillating at the frequencies v - 2a (v a lattice point above 2a, the shortest words of length two: v = d + d') with the
-amplitudes rho_v(s) = c_d c_d'/s^2 (times 2 for d != d'), s = sigma~_inf(t).  The echo form of Corollary 8.14(iii), exact at a support
+amplitudes rho_v(s) = c_d c_d'/s^2 (times 2 for d != d'), s = sigma~_inf(t).  The echo form of Corollary 8.15(iii), exact at a support
 with a finite tree, carries instead the echo phase arg E(t) = arg(1 + sum_p rho_p e^{-it(a-p)}), of first order c_d/s.
 
 This script uses the edge FEM at a = 0.6 (entries 2, 3; data/fem_a0.6_full.json, the interior resolved to about 34 T*), and the K-mode
@@ -21,7 +21,7 @@ from rh_echo_tree import tree
 
 a_s = "0.6"; dF = json.load(open("data/fem_a0.6_full.json")); a = float(dF["a"]); lam = float(dF["lambda"]); Ts = 2*math.pi*math.exp(2*a)
 dK = json.load(open(f"data/tail_law_kmode/coefs_{a_s}.json")); K = dK["K"]; coef = dK["c"]; lamK = float(dK["lambda"]); lpK = float(dK["a_lambda_prime"])/a
-lam_prime = -4.1545e-5                                                     # lambda'_64 at a = 0.6 (dilation engine, Computation 8.16)
+lam_prime = -4.1545e-5                                                     # lambda'_64 at a = 0.6 (dilation engine, Computation 8.17)
 ent = [(math.log(m), vm(m)/math.sqrt(m), m) for m in range(2, 400) if vm(m) and math.log(m) < 2*a]
 X = 2*sum(c for _, c, _ in ent); t_band = 2*math.pi*math.exp(X + lam)
 dl = np.array(dF["deltas"]); fF = np.array(dF["f"]); x = a - dl; o = np.argsort(x); x, fF = x[o], fF[o]

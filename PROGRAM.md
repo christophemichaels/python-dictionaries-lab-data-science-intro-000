@@ -6,6 +6,30 @@ the horizon". Three items, in order; this file is updated at the end of every ro
 
 ## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.12, Corollary 9.13]
 
+ROUND 'RUN ALL TESTS AND SUGGESTIONS' (2026-10-01 late): (1) DONE IN THE PAPER: Lemma (the edge amplitude is bounded by the
+tail energy): |A_0(a)|^2 <= pi T_0(a) (2P^2 + max_{|t|<=T_0}|sigma_a|) from the eigen-equation's exact energy 2P^2 and the tail
+law from a height T_0(a); Proposition (the floor is Lipschitz, from the boundary law): Prop 5.3 (Dini) + Prop 8.3 (flux) +
+Saks' Dini-derivate theorem (Ch. VI s4) => lambda Lipschitz on [a_1, a_2] with M = 2 pi T_0^* (...) WITHOUT (H_BV), granting
+Theorem 9.12 at non-entry supports and T_0(a) locally bounded (recorded, not proved). (2) DONE IN THE PAPER: Proposition (the
+prime-free minimizer is bounded): f in L^2 critical point => psi(0+) = c exists, c != 0 gives c/(it) in F~, the representation
+gives o(1/t), so c = 0; interior C^inf by the commutator bootstrap; (H_inf) is a theorem for the prime-free form, and at every
+support granting the sketch-density steps of Theorem 9.12. Main theorem page 4 now says both hypotheses are removable and how.
+(3) TESTED (Computation 'the shape of the edge's measure'): from the exact moments, kurtosis m_4/m_2^2 = 1.80 -> 2.40 (a = 1 ->
+3.5), m_6/m_2^3 = 7.7, 7.6, 7.0 at a = 2, 2.25, 2.5 (semicircle 2 / 5, Gaussian 3 / 15): the bulk is between the two with a
+tail heavier than a semicircle's; horizon at z = 2a/sqrt(m_2) = 1.76, 1.69, 1.67 -> 1.549 standard deviations; mass above the
+horizon ~4-6% and -> ~6% (Gaussian 6.1%, semicircle 6.2% in the limit): THE MASS ABOVE THE HORIZON DOES NOT TEND TO ZERO; the
+1% height recedes like e^{ca} horizons with 0.4 < c < 1 (Lanczos: 4.6, 3.8, 4.6 T* at a = 2, 2.25, 2.5; Gaussian would give
+3.6, 6.5, 10.6 at a = 2, 2.5, 3; semicircle 1.3, 1.7, 2.1). ITEM 3 (UNIFORM ONSET) IS FALSE AS STATED; the inequality's natural
+rate is c T*^{1+c'}; Prop 9.19 (integrable excess) absorbs it. The theorem to aim for: a local law for mu_b in the bulk.
+(4) EVEN SECTOR COMPUTED (rh_weil_even.py, data/weil_even_K30.log, K40 run pending): K_a^even (no polar term) has EXACTLY ONE
+negative eigenvalue mu_1 = -1.12, -1.99, -2.87, -4.31, -5.96, -7.92, -11.23 at a = 0.3 ... 2.0, its ground state is POSITIVE
+(no sign change on the Gauss nodes: Perron-Frobenius as predicted), mu_2 = 0.727, 0.012, then < 1e-6 from a = 0.7; the secular
+number 1 + 2<c, K^{-1} c> = -0.0074, -1e-6, then ~0^- ; lambda^even = min spec(K + 2cc^T) = 7.6e-3, 9.4e-7, then ~0^+: the
+even floor collapses to zero as fast as the odd one, and RH on the even window is the one number 1 + 2<c,K^{-1}c> <= 0 with
+mu_2 >= 0, both at the edge of zero: no sum of squares shows its face there either. (5) RH => (25): stated in 'Where the paper
+rests' as the reachable converse (Prop 7.27 up to the onset, and the onset is now known not to be uniform). NEXT: the three
+sketch-density steps of Theorem 9.12 (now carrying (H_inf), (H_BV) and the Lipschitz constant); the local law for mu_b.
+
 REVIEW INPUT (2026-10-01, external reader of the paper; assessed): (1) CORRECT AND ADOPTED: the main theorem silently used
 (H_BV): Lemma 1.4 gives continuity and monotonicity of lambda, absolute continuity was Prop 5.6 under (H_BV); the hypothesis
 is now stated on page 4 and in Theorem 9.1's proof, with the removal route: Prop 5.3 + Prop 8.3 give a D^- lambda >= -D(f)
@@ -17,10 +41,10 @@ so c = 0; interior C^inf by the commutator bootstrap ([K_inf, chi] of order -1).
 representation, prime-free form immediately, every support modulo the three sketch-density items. Moser/De Giorgi is the wrong
 tool (gain per step is one logarithm). TO WRITE NEXT. (3) ASSESSED, PARTLY ADOPTED: the mass of mu_b above the horizon does
 NOT tend to zero: m_2 ~ (5/12)(2a)^2 gives a bulk of standard deviation 1.29 a, 2a is 1.55 standard deviations, ~6% above the
-horizon uniformly (our Chebyshev bounds rise 2e-6 -> 5.6% from a = 1 to 2.5 and Comp 8.23 saw 6%); the bulk edge 2 sqrt(m_2)
+horizon uniformly (our Chebyshev bounds rise 2e-6 -> 5.6% from a = 1 to 2.5 and Comp 8.24 saw 6%); the bulk edge 2 sqrt(m_2)
 ~ 2.6 a recedes like e^{0.6 a} horizons, so the 1% onset of the sharp law is NOT uniform in a (prediction: ~3-4 T* at a = 2-2.5,
 ~6 at a = 3; measured 4-5). TEST with rh_spectral_measure.py at a = 3-5. Consequence for the inequality: the natural rate may
-be c e^{2.6 a}, not c T*; Prop 9.17's integrable-excess form is the robust statement. The theorem to aim for is a local law
+be c e^{2.6 a}, not c T*; Prop 9.19's integrable-excess form is the robust statement. The theorem to aim for is a local law
 for mu_b in the bulk (cavity recursion, cycles only from p^i p^j = p^{i+j}, O(1) weight against |b|^2 ~ 2a^2). (4) AGREED:
 RH => (25) (the converse of Theorem 9.1) is the reachable theorem, making (25) <=> RH; it needs the uniform onset, i.e. (3).
 (5) AGREED: the sign is the Hypothesis, not a bottleneck of the same kind; the function-field toy 1 - 7T + 9T^2 over F_9
@@ -48,7 +72,7 @@ with gain for A_a - A_0 and the cancellation of the mirror terms landing outside
 'sketch density' marks such steps. K = 200 at a = 1 DONE (kmode_K200/coefs_1.0.json, 1612 s): lambda_200 = 1.4361e-26,
 a lambda' = -2.4201e-24; on 3-8 T* the echo regression now has the signs of the echo form and 60-80% of its size
 (alpha_2 = 0.38, alpha_3 = 0.51, alpha_5 = 0.41, alpha_7 = 0.32 vs c_d = 0.49, 0.63, 0.72, 0.74) but the residual falls only
-0.56 -> 0.54: the band (87 real zeros of sigma_a up to 33 T*) dominates; recorded in Computation 9.14. Item (d) closed.]
+0.56 -> 0.54: the band (87 real zeros of sigma_a up to 33 T*) dominates; recorded in Computation 9.16. Item (d) closed.]
 Nothing proves RH. What is proved (under (H_inf), at every support below a_inf = 0.843): the boundary law lambda' = -2|A_0|^2 and
 the analytic tail law, both with no zeros involved. So RH reduces to ONE INEQUALITY about the minimizer, 2|A_0(a)|^2 <= c T* lambda(a)
 for all a >= 0.8 (Theorem 9.1; the boundary law that links the two is now a THEOREM at every Diophantine support, i.e. almost
@@ -84,7 +108,7 @@ critical displacement y_c = (lambda/kappa_2)^{1/2} = 1.1e-2, 2.8e-6, 3.5e-12: th
 be within y_c of the line, a resolution e^{-cT*/2}; the growth of |q| into the strip above the horizon is the edge's cosh(2ya) to
 3-4 digits at every y <= 0.45 (the plane reads the edge), and departs from it in the mass region; Re q < 0 on 7-15% of the
 heights at y = 0.2 and 19-27% at 0.45, independent of height and support.
-THE BOUNDARY LAW AT EVERY SUPPORT (2026-10-01, paper 9.2: Lemma 9.6, Proposition 9.7, Theorem 9.12, Corollary 9.13, Computation 9.14;
+THE BOUNDARY LAW AT EVERY SUPPORT (2026-10-01, paper 9.2: Lemma 9.6, Proposition 9.7, Theorem 9.12, Corollary 9.13, Computation 9.16;
 UPGRADED 2026-10-01 evening: the Diophantine condition DROPPED, Theorem 9.12 holds at EVERY support that is not an entry, resonant
 supports included (the chain landing exactly on the edge is a relative O(L^-2) correction inside the remainder class; near-misses
 are words of length >= 3 for small eps at a non-resonant support, weight O(s^-3), by Lemma 9.6(i) applied to w concatenated with the
@@ -94,7 +118,7 @@ Lambda_a = {log(M/M')} of the entries; a walk of k steps cannot return to within
 for M != M' < e^{2ak}); a is Diophantine if |2a - u_w| >= c e^{-kappa |w|} for all words, which holds outside a null set
 (Borel-Cantelli, kappa > log(2|D_a|)). Proposition 9.7: above the periodic band (s > X = sum 2c_d) the window's symbol has the
 absolutely convergent expansion log sigma_s = log s + sum_u beta_u e^{i tau u}, beta_u <= 0 indexed by the walks, sum |beta_u| =
--log(1 - X/s), beta_0 = log G(s) - log s (the geometric mean of Lemma 8.18); the Wiener-Hopf factors are G^{1/2} exp(sum_{+-u>0}
+-log(1 - X/s), beta_0 = log G(s) - log s (the geometric mean of Lemma 8.19); the Wiener-Hopf factors are G^{1/2} exp(sum_{+-u>0}
 beta_u e^{i tau u}); 1/sigma_{s,+} = G^{-1/2} sum_{u>=0} rho_u e^{i tau u} with rho_u >= 0, the words of total length k weighing at
 most (X/s)^k, so the weight within eps of the edge is <= (2 eps)^{alpha(s)}, alpha = log(s/X)/2a, and within eps of 2a at a
 Diophantine support <= (eps/c)^{log(s/X)/kappa}; (s/G)^{1/2} = 1 + |b|^2/(2s^2) + ... = the effective symbol's correction, and
@@ -104,16 +128,16 @@ across the window) + O(1/log^2 t); (ii) the edge law with two derivatives with t
 - lambda, remainder O(delta^{-k} L^{-5/2}), the echoes within delta of the edge weighing O(delta^{alpha(L)}); (iii) lambda' = -2|A_0|^2
 at every point of differentiability and, under RH, the tail law. Hence lambda(a_2) - lambda(a_1) = -2 int |A_0|^2 for ALL a_1 < a_2:
 THE BOUNDARY LAW HOLDS ALMOST EVERYWHERE AT EVERY SUPPORT. Corollary 9.13: (H_inf) + the inequality at a.e. a >= 0.8 => RH. Proof
-method: Corollary 8.6 and Proposition 8.4 with the window's symbol, the lattice expansion replacing the kernel lemma; the factors on
+method: Corollary 8.7 and Proposition 8.4 with the window's symbol, the lattice expansion replacing the kernel lemma; the factors on
 the line by the Hilbert estimate H[g e^{itu}] = -i sign(u) g e^{itu} + O(|g|/(|u| t)) summed with the Diophantine split; the far
 feedback through the kernel of 1/sigma_{a,+} (rho-weighted spikes at the lattice points), its singularities at v - 2a being the
 mirror chains; the inversion with the cutoff t_1 = delta^{-1/2} and the one-sided copies. The theorem is about lambda', NOT about the
-onset: its asymptotics begin at s > X e^{2a}, astronomically far; the onset is item 3. Computation 9.14 (FEM at a = 0.6, 114 nulls
+onset: its asymptotics begin at s > X e^{2a}, astronomically far; the onset is item 3. Computation 9.16 (FEM at a = 0.6, 114 nulls
 on 5-34 T*): the window's symbol phase residual 0.0365 (tree 0.0009, archimedean 0.145) is removed to 0.0186 by the two-step
 mirror chains at v - 2a = 0.186, 0.592, 0.997 (log 4, log 6, log 9 minus 1.2) with amplitudes 0.19, 0.51, 0.35 against the chain
 weights 0.24, 0.62, 0.40 (common factor 0.8); the tree's residual shows nothing at those frequencies (0.002); by height band the
 residual after the fit falls 0.033 -> 0.013 as (X/s)^3 falls 0.34 -> 0.13.
-WHAT THE K-MODE MINIMIZERS RESOLVE (2026-10-01, Computation 9.14; corrects Computation 8.19's pointwise claims). The K-mode
+WHAT THE K-MODE MINIMIZERS RESOLVE (2026-10-01, Computation 9.16; corrects Computation 8.20's pointwise claims). The K-mode
 minimizer is a polynomial of degree 2K-1: it resolves the edge to delta ~ a/(2K-1)^2 (heights ~ (2K-1)^2/a, 500-700 T*) but the
 interior cusps only to heights ~ (2K-1)/a (3-8 T*). At a = 0.6 the K-mode transform agrees with the FEM to 0.1-0.6% at 2-5 T* and
 departs at 7 T* (= (2K-1)/a = 7.6 T*) to 15-20% at 10-30 T*; the first-generation echo phase is in the FEM nulls with the predicted
@@ -122,35 +146,35 @@ amplitudes (regression 0.502, 0.635 vs c_2 = 0.490, c_3 = 0.634; rms 0.139 -> 0.
 coefficients < 0.001. So above (2K-1)/a (3.4, 2.9, 2.4 T* at a = 1.0, 1.25, 1.5) the K-mode data say nothing about the pointwise
 structure of the minimizer; their envelope (a mean) is right to the few % of sigma_eff/sigma_inf - 1, their zero sums and tail laws
 stand, but the claims "|F|^2 uncorrelated with 1/sigma_a, the minimizer does not follow the window's symbol pointwise" of
-Computation 8.19 are WITHDRAWN (they describe the polynomial's edge). The true pointwise statement above the band top is Proposition
+Computation 8.20 are WITHDRAWN (they describe the polynomial's edge). The true pointwise statement above the band top is Proposition
 9.7: |F|^2 ~ 1/sigma_a to first order in c_d/s. Testing the band's pointwise structure at a >= 1 needs an interior-resolving solver
 (FEM with spacing < 1/(50 T*)), not more K-modes.
-THE GLOBAL AND THE LOCAL (2026-10-01, paper 9.3: Proposition 9.15, Theorem 9.16, Proposition 9.17). Two global objects in the
+THE GLOBAL AND THE LOCAL (2026-10-01, paper 9.3: Proposition 9.17, Theorem 9.18, Proposition 9.19). Two global objects in the
 companion work: the Atlas's complete Weil form W(q,q) on all of C_c^inf (positivity on every support = RH; Suzuki defect E_N; local
 support theorems, CP20: Q_a^-(q) > 5278/10^6 |q|^2 for a <= 3/8) and the Mobius Green energy R(N) = sum mu(m)mu(n)/max(m,n)
-(R(N) = O(N^eps) <=> RH; a zero at beta_0 forces R(N) > N^{2 beta_0 - 1 - delta} i.o.). Proposition 9.15: the Atlas's odd operator
+(R(N) = O(N^eps) <=> RH; a zero at beta_0 forces R(N) > N^{2 beta_0 - 1 - delta} i.o.). Proposition 9.17: the Atlas's odd operator
 A_a^- = C_a - log 2pi - Pi_a - K_alpha - 2|s><s| IS the window form Q (Weil's kernel kappa, the shifts with b_n = c_n, the polar
 term), so CP20 is a CERTIFIED LOWER BOUND lambda(a) >= 5.28e-3 on (0, 3/8], against the engine's upper bound lambda_40(3/8) = 3.14e-2.
-Theorem 9.16 (two readings of delta_max): unconditionally limsup log^+ R(N)/(2 log N) = delta_max (Mobius paper + M(x) << x^{Theta+eps});
+Theorem 9.18 (two readings of delta_max): unconditionally limsup log^+ R(N)/(2 log N) = delta_max (Mobius paper + M(x) << x^{Theta+eps});
 and limsup log^+(-lambda(a))/(2a) = delta_max (Theorem 9.3): in the common variable a = log N the global energy and the local floor
 grow at the same rate 2 delta_max, both zero iff RH. Detection scales: the window's floor turns negative only from a_det =
 O(delta_0^{-1} log(1/delta_0)) (the quartet must outweigh the on-line zeros' O(a^2)), the Mobius budget exceeds C_M log N only from
 N^{delta_0} >> |rho_0 zeta'(rho_0)| sqrt(C_M): the same scale, exponentially late in 1/delta_0 - THE WINDOWS THAT TAKE INCREDIBLY LONG
-TO CLOSE. Proposition 9.17 (late windows are allowed): lambda' >= -(c T* + e(a)) lambda a.e. with ANY locally integrable excess e
+TO CLOSE. Proposition 9.19 (late windows are allowed): lambda' >= -(c T* + e(a)) lambda a.e. with ANY locally integrable excess e
 still gives lambda > 0 everywhere and RH (Gronwall); conversely RH <=> -lambda'/lambda in L^1_loc. So the content of Conjecture A
 is the RATE c T*, not positivity; windows where the rate is exceeded are permitted as long as the excess integrates: the resonant
 supports (null set) cost nothing, a late onset costs its excess over the interval of lateness; a NON-integrable excess is a sign
-change = a zero off the line. The all-support comparison the Atlas leaves open IS inequality (25) in the form of Proposition 9.17.
+change = a zero off the line. The all-support comparison the Atlas leaves open IS inequality (25) in the form of Proposition 9.19.
 NOT done: the transfer of the quantitative witness delta = -lambda(a)|f|^2 ~ e^{2 delta_max a} to the Suzuki defect E_N needs the
 Suzuki norm S(f,f) of the minimizer; the Atlas's complete energy identity (1/tau_R) K_a(I - K_a) = eta_p W*W + N_a + sum b_n P_{a,log n}
 is not yet related to the edge/echo structure of the minimizer.
-TWO TRANSFERS AND THE BLIND SPOT (2026-10-01, paper 9.4: Proposition 9.18, Proposition 9.19, Proposition 9.20, Theorem 9.21, Computation 9.22;
+TWO TRANSFERS AND THE BLIND SPOT (2026-10-01, paper 9.4: Proposition 9.20, Proposition 9.21, Proposition 9.22, Theorem 9.23, Computation 9.24;
 rh_blind_spot.py). (1) The Suzuki transfer done: with S(f,f) <= M_a^2 |f'|_1^2/pi (Atlas (B.7)) and the Atlas's CP9 (D1) transfer
 applied to a mollified minimizer, lambda(a) < 0 gives E_N >= (1 + pi(1-eps)|lambda(a)|/(3 M_a^2 V_a^2))^2 for N >= N_0, V_a = |f'|_1 =
 4 sup|f| (sup|f| = 1.46, 1.42, 1.40, 1.38 at a = 0.6-1.25, at the fixed position u = 0.22-0.23); with Theorem 9.3(iii) the defect's
 permanent floor grows like e^{2 delta_max a}/(M_a^2 V_a^2). Uncontrolled: Suzuki's feature constant M_a and the variation of the
 negative-branch minimizer. (2) The paired-prime matrices done: <q, Pi_a q> = 2 sum c_n h_q(log n) (the prime part of Q = the sampling
-defect, Prop 7.29); on the minimizer with a finite tree its tail part is (M_chi - 1) x density = <e^T C_a e / sigma~> (Cor 8.14(vi)),
+defect, Prop 7.29); on the minimizer with a finite tree its tail part is (M_chi - 1) x density = <e^T C_a e / sigma~> (Cor 8.15(vi)),
 C_a the tree's weighted adjacency with the edges; in the periodic model the mean of 2cos(tau d)|E|^2 is e^T C^{(d)} e: THE ATLAS'S
 PAIRED-PRIME MATRIX OF THE ENTRY n, COMPRESSED TO THE EDGE AND ITS ECHOES, IS THE ADJACENCY OF THE STEP log n; P_a is C_a.
 (3) THE BLIND SPOT IS A THEOREM (9.21): 16 Re S(gamma - i delta)^2 = 16 S^2 - 16 delta^2 (S'^2 + S S'') + O(delta^4): every
@@ -162,7 +186,7 @@ energy (weight 1/|rho|^2) is blind in the same place. Verified: the second-order
 CONSEQUENCE FOR ITEM (a): the search for a branch-separating quantity BELOW the sign change is closed: at supports where lambda > 0
 every functional differs between the branches at second order, with the floor itself carrying the sharpest coefficient; the branch
 is decided only at the sign change. RH is not detection at any finite scale; it is the structure, i.e. inequality (25) in the form
-of Proposition 9.17. Item (a) is withdrawn in favour of (b), (c), (d).
+of Proposition 9.19. Item (a) is withdrawn in favour of (b), (c), (d).
 
 ## 1. Edge law => tail law, as a proposition  [DONE 2026-09-30: paper Proposition 7.8]
 Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|^2 = 2C^2/pi. Proof: edge asymptotics
@@ -174,10 +198,10 @@ a C^2 by the overlap of the leak of the dilation generator with the edge force, 
 antisymmetry of Lemma 7.11 again), and Lemma 8.2 (the edge force to second order). So under the edge law with derivatives:
 boundary law => tail law (Prop 7.8), and both are the flux identity 2|A_0|^2 = -lambda' of the Wiener-Hopf form.
 DONE 2026-10-01: the edge law with derivatives is a THEOREM under (H_inf) for the prime-free form (Prop 8.4) and for the full
-form at a_2 < a < a_3, the prime 2 inside the window (Cor 8.8(ii)), with the constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda.
+form at a_2 < a < a_3, the prime 2 inside the window (Cor 8.9(ii)), with the constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda.
 At those supports item 1 is closed end to end: edge law (theorem) => boundary law (Prop 8.3) => with RH the tail law (Prop 7.8).
 
-## 2. The sum rule  [THEOREM AT ALMOST EVERY SUPPORT 2026-10-01: Theorem 9.12, the boundary law and the edge law at every Diophantine support; DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8; THEOREM AT EVERY SUPPORT WITH A FINITE ECHO TREE, a < a_inf = 0.843, 2026-10-01: Lemma 8.12, Proposition 8.13, Corollary 8.14]
+## 2. The sum rule  [THEOREM AT ALMOST EVERY SUPPORT 2026-10-01: Theorem 9.12, the boundary law and the edge law at every Diophantine support; DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.8, Corollary 8.9; THEOREM AT EVERY SUPPORT WITH A FINITE ECHO TREE, a < a_inf = 0.843, 2026-10-01: Lemma 8.13, Proposition 8.14, Corollary 8.15]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
@@ -265,10 +289,10 @@ the transform of (log 1/delta)^{-1/2} (the real L^-2 corrections cancel; the pha
 the expansion theta = -pi/(4 l) - pi^3/(24 l^3) + O(l^-5) + O(log log t/t) from the x-integral form of the Hilbert phase (even
 powers vanish by x -> 1/x), matching to relative order l^-3, and a splitting lemma for the inverse transform of the remainder
 with three derivatives. Corollary 8.5: lambda_inf' = -2|A_0|^2 and T (1/2pi) int_{|t|>T} |F|^2 sigma -> -lambda'/pi: the
-analytic law of Computation 7.14 is a theorem, Conjecture 7.19(i) holds with |A|^2 = -lambda'/2. Computation 8.6 /
+analytic law of Computation 7.14 is a theorem, Conjecture 7.19(i) holds with |A|^2 = -lambda'/2. Computation 8.7 /
 rh_edge_constants.py: with NOTHING fitted, f / [(-lambda'/2)^{1/2} (L + beta)^{-1/2}] = 1.001-1.003 on 1e-10 < delta < 1e-5 at
 a = 0.3, 0.4, 0.5, 0.6 (1.0003-1.0009 on the finer mesh): the boundary law's C and the symbol's beta, both predicted.
-DONE 2026-10-01 (b): THE FULL FORM IS A THEOREM FOR a_2 < a < a_3. Paper Proposition 8.7: with exactly one entry n inside the
+DONE 2026-10-01 (b): THE FULL FORM IS A THEOREM FOR a_2 < a < a_3. Paper Proposition 8.8: with exactly one entry n inside the
 window (a < d = log n < 2a, so n = 2) the entries outside the window move it off itself, and the eigen-equation on the whole
 line reads K_inf f = lambda f + 2P s 1_[-a,a] + c f_L(. - d) + c f_R(. + d) + g_inf 1_{|y|>a}, c = Lambda(n)/sqrt n: the copies
 of the two thirds L, R of the window are SOURCES for the archimedean operator, and Proposition 7.23 applies verbatim. The copy
@@ -276,34 +300,34 @@ on L is the echo, f(a+u) = c (k * f_R(a + . + d))(u) + smooth near u = -d, k the
 R near the edge is, by the echo at u - d, c^2 (k * f_R(a + .))(u) 1_{u<0} + a step + a far source, i.e. c^2 P_-[F~/sigma~_inf]
 up to smooth sources; moving c^2 F~/sigma~_inf to the left gives sigma_eff F~ = H'_- + G'_+ with
 sigma_eff = sigma~_inf - c^2/sigma~_inf and the representation F~ = P_-[H'_-/sigma_eff,+]/sigma_eff,- (eq. 19).
-Corollary 8.8: (i) the edge form of Cor 7.24 with sigma_eff, A_0 purely imaginary; (ii) the edge law with derivatives with
+Corollary 8.9: (i) the edge form of Cor 7.24 with sigma_eff, A_0 purely imaginary; (ii) the edge law with derivatives with
 the SAME constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda (the return term changes the symbol at relative order
 c^2/l^2 only), f smooth on the window except at the edges and at the echo points +-(a - d); (iii) the echo form of
 Conjecture 7.19(ii) with rho = c/sigma~_inf; (iv) lambda' = -2|A_0|^2; (v) under RH, T sum_{|gamma|>T} |F|^2 -> -lambda'/pi:
-CONJECTURE 7.7 IS A THEOREM FOR a_2 < a < a_3 under (H_inf) and RH. Computation 8.9 (rh_edge_constants.py,
+CONJECTURE 7.7 IS A THEOREM FOR a_2 < a < a_3 under (H_inf) and RH. Computation 8.10 (rh_edge_constants.py,
 data/edge_constants.log): on the full minimizers at a = 0.4, 0.45, 0.5 (lambda' = -0.466, -0.101, -0.0112 from the dilation
 engine) the ratio f / [(-lambda'/2)^{1/2} (L + beta)^{-1/2}], beta = -1.514, -1.619, -1.722, nothing fitted, is 1.000-1.002 on
 1e-12 < delta < 1e-6 and 1.004-1.008 at 1e-4; the alternative beta - 2c (a first-order return of the echo) is off by 2-4%:
 the prime inside the window changes neither constant.
 DONE 2026-10-01 (c): THE ECHO TREE. The entries d = log m < 2a generate walks (steps +-d) inside the window; the echo set S is
-the set of points reached from +-a, and the partition of the window by S is invariant under the entries (Lemma 8.12: the entries
-move the pieces onto pieces). Where the walks are confined (every orbit finite, (F_a)) the tree is finite, and Proposition 8.13
+the set of points reached from +-a, and the partition of the window by S is invariant under the entries (Lemma 8.13: the entries
+move the pieces onto pieces). Where the walks are confined (every orbit finite, (F_a)) the tree is finite, and Proposition 8.14
 gives, with the weighted adjacency C on S° (C_pq = c_d for |p - q| = d) and the couplings b_p = c_{a-p}: (i) f smooth off S°;
 (ii) the local echo relations f(p + v) = sum_q c_{|p-q|} (k * f(q + .))(v) + r_p, i.e. (sigma~ I - C) Phi_S° = b Phi_a + bbar Phi_{-a}
 + O(t^-2 log^-3/2); (iii) the exact representation at the edge with the EFFECTIVE SYMBOL = SCHUR COMPLEMENT
 sigma_eff = sigma~ - b^T (sigma~ I - C)^{-1} b = det(sigma~ - C_a)/det(sigma~ - C), a rational function of the archimedean symbol
 (a finite continued fraction along a chain), with finitely many real zeros (eigenvalues of C_a) and poles (eigenvalues of C: the
-standing waves of the interior tree, giving rational corrections). Corollary 8.14: the edge law with the SAME constants; the echo
+standing waves of the interior tree, giving rational corrections). Corollary 8.15: the edge law with the SAME constants; the echo
 form S = -|A_0||E| cos(ta + theta_eff + arg E - kappa/t)/(t sigma_eff^1/2), E = 1 + sum rho_p e^{-it(a-p)}, rho = (sigma~ - C)^{-1} b;
 THE SHARP FORM IS AN ALGEBRAIC IDENTITY OF THE TREE: <sigma_a |E|^2> = sigma_eff (mean over the oscillations), and the mirror
 term's mean is -Rbar (zero when the trees of the two edges are disjoint, as at every support computed); the boundary law; under RH
 the tail law (Conjecture 7.7) AT EVERY SUPPORT WITH A FINITE TREE; and the sampling constant M_chi - 1 =
 <e^T C_a e/sigma~>/<sigma_eff/sigma~> averaged over the tail with the weight chi_T/t^2, = 2|b|^2 <sigma~^-2> to first order,
-|b|^2 = sum_{log m < 2a} Lambda(m)^2/m. Computation 8.15 (rh_echo_tree.py, data/echo_tree.log): |S°| = 2 (one entry), 6 for
+|b|^2 = sum_{log m < 2a} Lambda(m)^2/m. Computation 8.16 (rh_echo_tree.py, data/echo_tree.log): |S°| = 2 (one entry), 6 for
 a_3 < a < a_4 (the echo of an echo at a - log 3 + log 2), 12, 22, 148 (a = 0.825), 426, 3434, 8854 near the threshold; the walks
 DECONFINE at a_inf = 0.8430 (between 0.84297 and 0.84336), where the echo set becomes dense: the infinite tree has a band, which
 is why the window's symbol is negative far above the horizon for a >= 1 (last sign change 33 T* at a = 1.0, > 150 T* at 1.25)
-while the finite tree has only finitely many resonances, all below the horizon. Computation 8.16 (edge FEM at a = 0.6 with the
+while the finite tree has only finitely many resonances, all below the horizon. Computation 8.17 (edge FEM at a = 0.6 with the
 entries 2, 3, lambda = 5.946e-7, lambda' = -4.1545e-5 from the engine at K = 64): the constants unchanged (ratio 1.0003-1.003 on
 1e-12 < delta < 1e-6, nothing fitted); the nulls follow the tree's phase with rms 0.0114 on 5-80 T* against 0.0162 for the first
 generation alone and 0.036 for the window's symbol; pointwise S is the tree form to 0.038, 0.0088, 0.0034 at 5, 10, 20 T* against
@@ -313,20 +337,20 @@ CORRECTION to Corollary 7.30 (found with the sharper cutoff 1 - exp(-(t/T)^8), w
 horizon had masked): the sampling defect is 2c^2 <sigma~^-2>_T averaged over the tail with the edge's weight chi_T/t^2, not
 2c^2/sigma(T)^2; the average is 0.7 times the value at T at ten horizons (int_1^inf du/(u^2 (L + log u)^2) = L^-2 (1 - 2/L + ...)).
 DONE 2026-10-01 (d): THE BAND. Beyond a_inf the exact statement is the representation with the WINDOW'S SYMBOL sigma_a = Psi_a - lambda
-(entries inside the window only), two sources (polar step, far force), valid at EVERY support (Prop 8.17; Lemma 7.21 extended to
+(entries inside the window only), two sources (polar step, far force), valid at EVERY support (Prop 8.18; Lemma 7.21 extended to
 symbols whose log-derivative is bounded but not L^2: theta, theta' = O(log log t)); its edge amplitude A_a(t) does not converge
 (the kernel of 1/sigma_{a,+} is singular on the lattice: the mirror chains; and the rational corrections of the N zeros are
 O(sum t_j^2/t^2)), so it is asymptotic only far above the last sign change. The finite tree is the resummation: for one entry the
 factorization s - 2c cos tau = sigma_fp (1 - rho e^{i tau})(1 - rho e^{-i tau}) is exact with sigma_fp the fixed point of
-sigma -> s - c^2/sigma (Lemma 8.18: the periodic limit; the geometric mean of the window's symbol over the torus is the log
+sigma -> s - c^2/sigma (Lemma 8.19: the periodic limit; the geometric mean of the window's symbol over the torus is the log
 potential of the law of sum 2c_d cos tau_d, = s - |b|^2/s + ..., = the fixed point outside the band [-2 sum c_d, 2 sum c_d] and
-pinned at c inside for one entry). THE BAND THAT MATTERS IS THE CONFINED LATTICE'S (Prop 8.20): the walks are confined to the
+pinned at c inside for one entry). THE BAND THAT MATTERS IS THE CONFINED LATTICE'S (Prop 8.21): the walks are confined to the
 window even when S is dense, the adjacency C on l^2(S°) has rho(C) <= D_max <= sum_{d<=a} 2c_d + sum_{a<d<2a} c_d < 2 sum c_d, and
 rho(C) >= rhobar(a) = sum_d 2c_d (1 - d/2a) (the mean weighted degree, by equidistribution + Folner), rhobar ~ 4e^a/a. Numerically
 (rh_lattice_band.py): rho(C) = 1.94, >= 2.91, >= 3.86 at a = 1.0, 1.25, 1.5 (rhobar = 1.74, 2.80, 4.10; periodic 5.85, 8.52, 13.0),
 so the confined band ends at 0.9, 1.5, ~3 T* while the periodic band reaches 47, 412, 22000 T* and the last sign change 33, 259, 397 T*.
 THE SHARP FORM HOLDS ABOVE THE CONFINED BAND, INSIDE THE PERIODIC ONE (rh_band.py on the K-mode minimizers at a = 1.0, 1.25, 1.5,
-Computation 8.19): <t^2 (Psi - lambda)|F|^2>/(-lambda') = 1.07/1.22/1.08 at 5 T*, 1.05/1.05/1.03 at 7, 1.00/1.01/1.01 at 10,
+Computation 8.20): <t^2 (Psi - lambda)|F|^2>/(-lambda') = 1.07/1.22/1.08 at 5 T*, 1.05/1.05/1.03 at 7, 1.00/1.01/1.01 at 10,
 within 3% to 50 T*, with the window's symbol negative on 2.6-6% of the heights at 5 T* carrying -0.02 of the envelope, and
 |F|^2 UNCORRELATED with 1/|sigma_a| (|corr| < 0.04): the minimizer does not follow the symbol's sign changes; the law is
 carried by the mean. The prime part (envelope against sigma_inf minus the full one) is 15-30% at 5 T*, a few % at 10.
@@ -335,12 +359,12 @@ a = 1.0, 1.25, 1.5 but +3.5 at a = 2 and +7.6 at 2.5, so the confined lattice's 
 at 2, ~2000 T* at 2.5: if the onset followed the SPECTRAL RADIUS, T_eff would outrun the horizon from a ~ 2 and the route of
 Prop 7.32 (fixed kappa) would fail. (2) IT DOES NOT FOLLOW IT. The edge couples to the lattice through b alone (the first-generation
 points), so what enters sigma_eff = s - R(s) is the SPECTRAL MEASURE mu_b OF C AT b: R(s) = int dmu_b/(s - nu), real above
-supp mu_b, complex inside (the edge radiates) (Prop 8.22; the moments of mu_b are exact under truncation to depth g up to order
+supp mu_b, complex inside (the edge radiates) (Prop 8.23; the moments of mu_b are exact under truncation to depth g up to order
 2g - 2, so Lanczos from b resolves it). Computed (rh_spectral_measure.py, Lanczos 80 steps on 150000 points, checked against the
 dense eigenproblem on 6000): mu_b sits at the BOTTOM of the spectrum (mean 0.1-0.25, width 1-2.3 against rho(C) = 2-8), its
 weight above the horizon's height 2a is <= 6% at every a, and its 1% quantile ends at 0.8, 1.3 T* for a = 1.0, 1.25 (where
 rho(C) itself is resolved: 1.94, 2.93 < 2a + log 5); at a >= 1.5 the Lanczos measure's top node lies below 2a + log 5, so its
-'zero weight above 5 T*' is the truncation's [CORRECTED 2026-10-01, Proposition 9.20]: the support of mu_b reaches rho(C) >=
+'zero weight above 5 T*' is the truncation's [CORRECTED 2026-10-01, Proposition 9.22]: the support of mu_b reaches rho(C) >=
 rho_bar(a) (connected lattice), which exceeds 2a + log 5 from a = 1.75; what the EXACT moments bound is the MASS above 5 T*:
 <= 2e-6, 1e-4, 1e-3, 0.8%, 2.2%, 4.7%, 5.6% at a = 1.0 ... 2.5 (Chebyshev with the highest exact even moment, orders 14,14,14,10,8,6,6). So THE PREDICTION OF A RECEDING ONSET IS WITHDRAWN: the
 spectral radius is the band of the worst coupling, the edge's coupling sits far below it. What remains predicted for a = 2:
@@ -421,13 +445,13 @@ Proposition 7.32: under RH, if the SHARP tail law holds at kappa T* within a fac
 then lambda' >= -pi kappa M'' T* lambda - M'' e^{-8 T*}: Conjecture A with c = pi kappa M'' (the cutoff with m ~ 1.5 T is bounded in
 the strip of the explicit formula and makes the polar term 2P^2 (2T)^{-2m}, which Gronwall absorbs for c < 16). (S_kappa) and
 (E_kappa) are gone: no sampling constant, no density, no gap condition; the zeros enter only through the exact identity (17).
-At every support with a finite tree (T_kappa) holds for kappa large with M'' -> 1 (Corollary 8.14), and the sharp form is there an
+At every support with a finite tree (T_kappa) holds for kappa large with M'' -> 1 (Corollary 8.15), and the sharp form is there an
 algebraic identity of the echo amplitudes. The measured onset is a few horizons at every support computed, including a = 1.0, 1.25
 where the tree is infinite; c = pi e M'' at kappa = e is again 8.5 against the observed 3.3-3.9.
 NEXT for item 3: UNIFORMITY IN a of the onset of the sharp form, i.e. (T_kappa) with one kappa and one M'' for all a. The band
 analysis makes this concrete: the onset is where the archimedean symbol 2a + log kappa clears the band the edge sees, the upper
 tail of the spectral measure mu_b of the confined lattice at the edge's coupling. Measured, that tail ends within a few horizons
-up to a = 2.5 (mass above 5 T* <= 2e-6 ... 5.6% by the exact moments; the SUPPORT reaches rho(C) ~ 4e^a/a, Proposition 9.20),
+up to a = 2.5 (mass above 5 T* <= 2e-6 ... 5.6% by the exact moments; the SUPPORT reaches rho(C) ~ 4e^a/a, Proposition 9.22),
 so a fixed kappa ~ 10 suffices as far as computed. The prime-side statement to prove: the weight of mu_b above 2a + log kappa
 is below a fixed fraction eta < 1 for all a (it is NOT zero: the support outruns the horizon), i.e. m_k <= eta (2a + log kappa)^k
 for ONE even k and all a, a statement about closed walks through the
@@ -441,13 +465,13 @@ must eventually be replaced by its prime-side form: the dilation derivative of t
 using only the Euler product and the archimedean symbol.
 
 ## Next (as of 2026-10-01, evening)
-(a) [CLOSED by Theorem 9.21: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
+(a) [CLOSED by Theorem 9.23: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
 detection scale a_det ~ delta^{-1} log(1/delta), so the quantity must be visible at supports where lambda > 0 and the Mobius budget is
 tame; candidates: the stiffness kappa_2 = sum 16 S'(gamma)^2 against y_c (Comp 9.5); the overlap of the minimizer with the Mobius test
 function sum mu(n) n^{-1/2} phi(x - log n) (the global sequence evaluated in the local metric); the Suzuki norm S(f,f) of the minimizer.
 (b) The long multiplicative relations m_k^{1/k} for k ~ a (the uniformity of the onset, item 3).
 (c) The Atlas bridge [DONE in 9.4 up to Suzuki's constant M_a]: compute M_a from Suzuki's feature (B.2) and S(f,f) for the K-mode minimizer
-at a <= 1 to make Proposition 9.18 numerical; the paired-prime/echo-tree identification is Proposition 9.19.
+at a <= 1 to make Proposition 9.20 numerical; the paired-prime/echo-tree identification is Proposition 9.21.
 (d) An interior-resolving solver at a = 1 (FEM, spacing < 1/(50 T*)) before any further pointwise claim in the band; a K = 200
     minimizer at a = 1 (interior resolved to 8.6 T*) was launched (python3 rh_tail_law.py coefs 1.0 200 600 data/kmode_K200/coefs_1.0.json,
     > 17 CPU-minutes at the end of the session, not finished); then python3 rh_band_phase.py 1.0 3 9 data/kmode_K200/coefs_1.0.json 3 8
@@ -455,7 +479,7 @@ at a <= 1 to make Proposition 9.18 numerical; the paired-prime/echo-tree identif
     the K = 80 polynomial is in its transition zone there). Connectivity (rh_lattice_connect.py): the right edge's closure is one
     interior component from a = 0.9 on (24 first-generation points in one component at a = 2 within 10^5 points); at a = 0.85 the
     first generation still splits into two components within 10^5 points and chains of 9000 steps.
-(e) The mass of mu_b above the horizon, rigorously: DONE FOR k = 2 WITH eta = 5/12 + o(1) (Proposition 9.20(v), 2026-10-01 evening):
+(e) The mass of mu_b above the horizon, rigorously: DONE FOR k = 2 WITH eta = 5/12 + o(1) (Proposition 9.22(v), 2026-10-01 evening):
     m_2 |b|^2 = |Cb|^2 = sum over rational landing points of (sum of two-step weights)^2 <= 2 sum c_m^2 B(2a - log m) + sum c_m^2 B(log m)
     + O(a) (swap multiplicity 2 inward, 1 outward, same-prime points O(a) in total), and Mertens gives m_2 <= (5/12)(2a)^2 (1 + O(1/a)):
     THE EDGE'S MEASURE KEEPS AT LEAST 7/12 OF ITS MASS BELOW ANY FIXED NUMBER OF HORIZONS, UNIFORMLY IN a - the first uniform-in-a

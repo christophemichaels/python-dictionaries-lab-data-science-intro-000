@@ -1,12 +1,12 @@
 """
-The K-mode minimizers above the horizon: the edge's transform, and what the polynomial does not resolve (paper Computation 9.14).
+The K-mode minimizers above the horizon: the edge's transform, and what the polynomial does not resolve (paper Computation 9.16).
 
-Proposition 8.17 gives, at every support, F~ = A_a(t)/(t sigma_{a,-}) + e^{-2ita} Phi_-/sigma~_a with the window's symbol sigma_a, and
+Proposition 8.18 gives, at every support, F~ = A_a(t)/(t sigma_{a,-}) + e^{-2ita} Phi_-/sigma~_a with the window's symbol sigma_a, and
 Theorem 9.12 says A_a(t) -> A_0 above the periodic band, with the mirror chains (walks from the far edge across the window) as the leading
 oscillating correction.  The K-mode minimizer is a polynomial of degree 2K-1 on [-a, a]: it resolves the edge to delta ~ a/(2K-1)^2, i.e.
 heights of order (2K-1)^2/a (several hundred horizons), but not the interior echo cusps above heights of order (2K-1)/a (a few horizons), so
 above a few horizons its transform is the edge's transform alone: the nulls follow the archimedean Hilbert phase, the amplitude is
-(-lambda'/2)^(1/2), and neither the echo phase of Corollary 8.14(iii) nor the window's symbol phase is present (block (iv) tests the
+(-lambda'/2)^(1/2), and neither the echo phase of Corollary 8.15(iii) nor the window's symbol phase is present (block (iv) tests the
 echo phase directly: its regression coefficients vanish, where the FEM at a = 0.6 gives c_2, c_3; rh_mirror_chains.py).  Blocks (i)-(iii)
 therefore measure the edge of the minimizer, at heights up to several hundred horizons, against the sharp form with the archimedean symbol
 and against the window's symbol with the asymptotic amplitude.
@@ -119,7 +119,7 @@ for lo_k, hi_k in ((3, 10), (10, 30), (30, 47), (47, 100), (100, 200), (200, 400
     v = loc[m, 1]; print(f"   {lo_k:4d}-{hi_k:3d} T* ({m.sum():4d} periods): mean {v.mean():.4f}, std {v.std():.4f}, min {v.min():.4f}, max {v.max():.4f}", flush=True)
 
 # --- (iv) the first-generation echo phase: regression of r + theta_inf - kappa/t on (alpha_d sin(td) + beta_d cos(td))/sigma~_inf on 10-30 T*;
-#     the echo form (Corollary 8.14(iii)) has alpha_d = c_d, beta_d = 0, which the FEM at a = 0.6 reproduces (rh_mirror_chains.py) ---
+#     the echo form (Corollary 8.15(iii)) has alpha_d = c_d, beta_d = 0, which the FEM at a = 0.6 reproduces (rh_mirror_chains.py) ---
 m = (tk >= klo*Ts) & (tk < khi*Ts); s_ = np.exp(u_i(tk[m]))
 cols = [1/tk[m]] + [np.sin(tk[m]*dd)/s_ for dd, _, _ in ent] + [np.cos(tk[m]*dd)/s_ for dd, _, _ in ent]
 Xm = np.array(cols).T; cf, *_ = np.linalg.lstsq(Xm, (r + th_i)[m], rcond=None); k0 = np.sum((r + th_i)[m]/tk[m])/np.sum(1/tk[m]**2)

@@ -1,11 +1,11 @@
 """
-The constants of the edge from the Wiener-Hopf representation (paper Proposition 8.4, Computation 8.6; with the prime inside the window Proposition 8.7, Corollary 8.8, Computation 8.9).
+The constants of the edge from the Wiener-Hopf representation (paper Proposition 8.4, Computation 8.7; with the prime inside the window Proposition 8.8, Corollary 8.9, Computation 8.10).
 
 For the prime-free form, Corollary 7.24 gives the edge of the transform as A_0/(t sigma_-(t)), and the inverse transform of
 that factor is the edge law with its constants fixed:
     f(a - delta) = C (log(a/delta) + beta)^{-1/2} (1 + O(log^{-3})),   C = |A_0|,   beta = -gamma - log(2 pi a) - lambda,
 i.e. f(a - delta) = C (sigma_inf(1/delta) - gamma)^{-1/2}: the inverse square root of the symbol at frequency 1/delta, shifted by
-Euler's constant.  With the boundary law (Proposition 8.3) C^2 = -lambda'/2.  The same constants hold for the full form with the entries inside the window (Corollary 8.8).  This script tests both
+Euler's constant.  With the boundary law (Proposition 8.3) C^2 = -lambda'/2.  The same constants hold for the full form with the entries inside the window (Corollary 8.9).  This script tests both
 constants, with nothing fitted, on the edge-FEM critical points without primes and on the minimizers with the prime 2 inside the window: lambda from the FEM, lambda' from the arb dilation engine (data/dilation_*.log).
 
 Usage: python3 rh_edge_constants.py

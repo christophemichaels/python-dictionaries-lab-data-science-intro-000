@@ -172,7 +172,7 @@ if primes and all(a < math.log(n) < 2*a for n in primes):     # the single-echo 
         sg = sigma(tt); thv = theta(tt); sw0 = -Aabs*np.cos(tt*a + thv - kappa/tt)/(tt*np.sqrt(sg)); d0 = math.sqrt(np.trapezoid((s - sw0)**2, tt)/np.trapezoid(s*s, tt))
         print(f"   {k:5d}   {de:10.5f}   {d0:14.5f}   {de*k:12.4f}")
 
-# --- (iv) the echo tree (paper Proposition 8.13, Corollary 8.14, Computation 8.16): at any support with a finite echo set S the right edge sees the
+# --- (iv) the echo tree (paper Proposition 8.14, Corollary 8.15, Computation 8.17): at any support with a finite echo set S the right edge sees the
 # interior echo points S° through the weighted adjacency C and the couplings b (rh_echo_tree.py); its effective symbol is the Schur
 # complement sigma_eff = sigma~_inf - b^T (sigma~_inf - C)^{-1} b (a finite continued fraction along a chain), the echo amplitudes
 # are rho = (sigma~_inf - C)^{-1} b, and S = -|A| |E| cos(ta + theta_eff + arg E - kappa/t)/(t sigma_eff^{1/2}), E = 1 + sum_p rho_p e^{-it(a-p)}.

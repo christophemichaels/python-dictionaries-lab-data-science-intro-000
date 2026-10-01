@@ -1,5 +1,5 @@
 """
-The band of the confined echo lattice (paper Proposition 8.20, Computation 8.21).
+The band of the confined echo lattice (paper Proposition 8.21, Computation 8.22).
 
 Beyond a_inf = 0.843 the echo set S is dense, but the walks are still confined to the window, and the weighted adjacency C of the
 echo graph (C_pq = c_d for |p - q| = d = log m, c_d = Lambda(m)/sqrt m) is a bounded operator on l^2(S°) whose spectral radius

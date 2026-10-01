@@ -1,5 +1,5 @@
 """
-The echo tree of a support (paper Lemma 8.12, Proposition 8.13, Corollary 8.14, Computations 8.15 and 8.16).
+The echo tree of a support (paper Lemma 8.13, Proposition 8.14, Corollary 8.15, Computations 8.16 and 8.16).
 
 The entries d = log m < 2a copy the minimizer onto itself shifted by +-d. Starting from the edges +-a, the points reached by
 walks with steps +-d that stay in [-a, a] form the echo set S; its interior points S° are the singular points of the

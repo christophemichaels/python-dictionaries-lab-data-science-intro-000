@@ -1,5 +1,5 @@
 """
-The band the edge sees: the spectral measure of the confined echo lattice at the edge's coupling (paper Proposition 8.22, Computation 8.23).
+The band the edge sees: the spectral measure of the confined echo lattice at the edge's coupling (paper Proposition 8.23, Computation 8.24).
 
 The edge of the window couples to the echo lattice only through b (b_p = c_d at the first-generation points a - d), so the return
 R(s) = b^T (s - C)^{-1} b = int dmu_b(nu)/(s - nu) is the Stieltjes transform of the spectral measure mu_b of the adjacency C at b,

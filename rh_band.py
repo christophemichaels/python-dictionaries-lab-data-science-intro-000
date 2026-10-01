@@ -1,5 +1,5 @@
 """
-The sharp form inside the band of the echo lattice (paper Proposition 8.17, Computation 8.19).
+The sharp form inside the band of the echo lattice (paper Proposition 8.18, Computation 8.20).
 
 Beyond a_inf = 0.843 the echo set is dense and the window's symbol sigma_a = Psi_inf - lambda - sum_{log m < 2a} 2 Lambda(m) m^{-1/2} cos(t log m)
 is negative on a set of t reaching far above the horizon (its last sign change is at 33 T* for a = 1 and 259 T* for a = 1.25;

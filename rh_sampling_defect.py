@@ -1,5 +1,5 @@
 """
-The sampling defect of the zeros above a height is the prime sum at the entries (paper Proposition 7.29, Corollary 7.30, Computation 7.31; the echo-tree form of the constant, Corollary 8.14(vi)).
+The sampling defect of the zeros above a height is the prime sum at the entries (paper Proposition 7.29, Corollary 7.30, Computation 7.31; the echo-tree form of the constant, Corollary 8.15(vi)).
 
 Under RH, Weil's explicit formula for the even test function h = |F|^2 chi, chi an entire even cutoff, reads
     sum_gamma h(gamma) = (1/2pi) int h Psi_inf - sum_n Lambda(n) n^{-1/2} [h^(log n) + h^(-log n)] + h(i/2) + h(-i/2),
@@ -52,9 +52,9 @@ for a, fn in [(0.4, "data/fem_a0.4_full.json"), (0.45, "data/fem_a0.45_full.json
     print(f"{fn.split('/')[-1]}: a = {a}, lambda = {lam:.6e}, lambda' = {lp:.6e}, P = {P:.5f}, T* = {Ts:.3f}, entries inside the window {inside}, "
           f"first 6000 zeros to {zeros[-1]:.1f} = {zeros[-1]/Ts:.0f} T*; 2 sum_6000 |F|^2 / lambda = {2*F2z.sum()/lam:.5f}")
     Tr = tree(a); Cm = Tr["C"]; bv = Tr["b"]; nS = len(bv)
-    def M_tree(sg):                                   # paper Corollary 8.14(vi): M_chi - 1 = [R + sigma~(|rho|^2 - 1)]/sigma_eff, rho = (sigma~ - C)^{-1} b, R = b.rho
+    def M_tree(sg):                                   # paper Corollary 8.15(vi): M_chi - 1 = [R + sigma~(|rho|^2 - 1)]/sigma_eff, rho = (sigma~ - C)^{-1} b, R = b.rho
         rho = np.linalg.solve(sg*np.eye(nS) - Cm, bv); R = float(bv @ rho); return 1 + (R + sg*float(rho @ rho))/(sg - R)
-    # the tree's prediction averaged over the cutoff (paper Corollary 8.14(vi)): M_chi - 1 = <e^T C_a e / sigma~> / <sigma_eff / sigma~>,
+    # the tree's prediction averaged over the cutoff (paper Corollary 8.15(vi)): M_chi - 1 = <e^T C_a e / sigma~> / <sigma_eff / sigma~>,
     # <g> = int chi_T g t^-2 dt / int chi_T t^-2 dt, with sigma~ = sigma~_inf(t) on the grid (the real zero t_lambda divided out)
     f_sig = lambda t: float(repsi(np.array([t]))[0]) - math.log(math.pi) - lam
     lo, hi = 3.0, 12.0
