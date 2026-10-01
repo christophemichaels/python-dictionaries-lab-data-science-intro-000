@@ -152,11 +152,35 @@ The explicit-formula identity holds to 1e-5 of the zero sum at every height.
 CORRECTION to Corollary 7.30 (found with the sharper cutoff 1 - exp(-(t/T)^8), which the quartic cutoff's leakage below the
 horizon had masked): the sampling defect is 2c^2 <sigma~^-2>_T averaged over the tail with the edge's weight chi_T/t^2, not
 2c^2/sigma(T)^2; the average is 0.7 times the value at T at ten horizons (int_1^inf du/(u^2 (L + log u)^2) = L^-2 (1 - 2/L + ...)).
-NEXT for item 2 (what the theorems leave open): (a) the INFINITE TREE, a > a_inf = 0.843: the echo set is dense, the resolvent
-(sigma~ - C)^{-1} of the infinite graph has a band (the window's symbol sigma_inf - sum 2 c_d cos(t d) is the periodic/Bloch limit:
-its geometric mean over a period is the infinite continued fraction's fixed point), and the tail law is observed from ~5 T* at
-a = 0.8-1.25 inside the band: the effective symbol in the band regime is the open question, and it is the same question as the
-uniformity of item 3; (b) kappa constant and the rate, not needed for the tail law.
+DONE 2026-10-01 (d): THE BAND. Beyond a_inf the exact statement is the representation with the WINDOW'S SYMBOL sigma_a = Psi_a - lambda
+(entries inside the window only), two sources (polar step, far force), valid at EVERY support (Prop 8.17; Lemma 7.21 extended to
+symbols whose log-derivative is bounded but not L^2: theta, theta' = O(log log t)); its edge amplitude A_a(t) does not converge
+(the kernel of 1/sigma_{a,+} is singular on the lattice: the mirror chains; and the rational corrections of the N zeros are
+O(sum t_j^2/t^2)), so it is asymptotic only far above the last sign change. The finite tree is the resummation: for one entry the
+factorization s - 2c cos tau = sigma_fp (1 - rho e^{i tau})(1 - rho e^{-i tau}) is exact with sigma_fp the fixed point of
+sigma -> s - c^2/sigma (Lemma 8.18: the periodic limit; the geometric mean of the window's symbol over the torus is the log
+potential of the law of sum 2c_d cos tau_d, = s - |b|^2/s + ..., = the fixed point outside the band [-2 sum c_d, 2 sum c_d] and
+pinned at c inside for one entry). THE BAND THAT MATTERS IS THE CONFINED LATTICE'S (Prop 8.20): the walks are confined to the
+window even when S is dense, the adjacency C on l^2(S°) has rho(C) <= D_max <= sum_{d<=a} 2c_d + sum_{a<d<2a} c_d < 2 sum c_d, and
+rho(C) >= rhobar(a) = sum_d 2c_d (1 - d/2a) (the mean weighted degree, by equidistribution + Folner), rhobar ~ 4e^a/a. Numerically
+(rh_lattice_band.py): rho(C) = 1.94, >= 2.91, >= 3.86 at a = 1.0, 1.25, 1.5 (rhobar = 1.74, 2.80, 4.10; periodic 5.85, 8.52, 13.0),
+so the confined band ends at 0.9, 1.5, ~3 T* while the periodic band reaches 47, 412, 22000 T* and the last sign change 33, 259, 397 T*.
+THE SHARP FORM HOLDS ABOVE THE CONFINED BAND, INSIDE THE PERIODIC ONE (rh_band.py on the K-mode minimizers at a = 1.0, 1.25, 1.5,
+Computation 8.19): <t^2 (Psi - lambda)|F|^2>/(-lambda') = 1.07/1.22/1.08 at 5 T*, 1.05/1.05/1.03 at 7, 1.00/1.01/1.01 at 10,
+within 3% to 50 T*, with the window's symbol negative on 2.6-6% of the heights at 5 T* carrying -0.02 of the envelope, and
+|F|^2 UNCORRELATED with 1/|sigma_a| (|corr| < 0.04): the minimizer does not follow the symbol's sign changes; the law is
+carried by the mean. The prime part (envelope against sigma_inf minus the full one) is 15-30% at 5 T*, a few % at 10.
+THE PREDICTION (the output of this round): rhobar(a) - 2a = -0.25, +0.30, +1.1 at a = 1.0, 1.25, 1.5 but +3.5 at a = 2 and
++7.6 at 2.5: the confined band's top e^{rho - 2a} T* is ~3 T* at 1.5 but ~35 T* at a = 2 and ~2000 T* at 2.5. If the onset of
+the tail law follows the band (as at every support computed, where it is 2-5 x the band top), T_eff outruns the horizon from
+a ~ 2, the universality of theta(T/T*) breaks, and the route of Prop 7.32 (sharp form at a FIXED kappa) fails; the floor's mass
+(1-3 T*) is inside the band at every a >= 1. If the onset stays at ~5 T*, the sharp form holds inside the band where the echo
+expansion diverges, and the mechanism is not the convergence of the echoes. DECISIVE TEST: a minimizer at a = 2 (T* = 343; ~500
+modes at ~1500 bits in the arb engine, or the edge FEM with the entries up to 54), reading the height at which T theta(T) becomes
+constant: a few horizons or tens. This is the one new support the analysis demands; it is not a refit.
+NEXT for item 2: the a = 2 test above; then, depending on its outcome, either the band regime proper (the sharp form where the
+resolvent (sigma~ - C)^{-1} does not exist: limiting absorption, the edge radiating into the lattice) or the growth of the onset
+with a. (b) kappa constant and the rate, not needed for the tail law.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -229,11 +253,13 @@ the strip of the explicit formula and makes the polar term 2P^2 (2T)^{-2m}, whic
 At every support with a finite tree (T_kappa) holds for kappa large with M'' -> 1 (Corollary 8.14), and the sharp form is there an
 algebraic identity of the echo amplitudes. The measured onset is a few horizons at every support computed, including a = 1.0, 1.25
 where the tree is infinite; c = pi e M'' at kappa = e is again 8.5 against the observed 3.3-3.9.
-NEXT for item 3: UNIFORMITY IN a of the onset of the sharp form, i.e. (T_kappa) with one kappa and one M'' for all a. Below
-a_inf = 0.843 this is a statement about finite trees of growing size (|S°| up to thousands, chains up to 1572 links, resonances
-accumulating at the top of the spectrum of C); above a_inf it is the band regime of the infinite tree. The two are the same
-analysis as item 2(a): the effective symbol of the edge when the echo lattice is dense, whose periodic limit is the window's
-symbol. Not to drift into: more supports for the tail law; the data at a = 0.8-1.25 (K-mode) already show the onset at ~5 T*.
+NEXT for item 3: UNIFORMITY IN a of the onset of the sharp form, i.e. (T_kappa) with one kappa and one M'' for all a. The band
+analysis of item 2(d) makes this concrete and dangerous: the onset is bounded below by the top of the confined lattice's band,
+e^{rho(C_a) - 2a} horizons with rho(C_a) >= sum_d 2c_d(1 - d/2a) ~ 4e^a/a, which outruns every fixed kappa from a ~ 2 on. So
+(T_kappa) with fixed kappa can only hold if the sharp form holds INSIDE the band; whether it does is the a = 2 test. If it does
+not, item 3 must be reformulated around the mass region 1-3 T* (inside the band at every a >= 1), e.g. a lower bound on the
+zero sum at 1-3 T* in the band regime, and the constant c of Conjecture A is no longer pi kappa M''. The data at a <= 1.5 cannot
+decide; the next support is a = 2.
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is
