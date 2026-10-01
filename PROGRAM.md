@@ -17,7 +17,7 @@ DONE 2026-10-01: the edge law with derivatives is a THEOREM under (H_inf) for th
 form at a_2 < a < a_3, the prime 2 inside the window (Cor 8.8(ii)), with the constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda.
 At those supports item 1 is closed end to end: edge law (theorem) => boundary law (Prop 8.3) => with RH the tail law (Prop 7.8).
 
-## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8]
+## 2. The sum rule  [DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8; THEOREM AT EVERY SUPPORT WITH A FINITE ECHO TREE, a < a_inf = 0.843, 2026-10-01: Lemma 8.12, Proposition 8.13, Corollary 8.14]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
@@ -125,11 +125,38 @@ data/edge_constants.log): on the full minimizers at a = 0.4, 0.45, 0.5 (lambda' 
 engine) the ratio f / [(-lambda'/2)^{1/2} (L + beta)^{-1/2}], beta = -1.514, -1.619, -1.722, nothing fitted, is 1.000-1.002 on
 1e-12 < delta < 1e-6 and 1.004-1.008 at 1e-4; the alternative beta - 2c (a first-order return of the echo) is off by 2-4%:
 the prime inside the window changes neither constant.
-NEXT for item 2 (what the theorem leaves open; none of it is needed for the tail law at these supports): (a) general supports:
-several entries and chains of several links (the echo tree: the return terms make the effective symbol a finite continued
-fraction, the window's symbol sigma_inf - 2c cos being its infinite limit), the mirror chains, the coincidences a = a_n;
-(b) kappa constant (bound O(log t), data 1e-4) and the rate (O(log t/t) proved against the measured t^-2). Item 2 is
-otherwise closed: edge law, boundary law and tail law are the one flux identity 2|A_0|^2 = -lambda'.
+DONE 2026-10-01 (c): THE ECHO TREE. The entries d = log m < 2a generate walks (steps +-d) inside the window; the echo set S is
+the set of points reached from +-a, and the partition of the window by S is invariant under the entries (Lemma 8.12: the entries
+move the pieces onto pieces). Where the walks are confined (every orbit finite, (F_a)) the tree is finite, and Proposition 8.13
+gives, with the weighted adjacency C on S° (C_pq = c_d for |p - q| = d) and the couplings b_p = c_{a-p}: (i) f smooth off S°;
+(ii) the local echo relations f(p + v) = sum_q c_{|p-q|} (k * f(q + .))(v) + r_p, i.e. (sigma~ I - C) Phi_S° = b Phi_a + bbar Phi_{-a}
++ O(t^-2 log^-3/2); (iii) the exact representation at the edge with the EFFECTIVE SYMBOL = SCHUR COMPLEMENT
+sigma_eff = sigma~ - b^T (sigma~ I - C)^{-1} b = det(sigma~ - C_a)/det(sigma~ - C), a rational function of the archimedean symbol
+(a finite continued fraction along a chain), with finitely many real zeros (eigenvalues of C_a) and poles (eigenvalues of C: the
+standing waves of the interior tree, giving rational corrections). Corollary 8.14: the edge law with the SAME constants; the echo
+form S = -|A_0||E| cos(ta + theta_eff + arg E - kappa/t)/(t sigma_eff^1/2), E = 1 + sum rho_p e^{-it(a-p)}, rho = (sigma~ - C)^{-1} b;
+THE SHARP FORM IS AN ALGEBRAIC IDENTITY OF THE TREE: <sigma_a |E|^2> = sigma_eff (mean over the oscillations), and the mirror
+term's mean is -Rbar (zero when the trees of the two edges are disjoint, as at every support computed); the boundary law; under RH
+the tail law (Conjecture 7.7) AT EVERY SUPPORT WITH A FINITE TREE; and the sampling constant M_chi - 1 =
+<e^T C_a e/sigma~>/<sigma_eff/sigma~> averaged over the tail with the weight chi_T/t^2, = 2|b|^2 <sigma~^-2> to first order,
+|b|^2 = sum_{log m < 2a} Lambda(m)^2/m. Computation 8.15 (rh_echo_tree.py, data/echo_tree.log): |S°| = 2 (one entry), 6 for
+a_3 < a < a_4 (the echo of an echo at a - log 3 + log 2), 12, 22, 148 (a = 0.825), 426, 3434, 8854 near the threshold; the walks
+DECONFINE at a_inf = 0.8430 (between 0.84297 and 0.84336), where the echo set becomes dense: the infinite tree has a band, which
+is why the window's symbol is negative far above the horizon for a >= 1 (last sign change 33 T* at a = 1.0, > 150 T* at 1.25)
+while the finite tree has only finitely many resonances, all below the horizon. Computation 8.16 (edge FEM at a = 0.6 with the
+entries 2, 3, lambda = 5.946e-7, lambda' = -4.1545e-5 from the engine at K = 64): the constants unchanged (ratio 1.0003-1.003 on
+1e-12 < delta < 1e-6, nothing fitted); the nulls follow the tree's phase with rms 0.0114 on 5-80 T* against 0.0162 for the first
+generation alone and 0.036 for the window's symbol; pointwise S is the tree form to 0.038, 0.0088, 0.0034 at 5, 10, 20 T* against
+0.053, 0.028, 0.020 for the first generation: THE DIFFERENCE IS THE SECOND ECHO c_2 c_3/(sigma~^2 - c_2^2) = 0.040, 0.026, 0.018.
+The explicit-formula identity holds to 1e-5 of the zero sum at every height.
+CORRECTION to Corollary 7.30 (found with the sharper cutoff 1 - exp(-(t/T)^8), which the quartic cutoff's leakage below the
+horizon had masked): the sampling defect is 2c^2 <sigma~^-2>_T averaged over the tail with the edge's weight chi_T/t^2, not
+2c^2/sigma(T)^2; the average is 0.7 times the value at T at ten horizons (int_1^inf du/(u^2 (L + log u)^2) = L^-2 (1 - 2/L + ...)).
+NEXT for item 2 (what the theorems leave open): (a) the INFINITE TREE, a > a_inf = 0.843: the echo set is dense, the resolvent
+(sigma~ - C)^{-1} of the infinite graph has a band (the window's symbol sigma_inf - sum 2 c_d cos(t d) is the periodic/Bloch limit:
+its geometric mean over a period is the infinite continued fraction's fixed point), and the tail law is observed from ~5 T* at
+a = 0.8-1.25 inside the band: the effective symbol in the band regime is the open question, and it is the same question as the
+uniformity of item 3; (b) kappa constant and the rate, not needed for the tail law.
 Status: the exact identity is paper Proposition 7.9 (tail identity); rh_sum_rule.py verifies it on the FEM minimizers
 to 1-2% at 5-20 horizons (Computation 7.10; beyond, the y-grid under-resolves the leak's oscillation of period 2 pi/T). The edge overlap alone is the law to +-10%, and the smooth overlap plus
 the polar piece cancel to +-10% of the law. Remaining: (a) the asymptotic expansion of the edge overlap in 1/L (leading
@@ -159,7 +186,7 @@ truncated form; the explicit formula for the high-pass part of f (the fluctuatio
 prime sum on frequencies above T). Whatever cancels the logarithms is prime-side, so this is likely the statement we
 are looking for.
 
-## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.26, Proposition 7.27; THE SAMPLING DEFECT IS THE PRIME SUM AT THE ENTRIES 2026-10-01: Proposition 7.29, Corollary 7.30; NEXT]
+## 3. The onset at a single support  [REFORMULATED 2026-09-30: Lemma 7.26, Proposition 7.27; THE SAMPLING DEFECT IS THE PRIME SUM AT THE ENTRIES 2026-10-01: Proposition 7.29, Corollary 7.30; ONE HYPOTHESIS ON THE MINIMIZER ALONE 2026-10-01: Proposition 7.32 (the sharp form); NEXT]
 Exhaustion height: 2N(T) = 2aT/pi exactly at T = e T* (Lemma 7.26). Data: medians of the floor's mass 2.39 ... 2.74 T*
 (rising to e), theta(e T*) = 0.43 ... 0.50. Proposition 7.27: under RH, (S_kappa) [zeros above kappa T* sample the tail
 of F with constant M] + (E_kappa) [edge overlap holds at kappa T* within M'] + boundary law => Conjecture A with
@@ -192,11 +219,21 @@ THE ARITHMETIC OF CONJECTURE A IN ONE PLACE: (S_kappa) with bounded M <=> the pr
 A statement about the autocorrelation of the minimizer at the entries (the echoes), no longer about the zeros. For a window
 with many entries the echoes form a finite tree and sum_{log n < 2a} Lambda(n)^2/n ~ 2a^2 (Mertens), so the defect need not
 tend to zero, but it is bounded as long as each echo keeps its size c_n/sigma_inf.
-NEXT for item 3: (a) the uniform bound: the prime sum at the entries is at most a fixed fraction of the tail, uniformly in a,
-for the echo tree (this is the same analysis as the general-support part of item 2: the effective symbol as a finite continued
-fraction and the echo amplitudes c_n/sigma_inf along each chain); (b) (E_kappa) uniformly in a: the exact representation gives
-the tail energy 2|A_0|^2/(pi T)(1 + o(1)) at a fixed support, but not yet the height beyond which the o(1) is below a fixed
-fraction uniformly in a (measured M' = 1.10-1.15 at eT*). To prove RH by A, both must be in prime-side form: (a) already is.
+DONE 2026-10-01: ONE HYPOTHESIS. The prime sum at the entries is the oscillating part of the symbol, so the zero sum with the
+cutoff is (1/2pi) int |F|^2 chi_T (Psi_inf - sum 2 c cos) = (1/2pi) int |F|^2 chi_T Psi minus the polar term, exactly. Paper
+Proposition 7.32: under RH, if the SHARP tail law holds at kappa T* within a factor M'',
+  (T_kappa)  (1/2pi) int |F|^2 chi_T^(m) (Psi - lambda) >= -lambda'/(pi M'' T),   T = kappa T*,  chi^(m) = 1 - exp(-(t/T)^{2m}), m ~ 1.5 T even,
+then lambda' >= -pi kappa M'' T* lambda - M'' e^{-8 T*}: Conjecture A with c = pi kappa M'' (the cutoff with m ~ 1.5 T is bounded in
+the strip of the explicit formula and makes the polar term 2P^2 (2T)^{-2m}, which Gronwall absorbs for c < 16). (S_kappa) and
+(E_kappa) are gone: no sampling constant, no density, no gap condition; the zeros enter only through the exact identity (17).
+At every support with a finite tree (T_kappa) holds for kappa large with M'' -> 1 (Corollary 8.14), and the sharp form is there an
+algebraic identity of the echo amplitudes. The measured onset is a few horizons at every support computed, including a = 1.0, 1.25
+where the tree is infinite; c = pi e M'' at kappa = e is again 8.5 against the observed 3.3-3.9.
+NEXT for item 3: UNIFORMITY IN a of the onset of the sharp form, i.e. (T_kappa) with one kappa and one M'' for all a. Below
+a_inf = 0.843 this is a statement about finite trees of growing size (|S°| up to thousands, chains up to 1572 links, resonances
+accumulating at the top of the spectrum of C); above a_inf it is the band regime of the infinite tree. The two are the same
+analysis as item 2(a): the effective symbol of the edge when the echo lattice is dense, whose periodic limit is the window's
+symbol. Not to drift into: more supports for the tail law; the data at a = 0.8-1.25 (K-mode) already show the onset at ~5 T*.
 A sampling-type lower bound: for the minimizer at one support a, sum_{gamma > kappa T*} |F(gamma)|^2 >= c C^2/T* with
 explicit kappa, c. Inputs: density of zeros above the horizon exceeds a/pi; no gaps wider than pi/a above a few horizons
 (true on average from T*, for the largest gaps from about 3T*); the minimizer's transform above kappa T* is

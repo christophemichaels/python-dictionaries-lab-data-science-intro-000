@@ -144,8 +144,7 @@ for k in (3, 5, 10, 20, 50, 100):
 # effective symbol sigma_eff = sigma_inf - c^2/sigma_inf (c = Lambda(n) n^{-1/2}; the echo's return) and the echo piece is
 # (c/sigma_inf) e^{-it log n} times the edge piece; hence S = -|A| |1 + rho e^{-i tau}| cos(ta + theta_eff + arg(1 + rho e^{-i tau}) - kappa/t)
 # / (t sigma_eff^{1/2}), rho = c/sigma_inf(t), tau = t log n.  To first order in rho this is the form with the window's symbol.
-if primes:
-    assert all(a < math.log(n) < 2*a for n in primes), "the single-echo form needs a < log n < 2a for every entry in the window"
+if primes and all(a < math.log(n) < 2*a for n in primes):     # the single-echo form needs a < log n < 2a for every entry in the window
     cs = {n: vm(n)/math.sqrt(n) for n in primes}; c2 = sum(c*c for c in cs.values())
     sigma_eff = lambda t: sigma_inf(t) - c2/sigma_inf(t)
     zeros_eff, _, theta_eff, _ = hilbert_phase(sigma_eff)
@@ -172,3 +171,51 @@ if primes:
         swh = -Aabs*np.abs(ec)*np.cos(ph)/(tt*np.sqrt(sigma_eff(tt))); de = math.sqrt(np.trapezoid((s - swh)**2, tt)/np.trapezoid(s*s, tt))
         sg = sigma(tt); thv = theta(tt); sw0 = -Aabs*np.cos(tt*a + thv - kappa/tt)/(tt*np.sqrt(sg)); d0 = math.sqrt(np.trapezoid((s - sw0)**2, tt)/np.trapezoid(s*s, tt))
         print(f"   {k:5d}   {de:10.5f}   {d0:14.5f}   {de*k:12.4f}")
+
+# --- (iv) the echo tree (paper Proposition 8.13, Corollary 8.14, Computation 8.16): at any support with a finite echo set S the right edge sees the
+# interior echo points S° through the weighted adjacency C and the couplings b (rh_echo_tree.py); its effective symbol is the Schur
+# complement sigma_eff = sigma~_inf - b^T (sigma~_inf - C)^{-1} b (a finite continued fraction along a chain), the echo amplitudes
+# are rho = (sigma~_inf - C)^{-1} b, and S = -|A| |E| cos(ta + theta_eff + arg E - kappa/t)/(t sigma_eff^{1/2}), E = 1 + sum_p rho_p e^{-it(a-p)}.
+# The first-generation form (independent echoes: rho_p = b_p/sigma~, sigma_eff = sigma~ - |b|^2/sigma~) is printed for comparison; the two
+# differ by the echoes of echoes, e.g. at a = 0.6 by the point a - log 3 + log 2 with amplitude c_2 c_3/sigma~^2.
+if primes:
+    from rh_echo_tree import tree
+    Tr = tree(a); So = np.array(Tr["So"]); Cm = Tr["C"]; bv = Tr["b"]; nS = len(So); b2 = float(bv @ bv)
+    _, u_inf, _, _ = hilbert_phase(sigma_inf)
+    st_inf = lambda t: np.exp(u_inf(t))                                             # sigma~_inf: the real zeros divided out
+    def rho_of(t):
+        t = np.atleast_1d(np.asarray(t, float)); sv = st_inf(t)
+        M = sv[:, None, None]*np.eye(nS)[None] - Cm[None]
+        return np.linalg.solve(M, np.broadcast_to(bv, (len(t), nS))[..., None])[..., 0]
+    def sigma_tree(t):
+        t = np.atleast_1d(np.asarray(t, float)); return st_inf(t) - rho_of(t) @ bv
+    def E_tree(t):
+        t = np.atleast_1d(np.asarray(t, float)); return 1 + (rho_of(t)*np.exp(-1j*np.outer(t, a - So))).sum(1)
+    sigma_gen1 = lambda t: st_inf(t) - b2/st_inf(t)
+    def E_gen1(t):
+        t = np.atleast_1d(np.asarray(t, float)); return 1 + (np.outer(1/st_inf(t), bv)*np.exp(-1j*np.outer(t, a - So))).sum(1)
+    zeros_tree, _, theta_tree, _ = hilbert_phase(sigma_tree); zeros_g1, _, theta_g1, _ = hilbert_phase(sigma_gen1)
+    th_t = theta_tree(tk) + np.angle(E_tree(tk)); kap_t = np.sum((r + th_t)[sel]/tk[sel])/np.sum(1/tk[sel]**2)
+    th_g = theta_g1(tk) + np.angle(E_gen1(tk)); kap_g = np.sum((r + th_g)[sel]/tk[sel])/np.sum(1/tk[sel]**2)
+    chains = Tr["dist"]
+    print(f"\n(iv) the echo tree: S° = {np.array2string(So, precision=4)} (chain lengths {[chains.get(p, '-') for p in Tr['So']]}), "
+          f"b = {np.array2string(bv, precision=4)}, |b|^2 = {b2:.4f}, eigenvalues of C {np.array2string(np.linalg.eigvalsh(Cm), precision=3)};")
+    print(f"    sigma_eff = sigma~_inf - b^T(sigma~_inf - C)^{{-1}} b, real zeros {np.array2string(zeros_tree, precision=3)}; kappa = {kap_t:.4f} (tree), {kap_g:.4f} (first generation)")
+    print("    t_k/T*      r_k    -phase(tree)   r+phase-kappa/t (tree)   (first generation)   rho at t_k")
+    for k in [3, 4, 5, 7, 10, 15, 20, 30, 50, 70, 100, 120]:
+        i = np.argmin(np.abs(tk/Ts - k))
+        if abs(tk[i]/Ts - k) > 0.6: continue
+        print(f"   {tk[i]/Ts:7.2f}  {r[i]:8.4f}  {-th_t[i]:11.4f}   {r[i]+th_t[i]-kap_t/tk[i]:16.5f}   {r[i]+th_g[i]-kap_g/tk[i]:16.5f}   {np.array2string(rho_of(tk[i])[0], precision=4)}")
+    mid = (tk >= 5*Ts) & (tk <= 80*Ts)
+    print(f"    rms r+phase-kappa/t on t >= 10 T*: tree {rms((r+th_t-kap_t/tk)[sel]):.5f}, first generation {rms((r+th_g-kap_g/tk)[sel]):.5f}, window's symbol {rms((r+th-kappa/tk)[sel]):.5f};"
+          f" on 5-80 T* ({mid.sum()} nulls): tree {rms((r+th_t-kap_t/tk)[mid]):.5f}, first generation {rms((r+th_g-kap_g/tk)[mid]):.5f}, window's symbol {rms((r+th-kappa/tk)[mid]):.5f}, no shift {rms(r[mid]):.4f}")
+    print("    relative L^2 distance of S from the tree form over one period (|A| = (-lambda'/2)^(1/2), kappa fitted), and from the first-generation form:")
+    print("    T/T*   dist(tree)   dist(first gen.)   dist(window symbol)   dist(tree)*T/T*   |E|^2 mean   sigma_eff/sigma~")
+    for k in (3, 5, 10, 20, 50, 100):
+        T = k*Ts; tt = np.linspace(T - Wd/2, T + Wd/2, 801); s_ = S(tt)
+        ec = E_tree(tt); ph = tt*a + theta_tree(tt) + np.angle(ec) - kap_t/tt
+        swh = -Aabs*np.abs(ec)*np.cos(ph)/(tt*np.sqrt(sigma_tree(tt))); de = math.sqrt(np.trapezoid((s_ - swh)**2, tt)/np.trapezoid(s_*s_, tt))
+        eg = E_gen1(tt); phg = tt*a + theta_g1(tt) + np.angle(eg) - kap_g/tt
+        swg = -Aabs*np.abs(eg)*np.cos(phg)/(tt*np.sqrt(sigma_gen1(tt))); dg = math.sqrt(np.trapezoid((s_ - swg)**2, tt)/np.trapezoid(s_*s_, tt))
+        sg = sigma(tt); thv = theta(tt); sw0 = -Aabs*np.cos(tt*a + thv - kappa/tt)/(tt*np.sqrt(sg)); d0 = math.sqrt(np.trapezoid((s_ - sw0)**2, tt)/np.trapezoid(s_*s_, tt))
+        print(f"   {k:5d}   {de:10.5f}   {dg:14.5f}   {d0:18.5f}   {de*k:14.4f}   {np.mean(np.abs(ec)**2):9.4f}   {float(np.mean(sigma_tree(tt)/st_inf(tt))):10.4f}")

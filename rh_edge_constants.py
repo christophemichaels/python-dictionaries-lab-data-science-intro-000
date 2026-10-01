@@ -15,7 +15,8 @@ gamma = 0.5772156649015329
 cases = [(0.3, "data/fem_a0.3_primefree.json", "primefree"), (0.4, "data/fem_a0.4_primefree.json", "primefree"),
          (0.5, "data/fem_a0.5_primefree.json", "primefree"), (0.5, "data/fem_a0.5_primefree_471nodes.json", "primefree"),
          (0.6, "data/fem_a0.6_primefree.json", "primefree"),
-         (0.4, "data/fem_a0.4_full.json", "full"), (0.45, "data/fem_a0.45_full.json", "full"), (0.5, "data/fem_a0.5_full.json", "full")]
+         (0.4, "data/fem_a0.4_full.json", "full"), (0.45, "data/fem_a0.45_full.json", "full"), (0.5, "data/fem_a0.5_full.json", "full"),
+         (0.6, "data/fem_a0.6_full.json", "full")]
 for a, fn, kind in cases:
     d = json.load(open(fn)); lam = d["lambda"]; dl = np.array(d["deltas"]); f = np.array(d["f"])
     txt = open(f"data/dilation_a{a}_{kind}.log").read(); lp = float(re.search(r"a lambda' = \[([-0-9.e+]+)", txt).group(1))/a
