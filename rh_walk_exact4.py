@@ -54,11 +54,15 @@ def fan(V, active_rows, all_rows, n, dim):
         V = sorted(V, key=ang)
         return [[cen, V[i], V[(i+1) % len(V)]] for i in range(len(V))]
     out = []
+    seen = set()
     for a, b in all_rows:
         if any(a == aa and b == bb for aa, bb in active_rows): continue
         face = [v for v in V if sum(ai*vi for ai, vi in zip(a, v)) == b]
         if len(face) < dim: continue
-        # the face must span dimension dim-1: skip faces that are lower-dimensional (contribute zero volume anyway)
+        key = frozenset(tuple(v) for v in face)
+        if key in seen: continue                 # two hyperplanes can cut the same face of this face: count it once
+        seen.add(key)
+        # a lower-dimensional face passing the vertex-count test gives degenerate simplices, which integrate to zero
         for simp in fan(face, active_rows + [(a, b)], all_rows, n, dim - 1):
             out.append([cen] + simp)
     return out
@@ -88,7 +92,9 @@ def L6():
     for e1 in (1, -1):
         for e2 in (1, -1):
             eps = (e1, e2, 1, -1)            # variables: 0 = x, 1 = y, 2 = z(+), 3 = z(-)  for the walk with z, z'
-            valid = [p for p in perms if eps[p[0]] == 1]
+            # first step in; an ordering that begins z+, z- returns to the edge itself, which is not a point of the echo set
+            # (the partial sum is then identically 0 and the strict inequality fails): such orderings are excluded
+            valid = [p for p in perms if eps[p[0]] == 1 and set(p[:2]) != {2, 3}]
             for p in valid:
                 for q in valid:
                     # p acts on (x, y, z, zbar) with the cancelling pair z (coordinates 2, 3 both = z); q likewise with z'
@@ -110,9 +116,10 @@ def L6():
 
 if __name__ == "__main__":
     what = sys.argv[1] if len(sys.argv) > 1 else "both"
+    j4 = Fr(3329, 1680) if what == "L6" else None
     if what in ("J4", "both"):
         j4 = J4(); print(f"J_4 = {j4} = {float(j4):.9f};  J_4/12 = {j4/12} = {float(j4/12):.9f}", flush=True)
     if what in ("L6", "both"):
         l6 = L6(); print(f"L_6 = {l6} = {float(l6):.9f};  2 L_6 = {2*l6} = {float(2*l6):.9f}", flush=True)
-    if what == "both":
+    if what in ("both", "L6"):
         k6 = j4/12 + 2*l6; print(f"kappa_6 = J_4/12 + 2 L_6 = {k6} = {float(k6):.9f};  kappa_6/kappa_2^3 = {k6/Fr(5,12)**3} = {float(k6/Fr(5,12)**3):.6f}", flush=True)

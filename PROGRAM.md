@@ -6,6 +6,22 @@ the horizon". Three items, in order; this file is updated at the end of every ro
 
 ## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.12, Corollary 9.13]
 
+ROUND 'TAKE ALL', SECOND PART (2026-10-02): (1) kappa_6 EXACT: J_4 = 3329/1680 (distinct-prime groups) and 2 L_6 = 877/2016
+(groups with one cancelling pair), rh_walk_exact4.py (4D exact polytope integration, tested on the 4-cube, the 4-simplex and J_3);
+kappa_6 = 4033/6720 = 0.6001, sixth standardized moment 36297/4375 = 8.30 (semicircle 5, Gaussian 15). A first 4D run had two bugs,
+both found by the Monte Carlo and an independent midpoint quadrature: duplicate faces in the recursive fan (fixed by deduplication)
+and orderings beginning z+, z- that RETURN TO THE EDGE (excluded in the paper, counted by the code through a zero constraint row);
+both fixed. The confined-walk law: variance 5/12, kurtosis 302/125, sixth moment ratio 36297/4375, all exact. (2) THE DETERMINANT
+REDUCTION IS SUPERSEDED: Proposition 9.20 is now 'uniqueness of the amplitude equation': on the WHOLE LINE, A = N_ex + P_+[Z conj A]
+(Z = e^{-2ita} sigma_{a,-}/sigma_{a,+}, |Z| = 1) has A_a as its ONLY solution in the class A bounded near 0, A(0) = 0, A(-t) =
+-conj A(t), A/t in L^2(|t| >= 1) (A_a is in it by the form domain of the minimizer). Proof: for a homogeneous solution D, q =
+(D - Z conj D)/sigma_{a,-} has its kernel in [-2a, 0] (conj q = -e^{2ita} q), q(0) = 0, so q/t is the transform of g in L^2(window)
+with finite energy for the operator K~ of symbol sigma~_a; sigma~_a q/t = (U - e^{-2ita} conj U)/t, U = sigma_{a,+} D, so K~ g = 0
+on the window; <g, K~ g> = 0 and sigma~_a >= c > 0 give g = 0; then U = e^{-2ita} conj U forces U = 0 by the kernel supports.
+So det(I - M(a)) never vanishes. WHAT REMAINS (stated in the paper): the fixed point A~ of Prop 9.19 solves the CUTOFF equation;
+for E = A_a - A~ the energy identity bounds E above the cutoff by E on the transition region 2t_1 <= |t| <= 4t_1, with a constant
+that is not small: a cutoff with constant < 1, or a construction of the fixed point on the whole line, closes it.
+
 ROUND 'TAKE ALL' (2026-10-02): (1) J_3 = 17/24 EXACTLY (rh_walk_exact.py: exact rational vertices of the polytopes, fan
 triangulation, exact monomial integration; J_2 = 5/12 reproduced) => kappa_4 = 151/360 and the limiting kurtosis 302/125 = 2.416
 are exact rationals; Proposition 9.34 updated. The 4D integrals J_4, L_6 (kappa_6 exact) launched in rh_walk_exact4.py (hours).
