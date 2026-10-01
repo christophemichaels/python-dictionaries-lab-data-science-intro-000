@@ -1,5 +1,5 @@
 """
-The second and fourth moments of the edge's spectral measure, exactly, to large supports (paper Proposition 9.16(v), Computation 9.19).
+The second and fourth moments of the edge's spectral measure, exactly, to large supports (paper Proposition 9.20(v), Computation 9.23).
 
 m_2 |b|^2 = |C b|^2 = sum over the second-generation points q of (sum of the weights of the two-step walks from the edge landing at q)^2,
 a two-step walk being (m, m') with a step -log m then -+ log m' (the first-generation point a - log m, then inward or outward), landing
@@ -7,7 +7,7 @@ at a - log(m m') or a - log(m/m') (inside the window, not at the edge).  Its lan
 walks are grouped exactly by that rational, with no floating-point coincidence test.  Likewise m_4 |b|^2 = |C^2 b|^2 groups the
 three-step walks by their rational.  Both are finite sums over the entries (prime powers below e^{2a}), exact, and are compared with
 the Chebyshev bounds on the mass of mu_b above the horizon's level 2a and above five horizons, and with the asymptotic bound
-m_2 <= (5/12)(2a)^2 (1 + O(1/a)) of Proposition 9.16(v).
+m_2 <= (5/12)(2a)^2 (1 + O(1/a)) of Proposition 9.20(v).
 
 Usage: python3 rh_edge_moments.py [a ...]      (default 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5; m_4 only where the entry count allows)
 """

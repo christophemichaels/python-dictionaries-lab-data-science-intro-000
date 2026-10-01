@@ -1,8 +1,8 @@
 """
-The K-mode minimizers above the horizon: the edge's transform, and what the polynomial does not resolve (paper Computation 9.10).
+The K-mode minimizers above the horizon: the edge's transform, and what the polynomial does not resolve (paper Computation 9.14).
 
 Proposition 8.17 gives, at every support, F~ = A_a(t)/(t sigma_{a,-}) + e^{-2ita} Phi_-/sigma~_a with the window's symbol sigma_a, and
-Theorem 9.8 says A_a(t) -> A_0 above the periodic band, with the mirror chains (walks from the far edge across the window) as the leading
+Theorem 9.12 says A_a(t) -> A_0 above the periodic band, with the mirror chains (walks from the far edge across the window) as the leading
 oscillating correction.  The K-mode minimizer is a polynomial of degree 2K-1 on [-a, a]: it resolves the edge to delta ~ a/(2K-1)^2, i.e.
 heights of order (2K-1)^2/a (several hundred horizons), but not the interior echo cusps above heights of order (2K-1)/a (a few horizons), so
 above a few horizons its transform is the edge's transform alone: the nulls follow the archimedean Hilbert phase, the amplitude is

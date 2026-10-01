@@ -1,7 +1,7 @@
 """
-The mirror chains in the window's symbol amplitude, and what the K-mode minimizers resolve (paper Theorem 9.8, Computation 9.10).
+The mirror chains in the window's symbol amplitude, and what the K-mode minimizers resolve (paper Theorem 9.12, Computation 9.14).
 
-Proposition 8.17 represents the transform with the symbol of the window at every support, F~ = A_a(t)/(t sigma_{a,-}) + ...; Theorem 9.8
+Proposition 8.17 represents the transform with the symbol of the window at every support, F~ = A_a(t)/(t sigma_{a,-}) + ...; Theorem 9.12
 says that above the periodic band A_a(t) = A_0 + (mirror chains) + o(1), the mirror chains being the walks from the far edge that cross
 the window, oscillating at the frequencies v - 2a (v a lattice point above 2a, the shortest words of length two: v = d + d') with the
 amplitudes rho_v(s) = c_d c_d'/s^2 (times 2 for d != d'), s = sigma~_inf(t).  The echo form of Corollary 8.14(iii), exact at a support

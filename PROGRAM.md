@@ -4,11 +4,31 @@ Agreed 2026-09-30. The rate of decay of the floor is pi times the effective heig
 Phi' = pi T_eff (tail law, paper Conjecture 7.7). Conjecture A (which implies RH) is "T_eff is a bounded multiple of
 the horizon". Three items, in order; this file is updated at the end of every round so that the work does not drift.
 
-## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.8, Corollary 9.9]
+## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.12, Corollary 9.13]
+
+VERIFICATION PASS 1 (2026-10-01 night; paper 9.2 rewritten: Lemma 9.8 kernel of a symbol with finitely many derivatives
+(explicit c_m), Lemma 9.9 Hilbert transform of a modulated symbol (error e_k M/(|u| t^{k+1}) with all derivatives), Lemma 9.10
+frozen coefficients along the archimedean symbol (Cauchy on the disc |z - t| <= t/2, Stirling with DLMF error bound; H[g_0] =
+-pi |b|^2/l^3), Lemma 9.11 inversion of a remainder (explicit constants), Theorem 9.12 restated and its proof rewritten).
+What the pass CHANGED: (1) eq (mline): error O(t_1/t), not O(t^{-1/2}); the condition is alpha(s_*) > 1 (s_* > X e^{2a}), through
+sum_u |beta_u|(s_*)/|u| <= -2 log(1 - X e^{2a}/s_*) via Lemma 9.6(i); (2) the frequency u = 0 of log w has a slowly varying
+Hilbert transform -pi |b|^2/l^3 + O(l^{-5}): a real phase of the factors, omitted before; relative O(l^{-3}) in the profile;
+(3) THE POINTWISE TWO-DERIVATIVE EDGE LAW IS FALSE ABOVE a_inf: the minimizer has at every lattice point u < 0 the cusp of its
+echo (derivative rho_u |x|^{-1} L^{-3/2}) and the lattice accumulates at the edge. Correct statement (Theorem 9.12(iii)):
+f(a - delta) = phi + e + psi with e the echo part (weights within eps of the edge sum to O(eps^alpha), e(delta) - e(0+) = O(delta))
+and psi in the class psi^(k) = O(delta^{-k} L^{-5/2}); the pointwise law phi (1 + O(L^{-2})) survives. Step 1 is now complete
+with constants. STILL AT SKETCH DENSITY (listed in the paper's verification notes, next items): (1) Step 2, uniformity over the
+lattice points v - 2a -> 0+ of the far-source feedback (mirror amplitudes m_v, the O(t^{-1/2})); (2) Step 3, derivative bounds
+with gain for A_a - A_0 and the cancellation of the mirror terms landing outside the window against the far source D_4;
+(3) Step 4, the flux pairing (Prop 8.3) and the zero sums (Prop 7.8) extended to the echo part. Status convention added:
+'sketch density' marks such steps. K = 200 at a = 1 DONE (kmode_K200/coefs_1.0.json, 1612 s): lambda_200 = 1.4361e-26,
+a lambda' = -2.4201e-24; on 3-8 T* the echo regression now has the signs of the echo form and 60-80% of its size
+(alpha_2 = 0.38, alpha_3 = 0.51, alpha_5 = 0.41, alpha_7 = 0.32 vs c_d = 0.49, 0.63, 0.72, 0.74) but the residual falls only
+0.56 -> 0.54: the band (87 real zeros of sigma_a up to 33 T*) dominates; recorded in Computation 9.14. Item (d) closed.]
 Nothing proves RH. What is proved (under (H_inf), at every support below a_inf = 0.843): the boundary law lambda' = -2|A_0|^2 and
 the analytic tail law, both with no zeros involved. So RH reduces to ONE INEQUALITY about the minimizer, 2|A_0(a)|^2 <= c T* lambda(a)
 for all a >= 0.8 (Theorem 9.1; the boundary law that links the two is now a THEOREM at every Diophantine support, i.e. almost
-everywhere, Theorem 9.8, so the reduction no longer depends on it: Corollary 9.9), equivalently:
+everywhere, Theorem 9.12, so the reduction no longer depends on it: Corollary 9.13), equivalently:
 the energy of the minimizer against the shifted symbol above kappa horizons is at most c lambda/(pi kappa). Under RH this is the
 zero sum above kappa T*, bounded by lambda because its terms are squares (Props 7.27, 7.32) - that is the ONLY place RH is used.
 Unconditionally the inequality CONTAINS RH: if RH fails the floor is negative from some support on while the left side is >= 0.
@@ -40,8 +60,8 @@ critical displacement y_c = (lambda/kappa_2)^{1/2} = 1.1e-2, 2.8e-6, 3.5e-12: th
 be within y_c of the line, a resolution e^{-cT*/2}; the growth of |q| into the strip above the horizon is the edge's cosh(2ya) to
 3-4 digits at every y <= 0.45 (the plane reads the edge), and departs from it in the mass region; Re q < 0 on 7-15% of the
 heights at y = 0.2 and 19-27% at 0.45, independent of height and support.
-THE BOUNDARY LAW AT EVERY SUPPORT (2026-10-01, paper 9.2: Lemma 9.6, Proposition 9.7, Theorem 9.8, Corollary 9.9, Computation 9.10;
-UPGRADED 2026-10-01 evening: the Diophantine condition DROPPED, Theorem 9.8 holds at EVERY support that is not an entry, resonant
+THE BOUNDARY LAW AT EVERY SUPPORT (2026-10-01, paper 9.2: Lemma 9.6, Proposition 9.7, Theorem 9.12, Corollary 9.13, Computation 9.14;
+UPGRADED 2026-10-01 evening: the Diophantine condition DROPPED, Theorem 9.12 holds at EVERY support that is not an entry, resonant
 supports included (the chain landing exactly on the edge is a relative O(L^-2) correction inside the remainder class; near-misses
 are words of length >= 3 for small eps at a non-resonant support, weight O(s^-3), by Lemma 9.6(i) applied to w concatenated with the
 reverse of the resonant word): no exceptional set at all;
@@ -54,22 +74,22 @@ absolutely convergent expansion log sigma_s = log s + sum_u beta_u e^{i tau u}, 
 beta_u e^{i tau u}); 1/sigma_{s,+} = G^{-1/2} sum_{u>=0} rho_u e^{i tau u} with rho_u >= 0, the words of total length k weighing at
 most (X/s)^k, so the weight within eps of the edge is <= (2 eps)^{alpha(s)}, alpha = log(s/X)/2a, and within eps of 2a at a
 Diophantine support <= (eps/c)^{log(s/X)/kappa}; (s/G)^{1/2} = 1 + |b|^2/(2s^2) + ... = the effective symbol's correction, and
-rho_{+-d} = c_d/s + ...: the first-generation echoes. Theorem 9.8 (under (H_inf), a Diophantine, not an entry): (i) A_a(t) -> A_0,
+rho_{+-d} = c_d/s + ...: the first-generation echoes. Theorem 9.12 (under (H_inf), a Diophantine, not an entry): (i) A_a(t) -> A_0,
 A_a = A_0 + (mirror chains: sum over lattice points v > 2a of m_v e^{it(v-2a)}, |m_v| <= C rho_v(s), the walks from the far edge
 across the window) + O(1/log^2 t); (ii) the edge law with two derivatives with the SAME constants C = |A_0|, beta = -gamma - log(2 pi a)
 - lambda, remainder O(delta^{-k} L^{-5/2}), the echoes within delta of the edge weighing O(delta^{alpha(L)}); (iii) lambda' = -2|A_0|^2
 at every point of differentiability and, under RH, the tail law. Hence lambda(a_2) - lambda(a_1) = -2 int |A_0|^2 for ALL a_1 < a_2:
-THE BOUNDARY LAW HOLDS ALMOST EVERYWHERE AT EVERY SUPPORT. Corollary 9.9: (H_inf) + the inequality at a.e. a >= 0.8 => RH. Proof
+THE BOUNDARY LAW HOLDS ALMOST EVERYWHERE AT EVERY SUPPORT. Corollary 9.13: (H_inf) + the inequality at a.e. a >= 0.8 => RH. Proof
 method: Corollary 8.6 and Proposition 8.4 with the window's symbol, the lattice expansion replacing the kernel lemma; the factors on
 the line by the Hilbert estimate H[g e^{itu}] = -i sign(u) g e^{itu} + O(|g|/(|u| t)) summed with the Diophantine split; the far
 feedback through the kernel of 1/sigma_{a,+} (rho-weighted spikes at the lattice points), its singularities at v - 2a being the
 mirror chains; the inversion with the cutoff t_1 = delta^{-1/2} and the one-sided copies. The theorem is about lambda', NOT about the
-onset: its asymptotics begin at s > X e^{2a}, astronomically far; the onset is item 3. Computation 9.10 (FEM at a = 0.6, 114 nulls
+onset: its asymptotics begin at s > X e^{2a}, astronomically far; the onset is item 3. Computation 9.14 (FEM at a = 0.6, 114 nulls
 on 5-34 T*): the window's symbol phase residual 0.0365 (tree 0.0009, archimedean 0.145) is removed to 0.0186 by the two-step
 mirror chains at v - 2a = 0.186, 0.592, 0.997 (log 4, log 6, log 9 minus 1.2) with amplitudes 0.19, 0.51, 0.35 against the chain
 weights 0.24, 0.62, 0.40 (common factor 0.8); the tree's residual shows nothing at those frequencies (0.002); by height band the
 residual after the fit falls 0.033 -> 0.013 as (X/s)^3 falls 0.34 -> 0.13.
-WHAT THE K-MODE MINIMIZERS RESOLVE (2026-10-01, Computation 9.10; corrects Computation 8.19's pointwise claims). The K-mode
+WHAT THE K-MODE MINIMIZERS RESOLVE (2026-10-01, Computation 9.14; corrects Computation 8.19's pointwise claims). The K-mode
 minimizer is a polynomial of degree 2K-1: it resolves the edge to delta ~ a/(2K-1)^2 (heights ~ (2K-1)^2/a, 500-700 T*) but the
 interior cusps only to heights ~ (2K-1)/a (3-8 T*). At a = 0.6 the K-mode transform agrees with the FEM to 0.1-0.6% at 2-5 T* and
 departs at 7 T* (= (2K-1)/a = 7.6 T*) to 15-20% at 10-30 T*; the first-generation echo phase is in the FEM nulls with the predicted
@@ -81,26 +101,26 @@ stand, but the claims "|F|^2 uncorrelated with 1/sigma_a, the minimizer does not
 Computation 8.19 are WITHDRAWN (they describe the polynomial's edge). The true pointwise statement above the band top is Proposition
 9.7: |F|^2 ~ 1/sigma_a to first order in c_d/s. Testing the band's pointwise structure at a >= 1 needs an interior-resolving solver
 (FEM with spacing < 1/(50 T*)), not more K-modes.
-THE GLOBAL AND THE LOCAL (2026-10-01, paper 9.3: Proposition 9.11, Theorem 9.12, Proposition 9.13). Two global objects in the
+THE GLOBAL AND THE LOCAL (2026-10-01, paper 9.3: Proposition 9.15, Theorem 9.16, Proposition 9.17). Two global objects in the
 companion work: the Atlas's complete Weil form W(q,q) on all of C_c^inf (positivity on every support = RH; Suzuki defect E_N; local
 support theorems, CP20: Q_a^-(q) > 5278/10^6 |q|^2 for a <= 3/8) and the Mobius Green energy R(N) = sum mu(m)mu(n)/max(m,n)
-(R(N) = O(N^eps) <=> RH; a zero at beta_0 forces R(N) > N^{2 beta_0 - 1 - delta} i.o.). Proposition 9.11: the Atlas's odd operator
+(R(N) = O(N^eps) <=> RH; a zero at beta_0 forces R(N) > N^{2 beta_0 - 1 - delta} i.o.). Proposition 9.15: the Atlas's odd operator
 A_a^- = C_a - log 2pi - Pi_a - K_alpha - 2|s><s| IS the window form Q (Weil's kernel kappa, the shifts with b_n = c_n, the polar
 term), so CP20 is a CERTIFIED LOWER BOUND lambda(a) >= 5.28e-3 on (0, 3/8], against the engine's upper bound lambda_40(3/8) = 3.14e-2.
-Theorem 9.12 (two readings of delta_max): unconditionally limsup log^+ R(N)/(2 log N) = delta_max (Mobius paper + M(x) << x^{Theta+eps});
+Theorem 9.16 (two readings of delta_max): unconditionally limsup log^+ R(N)/(2 log N) = delta_max (Mobius paper + M(x) << x^{Theta+eps});
 and limsup log^+(-lambda(a))/(2a) = delta_max (Theorem 9.3): in the common variable a = log N the global energy and the local floor
 grow at the same rate 2 delta_max, both zero iff RH. Detection scales: the window's floor turns negative only from a_det =
 O(delta_0^{-1} log(1/delta_0)) (the quartet must outweigh the on-line zeros' O(a^2)), the Mobius budget exceeds C_M log N only from
 N^{delta_0} >> |rho_0 zeta'(rho_0)| sqrt(C_M): the same scale, exponentially late in 1/delta_0 - THE WINDOWS THAT TAKE INCREDIBLY LONG
-TO CLOSE. Proposition 9.13 (late windows are allowed): lambda' >= -(c T* + e(a)) lambda a.e. with ANY locally integrable excess e
+TO CLOSE. Proposition 9.17 (late windows are allowed): lambda' >= -(c T* + e(a)) lambda a.e. with ANY locally integrable excess e
 still gives lambda > 0 everywhere and RH (Gronwall); conversely RH <=> -lambda'/lambda in L^1_loc. So the content of Conjecture A
 is the RATE c T*, not positivity; windows where the rate is exceeded are permitted as long as the excess integrates: the resonant
 supports (null set) cost nothing, a late onset costs its excess over the interval of lateness; a NON-integrable excess is a sign
-change = a zero off the line. The all-support comparison the Atlas leaves open IS inequality (25) in the form of Proposition 9.13.
+change = a zero off the line. The all-support comparison the Atlas leaves open IS inequality (25) in the form of Proposition 9.17.
 NOT done: the transfer of the quantitative witness delta = -lambda(a)|f|^2 ~ e^{2 delta_max a} to the Suzuki defect E_N needs the
 Suzuki norm S(f,f) of the minimizer; the Atlas's complete energy identity (1/tau_R) K_a(I - K_a) = eta_p W*W + N_a + sum b_n P_{a,log n}
 is not yet related to the edge/echo structure of the minimizer.
-TWO TRANSFERS AND THE BLIND SPOT (2026-10-01, paper 9.4: Proposition 9.14, Proposition 9.15, Proposition 9.16, Theorem 9.17, Computation 9.18;
+TWO TRANSFERS AND THE BLIND SPOT (2026-10-01, paper 9.4: Proposition 9.18, Proposition 9.19, Proposition 9.20, Theorem 9.21, Computation 9.22;
 rh_blind_spot.py). (1) The Suzuki transfer done: with S(f,f) <= M_a^2 |f'|_1^2/pi (Atlas (B.7)) and the Atlas's CP9 (D1) transfer
 applied to a mollified minimizer, lambda(a) < 0 gives E_N >= (1 + pi(1-eps)|lambda(a)|/(3 M_a^2 V_a^2))^2 for N >= N_0, V_a = |f'|_1 =
 4 sup|f| (sup|f| = 1.46, 1.42, 1.40, 1.38 at a = 0.6-1.25, at the fixed position u = 0.22-0.23); with Theorem 9.3(iii) the defect's
@@ -109,7 +129,7 @@ negative-branch minimizer. (2) The paired-prime matrices done: <q, Pi_a q> = 2 s
 defect, Prop 7.29); on the minimizer with a finite tree its tail part is (M_chi - 1) x density = <e^T C_a e / sigma~> (Cor 8.14(vi)),
 C_a the tree's weighted adjacency with the edges; in the periodic model the mean of 2cos(tau d)|E|^2 is e^T C^{(d)} e: THE ATLAS'S
 PAIRED-PRIME MATRIX OF THE ENTRY n, COMPRESSED TO THE EDGE AND ITS ECHOES, IS THE ADJACENCY OF THE STEP log n; P_a is C_a.
-(3) THE BLIND SPOT IS A THEOREM (9.17): 16 Re S(gamma - i delta)^2 = 16 S^2 - 16 delta^2 (S'^2 + S S'') + O(delta^4): every
+(3) THE BLIND SPOT IS A THEOREM (9.21): 16 Re S(gamma - i delta)^2 = 16 S^2 - 16 delta^2 (S'^2 + S S'') + O(delta^4): every
 explicit-formula functional (floor, Mobius energy) is EVEN in the distance from the line - no first-order detector exists anywhere.
 The floor's single-zero sensitivity delta_c(gamma) = (lambda/16 S'(gamma)^2)^{1/2} is e^{-cT*/2} below the horizon (3.5e-12 for
 the first zero at a = 1, 2e-24 at a = 1.25: NO BLIND SPOT BELOW THE HORIZON) and exceeds 1/2 from about 1.5 T* on (10-100 from
@@ -118,7 +138,7 @@ energy (weight 1/|rho|^2) is blind in the same place. Verified: the second-order
 CONSEQUENCE FOR ITEM (a): the search for a branch-separating quantity BELOW the sign change is closed: at supports where lambda > 0
 every functional differs between the branches at second order, with the floor itself carrying the sharpest coefficient; the branch
 is decided only at the sign change. RH is not detection at any finite scale; it is the structure, i.e. inequality (25) in the form
-of Proposition 9.13. Item (a) is withdrawn in favour of (b), (c), (d).
+of Proposition 9.17. Item (a) is withdrawn in favour of (b), (c), (d).
 
 ## 1. Edge law => tail law, as a proposition  [DONE 2026-09-30: paper Proposition 7.8]
 Under RH and the edge law with two derivatives, lim T sum_{|gamma|>T} |F(gamma)|^2 = 2C^2/pi. Proof: edge asymptotics
@@ -133,7 +153,7 @@ DONE 2026-10-01: the edge law with derivatives is a THEOREM under (H_inf) for th
 form at a_2 < a < a_3, the prime 2 inside the window (Cor 8.8(ii)), with the constants C = |A_0|, beta = -gamma - log(2 pi a) - lambda.
 At those supports item 1 is closed end to end: edge law (theorem) => boundary law (Prop 8.3) => with RH the tail law (Prop 7.8).
 
-## 2. The sum rule  [THEOREM AT ALMOST EVERY SUPPORT 2026-10-01: Theorem 9.8, the boundary law and the edge law at every Diophantine support; DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8; THEOREM AT EVERY SUPPORT WITH A FINITE ECHO TREE, a < a_inf = 0.843, 2026-10-01: Lemma 8.12, Proposition 8.13, Corollary 8.14]
+## 2. The sum rule  [THEOREM AT ALMOST EVERY SUPPORT 2026-10-01: Theorem 9.12, the boundary law and the edge law at every Diophantine support; DONE 2026-09-30: Proposition 7.9, Lemma 7.11, Lemma 7.12, Corollary 7.13; sharp form Conjecture 7.19 verified, Computation 7.20; THEOREM for the prime-free form 2026-10-01: Propositions 7.23, 8.3, 8.4, Corollaries 7.24, 8.5; THEOREM for a_2 < a < a_3 (the prime 2 inside the window) 2026-10-01: Proposition 8.7, Corollary 8.8; THEOREM AT EVERY SUPPORT WITH A FINITE ECHO TREE, a < a_inf = 0.843, 2026-10-01: Lemma 8.12, Proposition 8.13, Corollary 8.14]
 (a) DONE: the edge overlap is 2C^2/(pi T) J(L(1/T)) with J = 1 + O(1/L^2): the kernel sin(s+v)/(s+v) is symmetric in the
 two distances and the log ratio antisymmetric, so the 1/L term vanishes; J = 1.020 ... 1.003 for L = 3 ... 8
 (rh_sum_rule.py jl). This is why the tail law is sharp at finite T.
@@ -296,7 +316,7 @@ supp mu_b, complex inside (the edge radiates) (Prop 8.22; the moments of mu_b ar
 dense eigenproblem on 6000): mu_b sits at the BOTTOM of the spectrum (mean 0.1-0.25, width 1-2.3 against rho(C) = 2-8), its
 weight above the horizon's height 2a is <= 6% at every a, and its 1% quantile ends at 0.8, 1.3 T* for a = 1.0, 1.25 (where
 rho(C) itself is resolved: 1.94, 2.93 < 2a + log 5); at a >= 1.5 the Lanczos measure's top node lies below 2a + log 5, so its
-'zero weight above 5 T*' is the truncation's [CORRECTED 2026-10-01, Proposition 9.16]: the support of mu_b reaches rho(C) >=
+'zero weight above 5 T*' is the truncation's [CORRECTED 2026-10-01, Proposition 9.20]: the support of mu_b reaches rho(C) >=
 rho_bar(a) (connected lattice), which exceeds 2a + log 5 from a = 1.75; what the EXACT moments bound is the MASS above 5 T*:
 <= 2e-6, 1e-4, 1e-3, 0.8%, 2.2%, 4.7%, 5.6% at a = 1.0 ... 2.5 (Chebyshev with the highest exact even moment, orders 14,14,14,10,8,6,6). So THE PREDICTION OF A RECEDING ONSET IS WITHDRAWN: the
 spectral radius is the band of the worst coupling, the edge's coupling sits far below it. What remains predicted for a = 2:
@@ -383,7 +403,7 @@ where the tree is infinite; c = pi e M'' at kappa = e is again 8.5 against the o
 NEXT for item 3: UNIFORMITY IN a of the onset of the sharp form, i.e. (T_kappa) with one kappa and one M'' for all a. The band
 analysis makes this concrete: the onset is where the archimedean symbol 2a + log kappa clears the band the edge sees, the upper
 tail of the spectral measure mu_b of the confined lattice at the edge's coupling. Measured, that tail ends within a few horizons
-up to a = 2.5 (mass above 5 T* <= 2e-6 ... 5.6% by the exact moments; the SUPPORT reaches rho(C) ~ 4e^a/a, Proposition 9.16),
+up to a = 2.5 (mass above 5 T* <= 2e-6 ... 5.6% by the exact moments; the SUPPORT reaches rho(C) ~ 4e^a/a, Proposition 9.20),
 so a fixed kappa ~ 10 suffices as far as computed. The prime-side statement to prove: the weight of mu_b above 2a + log kappa
 is below a fixed fraction eta < 1 for all a (it is NOT zero: the support outruns the horizon), i.e. m_k <= eta (2a + log kappa)^k
 for ONE even k and all a, a statement about closed walks through the
@@ -397,13 +417,13 @@ must eventually be replaced by its prime-side form: the dilation derivative of t
 using only the Euler product and the archimedean symbol.
 
 ## Next (as of 2026-10-01, evening)
-(a) [CLOSED by Theorem 9.17: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
+(a) [CLOSED by Theorem 9.21: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
 detection scale a_det ~ delta^{-1} log(1/delta), so the quantity must be visible at supports where lambda > 0 and the Mobius budget is
 tame; candidates: the stiffness kappa_2 = sum 16 S'(gamma)^2 against y_c (Comp 9.5); the overlap of the minimizer with the Mobius test
 function sum mu(n) n^{-1/2} phi(x - log n) (the global sequence evaluated in the local metric); the Suzuki norm S(f,f) of the minimizer.
 (b) The long multiplicative relations m_k^{1/k} for k ~ a (the uniformity of the onset, item 3).
 (c) The Atlas bridge [DONE in 9.4 up to Suzuki's constant M_a]: compute M_a from Suzuki's feature (B.2) and S(f,f) for the K-mode minimizer
-at a <= 1 to make Proposition 9.14 numerical; the paired-prime/echo-tree identification is Proposition 9.15.
+at a <= 1 to make Proposition 9.18 numerical; the paired-prime/echo-tree identification is Proposition 9.19.
 (d) An interior-resolving solver at a = 1 (FEM, spacing < 1/(50 T*)) before any further pointwise claim in the band; a K = 200
     minimizer at a = 1 (interior resolved to 8.6 T*) was launched (python3 rh_tail_law.py coefs 1.0 200 600 data/kmode_K200/coefs_1.0.json,
     > 17 CPU-minutes at the end of the session, not finished); then python3 rh_band_phase.py 1.0 3 9 data/kmode_K200/coefs_1.0.json 3 8
@@ -411,7 +431,7 @@ at a <= 1 to make Proposition 9.14 numerical; the paired-prime/echo-tree identif
     the K = 80 polynomial is in its transition zone there). Connectivity (rh_lattice_connect.py): the right edge's closure is one
     interior component from a = 0.9 on (24 first-generation points in one component at a = 2 within 10^5 points); at a = 0.85 the
     first generation still splits into two components within 10^5 points and chains of 9000 steps.
-(e) The mass of mu_b above the horizon, rigorously: DONE FOR k = 2 WITH eta = 5/12 + o(1) (Proposition 9.16(v), 2026-10-01 evening):
+(e) The mass of mu_b above the horizon, rigorously: DONE FOR k = 2 WITH eta = 5/12 + o(1) (Proposition 9.20(v), 2026-10-01 evening):
     m_2 |b|^2 = |Cb|^2 = sum over rational landing points of (sum of two-step weights)^2 <= 2 sum c_m^2 B(2a - log m) + sum c_m^2 B(log m)
     + O(a) (swap multiplicity 2 inward, 1 outward, same-prime points O(a) in total), and Mertens gives m_2 <= (5/12)(2a)^2 (1 + O(1/a)):
     THE EDGE'S MEASURE KEEPS AT LEAST 7/12 OF ITS MASS BELOW ANY FIXED NUMBER OF HORIZONS, UNIFORMLY IN a - the first uniform-in-a
