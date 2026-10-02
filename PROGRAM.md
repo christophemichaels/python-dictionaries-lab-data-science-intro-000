@@ -675,6 +675,8 @@ at a <= 1 to make Proposition 9.31 numerical; the paired-prime/echo-tree identif
 SANDBOX_STRANGE_MATH.md (2026-10-02): the 'strange math' sandbox; which laws are sequence-only and which need the values of the
 primes; the rank-prime experiment rh_sandbox_rank_primes.py. Parked there: the zero-prediction measurement (how far below the
 horizon the zeros of the minimizer's transform track the true zeros, as a function of a). Neither pulls on the critical path.
+FICTION_CRITICAL_LINE_UNIVERSE.md (2026-10-02): Sandbox II, the make-believe universe where RH is an axiom; its dictionary
+maps each invented law to a real theorem, conjecture or open point. Fiction, labelled as such; off the critical path.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.

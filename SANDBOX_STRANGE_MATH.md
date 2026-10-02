@@ -1,5 +1,8 @@
 # Strange math: a sandbox
 
+Companion: FICTION_CRITICAL_LINE_UNIVERSE.md (Sandbox II), the make-believe universe in which the Hypothesis is a law of
+nature and the question is why the primes are where they are.
+
 A side project, 2026-10-02. Nothing in this file is a claim about the zeta function, and nothing here enters the paper. The
 rule of the sandbox: we may invent any law we like, but every invented law is then held against the real object, and the
 file records which laws survive the contact and which do not. The surviving laws turn out to be the ones that depend only
