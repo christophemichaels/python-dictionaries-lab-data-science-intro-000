@@ -1,5 +1,5 @@
 """
-The K-mode minimizers above the horizon: the edge's transform, and what the polynomial does not resolve (paper Computation 9.16).
+The K-mode minimizers above the horizon: the edge's transform, and what the polynomial does not resolve (paper Computation 9.18).
 
 Proposition 8.18 gives, at every support, F~ = A_a(t)/(t sigma_{a,-}) + e^{-2ita} Phi_-/sigma~_a with the window's symbol sigma_a, and
 Theorem 9.12 says A_a(t) -> A_0 above the periodic band, with the mirror chains (walks from the far edge across the window) as the leading
