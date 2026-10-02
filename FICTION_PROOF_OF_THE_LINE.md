@@ -283,10 +283,11 @@ concentrated enough at that height for |F'(gamma)|^2 to be magnified by e^{2am}.
 ## Appendix B. The constants of the measured universe
 
 The proof is independent of numbers. For the reader who wants to see the laws at work, the Academy's measurements at the
-ages 0.6, 0.8, 1.0, 1.25, 1.5 (companion file, Parts II and III) give: Riemann number kappa = 2|A_0|^2/(pi T* lambda) =
-1.063, 1.058, 1.164, 1.201, 1.239; share above three horizons 0.370, 0.415, 0.407, 0.433, 0.434 against kappa/3 = 0.354,
-0.353, 0.388, 0.400, 0.413 from Law IX; median height of the shares 2.39, 2.32, 2.65, 2.67, 2.74 horizons; and the floor
-5.97e-7, 1.57e-14, 1.48e-26, 3.42e-51, 9.22e-92, positive at every age measured, falling as Corollary 5.4 says it must.
+ages 0.6, 0.8, 1.0, 1.25, 1.5, 1.75 (companion file, Parts II and III) give: Riemann number kappa = 2|A_0|^2/(pi T* lambda)
+= 1.063, 1.058, 1.164, 1.201, 1.239, 1.272; share above three horizons 0.370, 0.415, 0.407, 0.433, 0.434, 0.472 against
+kappa/3 = 0.354, 0.353, 0.388, 0.400, 0.413, 0.424 from Law IX; median height of the shares 2.39, 2.32, 2.65, 2.67, 2.74,
+2.86 horizons; and the floor 5.97e-7, 1.57e-14, 1.48e-26, 3.42e-51, 9.22e-92, 2.07e-162, positive at every age measured,
+falling as Corollary 5.4 says it must.
 
 --- end of manuscript ---
 

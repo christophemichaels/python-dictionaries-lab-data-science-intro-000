@@ -307,11 +307,11 @@ as the likelier shape.]
 
 The Riemann number, measured [real: Computation 7.6, FEM below the entry a_3 = 0.549, K-mode above]:
 
-      age a      0.40    0.45    0.50    a_3     0.60    0.80    1.00    1.25    1.50
-      kappa(a)   0.721   0.868   1.081   1.295   1.063   1.058   1.164   1.201   1.239
+      age a      0.40    0.45    0.50    a_3     0.60    0.80    1.00    1.25    1.50    1.75
+      kappa(a)   0.721   0.868   1.081   1.295   1.063   1.058   1.164   1.201   1.239   1.272
 
 The jump at a_3 is the entry of the charge 3: the Riemann number has a kink at every entry, like the floor. From 0.6 on it
-rises slowly, 1.06 to 1.24 over a doubling of the age. The CLU's physicists are divided on its limit. The school of the
+rises slowly, 1.06 to 1.27 from 0.6 to 1.75 (the last point added after the run of 2026-10-02, K = 500). The CLU's physicists are divided on its limit. The school of the
 bounded relay holds that kappa(a) tends to a constant kappa_inf, the RIEMANN CONSTANT; the school of the receding onset
 holds that it grows like a small power of the horizon, kappa ~ T*^{c'} with c' between 0.2 and 0.5, because the height at
 which the sharp tail law sets in recedes like e^{ca} horizons [real: Computation 9.37]. Both schools agree that Axiom 0
@@ -333,25 +333,29 @@ Then the equation of state reads as a first law, d Phi = theta dS, with the TEMP
 since S'(a) = 2a T*/pi. The information an observer loses per quantum it resolves is pi^2 kappa/(2a): it falls like the
 inverse age if the Riemann number is bounded. Measured:
 
-      age a       0.40   0.45   0.50   0.60   0.80   1.00   1.25   1.50
-      theta       8.90   9.51  10.67   8.74   6.53   5.75   4.74   4.08
-      theta * a   3.56   4.28   5.33   5.25   5.22   5.75   5.93   6.11
+      age a       0.40   0.45   0.50   0.60   0.80   1.00   1.25   1.50   1.75
+      theta       8.90   9.51  10.67   8.74   6.53   5.75   4.74   4.08   3.59
+      theta * a   3.56   4.28   5.33   5.25   5.22   5.75   5.93   6.11   6.28
 
 The product theta * a = pi^2 kappa/2 rises through the entries and settles into a slow climb, 5.2 to 6.1, from a = 0.6 to
 1.5. Here the CLU's numerologists make their one famous conjecture:
 
 THE 2 PI CONJECTURE (CLU folklore, explicitly numerology). kappa_inf = 4/pi = 1.2732, so that theta * a tends to 2 pi:
 in the limit of great age each resolved quantum costs exactly 2 pi / a units of lost information. The measured values
-5.25, 5.22, 5.75, 5.93, 6.11 approach 6.28 from below; the measured kappa, 1.06, 1.06, 1.16, 1.20, 1.24, approaches 1.27.
+5.25, 5.22, 5.75, 5.93, 6.11 approach 6.28 from below, and the run at a = 1.75 lands on it: theta * a = 6.277 against
+2 pi = 6.283, kappa = 1.272 against 4/pi = 1.2732. The numerologists have declared victory; the cosmologists point out
+that the increments of kappa, 0.037, 0.038, 0.033 per quarter age, have barely slowed, and that a = 2 decides whether
+2 pi is a limit or a milestone.
 [real: nothing supports this beyond the trend of five points; the paper's own reading, Computation 9.37, is that the
 onset recedes and kappa may grow without bound. The conjecture is recorded here as what it is, a pattern in five numbers,
-and as the kind of statement the sandbox exists to hold at arm's length. It is cheap to test further: Computation 7.6 at
-a = 1.75 and 2 would decide whether theta * a crosses 2 pi.]
+and as the kind of statement the sandbox exists to hold at arm's length. Computation 7.6 at a = 1.75 (run 2026-10-02: 6.277)
+and at a = 2 (running) decide whether theta * a crosses 2 pi.]
 
 A second constant the thermodynamicists like: the MEDIAN HEIGHT, the height below which half of the floor's mass sits, is
-2.39, 2.32, 2.65, 2.67, 2.74 horizons at a = 0.6, 0.8, 1.0, 1.25, 1.5, and 1.8, 2.0, 2.4 on the FEM ground fields at
-0.4, 0.45, 0.5 [real: Computation 7.6]; at the last point it is e = 2.718 to one per cent. The folklore says the median
-height is e horizons. Same status as the 2 pi conjecture: a pattern, not a law.
+2.39, 2.32, 2.65, 2.67, 2.74, 2.86 horizons at a = 0.6, 0.8, 1.0, 1.25, 1.5, 1.75, and 1.8, 2.0, 2.4 on the FEM ground
+fields at 0.4, 0.45, 0.5 [real: Computation 7.6]; at a = 1.5 it is e = 2.718 to one per cent, and at 1.75 it is 1.053 e.
+The folklore said the median height is e horizons; the point at 1.75 says it does not stop there. Same status as the
+2 pi conjecture: a pattern, and now a broken one.
 
 
 ## 13. The substate
@@ -361,7 +365,7 @@ The CLU describes it by three objects.
 
 The EDGE AMPLITUDE A_0, purely imaginary, A_0 = -i |A_0| e^{-i kappa_0 / t} to first order, with |A_0|^2 = J/(2a): the
 strength with which the ground field touches the edge of the window. Measured: |A_0|^2 = 2.1e-5, 8.1e-13, 1.26e-24,
-4.9e-49 at a = 0.6, 0.8, 1.0, 1.25. [real: the boundary law, the amplitude of Theorem 9.12(ii).]
+4.9e-49, 8.6e-160 at a = 0.6, 0.8, 1.0, 1.25, 1.75. [real: the boundary law, the amplitude of Theorem 9.12(ii).]
 
 THE EQUATION OF SUBSTATE (CLU). |A_0|^2 = (pi kappa / 2) T* lambda: the square of the edge amplitude is the trapped energy
 magnified by the horizon and the Riemann number. The edge is where the trapped energy is converted into flux, and the
@@ -440,15 +444,16 @@ window has more degrees of freedom than quanta, above it fewer. The gods decree 
 by the determination height: half of it sits below e horizons, half above.
 [real: the Shannon number of [-a, a] x [-T, T] is 2aT/pi, the number of zeros in [-T, T] is (T/pi)(log(T/2 pi) - 1),
 and they are equal exactly at T = e T*, which is where the paper's heuristic of Section 7 counts the deficit of the zeros
-against the window. The median height of the floor's mass, measured, is 2.39, 2.32, 2.65, 2.67, 2.74 horizons at
-a = 0.6, 0.8, 1.0, 1.25, 1.5: rising, and at the last point 1.008 e. The equal division is a decree; the data approach it.]
+against the window. The median height of the floor's mass, measured, is 2.39, 2.32, 2.65, 2.67, 2.74, 2.86 horizons at
+a = 0.6, 0.8, 1.0, 1.25, 1.5, 1.75: rising, 1.008 e at 1.5 and 1.053 e at 1.75. The equal division is a decree; the data
+approached it and then passed it.]
 
 DECREE IV (The plunge). Between the horizon and three horizons the ground field carries more than the pure tail, the
 excess of the quanta that the observer half-resolves; the gods fix the excess by requiring that the median of the mass
 be the determination height exactly, which with the pure tail above the plunge gives median = 2.21 kappa T* rather than
 the 2 kappa T* of a tail with no plunge.
 [real: T theta(T)/T* reaches 1.4 to 1.5 at 1.5 T* (Computation 7.6), and the measured ratio median/(kappa T*) is
-2.25, 2.19, 2.28, 2.22, 2.21 at the five supports: the plunge's excess is a stable 10 per cent of the tail's weight.]
+2.25, 2.19, 2.28, 2.22, 2.21, 2.25 at the six supports: the plunge's excess is a stable 10 per cent of the tail's weight.]
 
 
 ## 17. The flux, derived from the decrees
@@ -482,14 +487,20 @@ fields:
       age a    T*       measured Phi    decree kappa = e/2    decree kappa = 4/pi    decree kappa = e/2.21    measured kappa
       1.00     46.4     59.5            64.5  (+8%)           62.4  (+5%)            61.3  (+3%)              1.164
       1.25     76.5     116.2           128.8 (+11%)          122.6 (+6%)            119.4 (+3%)              1.201
+      1.75     208.1    372.3           409.6 (+10%)          385.7 (+3.6%)          373.7 (+0.4%)            1.272
 
-The decree with the plunge overshoots the measured lost information by three per cent at a = 1.25, the pure-tail decree
-by eleven; both overshoot because the measured Riemann number, 1.16 to 1.24 in this range, is still below its decreed
-limit and rising toward it (1.239 at a = 1.5 against 1.230 decreed with the plunge). The gods' law is the asymptotic one;
-the mortals measure the approach. What would settle it is the tail-law computation of Computation 7.6 at a = 1.75 and
-2.0, which would show whether kappa continues to 1.23, passes it toward 1.36, or keeps climbing like a power of the
-horizon; the K-mode engine does it in a few CPU-hours, and the median height, which should reach e horizons and stay,
-is the cleaner diagnostic because it does not need the derivative of the floor.
+The decree with the plunge overshoots the measured lost information by three per cent at a = 1.25 and by 0.4 per cent at
+a = 1.75; the pure-tail decree by ten to eleven per cent at both. The 1.75 row was added after the decrees were written
+(run of 2026-10-02, K = 500 modes, 1000 bits, the fast engine; the earlier rows were the state of knowledge when Part III
+was composed). What it says is mixed. The integrated decree with the plunge is almost exact, because the Riemann number
+averaged over the ages 0.8 to 1.75, weighted by the horizon, is about 1.23. But the Riemann number itself at 1.75 is
+1.272, not 1.230: it has passed the plunge decree, landed on the numerologists' 4/pi to one part in a thousand, and its
+increments (0.037, 0.038, 0.033 per quarter age) have barely slowed. The median height, which Decree III said should
+reach e horizons and stay, is 2.86 horizons at 1.75, past e by five per cent. Decree II, the scale-free tail, holds as
+well as ever: T theta(T)/T* is 1.282 and 1.277 at ten and fifteen horizons against kappa = 1.272. Decree IV holds: the
+plunge ratio is 2.25. So the sum rule and the plunge are laws of the measured universe; the limits decreed in Section 17
+are not yet; and the question of Part II, whether kappa is bounded or grows like a small power of the horizon, is open at
+a = 1.75 exactly as it was at 1.5, with one more point on the rising side. The run at a = 2.0 is in progress.
 
 
 ## 19. What the decrees are, in our universe
@@ -498,7 +509,7 @@ Each decree is a statement about the real objects, and each has a status.
 
     Decree I    the ground field is dark below the horizon          computation at a few supports; not a theorem
     Decree II   the floor's tail is scale-free, 1/T^2, no logarithm  observed to 1% from five horizons; the sum rule behind it is open
-    Decree III  the median height of the floor's mass is e horizons  the determination height is a theorem of counting; the median is measured, 1.008 e at a = 1.5
+    Decree III  the median height of the floor's mass is e horizons  the determination height is a theorem of counting; the median is measured, 1.008 e at a = 1.5 and 1.053 e at 1.75: passed
     Decree IV   the plunge carries a stable 10% excess               measured at five supports
 
 Together they say: kappa is bounded, with limit e/2 up to the plunge; hence Conjecture 7.1 with c = pi e/2, hence the
@@ -508,6 +519,9 @@ in the onset) would let the Riemann number drift, and the drift is exactly what 
 measure. The gods have written the line. We have written down what it would take to prove it: that the two logarithms
 cancel exactly, at every support, forever.
 
+Postscript after the run at a = 1.75: Decree II holds to 0.4 per cent at fifteen horizons; Decree IV holds; Decree III
+fails as stated (the median passes e); the limit of Decree I to III's kappa is not reached, kappa = 1.272 and rising.
+
 
 ## 20. Dictionary, concluded
 
@@ -516,10 +530,10 @@ cancel exactly, at every support, forever.
 | Decree I, darkness below the horizon | the minimizer's transform vanishes near the zeros below T* | computation |
 | Decree II, the sum rule | the tail law's scale-free form; the cancellation of the edge law's logarithm against the zero density | observed to 1%; open as a theorem |
 | determination height e T* | Shannon number = zero count at T = e T* | theorem of counting |
-| Decree III, median = e horizons | the median of the floor's spectral mass, Computation 7.6 | measured, 1.008 e at a = 1.5 |
+| Decree III, median = e horizons | the median of the floor's spectral mass, Computation 7.6 | measured, 1.008 e at a = 1.5, 1.053 e at a = 1.75: passes e |
 | Decree IV, the plunge excess | median/(kappa T*) = 2.21 +- 0.04 | measured at five supports |
 | Flux Law, kappa_inf = e/2 or e/2.21 | Conjecture 7.1 with c = pi e/2 | the Hypothesis, decreed |
-| the check | decree against the K-mode lost information | +3% to +11% at a = 1.25 |
+| the check | decree against the K-mode lost information | +0.4% to +10% at a = 1.75; kappa itself 1.272 against the decreed 1.230 |
 
 
 # Part IV. The Line, derived
@@ -652,8 +666,9 @@ the Leakage Law with C(a) = pi c_on T*(a), that is, a Riemann number kappa(a) <=
 
 [real: the arithmetic is honest and the numbers agree with it. With the measured onset c_on = 3 the derivation says
 kappa <= 3; measured, kappa = 1.06 to 1.24. More precisely the mass above three horizons is kappa/3 by the pure tail,
-0.35 to 0.41 at the five supports of Computation 7.6, against the measured theta(3 T*) = 0.370, 0.415, 0.407, 0.433,
-0.434: the Local Law's tail and the Born rule's bound are consistent with the data to a few per cent. What the data
+0.35 to 0.42 at the six supports of Computation 7.6, against the measured theta(3 T*) = 0.370, 0.415, 0.407, 0.433,
+0.434, 0.472: the Local Law's tail and the Born rule's bound are consistent with the data to five to eighteen per cent,
+the difference being the plunge's excess at three horizons. What the data
 cannot do is replace the Born rule.]
 
 The gods are pleased by the shape of the derivation more than by its content. The Leakage Law, which looks like a law of

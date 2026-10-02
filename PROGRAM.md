@@ -688,5 +688,19 @@ FICTION_PROOF_OF_THE_LINE.md (2026-10-02): the same proof as a formal CLU manusc
 the classical construction of a dying observer, Leakage Law derived and shown equivalent to immortality, Immortality
 Theorem, mirror-term lemma, translator's note). Fiction.
 
+ROUND 'LETS RUN IT' (2026-10-02): the tail law at a = 1.75, run on explicit request as the fiction's adjudicating
+measurement (Part III, Section 18). The old K-mode engine could not reach it (K^4 assembly, eig); rh_weil_fast.py was
+written (shift variable, one mirrored Legendre table per node, block-symmetric products, four processes, Q, Q'(a) and
+Q(a +- delta) in one pass, inverse iteration + Hellmann-Feynman), validated to every digit against the K = 80 reference
+at a = 1, and run at K = 500, 1000 bits, Mx = 1300 (1.8 h on four cores). Zeros to 178 digits (n <= 700) and 63 digits
+(n <= 5200) by acb.zeta_zeros (rh_zeros_arb.py, data/zeros_hp/); shares by Miller's recurrence (shares_arb). Result:
+lambda_500(1.75) = 2.0745e-162, Phi = 372.3, Phi' = 831.5 (HF; K = 400 block 1.265, K = 300 block 1.058 for kappa),
+kappa = Phi'/(pi T*) = 1.272 (= 4/pi to 0.1%; theta a = 6.277 against 2 pi), T theta/T* = 1.282, 1.277 at 10, 15
+horizons, median 2.86 horizons (past e). Sequence kappa: 1.063, 1.058, 1.164, 1.201, 1.239, 1.272: still rising, no
+saturation yet. Paper: comp:tail row and text, Section 'Four engines' item 4. The a = 2.0 run (K = 600, 1600 bits) is
+in progress (data/tail_law_kmode/coefs_2.0.log). The lasting product is the engine: K-mode floors to K ~ 600 are now
+hours, not weeks.
+
 ## Not to drift into
-Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.
+Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
+explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
