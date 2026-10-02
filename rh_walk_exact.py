@@ -1,5 +1,5 @@
 """
-Exact evaluation of the polytope integrals of the confined walk (paper, Proposition 9.34).
+Exact evaluation of the polytope integrals of the confined walk (paper, Proposition 9.36).
 
 J_n = int_{[0,1]^n} x_1...x_n S_n(x) dx with S_n = sum over the 2^n direction patterns of N(x,pattern)^2, N the number of orderings
 of the n signed steps whose first step goes in and whose partial sums stay in (0,1).  Expanding N^2 = sum_{ord,ord'} 1_P 1_P',
