@@ -12,6 +12,11 @@ height T is theta(T) = Phi'(a)/(pi T) beyond a few horizons, i.e. Phi' = pi T_ef
       per-zero shares 2|F_K(gamma)|^2/lambda_K for zeros n0..n1 (F_K through spherical Bessel functions at dps digits;
       the working precision must exceed the digits lost in the cancellation to |F_K(gamma)| ~ sqrt(lambda_K), and the
       zeros must be accurate to |F_K(gamma)|/|F_K'(gamma)| in the plunge region: 36 digits at a = 1, 50 at a = 1.5).
+  python3 rh_tail_law.py shares_arb coefs.json zeros.txt n0 n1 bits out.csv
+      the same shares with arb: j_n(a gamma) for all n < 2K by Miller's backward recurrence (started above
+      max(2K, a gamma (1+eps)) and normalized by sum (2n+1) j_n^2 = 1; midpoints, since the ball radii of an
+      oscillatory recurrence grow geometrically), the sum over the modes at `bits` bits; bits must exceed the
+      cancellation to |F_K(gamma)| ~ sqrt(lambda_K) (600 bits at a = 2).  Not rigorous (nor is the eigenvector).
   python3 rh_tail_law.py overlay DIR
       theta(T/T*) for every coefs_*.json / shares_*.csv pair in DIR: the universality overlay and the medians.
 """
@@ -78,6 +83,40 @@ def shares(argv):
         for n in sorted(zeros):
             g = zeros[n]; fh.write(f"{n},{mp.nstr(g, 20)},{mp.nstr(2*G(g)**2/lamK, 12)}\n"); fh.flush()
 
+def shares_arb(argv):
+    from flint import arb, ctx
+    cf, zfile, n0, n1, bits, out = argv[0], argv[1], int(argv[2]), int(argv[3]), int(argv[4]), argv[5]
+    d = json.load(open(cf)); ctx.prec = bits
+    a = arb(d["a"]); K = d["K"]; lamK = arb(d["lambda"])
+    coef = [arb(d["c"][i])*(arb(4*i + 3)/2).sqrt()*(1 if i % 2 == 0 else -1) for i in range(K)]
+    ra2 = 2*a.sqrt(); digits = bits*0.30103
+    def spherical(z, nmax):
+        """j_0..j_nmax at z > 0 by Miller's backward recurrence."""
+        zf = float(z.mid())
+        eps = 0.5*(3.45*digits/zf)**(2.0/3) if zf > 0 else 10.0
+        N = max(nmax + 1, int(zf*(1 + eps))) + 20
+        jp, jc = arb(0), arb(2)**(-bits)                      # j_{N+1}, j_N (tiny seed)
+        vals = [None]*(N + 1); vals[N] = jc
+        zm = arb(z.mid())
+        for n in range(N, 0, -1):                             # floating point (midpoints): the ball radii of an
+            jm = arb((jc*(2*n + 1)/zm - jp).mid())            # oscillatory three-term recurrence grow like 3^N
+            jp, jc = jc, jm
+            vals[n - 1] = jc
+        norm = sum(((2*n + 1)*vals[n]*vals[n] for n in range(N + 1)), arb(0)).sqrt()
+        sgn = 1 if (vals[0]*(z.sin()/z)) > 0 else -1
+        return [v*sgn/norm for v in vals[:nmax + 1]]
+    zeros = {}
+    for l in open(zfile):
+        p = l.split()
+        if len(p) == 2 and n0 <= int(p[0]) <= n1: zeros[int(p[0])] = arb(p[1])
+    with open(out, "w") as fh:
+        for n in sorted(zeros):
+            g = zeros[n]; z = a*g
+            j = spherical(z, 2*K - 1)
+            F = ra2*sum((coef[i]*j[2*i + 1] for i in range(K)), arb(0))
+            share = 2*F*F/lamK
+            fh.write(f"{n},{g.mid().str(20, radius=False)},{share.mid().str(12, radius=False)}\n"); fh.flush()
+
 def overlay(argv):
     rows = []
     for cf in sorted(glob.glob(argv[0] + "/coefs_*.json")):
@@ -101,4 +140,4 @@ def overlay(argv):
         print("   ratio:  " + "  ".join(f"{th[k]*k/tail:6.3f}" for k in grid if k in th))
 
 if __name__ == "__main__":
-    {"fem": fem, "coefs": coefs, "shares": shares, "overlay": overlay}[sys.argv[1]](sys.argv[2:])
+    {"fem": fem, "coefs": coefs, "shares": shares, "shares_arb": shares_arb, "overlay": overlay}[sys.argv[1]](sys.argv[2:])
