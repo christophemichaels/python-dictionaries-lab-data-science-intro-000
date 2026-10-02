@@ -6,6 +6,7 @@
 \usepackage{microtype}
 \usepackage{enumitem}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{xcolor}
 \usepackage{mdframed}
 \usepackage[colorlinks=true,linkcolor=black!70,citecolor=black!70]{hyperref}
@@ -18,6 +19,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{law}{Law}
 \renewcommand{\thelaw}{\Roman{law}}
+\newtheorem*{principle}{Principle D}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
@@ -25,307 +27,252 @@
 \newcommand{\Ree}{\operatorname{Re}}
 \newcommand{\Imm}{\operatorname{Im}}
 \newcommand{\lamZ}{\lambda_{Z}}
+\newcommand{\con}{c_{\mathrm{on}}}
 
-\title{\textbf{The Immortality of Observers}\\[4pt]\large A proof of the Line Postulate from the laws of leakage}
+\title{\textbf{The Immortality of Observers}\\[4pt]\large A proof of the Line Postulate from the laws of leakage\\[2pt]\normalsize Second version}
 \author{Academy of the Prime Sheet, Critical Line Universe\\ \small Communicated to the gods}
-\date{Sandbox II, 2026-10-02}
+\date{Sandbox II, 2026-10-02, revised the same day}
 
 \begin{document}
 \maketitle
 
 \begin{mdframed}[backgroundcolor=black!4,linewidth=0.4pt]
-\small\textbf{Fiction notice (from our universe).} This manuscript is written from inside the Critical Line Universe of the companion file \texttt{FICTION\_CRITICAL\_LINE\_UNIVERSE.md} and uses that universe's laws as axioms. It proves nothing about the real zeta function. The translator's note at the end, and the ledger in Section~27 of the companion file, say which of the laws below are theorems in our universe and which one is the Riemann Hypothesis itself. Nothing in this document enters the paper.
+\small\textbf{Fiction notice (from our universe).} This manuscript is written from inside the Critical Line Universe of the companion file \texttt{FICTION\_CRITICAL\_LINE\_UNIVERSE.md} and uses that universe's laws as axioms. It proves nothing about the real zeta function. The translator's ledger at the end says which of the laws below are theorems in our universe, which are hypotheses of the paper that must be retained, and which one is the Riemann Hypothesis itself. Nothing in this document enters the paper.
+
+\medskip
+\textbf{Revision note.} This second version incorporates a revision received on 2026-10-02 that corrected three defects of the first: (1) the trial field used to construct a dying observer had an even transform, not an odd one, so it was not a field of the Academy; the detection of a massive quantum by an odd window is now stated as an imported principle (Principle D), with the mechanism given only as a corrected sketch; (2) the tail law was stated as an equality at every height, which a discrete set of quanta cannot satisfy (a tail share is a step function); it is now a one-sided capture law at one height per age, with a guaranteed fraction $\eta$; (3) the ``threshold'' description of death claimed that a dying observer's edge amplitude does not vanish; what death actually requires is an infinite accumulated relative leak, and the edge may vanish with the floor (Theorem~\ref{thm:accum}). The revision also added the signed-packet criterion of Theorem~\ref{thm:signed} and a remainder bound in the mirror lemma, both adopted here.
 \end{mdframed}
 
 \begin{abstract}
-We prove that every quantum of the arithmetic field is massless. The proof does not examine the quanta. It examines observers, one at a time, and shows that no observer ever dies: the trapped energy of an observer is a positive quantity that falls with age in proportion to itself, and a quantity that falls in proportion to itself never reaches zero. The Line Postulate, hitherto an axiom of this universe, follows by the duality of the two sheets. The one law the proof needs beyond the classical laws of observers is the Law of Proportional Leakage; we derive it from the Born rule of arithmetic and the Local Law of the band, and we show that it is exactly the law that the dead universes violate.
+Every observer is born with a positive reserve of arithmetic energy, its floor, and loses it by leakage through the edge of its window. We prove that no observer's reserve reaches zero at a finite age if the fraction lost per unit age has an integrable upper bound on every finite range of ages (the Law of Proportional Leakage). A probability law for the shares of the quanta, together with a one-sided tail-capture law, supplies that bound; an integrating factor then gives an explicit positive lower bound at every age. The Academy's odd-window detection principle converts this immortality into the Line Postulate: every quantum is massless. The proof needs neither exact darkness below the horizon nor an exact continuous tail formula, and it tolerates delayed onset, relative error and controlled signed energy, provided their combined cost is locally integrable. One of its laws is, in our universe, the Hypothesis in another coat; the ledger says which.
 \end{abstract}
 
 \section{Objects and notation}
 
 \subsection*{1.1. The two sheets}
-The \emph{prime sheet} is the line with coordinate $l=\log x$. On it sit the charges, one at every $l=\log n$ with $n$ a power of a prime $p$, of strength $q(n)=(\log p)\,n^{-1/2}$. The \emph{zero sheet} is the dual line, coordinate $\gamma$. On it sit the quanta, one at every zero $\rho=\tfrac12+m+i\gamma$ of the arithmetic zeta function, with mass $m=|\Ree\rho-\tfrac12|$. Quanta come in mirror pairs: if $\rho$ is a quantum so is $1-\bar\rho$, the quantum of the same height and opposite displacement; and in conjugate pairs $\rho,\bar\rho$. A quantum is \emph{massless} if $m=0$.
+The \emph{prime sheet} is the line with coordinate $l=\log x$. On it sit the charges, one at every $l=\log n$ with $n$ a power of a prime $p$, of strength $q(n)=\Lambda(n)n^{-1/2}=(\log p)\,n^{-1/2}$. The \emph{zero sheet} is the dual line, coordinate $\gamma$. On it sit the quanta, one at every zero $\rho=\tfrac12+d_\rho+i\gamma_\rho$ of the arithmetic zeta function, with multiplicity; $d_\rho$ is the signed displacement and $m_\rho=|d_\rho|$ the \emph{mass}. Reflection $\rho\mapsto1-\bar\rho$ and conjugation $\rho\mapsto\bar\rho$ preserve the configuration with its multiplicities. A quantum is \emph{massless} if $m_\rho=0$.
 
-\subsection*{1.2. Observers}
-An \emph{observer} of age $a>0$ is the window $[-a,a]$ of the prime sheet. A \emph{field} of the observer is an odd real function $f$ on the window with unit norm, $\int f^2=1$, regular enough for everything below. Its \emph{transform} is
+\subsection*{1.2. Observers and fields}
+An \emph{observer} of age $a>0$ is the window $[-a,a]$ of the prime sheet. A \emph{field} of the observer is a real odd function $f$ on the window, in the form domain of the window form, normalized by $\|f\|_2=1$; smooth compactly supported odd fields are included. Its \emph{transform} and \emph{autocorrelation} are
 \[
-F(t)=\int_{-a}^{a}f(x)e^{itx}\,dx=2i\int_0^a f(x)\sin(tx)\,dx ,
+F(z)=\int_{-a}^{a}f(x)e^{izx}\,dx,\qquad g(x)=\int f(y)f(y-x)\,dy .
 \]
-an entire function of $t$, purely imaginary on the real axis, and its \emph{autocorrelation} is $g=f*\tilde f$, $g(x)=\int f(y)f(y-x)\,dy$, an even function on $[-2a,2a]$ whose transform is $F(t)\overline{F(\bar t)}$ for complex $t$ and $|F(t)|^2$ for real $t$.
+Since $f$ is real and odd, $F=iS$ with $S$ odd, entire of exponential type $a$, and real on the real axis; $g$ is real, even, supported in $[-2a,2a]$, and its transform is $\hat g(z)=F(z)F(-z)=S(z)^2$, equal to $|F(t)|^2$ for real $t$.
 
-\subsection*{1.3. The horizon}
-$\Tst(a)=2\pi e^{2a}$. The density of the quanta at height $t$ is $\frac1{2\pi}\log\frac{t}{2\pi}$ and the Shannon density of a field of age $a$ is $a/\pi$; the two agree exactly at $t=\Tst(a)$. Below the horizon an observer resolves the quanta; above it they are too dense to be told apart.
-
-\subsection*{1.4. The window form}
-For a field $f$ of age $a$,
+\subsection*{1.3. The window form, the floor, the edge}
 \[
-Q_a(f)=\underbrace{\frac1{2\pi}\int|F(t)|^2\,\Psi_\infty(t)\,dt}_{\text{archimedean flux}}\;\underbrace{-\;2\Big(\int f(x)\sinh\tfrac x2\,dx\Big)^2}_{\text{polar flux}}\;-\;\sum_{\text{charges}}q(n)\,g(\log n),
-\qquad \Psi_\infty(t)=\Ree\psi\big(\tfrac14+\tfrac{it}2\big)-\log\pi .
+Q(f)=\frac1{2\pi}\int_{\mathbb R}|F(t)|^2\Big[\Ree\psi\big(\tfrac14+\tfrac{it}2\big)-\log\pi\Big]dt\;-\;2\Big(\int_{-a}^af(x)\sinh\tfrac x2\,dx\Big)^2\;-\;2\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\,g(\log n).
 \]
-Everything on the right is read on the prime sheet: $Q_a(f)$ is a number an observer can compute from the charges inside its window and from the vacuum's symbol, without reference to any quantum. Only the charges with $\log n<2a$ enter.
-
-\subsection*{1.5. The floor, the ground field, the edge}
-The \emph{floor} is $\lambda(a)=\inf Q_a(f)$ over the fields of age $a$. It is attained, by the \emph{ground field} $f_a$. The ground field approaches the edge of the window as
+Both signs of each displacement $\pm\log n$ are included, which is the factor $2$ in the last sum; only the charges with $\log n<2a$ contribute. Everything on the right is read on the prime sheet: $Q(f)$ is a number an observer computes from the charges inside its window and from the vacuum's symbol, without reference to any quantum. The \emph{floor} is
 \[
-f_a(a-\delta)=|A_0(a)|\,\big(\log(a/\delta)+\beta(a)\big)^{-1/2}\,(1+o(1)),\qquad\delta\to0,
+\lambda(a)=\inf\{Q(f):\ f\ \text{a field of age }a\},
 \]
-and $A_0(a)$, the \emph{edge amplitude}, is the strength with which the ground field touches the edge. Its transform falls off, for heights far above the horizon, like $2|A_0|\,|\sin(ta+\theta_a)|/(t\,\sigma(t)^{1/2})$ with $\sigma(t)\sim\log(t/2\pi)$.
+and the Academy assumes it is attained by a \emph{ground field} $f_a$. The ground field approaches the edge as $f_a(a-\delta)=|A_0(a)|(\log(a/\delta)+\beta(a))^{-1/2}(1+o(1))$; $A_0(a)$ is the \emph{edge amplitude}, and the \emph{leak} is $E(a)=2|A_0(a)|^2\ge0$. The \emph{horizon} is the reference scale $\Tst(a)=2\pi e^{2a}$; the name imposes no exact cutoff on individual quanta.
 
-\subsection*{1.6. Life and death}
-An observer of age $a$ is \emph{alive} if $\lambda(a)>0$ and \emph{dead} if $\lambda(a)\le0$.
+\subsection*{1.4. Life and death}
+An observer is \emph{alive} when $\lambda(a)>0$, at \emph{threshold} when $\lambda(a)=0$, \emph{negative} when $\lambda(a)<0$; reaching either of the last two states is \emph{death}.
 
-\section{The laws}
+\section{The laws, and the imported detection principle}
 
-The proof uses the following laws of the Critical Line Universe. Laws I to V hold in every universe with the same density of charges, living or dead; they are the laws of observers. Law VI is the law of this universe. Laws VII to IX are used only in Section~4, to derive Law VI; a reader who accepts Law VI as an axiom may skip Section~4.
+Laws I to V hold in every universe with the same density of charges, living or dead; they are the laws of observers. Law VI is the law to be derived. Laws VII and IX are the fictional mechanism that derives it (Section~4); Law VIII is an image, not used.
 
-\begin{law}[the Gauss law of the two sheets]\label{law:gauss}
-For every field $f$ of every age,
+\begin{law}[conservation between the sheets]\label{law:gauss}
+For every field,
 \[
-Q_a(f)=\sum_{\text{quanta }\rho}G(\rho),\qquad G(\rho)=F(\gamma-im)\,\overline{F(\gamma+im)},
+Q(f)=\sum_{\rho}\hat g(\gamma_\rho-id_\rho)=\sum_\rho S(\gamma_\rho-id_\rho)^2 ,
 \]
-the sum taken over the quanta with their multiplicities. In particular a massless quantum contributes $|F(\gamma)|^2\ge0$, and a mirror pair of mass $m$ at height $\gamma$ contributes $2\Ree\big[F(\gamma-im)\overline{F(\gamma+im)}\big]$, a real number of either sign. (The sum converges absolutely for the fields of~1.2.)
+the sum over the quanta with their multiplicities, absolutely convergent on smooth fields and extended to the form domain. Off the line an individual summand can be complex. Partition the quanta into the finite orbits $\mathcal O$ of reflection and conjugation and define the \emph{packet energies}
+\[
+w_{\mathcal O}(f)=\sum_{\rho\in\mathcal O}S(\gamma_\rho-id_\rho)^2 ;
+\]
+these are real, since $S(\bar z)=\overline{S(z)}$ and an orbit is closed under $d\mapsto-d$ and $\gamma\mapsto-\gamma$. All members of an orbit share the height $h_{\mathcal O}=|\gamma_\rho|$. On the line every summand is a nonnegative square $S(\gamma)^2=|F(\gamma)|^2$.
 \end{law}
 
 \begin{law}[Birth]\label{law:birth}
-There is an age $a_Z>0$ such that every observer of age at most $a_Z$ is alive, and $\lambda(a_Z)\ge\lamZ$ for an explicit $\lamZ>0$.
+There are $a_Z>0$ and $\lamZ>0$ with $\lambda(a)>0$ for $0<a\le a_Z$ and $\lambda(a_Z)\ge\lamZ$.
 \end{law}
 
 \begin{law}[Monotonicity]\label{law:mono}
-The floor does not increase with the age.
+The floor does not increase with the age. (This also follows from the nesting of the windows.)
 \end{law}
 
 \begin{law}[Continuity]\label{law:cont}
-On every finite range of ages the floor is absolutely continuous: $\lambda(a_2)-\lambda(a_1)=\int_{a_1}^{a_2}\lambda'(a)\,da$, with $\lambda'$ defined at almost every age.
+The floor is absolutely continuous on every compact range of ages: all its variation over a finite range is the integral of its almost-everywhere derivative.
 \end{law}
 
 \begin{law}[Decay]\label{law:decay}
-At almost every age, $\lambda'(a)=-2|A_0(a)|^2$.
+For almost every age, $\lambda'(a)=-E(a)=-2|A_0(a)|^2$.
 \end{law}
 
-\begin{law}[Proportional Leakage]\label{law:leak}
-There is a function $C(a)\ge0$, finite at every age and integrable over every finite range of ages, such that for every living observer of age $a$,
+\begin{principle}[odd-window detection]
+Every quantum is massless if and only if $Q(f)\ge0$ for every field of every age; equivalently, if and only if $\lambda(a)\ge0$ for every age. This is an imported analytic input of the Academy, not a consequence of Law~I alone. Its immediate consequence: a massive quantum implies a finite age with $\lambda(a)<0$, hence, with Birth and Continuity, an earlier first threshold; conversely a negative floor implies a massive quantum. The principle concerns nonnegativity; strict positivity is what Sections 4 and 5 supply.
+\end{principle}
+
+\begin{law}[Proportional Leakage; the law to be derived]\label{law:leak}
+There is a nonnegative function $C$, integrable on every finite range of ages $[a_Z,A]$ (including across any putative first threshold; integrability only on compact subranges of the living range would not suffice), such that for almost every living age
 \[
-2\,|A_0(a)|^2\;\le\;C(a)\,\lambda(a).
+E(a)=2|A_0(a)|^2\;\le\;C(a)\,\lambda(a).
 \]
 \end{law}
 
-\begin{law}[the Born rule of arithmetic]\label{law:born}
-For a living observer, the \emph{share} $s_\rho(a)=G(\rho)/\lambda(a)$ of a quantum is the probability that the quantum carries the observer's trapped energy: $s_\rho\ge0$ for every quantum, and the shares sum to one.
+\begin{law}[the Born rule for packets]\label{law:born}
+For a living observer, the ground-field shares $s_{\mathcal O}(a)=w_{\mathcal O}(f_a)/\lambda(a)$ are nonnegative and sum to one. Every set of packets therefore carries a share between zero and one. (The grouping into orbits makes the shares real without presupposing the line; their nonnegativity is the substantive axiom.)
 \end{law}
 
-\begin{law}[Darkness below the horizon]\label{law:dark}
-The ground field of a living observer carries no share below its horizon: $s_\rho(a)=0$ for every quantum of height $|\gamma|<\Tst(a)$.
+\begin{law}[Darkness; an image, not used]\label{law:dark}
+Ground fields concentrate their energy above the horizon. Exact vanishing below it is neither assumed nor used.
 \end{law}
 
-\begin{law}[the Local Law with the sum rule]\label{law:local}
-There is a constant $c_{\mathrm{on}}\ge1$ such that for every living observer and every height $T\ge c_{\mathrm{on}}\Tst(a)$, the total share of the quanta above height $T$ is
+\begin{law}[finite-onset tail capture]\label{law:capture}
+There are constants $\con\ge1$ and $0<\eta\le1$ such that, for almost every living age, at the single height $T_a=\con\Tst(a)$ the ground field's tail share obeys
 \[
-\sum_{|\gamma|>T}s_\rho(a)=\frac{2|A_0(a)|^2}{\pi\,T\,\lambda(a)} .
+p_a(T_a):=\sum_{h_{\mathcal O}>T_a}s_{\mathcal O}(a)\;\ge\;\eta\,\frac{E(a)}{\pi\,T_a\,\lambda(a)} .
 \]
+This is one-sided and at one height per age. It does not assert that the discrete tail equals a smooth function of every real height (a tail share is constant between consecutive heights and cannot equal $E/(\pi T\lambda)$ on an interval when $E>0$). The fraction $\eta$ is a guaranteed capture, not a fitted measurement; the measured universe has $\con\approx3$ and the pure tail would give $\eta\approx1$ (Appendix~B).
 \end{law}
-
-\noindent\emph{A remark on Law~I.} It is stated for every configuration of quanta, massive or not; it is the conservation law of the two sheets and does not know where the quanta are. The Line Postulate is the statement that every term on its right-hand side is a square. The proof below never uses that; it uses Law~I only through Section~3, where both directions of the duality between masses and deaths are drawn from it.
 
 \section{The Mortality Theorem}
 
 \begin{theorem}[duality of masses and deaths]\label{thm:mortality}
-The following are equivalent:
-\begin{enumerate}[label=(\alph*),nosep]
-\item every quantum is massless;
-\item every observer is alive;
-\item no observer is dead.
-\end{enumerate}
-That is: the vacuum has a massive quantum if and only if some observer dies at a finite age.
+Under Laws I to IV and Principle D, the vacuum has a massive quantum if and only if some observer dies at a finite age.
 \end{theorem}
 
 \begin{proof}
-(a)$\Rightarrow$(b). By Law~I, if every quantum is massless then $Q_a(f)=\sum|F(\gamma)|^2\ge0$ for every field, so $\lambda(a)\ge0$ for every $a$; and $\lambda(a)>0$ because a field with $F(\gamma)=0$ at every quantum is identically zero: an entire function of exponential type $a$ with zeros of density exceeding $a/\pi$ above the horizon vanishes. (This is the sampling lemma of the Academy, which we take as known.)
-
-(b)$\Rightarrow$(a). Suppose a quantum $\rho_0=\tfrac12+m+i\gamma_0$ has mass $m>0$. We construct a dying observer. Let $\phi$ be a fixed even field of age $1$ whose transform $\Phi$ is positive on the real axis, and for $a>1$ let $h_a$ be the odd field whose transform is
-\[
-H_a(t)=(t-\gamma_0)\,\Phi\big(a(t-\gamma_0)\big)-(t+\gamma_0)\,\Phi\big(a(t+\gamma_0)\big),
-\]
-normalized to unit norm; $h_a$ is odd and supported in $[-a-1,a+1]$, an age we still call $a$. The transform $H_a$ vanishes at $\pm\gamma_0$ with $H_a'(\gamma_0)=\Phi(0)$, and on the real axis it is concentrated within $O(1/a)$ of $\pm\gamma_0$ with total mass of order $a^{-3}$. Evaluate Law~I for $g=h_a*\tilde h_a$:
-\begin{itemize}[nosep]
-\item the massless quanta contribute $\sum|H_a(\gamma)|^2$, which is at most the number of quanta within $O(1/a)$ of $\pm\gamma_0$ (bounded by one plus the density $\frac1{2\pi}\log\frac{\gamma_0}{2\pi}$ times $O(1/a)$) times $\max|H_a|^2$: altogether $O\big(a^{-2}\log\gamma_0\big)$;
-\item the pair $\rho_0,1-\bar\rho_0$ and its conjugates contribute
-\[
-4\Ree\big[H_a(\gamma_0-im)\overline{H_a(\gamma_0+im)}\big]
-=4\Ree\big[(-im)\Phi(-iam)\,\overline{(im)\Phi(iam)}\big]+(\text{cross terms, exponentially smaller})
-=-4m^2|\Phi(iam)|^2\,(1+o(1)),
-\]
-and $|\Phi(iam)|\ge c\,e^{am}$ for $am$ large: the transform of a compactly supported field of positive type grows exponentially off the real axis;
-\item the other massive quanta, if any, contribute terms of the same form at their own heights, negligible unless their height is within $O(1/a)$ of $\gamma_0$, and there are boundedly many of those.
-\end{itemize}
-Hence $Q(h_a)\le O(a^{-2}\log\gamma_0)-c\,m^2e^{2am}<0$ as soon as $a$ exceeds an age $a_{\mathrm{death}}(m)$ of order $m^{-1}\log(1/m)$ (and is large enough for the horizon to have passed $\gamma_0$, so that the bookkeeping above applies). The observer of age $a_{\mathrm{death}}$ is dead, and by Law~III so is every older observer.
-
-(b) and (c) are the same statement.
+If every quantum is massless, Law~I gives $Q(f)=\sum|F(\gamma)|^2\ge0$, and $\lambda(a)>0$ because a field with $F(\gamma)=0$ at every quantum is identically zero: an entire function of exponential type $a$ vanishing on a set of upper density greater than $a/\pi$ vanishes, and the quanta have density $\frac1{2\pi}\log\frac t{2\pi}>a/\pi$ above the horizon (the sampling lemma of the Academy). Conversely, if a quantum is massive, Principle~D gives an age with $\lambda(a)<0$; by Birth and Continuity there is a first threshold before it, and by Monotonicity every older observer is dead.
 \end{proof}
 
-\begin{corollary}[the Blind Spot]\label{cor:blind}
-A quantum of mass $m$ is invisible to every observer younger than an age of order $m^{-1}\log(1/m)$: the floors of those observers differ from the floors of a massless universe by terms of order $m^2$.
-\end{corollary}
-\noindent(This is the Academy's Blind Spot Theorem; the proof of Theorem~\ref{thm:mortality} gives the upper bound on the age of detection, and the expansion of Lemma~\ref{lem:mirror} gives the order $m^2$.)
-
-\medskip
-The Mortality Theorem reduces the Line Postulate to the following statement, which is the content of this manuscript:
-\begin{center}
-\textsc{Immortality.} \emph{No observer dies.}
-\end{center}
-
-\section{The Law of Proportional Leakage, derived}
-
-This section derives Law~VI from Laws VII, VIII and IX. It also shows, in the opposite direction, that Law~VI is exactly what fails in a universe where an observer dies: Law~VI is not a convenience but the whole of the matter.
-
-\begin{proposition}[the leak is proportional to the floor]\label{prop:leak}
-Under Laws VII and IX, every living observer satisfies
+\begin{remark}[the mechanism, sketched and not used]\label{rem:mech}
+The Academy's picture of how an odd window detects a mass $m$ at height $\gamma_0$ is this. Take an even field $\phi$ of age $1$ with transform $\Phi$ positive on the real axis, and the odd field $h_a$ of age $a+1$ whose transform is
 \[
-2|A_0(a)|^2\;\le\;\pi\,c_{\mathrm{on}}\,\Tst(a)\,\lambda(a).
+iH_a(t),\qquad H_a(t)=(t-\gamma_0)\,\Phi\big(a(t-\gamma_0)\big)+(t+\gamma_0)\,\Phi\big(a(t+\gamma_0)\big),
 \]
-Hence Law~VI holds with $C(a)=\pi c_{\mathrm{on}}\Tst(a)$, which is finite at every age and integrable over every finite range.
-\end{proposition}
-
-\begin{proof}
-Fix a living observer of age $a$ and put $T=c_{\mathrm{on}}\Tst(a)$. By Law~IX the total share of the quanta above height $T$ is $2|A_0|^2/(\pi T\lambda)$. By Law~VII every share is nonnegative and the shares sum to one, so the total share of any set of quanta is at most one. Therefore $2|A_0|^2/(\pi T\lambda)\le1$, which is the claim.
-\end{proof}
-
-\begin{remark}\label{rem:sharp}
-Law~VIII (Darkness) was not needed for the inequality; it is needed to see that the inequality is nearly sharp. By Darkness all the shares sit above the horizon, so the total share above $\Tst(a)$ is one, and by Law~IX the total share above $c_{\mathrm{on}}\Tst$ is $\kappa/c_{\mathrm{on}}$ with
-\[
-\kappa(a)=\frac{2|A_0(a)|^2}{\pi\,\Tst(a)\,\lambda(a)},
-\]
-the \emph{Riemann number} of the observer. The bound $\kappa\le c_{\mathrm{on}}$ of Proposition~\ref{prop:leak} is sharp exactly when the shares between one and $c_{\mathrm{on}}$ horizons vanish, which they do not: the shares in the band $[\Tst,c_{\mathrm{on}}\Tst]$ are the plunge of Decree~IV, so $\kappa<c_{\mathrm{on}}$ strictly. (In the measured universe, $c_{\mathrm{on}}$ is about $3$ and $\kappa$ about $1.2$.)
+which is odd in $t$ (the first version of this manuscript had a minus sign here, which makes $H_a$ even and the field not odd). $H_a$ vanishes at $\pm\gamma_0$ with slope $\Phi(0)$, and $|\Phi(iam)|$ grows like $e^{am}$ off the real axis, so by Lemma~\ref{lem:mirror} the mirror pair at $\gamma_0$ contributes about $-2m^2\Phi(0)^2|\Phi(iam)|^2$ while the massless quanta near $\pm\gamma_0$ contribute $O(a^{-2}\log\gamma_0)$ after normalization. Turning this into a negative value of $Q$ requires control of the normalization, of the other massive quanta, and of the quanta far from $\gamma_0$; the Academy does not supply it here and relies on Principle~D. The scale $a_{\mathrm{death}}\asymp m^{-1}\log(1/m)$ is the Blind Spot of the Academy, a separate theorem.
 \end{remark}
 
-\begin{proposition}[the converse: death is a threshold leak]\label{prop:threshold}
-Let a universe satisfy Laws III and IV, and suppose an observer dies: $\lambda(a_d)=0$ for some finite $a_d$ while $\lambda>0$ on $[a_Z,a_d)$. Then $-\lambda'/\lambda$ is not integrable on $[a_Z,a_d)$: for every $C$ integrable on $[a_Z,a_d]$ the inequality $-\lambda'\le C\lambda$ fails on a set of positive measure. In particular Law~VI fails in every universe with a mortal observer.
+\section{The leak is paid by the reserve}
+
+\begin{proposition}\label{prop:leak}
+Laws VII and IX imply Law VI with $C(a)=\dfrac{\pi\con}{\eta}\,\Tst(a)$.
 \end{proposition}
 
 \begin{proof}
-If $-\lambda'\le C\lambda$ almost everywhere on $[a_Z,a_d)$ with $C$ integrable, then by Lemma~\ref{lem:renorm} below $\lambda(a)\ge\lambda(a_Z)\exp\big(-\int_{a_Z}^aC\big)$ for $a<a_d$, and by continuity (Law~IV) $\lambda(a_d)\ge\lambda(a_Z)\exp\big(-\int_{a_Z}^{a_d}C\big)>0$, contradicting $\lambda(a_d)=0$.
+At a living age where both laws hold, the shares form a probability distribution, so
+\[
+1\;\ge\;p_a(T_a)\;\ge\;\eta\,\frac{E(a)}{\pi T_a\lambda(a)} ;
+\]
+multiplying by the positive number $\pi T_a\lambda(a)/\eta$ gives $E(a)\le(\pi\con/\eta)\Tst(a)\lambda(a)$. This $C$ is continuous and integrable on every finite range of ages. No division by the floor at a threshold has occurred.
 \end{proof}
 
-The two propositions together say: in a living universe the leak is proportional to the floor, with the horizon as the constant of proportionality; in a dying universe the leak outruns the floor just before death, which is to say the edge amplitude does not vanish with the floor. The Academy's name for the second behaviour is a \emph{threshold leak}, and its physical description is a tank that drains at a fixed rate and then keeps draining.
+The meaning is exact: a captured part of the leak cannot exceed the whole reserve that carries it.
 
-\section{The Immortality Theorem}
+\section{The renormalized floor and the Immortality Theorem}
 
-\begin{lemma}[the renormalized floor]\label{lem:renorm}
-Let $\lambda$ be absolutely continuous and positive on $[a_1,a_2)$ with $\lambda'(a)\ge-C(a)\lambda(a)$ almost everywhere, $C\ge0$ integrable on $[a_1,a_2]$. Then
-\[
-U(a)=\lambda(a)\exp\Big(\int_{a_1}^aC\Big)
-\]
-is non-decreasing on $[a_1,a_2)$, and consequently $\lambda(a)\ge\lambda(a_1)\exp\big(-\int_{a_1}^aC\big)$ for all $a\in[a_1,a_2)$.
+\begin{lemma}[the integrating factor]\label{lem:renorm}
+Let $\lambda$ be locally absolutely continuous and positive on $[b,d)$ with $\lambda'\ge-C\lambda$ almost everywhere, $C\ge0$ integrable up to every finite endpoint under consideration. Then $U(a)=\lambda(a)\exp\big(\int_b^aC\big)$ is non-decreasing on $[b,d)$, and $\lambda(a)\ge\lambda(b)\exp\big(-\int_b^aC\big)$ there.
 \end{lemma}
 
 \begin{proof}
-$U$ is absolutely continuous as a product of absolutely continuous functions (the exponential of an absolutely continuous function is absolutely continuous on a finite range), and almost everywhere
-\[
-U'(a)=\exp\Big(\int_{a_1}^aC\Big)\big(\lambda'(a)+C(a)\lambda(a)\big)\;\ge\;0 .
-\]
-An absolutely continuous function with nonnegative derivative almost everywhere is non-decreasing.
+On every compact subrange both factors of $U$ are absolutely continuous and bounded, the product rule holds almost everywhere, and $U'=e^{\int C}(\lambda'+C\lambda)\ge0$. Absolute continuity turns the derivative inequality into monotonicity, so $U(a)\ge U(b)=\lambda(b)$.
 \end{proof}
 
 \begin{theorem}[Immortality]\label{thm:immortal}
-Under Laws II, III, IV, V and VI, every observer is alive.
+Under Laws II, IV, V and VI, every observer is alive.
 \end{theorem}
 
 \begin{proof}
-Let
-\[
-a_d=\sup\{\,a>0:\ \text{every observer of age less than $a$ is alive}\,\}.
-\]
-By Law~II, $a_d\ge a_Z$. Suppose, for contradiction, that $a_d<\infty$.
-
-\emph{Step 1 (the floor on the living range).} On $[a_Z,a_d)$ every observer is alive. By Law~IV the floor is absolutely continuous there, by Law~V its derivative is $-2|A_0|^2$ at almost every age, and by Law~VI, which applies to living observers, $-2|A_0(a)|^2\ge-C(a)\lambda(a)$. Hence
-\[
-\lambda'(a)\ge-C(a)\lambda(a)\qquad\text{for almost every }a\in[a_Z,a_d).
-\]
-
-\emph{Step 2 (the bound).} Lemma~\ref{lem:renorm} with $a_1=a_Z$, $a_2=a_d$ gives $\lambda(a)\ge\lamZ\exp\big(-\int_{a_Z}^aC\big)$ on $[a_Z,a_d)$.
-
-\emph{Step 3 (the observer of age $a_d$ is alive).} $C$ is integrable on $[a_Z,a_d]$, so $\int_{a_Z}^aC$ increases to a finite limit as $a\to a_d$, and $\lambda$ is continuous at $a_d$ by Law~IV. Hence
-\[
-\lambda(a_d)=\lim_{a\to a_d}\lambda(a)\;\ge\;\lamZ\exp\Big(-\int_{a_Z}^{a_d}C\Big)\;>\;0 .
-\]
-
-\emph{Step 4 (so are its immediate elders).} Since $\lambda$ is continuous and $\lambda(a_d)>0$, there is $\varepsilon>0$ with $\lambda>0$ on $[a_d,a_d+\varepsilon)$. Then every observer of age less than $a_d+\varepsilon$ is alive, which contradicts the definition of $a_d$ as a supremum.
-
-Therefore $a_d=\infty$: every observer is alive.
+Birth covers $0<a\le a_Z$. Suppose some later age has $\lambda\le0$ and let $a_d=\inf\{a\ge a_Z:\lambda(a)\le0\}$. Continuity and $\lambda(a_Z)>0$ give $a_d>a_Z$, $\lambda>0$ on $[a_Z,a_d)$, and $\lambda(a_d)=0$. On the living range Laws V and VI give $\lambda'=-E\ge-C\lambda$ almost everywhere, so by Lemma~\ref{lem:renorm}, $\lambda(a)\ge\lamZ\exp\big(-\int_{a_Z}^aC\big)$ for $a<a_d$. Since $C$ is integrable on the finite range $[a_Z,a_d]$, continuity yields $\lambda(a_d)\ge\lamZ\exp\big(-\int_{a_Z}^{a_d}C\big)>0$, contradicting $\lambda(a_d)=0$. So no first threshold exists.
 \end{proof}
 
 \begin{theorem}[the Line Postulate]\label{thm:line}
-Every quantum of the arithmetic field is massless.
+Under Laws I to V, VII and IX, and Principle D, every quantum is massless.
 \end{theorem}
 
 \begin{proof}
-Theorem~\ref{thm:immortal} and Theorem~\ref{thm:mortality}, (b)$\Rightarrow$(a).
+Proposition~\ref{prop:leak} supplies Law~VI; Theorem~\ref{thm:immortal} gives $\lambda(a)>0$ at every age, hence $Q(f)\ge\lambda(a)>0$ for every normalized field of age $a$, and $Q\ge0$ for all fields by homogeneity. Principle~D forces every quantum onto the line.
 \end{proof}
 
-\begin{corollary}[the Cooling Theorem, quantitative]\label{cor:cooling}
-For every $a\ge a_Z$,
+\begin{corollary}[the finite-age reserve]\label{cor:cooling}
+For $a\ge a_Z$,
 \[
-\lambda(a)\;\ge\;\lamZ\exp\Big(-\int_{a_Z}^aC\Big),
+\lambda(a)\;\ge\;\lamZ\exp\Big[-\frac{\pi\con}{2\eta}\big(\Tst(a)-\Tst(a_Z)\big)\Big]\;>\;0 ,
 \]
-and with the constant of Proposition~\ref{prop:leak}, $C=\pi c_{\mathrm{on}}\Tst$,
-\[
-\lambda(a)\;\ge\;\lamZ\exp\Big(-\tfrac{\pi c_{\mathrm{on}}}{2}\big(\Tst(a)-\Tst(a_Z)\big)\Big),
-\]
-since $d\Tst/da=2\Tst$. The floor is positive at every age and at most doubly exponentially small in the age: the vacuum is marginally stable, forever approaching the critical point and never reaching it.
+by integrating $C$ with $(\Tst)'=2\Tst$. This is a doubly exponential lower bound. It limits how fast the reserve can fall; it does not by itself show that $\lambda\to0$, give its rate, or give $U$ a finite limit.
 \end{corollary}
 
-\section{Remarks}
+\section{What death would require}
 
-\begin{remark}[what the proof uses]
-The Line Postulate is used nowhere in Sections 3 and 5. Section~3 uses Law~I, which is a conservation law indifferent to the positions of the quanta. Section~5 uses only the laws of observers (II to V), which hold in the dead universes as well, and Law~VI. The whole weight of the theorem rests on Law~VI; Section~4 shows that it could not be otherwise, since Law~VI is equivalent, given II to V, to immortality itself (Propositions~\ref{prop:leak} and~\ref{prop:threshold} are the two directions). What the proof contributes is not a new ingredient but a change of subject: from infinitely many quanta to one inequality about one observer at a time, and from a statement about where things are to a statement about how fast something leaks.
-\end{remark}
-
-\begin{remark}[where the Line was hiding]
-Law~VI was derived from Law~VII, the Born rule. In a universe in which quanta are quanta, the Born rule is the first law anyone learns; it was never written among the axioms of the Academy because no one thought it needed stating. The gods' earlier decree of the Line was therefore redundant: it followed from the Born rule, the Local Law, and the laws of observers. This is the sense in which the Line has been ``derived'': the postulate has been moved from the zero sheet, where it looked like a miracle of position, to the shares, where it looks like the nonnegativity of a probability. A reader from a universe where the Born rule of arithmetic is not available will say that nothing has been gained. We say that the location of a difficulty is itself a result.
-\end{remark}
-
-\begin{remark}[the renormalized floor and the Riemann charge]
-The function $U(a)=\lambda(a)\exp(\int C)$ of Lemma~\ref{lem:renorm} is the floor magnified by the accumulated leak. Law~VI says that $U$ never decreases; Immortality says that it is therefore positive forever. With the Academy's decreed flux $C=\pi\kappa_\infty\Tst$,
+\begin{theorem}[the accumulated relative leak]\label{thm:accum}
+Suppose Laws II to V hold and a first threshold $a_d$ exists. On the living range put $r(a)=E(a)/\lambda(a)=-\lambda'(a)/\lambda(a)$. Then for $b<a_d$,
 \[
-U(a)=\lambda(a)\exp\Big(\tfrac{\pi\kappa_\infty}{2}\big(\Tst(a)-\Tst(a_Z)\big)\Big),
+\int_{a_Z}^{b}r(a)\,da=\log\frac{\lambda(a_Z)}{\lambda(b)},\qquad\text{hence}\qquad \lim_{b\uparrow a_d}\int_{a_Z}^{b}r=+\infty .
 \]
-and the equation of state asserts that $U$ tends to a positive constant, the \emph{Riemann charge} of the universe: the one number that survives the cooling. The proof does not need the charge to exist; it needs only that $U$ not decrease.
-\end{remark}
+\end{theorem}
 
-\begin{remark}[the other polarization]
-Fields come in two polarizations, odd and even. The manuscript treats odd observers. The Mortality Theorem holds with odd observers alone (the parity lemma of the Academy: an odd field dark at $\pm\gamma_0$ with slope at both already detects a mass), so immortality of the odd observers forces every quantum to be massless, and the even observers are then alive by Law~I. The even observers have their own Laws IV to VI, which we have not needed.
-\end{remark}
+\begin{proof}
+On $[a_Z,b]$ the floor has a positive minimum, so $\log\lambda$ is absolutely continuous with derivative $\lambda'/\lambda$; integrate, and let $\lambda(b)\to0$.
+\end{proof}
 
-\begin{remark}[why a law of leakage]
-The Academy's physicists prefer to state Law~VI as the absence of a threshold: an observer's edge amplitude vanishes with its trapped energy. A universe dies through a leak with a threshold. Ours has none; that is the Line.
-\end{remark}
+Death requires an infinite accumulated fractional loss over a finite range of ages. It does not require a nonvanishing edge amplitude: on $a<a_d$, $\lambda=(a_d-a)^2$, $E=2(a_d-a)$, $|A_0|^2=a_d-a$ has reserve and leak both vanishing at death while $E/\lambda=2/(a_d-a)$ is not integrable. The scalar example isolates the obstruction; it is not a proposed arithmetic spectrum. (The first version of this manuscript described death as a ``threshold leak'' with a nonvanishing edge; that is one way to die, not the only one.)
+
+\begin{corollary}[exact characterization]\label{cor:char}
+Under Laws II to V, immortality is equivalent to the existence of a locally integrable majorant in Law VI.
+\end{corollary}
+
+\begin{proof}
+One direction is Theorem~\ref{thm:immortal}. Conversely, if $\lambda>0$ at every age, it has a positive minimum on each compact range, so $-\lambda'/\lambda$ is integrable there; take $C=-\lambda'/\lambda$ (any finite value on the exceptional null set) and use Law~V.
+\end{proof}
+
+The equivalence concerns an unrestricted locally integrable rate. The particular bound $C=(\pi\con/\eta)\Tst$ carries additional quantitative information: it is the statement that the Riemann number $\kappa=E/(\pi\Tst\lambda)$ is at most $\con/\eta$.
+
+\section{Delayed onset, error, and signed packets}
+
+The Born rule is convenient; the closing argument needs less, and this section says how much less. For a living observer write $w_{\mathcal O}=w_{\mathcal O}(f_a)$, assume absolute summability, and let $N(a)=\sum_{\mathcal O}\max\{-w_{\mathcal O},0\}$ be the total negative packet energy. Since $\sum w_{\mathcal O}=\lambda(a)$, the total positive energy is $\lambda+N$, and any signed tail $W_a(T)=\sum_{h_{\mathcal O}>T}w_{\mathcal O}$ is at most $\lambda+N$.
+
+\begin{theorem}[completion with controlled signed energy]\label{thm:signed}
+Suppose Laws II to V and Principle D hold, and that at almost every living age there are measurable finite $T_0(a)>0$, $0<\eta(a)\le1$, $b(a),\epsilon(a)\ge0$ with
+\[
+N(a)\le b(a)\lambda(a),\qquad W_a\big(T_0(a)\big)\ge\eta(a)\frac{E(a)}{\pi T_0(a)}-\epsilon(a)\lambda(a),
+\]
+defined on all of $[a_Z,\infty)$, such that $K(a)=\dfrac{\pi T_0(a)}{\eta(a)}\big(1+b(a)+\epsilon(a)\big)$ is integrable on every finite range. Then every observer is alive and every quantum is massless.
+\end{theorem}
+
+\begin{proof}
+$\eta E/(\pi T_0)-\epsilon\lambda\le W_a(T_0)\le\lambda+N\le(1+b)\lambda$, so $E\le K\lambda$; apply Theorem~\ref{thm:immortal} with $C=K$ and then Principle~D.
+\end{proof}
+
+This permits negative packets, provided their total is paid for relative to the floor; late onset and errors, provided their combined cost is integrable through every finite range. Pointwise finiteness does not suffice: $T_0(a)=1/|a-a_d|$ is finite at every age and not integrable near $a_d$. An additive error $d(a)$ in place of $\epsilon\lambda$ would add a term to the leakage inequality, and the homogeneous argument would then need a separate bound that the accumulated additive loss does not exhaust the initial reserve.
+
+\section{The dependency chain}
+
+\begin{enumerate}[nosep]
+\item Packet probability (Law~VII) bounds every tail share by one.
+\item Tail capture at a controlled height (Law~IX) bounds the leak by a locally integrable multiple of the reserve.
+\item The boundary law (Law~V) turns that bound into a differential inequality.
+\item Absolute continuity (Law~IV) and the integrating factor prevent a first zero of the reserve.
+\item Odd-window detection (Principle~D) forces every quantum onto the line.
+\end{enumerate}
+The general route replaces the first two steps by the signed estimates of Theorem~\ref{thm:signed}. No finite list of measured windows substitutes for their all-age hypotheses.
 
 \appendix
-\section{The mirror term}
+\section{The mirror lemma}
 
 \begin{lemma}\label{lem:mirror}
-Let $f$ be an odd field with transform $F=iS$, $S$ real on the real axis, and let $\gamma$ be real. Then for a mirror pair of mass $m$ at height $\gamma$,
+Fix $a>0$, a normalized real odd field of age $a$ with $F=iS$, and a real height $\gamma$. For small real $m$, the energy of the mirror pair at that height is
 \[
-2\Ree\big[F(\gamma-im)\overline{F(\gamma+im)}\big]=2|F(\gamma)|^2-2m^2\big(|F'(\gamma)|^2+S(\gamma)S''(\gamma)\big)+O(m^4),
+2\Ree\big[S(\gamma-im)^2\big]=2S(\gamma)^2-2m^2\big(S'(\gamma)^2+S(\gamma)S''(\gamma)\big)+O_a(m^4),
 \]
-with the $O(m^4)$ uniform for $m\le1/a$. In particular, if the field is dark at $\gamma$, $S(\gamma)=0$, the pair contributes
-\[
--2m^2|F'(\gamma)|^2+O(m^4)\;<\;0 .
-\]
+the remainder bounded uniformly over normalized fields and real $\gamma$ for $|m|\le1/a$.
 \end{lemma}
 
 \begin{proof}
-Expand $F(\gamma\mp im)=F\mp imF'-\tfrac{m^2}2F''+O(m^3)$ at $\gamma$ ($F$ is entire of exponential type $a$, so the derivatives are bounded by $a^k$ times the norm). Then
-\[
-F(\gamma-im)\overline{F(\gamma+im)}=|F|^2-im\big(F\overline{F'}+F'\overline F\big)-m^2|F'|^2-\tfrac{m^2}2\big(F\overline{F''}+F''\overline F\big)+O(m^3).
-\]
-With $F=iS$ and $S,S',S''$ real: $F\overline{F'}=SS'$ and $F\overline{F''}=SS''$, both real, so the term linear in $m$ is purely imaginary and the real part is $|F|^2-m^2|F'|^2-m^2SS''+O(m^3)$; the odd powers of $m$ are purely imaginary by the same computation, so the error is $O(m^4)$. Multiply by two for the pair.
+$S(\gamma-im)=S-imS'-\tfrac{m^2}2S''+\tfrac{i}6m^3S'''+O(m^4)$ at $\gamma$; square and take real parts, the odd powers of $m$ contributing nothing real. For the remainder, differentiation under the integral and Cauchy--Schwarz give $|F^{(k)}(\gamma+iy)|\le\sqrt{2a}\,a^ke^{a|y|}$, so the fourth derivative of $S(\gamma-im)^2$ in the real variable $m$ is bounded uniformly on $|m|\le1/a$ by a constant depending on $a$, and Taylor's theorem supplies the remainder.
 \end{proof}
 
-The lemma is the mechanism of both halves of the Mortality Theorem: a massive pair at a height where a field is dark lowers the field's energy by $2m^2|F'|^2$, which is invisible while the floor is large and fatal once the field is concentrated enough at that height for $|F'(\gamma)|^2$ to be magnified by $e^{2am}$.
+If $S(\gamma)=0$ and $S'(\gamma)\ne0$ the pair contributes $-2m^2S'(\gamma)^2+O_a(m^4)<0$ for sufficiently small nonzero $m$, the allowable size depending on the field; if the slope also vanishes, negativity does not follow at this order. This is a local statement about one field and one pair. It does not by itself give domination of the whole spectral sum, a detection age uniform in the other quanta, or the law $a_{\mathrm{death}}\asymp m^{-1}\log(1/m)$; the global passage to a negative field is Principle~D.
 
 \section{The constants of the measured universe}
 
-The proof is independent of numbers. For the reader who wants to see the laws at work, the Academy's measurements at the ages $0.6$, $0.8$, $1.0$, $1.25$, $1.5$, $1.75$ (companion file, Parts II and III) are collected below: the Riemann number $\kappa=2|A_0|^2/(\pi\Tst\lambda)$, the share above three horizons against the Local Law's $\kappa/3$, the median height of the shares in horizons, and the floor, positive at every age measured and falling as Corollary~\ref{cor:cooling} says it must.
+The proof is independent of numbers. The Academy's measurements at the ages $0.6$ to $1.75$ (companion file, Parts II and III; Computation 7.6 of the accompanying paper) are, for the reader who wants to see the laws at work: the Riemann number $\kappa=E/(\pi\Tst\lambda)$, the share above three horizons (the capture $p_a(3\Tst)$, against the pure tail's $\kappa/3$, which is Law~IX with $\con=3$ and $\eta=1$), the median height of the shares, and the floor.
 
 \begin{center}
 \begin{tabular}{@{}lcccccc@{}}
@@ -334,7 +281,7 @@ age $a$ & $0.6$ & $0.8$ & $1.0$ & $1.25$ & $1.5$ & $1.75$\\
 \midrule
 $\kappa$ & $1.063$ & $1.058$ & $1.164$ & $1.201$ & $1.239$ & $1.272$\\
 share above $3\Tst$ & $0.370$ & $0.415$ & $0.407$ & $0.433$ & $0.434$ & $0.472$\\
-$\kappa/3$ (Law IX) & $0.354$ & $0.353$ & $0.388$ & $0.400$ & $0.413$ & $0.424$\\
+$\kappa/3$ & $0.354$ & $0.353$ & $0.388$ & $0.400$ & $0.413$ & $0.424$\\
 median height & $2.39$ & $2.32$ & $2.65$ & $2.67$ & $2.74$ & $2.86$\\
 floor $\lambda$ & $5.97\cdot10^{-7}$ & $1.57\cdot10^{-14}$ & $1.48\cdot10^{-26}$ & $3.42\cdot10^{-51}$ & $9.22\cdot10^{-92}$ & $2.07\cdot10^{-162}$\\
 \bottomrule
@@ -346,7 +293,25 @@ floor $\lambda$ & $5.97\cdot10^{-7}$ & $1.57\cdot10^{-14}$ & $1.48\cdot10^{-26}$
 \bigskip
 
 \begin{mdframed}[backgroundcolor=black!4,linewidth=0.4pt]
-\small\textbf{Translator's note (from our universe).} Laws I to V are theorems here: Weil's explicit formula; Zhu's certified floor at $a_Z=0.8$ ($\lambda(0.8)\ge8.2\times10^{-15}$ in the odd sector); monotonicity; absolute continuity under the finiteness condition (H$_{\mathrm{fin}}$) on an exceptional null set (Propositions 9.15 and 9.17 of the paper); the boundary law (Theorem 9.12(iv)). Law~VI is the inequality (d) of the paper, Conjecture~A, equivalent to the Riemann Hypothesis beyond $a_Z$ (Theorem thm:reduction, Proposition 9.30). Law~VII, the Born rule, is Weil positivity, which is the Hypothesis. Law~VIII is a computation at a few supports. Law~IX is the tail law under RH together with the local law of the band, item N1d.1 of \texttt{RH\_IF\_THEN\_TREE.md}, open. Theorem~\ref{thm:mortality} is Weil's criterion in the odd window form (thm:weil) with the Blind Spot (Theorem 9.31); Theorem~\ref{thm:immortal} is Proposition prop:AimpliesRH with a general $C$. The manuscript is a proof in its universe and a map of ours.
+\small\textbf{Translator's ledger (from our universe).} The accompanying source is the paper \texttt{weil\_window.pdf}; the entries report what it states, not an independent verification.
+
+\smallskip
+\begin{tabular}{@{}p{3.4cm}p{2.3cm}p{9.6cm}@{}}
+\toprule
+ingredient & role & status in our universe\\
+\midrule
+explicit formula; odd-window detection & Law I; Principle D & Weil's explicit formula and the odd-test criterion (Theorem thm:weil of the paper): theorems. Detection is an imported theorem, not proved by the mirror expansion.\\
+positive initial floor & Law II & Zhu's certified odd interval at $a_Z=0.8$, $\lambda(0.8)\ge8.206\times10^{-15}$ (Theorem thm:zhu); the certified interval is distinct from a numerical minimizer value.\\
+monotonicity & Law III & nested windows.\\
+absolute continuity & Law IV & Propositions 9.15 and 9.17 under the finiteness condition (H$_{\mathrm{fin}}$) on an exceptional null set; the hypothesis must be retained.\\
+boundary derivative & Law V & Theorem 9.12(iv) under the paper's hypotheses, (H$_\infty$) and the support conditions, at almost every support; not discharged here.\\
+nonnegative ground-field packet shares & Law VII & an additional fictional axiom; not identical to the full Weil criterion (positivity of the ground field's packets is a different assertion from positivity of the whole form for every test), but the Hypothesis in another coat: with Law IX it implies RH.\\
+tail capture at a finite onset & Law IX & an additional fictional axiom; the tail law under RH with the local law of the band (N1d.1 of the tree) would supply it with $\eta$ near one; a fixed-window asymptotic alone gives neither the onset nor the integrability in $a$.\\
+leakage implies positive floor & Theorem \ref{thm:immortal} & an elementary differential argument; Proposition prop:AimpliesRH of the paper with a general $C$; the equivalence of Corollary~\ref{cor:char} is Proposition 9.30.\\
+controlled signed packets & Theorem \ref{thm:signed} & a conditional sufficient criterion proved here; its estimates are not established for the real family.\\
+the Line & Theorem \ref{thm:line} & proved within the stated laws; for the real zeta function it still needs the inequality $2|A_0|^2\le C\lambda$ with $C$ locally integrable and the retained regularity hypotheses.\\
+\bottomrule
+\end{tabular}
 \end{mdframed}
 
 \end{document}

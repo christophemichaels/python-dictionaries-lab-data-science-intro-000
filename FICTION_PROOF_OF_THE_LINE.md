@@ -4,6 +4,17 @@
 
 Academy of the Prime Sheet, Critical Line Universe. Communicated to the gods.
 
+REVISION NOTE (2026-10-02, later the same day). The text below is the FIRST version of the manuscript. The second
+version, FICTION_PROOF_OF_THE_LINE.tex / .pdf, is authoritative; it incorporates a revision received that corrected three
+defects of this text: (1) the trial field of Theorem 3.1 has an EVEN transform (the two bumps should be added, not
+subtracted), so the construction of a dying observer is withdrawn and the detection of a mass by an odd window is stated
+as an imported principle (Principle D, the odd-test Weil criterion), with the mechanism only sketched; (2) Law IX asserted
+the tail law as an equality at every height, which a discrete set of quanta cannot satisfy; it is now a one-sided capture
+law at one height per age with a guaranteed fraction eta, and Proposition 4.1 gives C = pi c_on T*/eta; (3) death does not
+require a nonvanishing edge amplitude (lambda = (a_d - a)^2, E = 2(a_d - a) dies with both vanishing); what it requires is
+an infinite accumulated relative leak (Theorem 6.1 of the second version). The second version also adds the signed-packet
+criterion (Theorem 7.1) and a remainder bound in the mirror lemma.
+
 FICTION NOTICE (from our universe). This manuscript is written from inside the Critical Line Universe of
 FICTION_CRITICAL_LINE_UNIVERSE.md and uses that universe's laws as axioms. It proves nothing about the real zeta
 function. The ledger in Section 27 of the companion file says which of the laws below are theorems in our universe and
