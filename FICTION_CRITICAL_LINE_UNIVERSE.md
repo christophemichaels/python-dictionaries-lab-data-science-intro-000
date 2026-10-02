@@ -546,7 +546,8 @@ stated; it is a fiction in the sense that one of those laws is the Hypothesis we
 of Section 27 says which coat. No computation is used anywhere in this part. The few numbers that appear are quoted from
 the earlier parts for illustration only. Nothing here is a claim about the real zeta function. The proof itself,
 written out as a formal manuscript of the CLU with definitions, laws, lemmas and theorems, is FICTION_PROOF_OF_THE_LINE.md;
-this part is its narrative and its ledger.
+this part is its narrative and its ledger. (Second version of the manuscript, same day: three corrections, recorded at
+the end of Section 24 below.)
 Manuscript II, FICTION_PROOF_OF_THE_LINE_II.pdf, makes the proof unconditional inside the fiction by moving the one
 load-bearing law from the quanta (the Born rule) to the charges (the Random Walk Law of the primes at every scale) and
 proving the Line by the Mellin lemma; Sections 21 to 29 below describe the observer-side proof of Manuscript I.
@@ -634,7 +635,10 @@ The CLU gives this law three readings.
     finite flux, like a tank that drains at a fixed rate and then keeps draining. [real: in the rank universes of
     SANDBOX_STRANGE_MATH.md the floor crosses zero at a = 0.8 and 0.9 with a derivative of order one, against a floor of
     order 1e-10 just before; a threshold leak in the sense above.] The CLU's physicists put it as a slogan: a universe
-    dies through a threshold, and ours has none.
+    dies through a threshold, and ours has none. [Corrected in the second version of the manuscript: a threshold leak is
+one way to die, not the only one; death requires an infinite accumulated relative leak, and the edge may vanish with
+the floor, as lambda = (a_d - a)^2, E = 2(a_d - a) shows. The slogan survives in the weaker form: a universe dies only
+when its relative leak is not integrable up to the age of death.]
 
 The Leakage Law is also where the values of the charges enter. The four laws of Section 22 are blind to where the charges
 sit, to the last digit; the finiteness of C(a) is not. It is a statement about the ground field of THIS universe's charges,
@@ -662,10 +666,11 @@ horizons, the shares follow the tail of the edge: the mass of the shares above a
 [real: the tail law, Theorem 9.12(iv) under RH, with the onset supplied by the local law of the band, which is the
 missing theorem of the tree, N1d.1; the measured onset is about three horizons, Computation 7.6.]
 
-DERIVATION. By the Born rule the mass of the shares above T_on is at most one. By the Local Law that mass is
-2|A_0|^2/(pi T_on lambda). Hence
-        2 |A_0(a)|^2  <=  pi c_on T*(a) lambda(a),
-the Leakage Law with C(a) = pi c_on T*(a), that is, a Riemann number kappa(a) <= c_on. QED (in the CLU).
+DERIVATION. By the Born rule the mass of the shares above T_on is at most one. By the Local Law that mass is at least
+eta 2|A_0|^2/(pi T_on lambda) (the one-sided capture form: a discrete tail is a step function and cannot equal the smooth
+law at every height; the second version of the manuscript states the law this way, with a guaranteed fraction eta). Hence
+        2 |A_0(a)|^2  <=  (pi c_on / eta) T*(a) lambda(a),
+the Leakage Law with C(a) = pi c_on T*(a)/eta, that is, a Riemann number kappa(a) <= c_on/eta. QED (in the CLU).
 
 [real: the arithmetic is honest and the numbers agree with it. With the measured onset c_on = 3 the derivation says
 kappa <= 3; measured, kappa = 1.06 to 1.24. More precisely the mass above three horizons is kappa/3 by the pure tail,
@@ -673,6 +678,14 @@ kappa <= 3; measured, kappa = 1.06 to 1.24. More precisely the mass above three 
 0.434, 0.472: the Local Law's tail and the Born rule's bound are consistent with the data to five to eighteen per cent,
 the difference being the plunge's excess at three horizons. What the data
 cannot do is replace the Born rule.]
+
+REVISION (second version of the manuscript, 2026-10-02). A revision received the same day corrected three defects of the
+first version: the trial field that was to construct a dying observer had an even transform, not an odd one, so the
+converse half of the Mortality Theorem now rests on the imported odd-window detection principle (the real Theorem
+thm:weil) with the mechanism only sketched; the tail law is stated one-sidedly, as above; and the threshold description
+of death is replaced by the accumulated-relative-leak theorem. The revision also added a criterion with signed packets,
+delayed onset and relative error, all tolerated when their combined cost is locally integrable, and a remainder bound in
+the mirror lemma. The ledger of Section 27 is to be read with these changes; the proof's logic is unchanged.
 
 The gods are pleased by the shape of the derivation more than by its content. The Leakage Law, which looks like a law of
 thermodynamics, comes out of a law of counting (the shares sum to one) and a law of locality (the tail sets in within a
@@ -753,7 +766,7 @@ Every step of Sections 21 to 26, with its status outside the sandbox.
                                                                                  equivalent to RH beyond a_Z
     Born rule (shares are probabilities)        derives the Leakage Law          the Line itself, restated (Weil positivity)
     Darkness below the horizon                  derives the Leakage Law          computation at a few supports
-    Local Law with the sum rule                 derives the Leakage Law          open; N1d.1 of the tree
+    Local Law, as one-sided tail capture        derives the Leakage Law          open; N1d.1 of the tree (with eta near one)
     Polarization (odd suffices)                 closes the argument              theorem (thm:weil)
 
 Read downward, the ledger says: in our universe the proof reduces the Hypothesis to one inequality about one observer,

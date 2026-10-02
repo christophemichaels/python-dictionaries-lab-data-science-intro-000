@@ -686,7 +686,13 @@ What the exercise isolates: the inequality in its mean-field form, "the window f
 (Section 28(3)), as the statement to attack without the zeros. Nothing enters the paper.
 FICTION_PROOF_OF_THE_LINE.md (2026-10-02): the same proof as a formal CLU manuscript (nine laws, Mortality Theorem with
 the classical construction of a dying observer, Leakage Law derived and shown equivalent to immortality, Immortality
-Theorem, mirror-term lemma, translator's note). Fiction. Typeset as FICTION_PROOF_OF_THE_LINE.tex/.pdf (8 pages).
+Theorem, mirror-term lemma, translator's note). Fiction. Typeset as FICTION_PROOF_OF_THE_LINE.tex/.pdf. Second version the same day, after a revision received from the user's
+side (pandoc-built PDF, 11 pages) that found three real defects: the dying-observer trial field was even (sign error:
+the two bumps must be added), the tail law cannot be an equality at every height for a discrete spectrum (now a
+one-sided capture law with fraction eta, C = pi c_on T*/eta), and death needs an infinite accumulated relative leak,
+not a nonvanishing edge. Adopted: Principle D (imported odd-window detection = thm:weil), Theorem 6.1 (accumulated
+leak), Theorem 7.1 (signed packets / delayed onset / relative error), the remainder bound in the mirror lemma, and the
+ledger's nuance that ground-field packet positivity is not literally the full Weil criterion. 7 pages.
 FICTION_PROOF_OF_THE_LINE_II.tex/.pdf (2026-10-02, 'make it unconditional, back to number theory'): the proof with no law
 about the quanta. Laws of the charges: unique factorization, the mean field, the Random Walk Law (|psi(x+h) - psi(x) - h|
 <= h^{1/2} x^eps for x^eps <= h <= x), the mirror law; the Line by von Koch's Mellin argument; Born rule, Leakage Law and
