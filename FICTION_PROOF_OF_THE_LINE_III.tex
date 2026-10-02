@@ -5,6 +5,9 @@
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
 \usepackage{xcolor}
 \usepackage{mdframed}
 \usepackage[colorlinks=true,linkcolor=black!70]{hyperref}
@@ -32,7 +35,7 @@
 \maketitle
 
 \begin{mdframed}[backgroundcolor=black!4,linewidth=0.4pt]
-\small Critical Line Universe. The axioms of Section~1 are the laws of that universe, and the theorem is proved from them with no further hypothesis. (From our universe: fiction; the dictionary of what each axiom is here stands in the companion file \texttt{FICTION\_CRITICAL\_LINE\_UNIVERSE.md} and is not repeated in this document.)
+\small Critical Line Universe. The axioms of Section~1 are the laws of that universe, and the theorem is proved from them with no further hypothesis. Section~7 is the dictionary: what each axiom, lemma and theorem is in our universe, and its status there. (From our universe: fiction; the dictionary is the only place where our universe speaks.)
 \end{mdframed}
 
 \begin{abstract}
@@ -216,6 +219,74 @@ The first is \emph{Sieve Independence}: for an admissible set $\mathcal H=\{h_1,
 The second is the \emph{Gaussian law}: under Sieve Independence, the fluctuation $\ps(x+h)-\ps(x)-h$ over $x\in[X,2X]$ has the moments of a Gaussian variable of variance $h\log(X/h)$ for $X^\delta\le h\le X^{1-\delta}$ (the Academy's theorem of Montgomery and Soundararajan). Axiom~\ref{ax:bd} states that the charges never deviate from this law beyond its own scale, up to a power of the logarithm: a deviation beyond the Gaussian scale would be a conspiracy of the primes, and the primes have nothing to conspire with.
 
 In the Academy's words: the primes are as random as unique factorization allows, and not one bit less; the Line is what that randomness looks like at the largest scale.
+
+\section{Dictionary}
+
+Every object and every statement of this manuscript, with what it is in our universe and its status there. ``Paper'' is \texttt{weil\_window.pdf}; ``tree'' is \texttt{RH\_IF\_THEN\_TREE.md}.
+
+\subsection*{7.1. Objects}
+
+\begin{center}\small
+\begin{tabular}{@{}p{3.6cm}p{6.2cm}p{5.4cm}@{}}
+\toprule
+Academy term & real object & remark\\
+\midrule
+prime sheet, charge $q(n)$ & the logarithmic line; the weights $\Lambda(n)n^{-1/2}$ at $\log n$ & the terms of Weil's explicit formula\\
+zero sheet, quantum, mass & the nontrivial zeros $\rho=\tfrac12+m+i\gamma$ of $\zeta$; $m=|\Ree\rho-\tfrac12|$ & the Line Postulate is $m=0$ for all $\rho$\\
+charge $\ps(x)$, fluctuation $R(x)$ & Chebyshev's $\ps(x)=\sum_{n\le x}\Lambda(n)$; $\ps(x)-x$ & \\
+observer of age $a$, field, transform & the window $[-a,a]$; an odd unit test function; its Fourier transform & paper, Section 2\\
+window form $Q(f)$, floor $\lambda(a)$, ground field $f_a$ & the odd Weil form on the window, its lowest value, its minimizer & paper, eq.\ (Q) and Section 3\\
+edge amplitude $A_0(a)$ & the amplitude of the minimizer's edge law & paper, Theorem 9.12(ii)\\
+horizon $\Tst(a)=2\pi e^{2a}$ & the height where the zero density equals the Shannon density $a/\pi$ & paper, Section 7\\
+alive / dead observer & $\lambda(a)>0$ / $\lambda(a)\le0$ & \\
+renormalized floor $U$ & $\lambda\,e^{\int C}$; the paper's $u(a)=\lambda e^{c\Tst/2}$ when $C=c\Tst$ & paper, proof of Prop.\ prop:AimpliesRH\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{7.2. Axioms}
+
+\begin{center}\small
+\begin{tabular}{@{}p{3.6cm}p{6.2cm}p{5.4cm}@{}}
+\toprule
+axiom & real statement & status in our universe\\
+\midrule
+1, unique factorization & the fundamental theorem of arithmetic; the Euler product and $-\zeta'/\zeta=\sum\Lambda(n)n^{-s}$ for $\Ree s>1$ & theorem (Euclid; Euler)\\
+2, the mean field & the prime number theorem $\ps(x)\sim x$ & theorem (Hadamard, de la Vall\'ee Poussin, 1896)\\
+3, the mirror law & the meromorphic continuation of $\zeta$ and the functional equation $\xi(s)=\xi(1-s)$ & theorem (Riemann, 1859)\\
+4, Bounded Deviation & $|\ps(x+h)-\ps(x)-h|\le(h\log(x/h))^{1/2}(\log x)^A$ for $x^\delta\le h\le x^{1-\delta}$ & \textbf{conjecture}. It is the pointwise form of the Gaussian law of primes in short intervals (Cram\'er's model; Montgomery--Soundararajan 2004 prove the moments under a uniform Hardy--Littlewood conjecture; no large-deviation bound of this strength is known). It implies RH by Section 2--4 and is \emph{stronger} than RH: RH gives only $O(x^{1/2}\log^2x)$ for the fluctuation in a short interval, and the Gaussian-scale bound is not known to follow from RH.\\
+5, conservation & Weil's explicit formula for $g=f*\tilde f$ & theorem (Weil, 1952)\\
+6, Birth & Zhu's certified floor: $\lambda(0.8)\ge8.206\times10^{-15}$, hence $\lambda>0$ on $(0,0.8]$ & theorem (paper, Theorem thm:zhu)\\
+7, Continuity & absolute continuity of $\lambda$ on $[a_Z,\infty)$ & theorem at every support off an exceptional null set (paper, Propositions 9.15, 9.17); on that set it is the finiteness condition (H$_{\mathrm{fin}}$), open (tree, Step 1)\\
+8, Decay & the boundary law $\lambda'=-2|A_0|^2$ a.e. & theorem under the paper's hypothesis (H$_\infty$), at almost every support (paper, Theorem 9.12(iv))\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{7.3. Lemmas and theorems}
+
+\begin{center}\small
+\begin{tabular}{@{}p{3.6cm}p{6.2cm}p{5.4cm}@{}}
+\toprule
+statement & real content & status\\
+\midrule
+Lemma 2.1, Theorem 2.2 & from the short-interval bound to $\ps(x)=x+O(x^{1/2+\varepsilon})$ & elementary; a theorem given Axiom 4\\
+Lemma 3.1 (Mellin) & $-\zeta'/\zeta(s)-s/(s-1)$ holomorphic on $\Ree s>\tfrac12$ given the square-root bound & theorem (von Koch, 1901)\\
+Theorem 4.1 (the Line) & $\ps(x)=x+O(x^{1/2+\varepsilon})\Rightarrow$ RH & theorem (von Koch); with Littlewood's converse, an equivalence. So in our universe Sections 2--4 prove: \emph{Bounded Deviation implies RH}\\
+Theorem 5.1 (Born rule) & under RH, $Q(f)=\sum|F(\gamma)|^2$ & theorem under RH (Weil positivity)\\
+Lemma 5.2 (sampling) & a function of exponential type $a$, bounded by $Me^{a|\Imm z|}$, has zero density at most $2a/\pi$ & theorem (Jensen's formula; Boas)\\
+Theorem 5.3 (Immortality) & under RH, $\lambda(a)>0$ for every $a$ & theorem under RH\\
+Theorem 5.4 (Leakage) & under RH and Axiom 7, $-\lambda'/\lambda$ is locally integrable and $\lambda=\lambda(a_Z)e^{-\int C}$ & theorem under RH and absolute continuity; the easy direction of paper Proposition 9.30. The converse (integrable leak $\Rightarrow$ RH) is the paper's reduction, Proposition prop:AimpliesRH\\
+Corollary 5.5 (Cooling) & the floor is positive and non-increasing, its logarithm the integral of the leak rate & as above\\
+Commentary: Sieve Independence & the Hardy--Littlewood prime $k$-tuple conjecture, uniform, with square-root error & conjecture\\
+Commentary: Gaussian law & moments of $\ps(x+h)-\ps(x)-h$ Gaussian with variance $h\log(x/h)$ & theorem under a uniform $k$-tuple conjecture (Montgomery--Soundararajan, 2004); its variance is equivalent under RH to Montgomery's pair correlation (Goldston--Montgomery, 1987)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{7.4. The sentence}
+
+In the Critical Line Universe the proof is unconditional: its axioms are the laws there. In our universe the same pages prove one implication, \emph{if the primes satisfy Bounded Deviation then every zero is on the line}, by a page of classical analysis; Bounded Deviation is an unproved conjecture about primes in short intervals, believed for sieve reasons that have nothing to do with zeros, and stronger than the Line itself. Everything else in the manuscript is a theorem, or a theorem under the Line, or a hypothesis of the paper that the paper retains.
 
 \bigskip
 \begin{center}--- end of manuscript ---\end{center}
