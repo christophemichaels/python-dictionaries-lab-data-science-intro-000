@@ -6,6 +6,26 @@ the horizon". Three items, in order; this file is updated at the end of every ro
 
 ## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.12, Corollary 9.13]
 
+CHECK OF THE LAST RUN (2026-10-02, after the model switch): (1) kappa_6: three independent methods agree: exact 2 L_6 =
+877/2016 = 0.43502, Monte Carlo 0.43589 +- 0.00189 (0.5 s.e.), midpoint quadrature 0.4266 on a 120 x 120 x 300 grid (2% low, grid
+error for a discontinuous integrand); J_4 exact 1.981548 vs MC 1.98157 +- 0.00044. The exclusion of the orderings beginning (m+, m-)
+is right: the second point of such a walk is the edge, which is not in S^o, and the MC excluded them automatically through the
+strict inequality (partial sum = 0 exactly). The 11/60 term at order four excluded them the same way. (2) Proposition 9.20
+(uniqueness on the whole line) RE-DERIVED AND CONFIRMED: w = D - Z conj D is lower-analytic, conj w = -conj Z w, q = w/sigma_{a,-}
+satisfies conj q = -e^{2ita} q so its kernel lies in [-2a, 0]; q(0) = 0 so q/t = g^ with g in L^2(window) of finite sigma~_a-energy;
+sigma~_a q/t = (U - e^{-2ita} conj U)/t with U = sigma_{a,+} D upper-analytic, U(0) = 0 (so U/t keeps its kernel on [0, inf) because
+the sign kernel of 1/t is cancelled by the zero total mass), e^{-2ita} conj U/t on (-inf, -2a]: K~ g = 0 on the open window;
+<g, K~ g> = int |g^|^2 sigma~_a/2pi > c ||g||^2 unless g = 0, and = 0 by density of smooth functions supported in the open window
+(the space is below H^{1/2}: no trace); then U = e^{-2ita} conj U with disjoint kernel supports forces U = 0. Wording tightened: P_+
+on the class defined by kernel supports (an atom at 0 allowed; the constant c_1 is that atom), the vague Riesz-projection remark
+removed, the density step written, the stale 'first version' remark removed. (3) Two stale 'every support' claims fixed (after
+Prop 8.18, Section 9 intro); the status-conventions sentence updated (no step carries the sketch mark now). (4) THE OPEN POINT IN
+ITS PRESENT FORM: with the whole-line equation in high/low blocks, the high block is a contraction and eliminates; the low block
+leaves B_l = N_l' + S B_l on L^2(|t| < 4 t_1), I - S injective by uniqueness; identification <=> surjectivity <=> Fredholm of index 0,
+NOT KNOWN: the low block is the Riesz projection truncated to an interval (norm 1, not compact) composed with a unimodular
+multiplier and a conjugation. NEXT: that Fredholm question (a Riemann-Hilbert / Toeplitz problem on an interval with an antilinear
+twist), or a direct a priori bound for A_a above the band from the exact representation.
+
 ROUND 'TAKE ALL', SECOND PART (2026-10-02): (1) kappa_6 EXACT: J_4 = 3329/1680 (distinct-prime groups) and 2 L_6 = 877/2016
 (groups with one cancelling pair), rh_walk_exact4.py (4D exact polytope integration, tested on the 4-cube, the 4-simplex and J_3);
 kappa_6 = 4033/6720 = 0.6001, sixth standardized moment 36297/4375 = 8.30 (semicircle 5, Gaussian 15). A first 4D run had two bugs,
