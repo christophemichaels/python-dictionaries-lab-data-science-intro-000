@@ -6,6 +6,19 @@ the horizon". Three items, in order; this file is updated at the end of every ro
 
 ## 0. The unconditional statement  [2026-10-01: paper Section 9, Theorem 9.1 (the reduction), Computation 9.2; THE BOUNDARY LAW AT ALMOST EVERY SUPPORT 2026-10-01: Section 9.2, Theorem 9.12, Corollary 9.13; THE AMPLITUDE IDENTIFIED WITH THE FIXED POINT 2026-10-02: Proposition 9.23, Theorem 9.24, the last open point of Section 9 closed; (H_BV) REDUCED TO (H_fin) ON THE EXCEPTIONAL NULL SET 2026-10-02: Lemma 9.16, Proposition 9.17; EVERY-SUPPORT SOLVABILITY: Corollary 9.25]
 
+ROUND 'VIABLE ROUTES', STEP 2 ASSESSED (2026-10-02, late): the tree's N1d.1 was misstated and is corrected. 'RH => the
+inequality with integrable excess' is trivial (the converse half of Proposition 9.30: lambda > 0 continuous and lambda'
+integrable). The real target is the ONSET: (T_kappa) at kappa(a) <= C T*^{c'}. Reading Theorem 9.12: at a (D_a) support
+the tail energy above T is (2|A_0|^2/(pi T))(1 + O(eta) + O(T_2/T)) for T >= T_2(a) [|F|^2 sigma~ = 4|A_a|^2 sin^2/t^2 + ...],
+so the sharp law holds from T_2(a) with M'' -> 1; but T_2(a) ~ exp(C X) ~ exp(C' e^a) is doubly exponential, far above the
+horizon, and the observed onset (4-5 horizons) sits inside the band [T*, T_2(a)] where the frozen expansion does not
+converge. The missing theorem is a LOCAL LAW: mass of mu_b above s(T) <= eta |b|^2 => tail energy at T >= (1 - eta - o(1))
+2|A_0|^2/(pi T), for T in the band; with Proposition 9.33(v) (eta = 5/12 + o(1) above any fixed number of horizons) it would
+give RH => Conjecture 7.1 with the rate T*^{1+c}. Not attempted this round; it is research on the resolvent of the confined
+adjacency at s + i0. Also corrected: leaf R1 of the tree. NEXT: either (H_fin) on E (Step 1 remainder, the boundedness of the
+amplitude at exceptional supports) or Step 3, the prime-side form at a finite-tree support (a_2 < a < a_3), where every
+quantity is explicit and the monotonicity of |A_0^{(1)}|^2/||phi_1||^2 in lambda can be tested with the edge FEM.
+
 ROUND 'VIABLE ROUTES', STEP 1 OF THE TREE (2026-10-02, late): (H_BV) REDUCED TO A FINITENESS CONDITION ON THE NULL SET.
 (1) Lemma 9.16 (absolute continuity from an integrable derivate), proved in full: a continuous F with upper left Dini derivate
 > -inf at every point off a countable set and >= -m a.e., m integrable, satisfies F(y) - F(x) >= -int m; non-increasing F is

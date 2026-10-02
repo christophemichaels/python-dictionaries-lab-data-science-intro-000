@@ -168,20 +168,33 @@ N1d.0 Status and shape.  [REFORM]
     Two things that do not work: a bootstrap in height (the verified zeros give positivity to a ~ 9; the gain per
     step is O(1/T*), which does not sum); numerical extension (N1d.3).
 
-N1d.1 The reachable target: RH => (d).  [OPEN, provable with effort; second priority]
-    Under RH, 2|A_0|^2 = lim pi T sum_{|gamma|>T} |F(gamma)|^2 (Theorem 9.12(iv), the analytic tail law, no zeros
-    involved in its proof) and the zero sum above kappa T* is at most lambda minus the sum below, every term a square
-    (Propositions 7.27, 7.29, 7.32): (d) with e = 0 says that the minimizer's tail energy above kappa horizons is at
-    most c lambda/(pi kappa), the ONSET. Known: the edge's measure mu_b keeps at least 7/12 of its mass below any fixed
-    number of horizons uniformly in a (kappa_2 = 5/12, Proposition 9.33(v)), the moments cap the provable mass bound
-    near one third (kappa_4 = 151/360, kappa_6 = 4033/6720 exact, Proposition 9.39), the true mass above five horizons
-    is 1e-6 to 1e-4 at a <= 1.25 (Computation 9.36); the uniform onset is FALSE as stated (the mass above one horizon
-    tends to about 6%, the 1% height recedes like e^{ca}, Computation 9.37), the natural rate being a power of the
-    horizon above one, which Proposition 9.30 absorbs into e(a). The free lattice law is Gaussian (Proposition 9.38);
-    the confined law's closed form is open.
-    IF the shape of mu_b (not its moments) gives mu_b([s, inf)) <= C s^{-1-epsilon} uniformly in a, by a resolvent bound
-       or the Perron vector at the top of the component's band THEN RH => (d), and the paper states
-       RH <=> Conjecture 7.1 with integrable excess  -> leaf R1 (an exact reformulation; publishable; not a proof).
+N1d.1 The reachable target, stated correctly.  [OPEN; the local law of the band; second priority]
+    What is trivial: RH => (d) with SOME locally integrable e(a). Under RH, lambda > 0 is continuous and lambda' is
+    integrable, so 2|A_0|^2/lambda = -lambda'/lambda is locally integrable and e(a) := 2|A_0|^2/lambda - cT* will do;
+    this is the converse half of Proposition 9.30 and carries no information. The target is quantitative:
+        under RH, the sharp tail law (T_kappa) of Proposition 7.32 holds at height T = kappa(a) T*(a) with
+        kappa(a) <= C T*(a)^{c'} (a bounded power of the horizon), hence -lambda' <= C' T*^{1+c'} lambda: the ONSET.
+    Also established (2026-10-02, reading the structure theorem; to be written when proved in full): at a (D_a)
+    support the tail energy (1/2pi) int_{|t|>T} |F|^2 sigma_a = (2|A_0|^2/(pi T))(1 + O(eta) + O(T_2/T)) for
+    T >= T_2(a), since |F|^2 sigma~_a = 4|A_a|^2 sin^2(ta + theta_a + arg A_a)/t^2 + ... with A_a = A_0 + M_a + ...;
+    so (T_kappa) holds from the height T_2(a) of Theorem 9.12 on, with M'' -> 1. But T_2(a) is doubly exponential
+    in a (s_* ~ X ~ 4e^a, T_2 ~ e^{s_*}), far above the horizon: the onset the data show (4-5 horizons at a = 2-2.5,
+    Computation 7.6) happens inside the BAND, between the horizon and T_2(a), where the frozen expansion does not
+    converge and the edge radiates into the lattice (Proposition 8.23: sigma_eff = s - R(s), R the Stieltjes
+    transform of mu_b, complex inside the support with imaginary part pi mu_b'). The onset is a statement about
+    the spectral measure mu_b in that region; what is proved about it: mass above any fixed number of horizons at
+    most 5/12 + o(1) uniformly in a (Proposition 9.33(v)), mean -> 0, support -> infinity like 4e^a/a if the closure
+    is the full lattice (Proposition 9.33(i),(iii)), kappa_2, kappa_4, kappa_6 exact (Proposition 9.39), free law
+    Gaussian (Proposition 9.38); the 1% height recedes like e^{ca} horizons, 0.4 < c < 1 (Computation 9.37), so
+    Conjecture 7.1 with e = 0 may be false while (d) with e ~ T*^{1+c'} is what RH would give.
+    The missing theorem, precisely: a LOCAL LAW linking the mass of mu_b above s(T) to the tail energy at T:
+        if mu_b([s(T), inf)) <= eta |b|^2 then (1/2pi) int_{|t|>T} |F|^2 (Psi - lambda) >= (1 - eta - o(1)) 2|A_0|^2/(pi T),
+    for T between the horizon and T_2(a). Section 9.5 reads it numerically (Computation 9.37); it is not a theorem.
+    With it, Proposition 9.33(v) would give (T_kappa) at kappa = e^{ca} with M'' = 1/(1 - 5/12 - o(1)), and RH =>
+    Conjecture 7.1 with the rate T*^{1+c} -> leaf R1 (RH <=> the bounded-relay inequality with a power excess).
+    IF the local law is proved (the lattice is a product of one-dimensional chains over the primes cut by the
+       confinement; its cycles come from p^i p^j = p^{i+j} alone; the resolvent of the confined adjacency at
+       s + i0 is the object) THEN RH => (d) with an explicit power excess -> leaf R1.
     IF NOT THEN the equivalence stays one-directional, and N1d.2 proceeds without the exact shape of the target.
 
 N1d.2 Unconditional attack on (d).  [OPEN; as hard as RH]
@@ -266,7 +279,8 @@ N4. The Moebius Green energy and the Nyman-Beurling-Baez-Duarte criterion (mobiu
   1. N1b.4  [DONE as analysis, 2026-10-02] Lemma 9.16 and Proposition 9.17 reduce (H_BV) to (H_fin) on the
             exceptional null set E. Remaining: (H_fin) on E, through the three cheap tests, then the boundedness of
             the amplitude at exceptional supports.
-  2. N1d.1  RH => (d) through the shape of mu_b: makes the reduction an equivalence and fixes the exact target.
+  2. N1d.1  the local law of the band (mass of mu_b above s versus the tail energy at the matching height):
+            makes the reduction an equivalence with an explicit power excess and fixes the exact target.
   3. N1d.2  the prime-side form at a finite-tree support: the structural attack with the target in explicit
             Wiener-Hopf terms.
   4. N2     the even sector as the second reading, in parallel and at low cost.
@@ -281,7 +295,8 @@ N4. The Moebius Green energy and the Nyman-Beurling-Baez-Duarte criterion (mobiu
 
   P1  RH proved through N1: needs (b) and (d).            P2  RH proved through N2 (the even secular number).
   P3  RH proved through a positivity structure (N3).      F   RH false: a certified negative floor (not a proof route).
-  R1  RH <=> Conjecture 7.1 with integrable excess (from N1d.1).     R2  RH <=> one scalar inequality in a (from N2).
+  R1  RH <=> the bounded-relay inequality with a power excess, from the local law (N1d.1); with integrable
+      excess the equivalence is already Proposition 9.30.     R2  RH <=> one scalar inequality in a (from N2).
   C1  RH under (H_fin) on E (formerly (H_BV)) and (d): Theorem 9.1 as it stands.
   Dead ends: N1b.2 as stated; topological invariants in V2; finitely many moments in V3; the height bootstrap.
 
