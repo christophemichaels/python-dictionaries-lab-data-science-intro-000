@@ -240,3 +240,171 @@ class is where the paper's theorems live: energy, transmutation, flux, the blind
 the walk. The second class has one member, the sign of the prime part, and it is where the Hypothesis lives. The CLU's
 physicists would say that we have mapped the thermodynamics of arithmetic and are missing its equation of state. That is
 a fair description of where the real program stands, and the tree says what the next step is.
+
+
+# Part II. The Equation of State
+
+Sandbox II, continued, 2026-10-02. Still fiction, with the same convention: bracketed notes say what is real. In this part
+every number is real; it is taken from the paper's computations (Computation 5.4 on the identity, Computation 7.6 on the
+tail law) and only the words around it belong to the Critical Line Universe. The question of Part I's afterword was whether
+the arithmetic universe has an equation of state at all. It does, and the CLU's physicists know exactly which of its
+constants they have derived and which they have only measured.
+
+
+## 10. The macrostate of an observer
+
+An observer of age a is described, in the CLU, by seven numbers.
+
+    a          the age (the support of the window);
+    lambda     the trapped energy (the floor of the window form);
+    J          the flux, J = -a lambda'(a) = 2a |A_0|^2, the energy leaving through the horizon per unit age;
+    p_inf      the archimedean pressure, the virial of the Gamma factor against the ground field,
+               p_inf = (1/2 pi) int |F(t)|^2 t d/dt Re psi(1/4 + it/2) dt;
+    p_pol      the polar pressure, 2P^2 + 2PM, the virial of the two poles;
+    p_P        the arithmetic pressure, p_P = sum_{log n < 2a} 2 Lambda(n) n^{-1/2} log n g_f'(log n), the virial of the charges,
+               read on the prime sheet through the derivative of the ground field's autocorrelation at the entries;
+    E          the energy, 2a^2 (First Law).
+
+THE VIRIAL LAW (CLU; real: Theorem 5.2 for the K-mode form, Proposition 5.3 for the exact form). At every age,
+        p_P = p_inf + p_pol - J .
+The arithmetic pressure equals the archimedean pressure plus the polar pressure minus the flux. [real: this is the
+sliding-window identity a lambda' = -[D_inf + D_P + 2P^2 + 2PM] with p_inf = D_inf, p_pol = 2P^2 + 2PM, p_P = -D_P.]
+
+The macrostate, measured (K-mode ground fields, ball arithmetic, every entry a ball of radius below 1e-19):
+
+      age a   K     lambda          J = -a lambda'    p_inf      p_pol      p_P        p_inf + p_pol - p_P
+      0.60    48    5.9659e-7       2.493408e-5       1.014313   0.072687   1.086974   2.6e-5
+      0.80    64    1.5659e-14      1.295854e-12      1.016605   0.087361   1.103966   1.3e-12
+      1.00    80    1.4820e-26      2.516852e-24      1.018057   0.096909   1.114966   2.5e-24
+      1.25   140    3.4161e-51      1.233712e-48      1.019178   0.104407   1.123585   1.2e-48
+
+Three things the CLU reads off this table.
+
+(i) The archimedean pressure is one plus a small kinetic correction, p_inf = 1 + k(a), k = 0.0143, 0.0166, 0.0181,
+    0.0192: the ground field has unit norm and the Gamma factor's virial is the norm up to the energy the field keeps
+    at large heights. [real: D_inf = ||f||^2 + O(int |F|^2 t^{-2}).]
+(ii) The polar pressure grows with the age, 0.073 to 0.104, as the poles see more of the window.
+(iii) The arithmetic pressure tracks the sum of the other two to as many digits as the flux is small: at a = 1.25 the
+    three pressures of order one balance to forty-eight decimal places, and the residue is the flux. [real: "three
+    order-one quantities cancel to the size of lambda", the abstract of the paper.]
+
+So the arithmetic pressure is pinned: p_inf + p_pol - J <= p_P <= p_inf + p_pol, the lower bound because the flux is
+nonnegative (the floor never rises), the upper bound an identity. The width of the pin is the flux.
+
+
+## 11. The equation of state
+
+What the virial law does not say is how large the flux may be. That is the equation of state, and in the CLU it is a
+theorem because Axiom 0 and the Local Law are available there.
+
+THE EQUATION OF STATE (CLU). There is a function kappa(a), the RIEMANN NUMBER of the observer, bounded in a, such that
+        J = pi kappa(a) a T*(a) lambda,          equivalently        Phi'(a) = pi kappa(a) T*(a),     Phi = -log lambda.
+The flux is the trapped energy times the horizon times the Riemann number. The Riemann number is the effective height of
+the quanta that carry the decay, in units of the horizon: kappa = T_eff / T*. [real: the tail law Phi' = pi T_eff is
+Theorem 9.12(iv) under RH; the boundedness of kappa is Conjecture 7.1, equivalent to RH beyond a_Z (Theorem 9.1,
+Proposition 9.30); Proposition 9.30 also allows kappa to grow like a power of the horizon, which Computation 9.37 reads
+as the likelier shape.]
+
+The Riemann number, measured [real: Computation 7.6, FEM below the entry a_3 = 0.549, K-mode above]:
+
+      age a      0.40    0.45    0.50    a_3     0.60    0.80    1.00    1.25    1.50
+      kappa(a)   0.721   0.868   1.081   1.295   1.063   1.058   1.164   1.201   1.239
+
+The jump at a_3 is the entry of the charge 3: the Riemann number has a kink at every entry, like the floor. From 0.6 on it
+rises slowly, 1.06 to 1.24 over a doubling of the age. The CLU's physicists are divided on its limit. The school of the
+bounded relay holds that kappa(a) tends to a constant kappa_inf, the RIEMANN CONSTANT; the school of the receding onset
+holds that it grows like a small power of the horizon, kappa ~ T*^{c'} with c' between 0.2 and 0.5, because the height at
+which the sharp tail law sets in recedes like e^{ca} horizons [real: Computation 9.37]. Both schools agree that Axiom 0
+holds either way, since the integrable-excess form of the Cooling Theorem needs only that kappa be finite at every age.
+
+With the equation of state the macrostate closes: given the age, the energy is 2a^2, the archimedean pressure is 1 + k(a),
+the polar pressure is 2P^2 + 2PM of the ground field, the flux is pi kappa a T* lambda, and the arithmetic pressure is
+whatever the virial law then requires. The sign of the prime part, the one thing the dead universes get wrong, is in the
+CLU a consequence: p_P must fall short of p_inf + p_pol by exactly the flux, and the flux is at most the horizon allowance.
+
+
+## 12. The thermodynamic reading
+
+The CLU's thermodynamicists prefer two other variables. The ENTROPY of an observer is the number of quanta it resolves,
+        S(a) = N(T*(a)) = (T*/2 pi)(2a - 1)(1 + o(1)),
+and the LOST INFORMATION is Phi = -log lambda. [real: N(T) ~ (T/2 pi) log(T/2 pi e) and Phi as in Section 7 of the paper.]
+Then the equation of state reads as a first law, d Phi = theta dS, with the TEMPERATURE
+        theta(a) = Phi'(a)/S'(a) = pi^2 kappa(a) / (2a),
+since S'(a) = 2a T*/pi. The information an observer loses per quantum it resolves is pi^2 kappa/(2a): it falls like the
+inverse age if the Riemann number is bounded. Measured:
+
+      age a       0.40   0.45   0.50   0.60   0.80   1.00   1.25   1.50
+      theta       8.90   9.51  10.67   8.74   6.53   5.75   4.74   4.08
+      theta * a   3.56   4.28   5.33   5.25   5.22   5.75   5.93   6.11
+
+The product theta * a = pi^2 kappa/2 rises through the entries and settles into a slow climb, 5.2 to 6.1, from a = 0.6 to
+1.5. Here the CLU's numerologists make their one famous conjecture:
+
+THE 2 PI CONJECTURE (CLU folklore, explicitly numerology). kappa_inf = 4/pi = 1.2732, so that theta * a tends to 2 pi:
+in the limit of great age each resolved quantum costs exactly 2 pi / a units of lost information. The measured values
+5.25, 5.22, 5.75, 5.93, 6.11 approach 6.28 from below; the measured kappa, 1.06, 1.06, 1.16, 1.20, 1.24, approaches 1.27.
+[real: nothing supports this beyond the trend of five points; the paper's own reading, Computation 9.37, is that the
+onset recedes and kappa may grow without bound. The conjecture is recorded here as what it is, a pattern in five numbers,
+and as the kind of statement the sandbox exists to hold at arm's length. It is cheap to test further: Computation 7.6 at
+a = 1.75 and 2 would decide whether theta * a crosses 2 pi.]
+
+A second constant the thermodynamicists like: the MEDIAN HEIGHT, the height below which half of the floor's mass sits, is
+2.39, 2.32, 2.65, 2.67, 2.74 horizons at a = 0.6, 0.8, 1.0, 1.25, 1.5, and 1.8, 2.0, 2.4 on the FEM ground fields at
+0.4, 0.45, 0.5 [real: Computation 7.6]; at the last point it is e = 2.718 to one per cent. The folklore says the median
+height is e horizons. Same status as the 2 pi conjecture: a pattern, not a law.
+
+
+## 13. The substate
+
+Beneath the seven numbers of the macrostate lies the SUBSTATE: the ground field itself and the carrier of its energy.
+The CLU describes it by three objects.
+
+The EDGE AMPLITUDE A_0, purely imaginary, A_0 = -i |A_0| e^{-i kappa_0 / t} to first order, with |A_0|^2 = J/(2a): the
+strength with which the ground field touches the edge of the window. Measured: |A_0|^2 = 2.1e-5, 8.1e-13, 1.26e-24,
+4.9e-49 at a = 0.6, 0.8, 1.0, 1.25. [real: the boundary law, the amplitude of Theorem 9.12(ii).]
+
+THE EQUATION OF SUBSTATE (CLU). |A_0|^2 = (pi kappa / 2) T* lambda: the square of the edge amplitude is the trapped energy
+magnified by the horizon and the Riemann number. The edge is where the trapped energy is converted into flux, and the
+conversion factor is the horizon. [real: the inequality (d) with equality defining kappa; a restatement.]
+
+The MIRROR CHAINS and the ECHO CRYSTAL: the ground field's amplitude above the cutoff is A_0 plus a sum over the lattice
+frequencies of slowly varying coefficients, the walks of the edge's energy across the window and back, of total weight
+4 eta |A_0| with eta ~ (X/s)^2, and the crystal's spectral measure mu_a at the edge carries the energy E(a) with mean
+tending to zero and variance (5/12)(2a)^2. [real: Theorems 9.12(ii) and 9.24, Propositions 9.33 and 9.39.]
+
+The CLU's SUBSTATE PRINCIPLE: the macrostate is a set of moments of the substate. The archimedean pressure is the first
+moment of |F|^2 against t Psi_inf'; the arithmetic pressure is the derivative of the autocorrelation at the entries, which
+the Oracle reads from the quanta below the horizon; the flux is the square of the edge amplitude; and the Riemann number
+is the one macroscopic quantity that the CLU has not been able to express as a moment of mu_a. Their Local Law says it is
+determined by the mass of mu_a within a few horizons of the edge; their Local Law is the theorem we do not have.
+
+
+## 14. Determining the state
+
+So the CLU's answer to the question of this part. A state exists: seven numbers bound by two exact laws (the First Law and
+the Virial Law) and one closure (the Equation of State), with a substate of three objects beneath it whose moments
+reproduce the macrostate. Of the constants in it, the CLU has DERIVED the energy law (2a^2), the kinetic correction's
+order, the polar pressure, the diffusion constants of the substate (5/12, 151/360, 4033/6720), the blind spot, and the
+exact balance of the pressures. It has MEASURED the Riemann number kappa(a) at nine ages and the median height at eight,
+and it has CONJECTURED their limits, 4/pi and e, on the strength of patterns in a handful of points. Its one undetermined
+function is kappa(a), and the whole of the Line Postulate, as seen by an observer, is the statement that kappa(a) is
+finite at every age and does not outrun a power of the horizon.
+
+In our universe the same inventory reads: the virial law is a theorem; the pressures are computed to forty-eight digits;
+the substate's constants are theorems; the Riemann number is measured at nine supports; and the finiteness of kappa, the
+equation of state itself, is the Hypothesis. The state exists. Its equation is the one line we cannot write.
+
+
+## 15. Dictionary, continued
+
+| CLU term | real object | status |
+|---|---|---|
+| macrostate (a, lambda, J, p_inf, p_pol, p_P, E) | the floor, its derivative, the three terms of the dilation identity, Mertens' sum | computed (Computation 5.4) |
+| Virial Law p_P = p_inf + p_pol - J | sliding-window identity, Theorem 5.2 and Proposition 5.3 | theorem |
+| Riemann number kappa(a) = T_eff/T* | Phi'/(pi T*) of Computation 7.6 | measured at nine supports |
+| Equation of State, kappa bounded | Conjecture 7.1 / the inequality (d) | open, equivalent to RH beyond a_Z |
+| temperature theta = pi^2 kappa/(2a) | Phi'/N'(T*) | definition on measured data |
+| 2 pi conjecture, kappa_inf = 4/pi | pattern in five points | numerology, flagged |
+| median height e horizons | Computation 7.6, the median of the floor's mass | pattern in five points |
+| equation of substate |A_0|^2 = (pi kappa/2) T* lambda | the inequality with equality | restatement |
+| Substate Principle | the macrostate as moments of the ground field and of mu_b | theorem for the pressures; open for kappa |
