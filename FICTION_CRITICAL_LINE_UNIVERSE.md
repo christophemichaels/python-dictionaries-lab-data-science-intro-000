@@ -408,3 +408,115 @@ equation of state itself, is the Hypothesis. The state exists. Its equation is t
 | median height e horizons | Computation 7.6, the median of the floor's mass | pattern in five points |
 | equation of substate |A_0|^2 = (pi kappa/2) T* lambda | the inequality with equality | restatement |
 | Substate Principle | the macrostate as moments of the ground field and of mu_b | theorem for the pressures; open for kappa |
+
+
+# Part III. The Flux, decreed
+
+Sandbox II, continued, 2026-10-02. The gods of the Critical Line Universe now write the one line that Part II left blank:
+the flux as a function of the state. They do it the way gods do, by decree, but the decrees are chosen so that each one
+is a real observation of this repository promoted to a law, and the chapter ends by checking the decreed flux against the
+measured one and saying by how much it misses. Bracketed notes keep the two worlds apart, as before.
+
+
+## 16. Four decrees
+
+DECREE I (Darkness below the horizon). The ground field of an observer of age a has no spectral mass below the horizon:
+the fraction theta(T) of the floor carried by the quanta above height T is 1 for T <= T*(a). The ground field vanishes at
+every quantum it can resolve, and it can resolve those below the horizon and no others.
+[real: the observation that the minimizer's transform vanishes near the zeta zeros below T* (the folds paper,
+Computation 12.5); the Horizon Law of Section 2. Not a theorem; a computation at the supports where it was looked at.]
+
+DECREE II (The Sum Rule, or the scale-free tail). Above its onset the floor's spectral mass is distributed like dT/T^2,
+with no logarithm: theta(T) = kappa T*/T. The reason is a cancellation the gods make exact: the ground field's transform
+falls off like 4|A_0|^2 sin^2(ta + theta_a)/(t^2 sigma~(t)) with sigma~ ~ log(t/2 pi), the quanta have density
+log(t/2 pi)/(2 pi), and the two logarithms cancel in the product, leaving 2|A_0|^2/(pi t^2) exactly.
+[real: the heuristic behind the tail law, Section 7; the paper notes that the measured law is sharper than this
+derivation, "which suggests a sum rule behind it", and Computation 7.6 shows no logarithmic drift over a decade and a
+half of heights. The pure tail kappa/h reproduces the measured theta at 3, 5 and 10 horizons to one or two per cent:
+at a = 0.6, 0.354/0.213/0.106 against 0.370/0.215/0.1065.]
+
+DECREE III (Exhaustion). The quanta exhaust the observer at the DETERMINATION HEIGHT T_det(a) = e T*(a): below it the
+window has more degrees of freedom than quanta, above it fewer. The gods decree that the floor's mass is divided equally
+by the determination height: half of it sits below e horizons, half above.
+[real: the Shannon number of [-a, a] x [-T, T] is 2aT/pi, the number of zeros in [-T, T] is (T/pi)(log(T/2 pi) - 1),
+and they are equal exactly at T = e T*, which is where the paper's heuristic of Section 7 counts the deficit of the zeros
+against the window. The median height of the floor's mass, measured, is 2.39, 2.32, 2.65, 2.67, 2.74 horizons at
+a = 0.6, 0.8, 1.0, 1.25, 1.5: rising, and at the last point 1.008 e. The equal division is a decree; the data approach it.]
+
+DECREE IV (The plunge). Between the horizon and three horizons the ground field carries more than the pure tail, the
+excess of the quanta that the observer half-resolves; the gods fix the excess by requiring that the median of the mass
+be the determination height exactly, which with the pure tail above the plunge gives median = 2.21 kappa T* rather than
+the 2 kappa T* of a tail with no plunge.
+[real: T theta(T)/T* reaches 1.4 to 1.5 at 1.5 T* (Computation 7.6), and the measured ratio median/(kappa T*) is
+2.25, 2.19, 2.28, 2.22, 2.21 at the five supports: the plunge's excess is a stable 10 per cent of the tail's weight.]
+
+
+## 17. The flux, derived from the decrees
+
+From Decrees II and III the Riemann number is the median height divided by the tail's doubling:
+        kappa_inf = e / 2 = 1.3591               (pure tail, no plunge),
+        kappa_inf = e / 2.21 = 1.230             (with the measured plunge of Decree IV).
+And the flux of Part II is then written out:
+
+        THE FLUX LAW (CLU).      J(a) = pi kappa_inf a T*(a) lambda(a),       Phi'(a) = pi kappa_inf T*(a),
+
+that is, with the pure tail,
+        Phi'(a) = (pi e / 2) T*(a) = 4.27 T*(a),       lambda(a) = lambda(a_0) exp( -(pi e/4)(T*(a) - T*(a_0)) ),
+and the equation of state of Part II closes with every constant named: the arithmetic pressure is
+        p_P = 1 + k(a) + 2P^2 + 2PM - (pi e/2) a T*(a) lambda(a),
+the archimedean pressure plus the polar pressure minus the decreed flux. The sign of the prime part, which the dead
+universes get wrong, is in the CLU the sign of this last term, and the gods have fixed it: negative, and smaller than the
+horizon allowance by construction, since the allowance IS the decree.
+
+In the thermodynamic variables of Section 12, theta * a = pi^2 kappa_inf / 2 = pi^2 e / 4 = 6.71 (pure tail) or 6.07 (with
+the plunge); the 2 pi conjecture of the numerologists (6.28, kappa_inf = 4/pi = 1.273) sits between the two. The gods
+decline to arbitrate: the three candidates differ by less than the plunge correction, and the measured theta * a, 6.11 at
+a = 1.5 and rising, has not yet chosen.
+
+
+## 18. The check: the decree against the measurement
+
+The decreed flux integrated from a = 0.8, where Phi = 31.8 is certified, against the measured Phi of the K-mode ground
+fields:
+
+      age a    T*       measured Phi    decree kappa = e/2    decree kappa = 4/pi    decree kappa = e/2.21    measured kappa
+      1.00     46.4     59.5            64.5  (+8%)           62.4  (+5%)            61.3  (+3%)              1.164
+      1.25     76.5     116.2           128.8 (+11%)          122.6 (+6%)            119.4 (+3%)              1.201
+
+The decree with the plunge overshoots the measured lost information by three per cent at a = 1.25, the pure-tail decree
+by eleven; both overshoot because the measured Riemann number, 1.16 to 1.24 in this range, is still below its decreed
+limit and rising toward it (1.239 at a = 1.5 against 1.230 decreed with the plunge). The gods' law is the asymptotic one;
+the mortals measure the approach. What would settle it is the tail-law computation of Computation 7.6 at a = 1.75 and
+2.0, which would show whether kappa continues to 1.23, passes it toward 1.36, or keeps climbing like a power of the
+horizon; the K-mode engine does it in a few CPU-hours, and the median height, which should reach e horizons and stay,
+is the cleaner diagnostic because it does not need the derivative of the floor.
+
+
+## 19. What the decrees are, in our universe
+
+Each decree is a statement about the real objects, and each has a status.
+
+    Decree I    the ground field is dark below the horizon          computation at a few supports; not a theorem
+    Decree II   the floor's tail is scale-free, 1/T^2, no logarithm  observed to 1% from five horizons; the sum rule behind it is open
+    Decree III  the median height of the floor's mass is e horizons  the determination height is a theorem of counting; the median is measured, 1.008 e at a = 1.5
+    Decree IV   the plunge carries a stable 10% excess               measured at five supports
+
+Together they say: kappa is bounded, with limit e/2 up to the plunge; hence Conjecture 7.1 with c = pi e/2, hence the
+Line. So in our universe the decrees are the Hypothesis, cut into four observable pieces, and the piece that carries all
+the weight is Decree II, the sum rule, because a tail that is not scale-free (a logarithm in it, or a power of the horizon
+in the onset) would let the Riemann number drift, and the drift is exactly what Computation 9.37 reads in the edge's
+measure. The gods have written the line. We have written down what it would take to prove it: that the two logarithms
+cancel exactly, at every support, forever.
+
+
+## 20. Dictionary, concluded
+
+| CLU term | real object | status |
+|---|---|---|
+| Decree I, darkness below the horizon | the minimizer's transform vanishes near the zeros below T* | computation |
+| Decree II, the sum rule | the tail law's scale-free form; the cancellation of the edge law's logarithm against the zero density | observed to 1%; open as a theorem |
+| determination height e T* | Shannon number = zero count at T = e T* | theorem of counting |
+| Decree III, median = e horizons | the median of the floor's spectral mass, Computation 7.6 | measured, 1.008 e at a = 1.5 |
+| Decree IV, the plunge excess | median/(kappa T*) = 2.21 +- 0.04 | measured at five supports |
+| Flux Law, kappa_inf = e/2 or e/2.21 | Conjecture 7.1 with c = pi e/2 | the Hypothesis, decreed |
+| the check | decree against the K-mode lost information | +3% to +11% at a = 1.25 |
