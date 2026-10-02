@@ -677,6 +677,13 @@ primes; the rank-prime experiment rh_sandbox_rank_primes.py. Parked there: the z
 horizon the zeros of the minimizer's transform track the true zeros, as a function of a). Neither pulls on the critical path.
 FICTION_CRITICAL_LINE_UNIVERSE.md (2026-10-02): Sandbox II, the make-believe universe where RH is an axiom; its dictionary
 maps each invented law to a real theorem, conjecture or open point. Fiction, labelled as such; off the critical path.
+Part IV (2026-10-02, 'solve it in the sandbox by creativity'): the Line Postulate demoted to a theorem of the fiction.
+The proof is a continuation in age (Birth at a_Z, absolute continuity, decay law, Gronwall) from one new law, the Leakage
+Law 2|A_0|^2 <= C(a) lambda with C locally integrable, which the fiction derives from the Born rule (shares are
+probabilities) and the Local Law. The ledger (Section 27) says what is real: everything but the Leakage Law is a theorem
+(or (H_fin) on the null set); the Leakage Law is the inequality (d) / Conjecture A, and the Born rule is RH restated.
+What the exercise isolates: the inequality in its mean-field form, "the window form dominates its own archimedean tail"
+(Section 28(3)), as the statement to attack without the zeros. Nothing enters the paper.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.

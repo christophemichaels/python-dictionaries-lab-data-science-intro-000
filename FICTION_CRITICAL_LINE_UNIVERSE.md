@@ -520,3 +520,274 @@ cancel exactly, at every support, forever.
 | Decree IV, the plunge excess | median/(kappa T*) = 2.21 +- 0.04 | measured at five supports |
 | Flux Law, kappa_inf = e/2 or e/2.21 | Conjecture 7.1 with c = pi e/2 | the Hypothesis, decreed |
 | the check | decree against the K-mode lost information | +3% to +11% at a = 1.25 |
+
+
+# Part IV. The Line, derived
+
+Sandbox II, continued, 2026-10-02. Fiction, as before, with the same convention: bracketed notes say what is real. In
+Parts I to III the Line Postulate was Axiom 0, and the gods of the Critical Line Universe built a physics on top of it.
+In this part they do what every god with a single axiom eventually does: they try to get rid of it. The result is a
+proof, inside the CLU, that every quantum is massless. It is a proof in the sense that every step follows from the laws
+stated; it is a fiction in the sense that one of those laws is the Hypothesis wearing a different coat, and the ledger
+of Section 27 says which coat. No computation is used anywhere in this part. The few numbers that appear are quoted from
+the earlier parts for illustration only. Nothing here is a claim about the real zeta function.
+
+
+## 21. The demotion, and what has to be shown
+
+The gods' complaint against themselves is recorded in the CLU's canon in one sentence: "A law that has to be decreed is
+a law that has not been understood." They decreed the Line because they could not see why a universe of point charges
+should have a massless spectrum. The present part records what they came to see instead: that the Line is not a fact
+about the quanta at all. It is a fact about observers. No observer ever dies.
+
+DEATH (definition). An observer of age a is ALIVE if its floor is positive, lambda(a) > 0, and DEAD if lambda(a) <= 0.
+A dead observer is one whose ground field has nonpositive energy against the vacuum: a field that costs nothing, or less
+than nothing, to excite. [real: positivity of the odd window form at support a.]
+
+THE MORTALITY THEOREM (CLU, and a theorem in the real world too). The vacuum has a massive quantum if and only if some
+observer dies at a finite age. In detail:
+   (i)  if every quantum is massless, every observer is alive (the stability of the vacuum, Section 0);
+   (ii) if some quantum has mass m > 0 at height gamma, then there is an age beyond which every observer is dead, and that
+        age is of the order of m^{-1} log(1/m) once the horizon has passed gamma.
+[real: (i) is Weil positivity; (ii) is Weil's criterion in the odd window form (Theorem thm:weil of the paper: RH holds if
+and only if lambda(a) >= 0 for every a, and the odd test functions alone suffice) together with the monotonicity of the
+floor in a; the scale of the dying age is the Blind Spot, Theorem 9.31. Both directions are theorems.]
+
+So, in the CLU, the Line Postulate is equivalent to IMMORTALITY: no observer dies. The gods find this a better thing to
+have to prove, because immortality is a statement about a one-parameter family of positive numbers, lambda(a), and
+proofs that a positive number never reaches zero have a known shape: show that it has not happened yet, and show that
+whatever makes the number fall cannot finish the job. The first is the Birth Law. The second is the whole of this part.
+
+
+## 22. Four laws that hold in every universe, dead or alive
+
+Before touching the Line, the gods list what they are allowed to use before the Line is known: the laws that hold in the
+dead universes of Section 6 as well, since those laws cannot be hiding the Line inside them.
+
+THE BIRTH LAW. Every observer younger than the certified age a_Z is alive, and the floor at a_Z is a known positive
+number. [real: Zhu's theorem (Theorem thm:zhu of the paper): in the odd sector 8.2e-15 <= lambda(0.8) <= 2.3e-14, certified
+by interval arithmetic, hence lambda(a) > 0 for 0 < a <= a_Z = 0.8; in the even sector lambda_even(0.8) >= 8.9e-18. A
+theorem, and one that holds in a dead universe only up to the age at which it dies.]
+
+THE MONOTONICITY LAW. The floor never rises with the age: an older observer has every field a younger one has, and
+more. [real: trivial; Lemma lem:exist.]
+
+THE CONTINUITY LAW. The floor is an absolutely continuous function of the age: it has no cliffs, and its change over any
+range of ages is the integral of its rate. [real: Proposition 9.15 (Lipschitz) and Proposition 9.17 (absolute continuity
+under the finiteness condition (H_fin)); at every support outside an exceptional null set this is a theorem, and the
+condition (H_fin) stays only on that set. Step 1 of the tree.]
+
+THE DECAY LAW (the Third Law, restated). At almost every age the floor falls at the rate of the flux through the horizon,
+        d lambda / d a = - 2 |A_0(a)|^2 ,
+where A_0(a) is the edge amplitude, the strength with which the ground field touches the edge of the window.
+[real: the boundary law, Theorem 9.12(iv), at almost every support; Proposition 8.3.]
+
+The gods note that none of the four mentions a quantum. They are laws about one observer at a time, read off the prime
+sheet: the Birth Law from the charges below e^{1.6}, the other three from the variational problem of the ground field.
+The dead universes obey all four and die anyway. Whatever kills them must therefore be in the one law that remains.
+
+
+## 23. The Law of Proportional Leakage
+
+THE LEAKAGE LAW (CLU). The flux of a living observer is proportional to the energy it still has: there is a function
+C(a), finite at every age and integrable over every finite range of ages, such that
+        2 |A_0(a)|^2  <=  C(a) lambda(a)        for every living observer of age a.
+Equivalently, -lambda'/lambda <= C(a): the FRACTION of its trapped energy that an observer loses per unit age is bounded
+by its age alone, not by how much it has already lost.
+
+The CLU gives this law three readings.
+
+(i) The horizon is a LINEAR VALVE. A substance that decays in proportion to what remains never runs out; it only
+    becomes rare. The Leakage Law says the arithmetic vacuum is such a substance: the trapped energy halves and halves
+    and is never gone. This is the radioactive reading, and it is the one the CLU teaches to children.
+
+(ii) The holographic reading of Section 3 is the special case C(a) = c T*(a): the loss is bounded by the horizon. The
+    proof below does not need the horizon form; it needs only that C be finite and integrable, and the gods are careful
+    to say so, because the horizon form is a stronger statement than immortality requires. [real: the horizon form is the
+    inequality (d) of the paper, eq:theinequality, 2|A_0|^2 <= c T* lambda, Conjecture 7.1 (bounded relay); the weaker
+    form with an integrable excess e(a) added to c T* is Proposition 9.30, late windows are allowed; either implies RH
+    beyond a_Z given absolute continuity (Theorem thm:reduction, Corollary cor:unconditional). The CLU's C(a) is the
+    weakest of the three: any locally integrable bound at all.]
+
+(iii) THE THRESHOLD READING, which is the one that explains the dead universes. In a dead universe the leak has a
+    threshold: as the floor tends to zero the edge amplitude does not. The ground field of a dying observer presses on
+    the edge of its window with a finite strength while its trapped energy vanishes, and the floor goes through zero at a
+    finite flux, like a tank that drains at a fixed rate and then keeps draining. [real: in the rank universes of
+    SANDBOX_STRANGE_MATH.md the floor crosses zero at a = 0.8 and 0.9 with a derivative of order one, against a floor of
+    order 1e-10 just before; a threshold leak in the sense above.] The CLU's physicists put it as a slogan: a universe
+    dies through a threshold, and ours has none.
+
+The Leakage Law is also where the values of the charges enter. The four laws of Section 22 are blind to where the charges
+sit, to the last digit; the finiteness of C(a) is not. It is a statement about the ground field of THIS universe's charges,
+and the sandbox of Section 6 showed that moving the charges by a hair's breadth makes it false at a = 0.8. The gods regard
+this as the correct place for the content of the Line to sit: in a single inequality about one observer, not in a
+statement about infinitely many quanta.
+
+
+## 24. Where the Leakage Law comes from: the gods' derivation
+
+The gods do not decree the Leakage Law. They derive it, from three laws of the earlier parts, and the derivation is short.
+
+THE BORN RULE OF ARITHMETIC (CLU). The share s_gamma(a) = 2|F_a(gamma)|^2 / lambda(a) of a quantum is the probability
+that the quantum carries the observer's trapped energy. Shares are nonnegative and, with the share of the poles, sum to
+one. [real: Weil's explicit formula writes Q(f) as a sum over the zeros of F(rho) F(1 - rho-bar)-type terms; when every
+zero is on the line these are the squares |F(gamma)|^2 and the shares are nonnegative; a massive pair at height gamma
+contributes instead the interference term 2 Re[F(gamma - im) conj F(gamma + im)], which for a quantum in the dark region
+below the horizon is -m^2 |F'(gamma)|^2 + O(m^4) < 0: a negative probability. So the Born rule is Axiom 0 in quantum
+clothing. This is the step at which the derivation is circular, and the gods know it: see Section 27.]
+
+DARKNESS (Decree I). No share sits below the horizon. [real: computation at the supports examined; not a theorem.]
+
+THE LOCAL LAW (Section 5) with the SUM RULE (Decree II). Above an onset height T_on = c_on T*(a), a bounded number of
+horizons, the shares follow the tail of the edge: the mass of the shares above any T >= T_on is 2|A_0|^2 / (pi T lambda).
+[real: the tail law, Theorem 9.12(iv) under RH, with the onset supplied by the local law of the band, which is the
+missing theorem of the tree, N1d.1; the measured onset is about three horizons, Computation 7.6.]
+
+DERIVATION. By the Born rule the mass of the shares above T_on is at most one. By the Local Law that mass is
+2|A_0|^2/(pi T_on lambda). Hence
+        2 |A_0(a)|^2  <=  pi c_on T*(a) lambda(a),
+the Leakage Law with C(a) = pi c_on T*(a), that is, a Riemann number kappa(a) <= c_on. QED (in the CLU).
+
+[real: the arithmetic is honest and the numbers agree with it. With the measured onset c_on = 3 the derivation says
+kappa <= 3; measured, kappa = 1.06 to 1.24. More precisely the mass above three horizons is kappa/3 by the pure tail,
+0.35 to 0.41 at the five supports of Computation 7.6, against the measured theta(3 T*) = 0.370, 0.415, 0.407, 0.433,
+0.434: the Local Law's tail and the Born rule's bound are consistent with the data to a few per cent. What the data
+cannot do is replace the Born rule.]
+
+The gods are pleased by the shape of the derivation more than by its content. The Leakage Law, which looks like a law of
+thermodynamics, comes out of a law of counting (the shares sum to one) and a law of locality (the tail sets in within a
+few horizons). The Line, they say, is the statement that probabilities are probabilities.
+
+
+## 25. The Immortality Theorem
+
+THEOREM (CLU). Every observer is alive. Consequently, by the Mortality Theorem, every quantum is massless: the Line
+Postulate is a theorem of the Critical Line Universe.
+
+PROOF. Let a_d be the supremum of the ages a such that every observer younger than a is alive. By the Birth Law,
+a_d >= a_Z > 0. Suppose a_d is finite. On the range [a_Z, a_d) every observer is alive; there the Continuity Law makes
+lambda absolutely continuous with lambda' = -2|A_0|^2 at almost every age (Decay Law), and the Leakage Law gives
+        lambda'(a)  >=  - C(a) lambda(a)        for almost every a in [a_Z, a_d).
+Put U(a) = lambda(a) exp( integral from a_Z to a of C ). Then U is absolutely continuous and U' = e^{int C} (lambda' + C
+lambda) >= 0 almost everywhere, so U is non-decreasing on [a_Z, a_d), and
+        lambda(a)  >=  lambda(a_Z) exp( - integral from a_Z to a of C )        for a_Z <= a < a_d.
+Let a tend to a_d. The floor is continuous and C is integrable over [a_Z, a_d], so
+        lambda(a_d)  >=  lambda(a_Z) exp( - integral from a_Z to a_d of C )  >  0:
+the observer of age a_d is alive. By continuity, so is every observer of age a_d + epsilon for epsilon small enough.
+This contradicts the definition of a_d. Hence a_d is infinite, and every observer is alive. QED.
+
+[real: this is, step for step, the proof of Proposition prop:AimpliesRH of the paper, with U(a) = lambda e^{cT*/2}
+the function used there, generalized from C = c T* to any locally integrable C; the real statement is "Conjecture A,
+with absolute continuity, implies RH", and the fiction's only change is to call Conjecture A a law.]
+
+Three remarks the CLU attaches to the theorem.
+
+(a) The Line is used nowhere in the proof except inside the Leakage Law. The proof is a CONTINUATION: the universe is
+    born alive (Birth), its floor has no cliffs (Continuity), and the leak that lowers the floor is proportional to the
+    floor (Leakage), so the floor can only ever be a positive multiple of what it was. Nothing about quanta, heights,
+    or the arithmetic vacuum enters; those come back only at the end, through the Mortality Theorem, to translate
+    "no observer dies" into "no quantum has mass".
+
+(b) THE RENORMALIZED FLOOR. The function U(a) of the proof, the floor magnified by the accumulated leak, is the CLU's
+    conserved-or-growing quantity: the Leakage Law says exactly that U never decreases. With the decreed flux of Part
+    III, C = pi kappa_inf T*, it reads U(a) = lambda(a) exp( (pi kappa_inf / 2)(T*(a) - T*(a_Z)) ), and the equation of
+    state says U is asymptotically constant: the CLU calls its limit the RIEMANN CHARGE of the universe, the one number
+    that survives the cooling. [real: U with c = pi kappa_inf is the paper's u(a); the decree check of Section 18 shows
+    that at the measured ages U is not constant, since the decreed Phi exceeds the measured one by 3 to 11 per cent at
+    a = 1.25, that is U changes by a factor of e^3 or more between a = 0.8 and 1.25; "conserved" holds only in the sense
+    of the asymptotic law, and only if the Riemann number has a limit.]
+
+(c) The theorem is sharp in the following sense. If C(a) failed to be integrable up to some age a_1, the bound
+    lambda(a) >= lambda(a_Z) e^{-int C} would allow the floor to reach zero at a_1, and the Mortality Theorem would then
+    permit a massive quantum of mass roughly 1/a_1 (Blind Spot). So the Leakage Law is not merely sufficient: by Section
+    21, immortality implies that -lambda'/lambda is integrable on every finite range (a continuous positive floor has an
+    integrable logarithmic derivative wherever it is absolutely continuous), which is the Leakage Law with C = -lambda'/
+    lambda itself. The law and the Line are the same statement. [real: Proposition 9.30: given absolute continuity, RH is
+    equivalent to the local integrability of -lambda'/lambda on [a_Z, infinity).]
+
+
+## 26. The other polarization
+
+The quanta of the CLU have two polarizations, ODD and EVEN, according to the parity of the test field on the prime sheet
+that reads them. Parts I to IV concern the odd polarization. The gods record that this is enough: the Mortality Theorem
+holds with odd observers alone, so immortality of the odd observers already forces every quantum to be massless, and the
+even observers are then alive by the stability of the vacuum. [real: Theorem thm:weil: positivity of the odd form on every
+window suffices for RH; Proposition 9.40 gives the even sector its own equivalence, RH iff the even form is nonnegative
+on every window. Zhu's certification covers both sectors at a = 0.8.] The even polarization has its own Decay Law and,
+the gods presume, its own Leakage Law; they have not needed it. [real: the even sector is route N2 of the tree and Step 4
+of the critical path, open; Computation 9.41 is what is measured there.]
+
+
+## 27. The ledger: what the proof is made of
+
+Every step of Sections 21 to 26, with its status outside the sandbox.
+
+    step                                        used for                         status in our universe
+    Mortality Theorem (i), (ii)                 Line <=> immortality             theorem (Weil; the Blind Spot for the scale)
+    Birth Law, a_Z = 0.8                        the floor starts positive        theorem (Zhu, interval arithmetic)
+    Monotonicity Law                            the floor never rises            theorem
+    Continuity Law                              lambda absolutely continuous     theorem off a null set; (H_fin) on it (Step 1)
+    Decay Law  lambda' = -2|A_0|^2              the leak is the edge             theorem at almost every support
+    Gronwall / the renormalized floor U         the continuation                 theorem (Proposition prop:AimpliesRH)
+    Leakage Law  2|A_0|^2 <= C(a) lambda        the whole proof                  AXIOM in the CLU; the inequality (d) / Conjecture A;
+                                                                                 equivalent to RH beyond a_Z
+    Born rule (shares are probabilities)        derives the Leakage Law          the Line itself, restated (Weil positivity)
+    Darkness below the horizon                  derives the Leakage Law          computation at a few supports
+    Local Law with the sum rule                 derives the Leakage Law          open; N1d.1 of the tree
+    Polarization (odd suffices)                 closes the argument              theorem (thm:weil)
+
+Read downward, the ledger says: in our universe the proof reduces the Hypothesis to one inequality about one observer,
+the Leakage Law; the gods' derivation of that inequality rests on the Born rule, which is the Hypothesis again; and the
+circle closes. Read as the gods read it, the ledger says something else: the circle has been cut at the one place where
+it looks like physics rather than arithmetic. "Probabilities are nonnegative" is, in the CLU, not a theorem about zeros
+but the first thing anyone learns about quanta. That is what it means to solve the problem in a universe where one makes
+the rules: not to find the missing step, but to find the place where the missing step is a law of nature, and to say so.
+
+
+## 28. Afterword: the shape of a real proof, as the gods see it
+
+The gods' proof has one external input, the Leakage Law, and the only honest use of the fiction in our universe is to
+read off what a proof of that law would have to look like. It would have to bound the edge amplitude by the floor
+WITHOUT the quanta, on the prime sheet alone, since the quanta are what one does not know. The gods offer three
+readings of such an argument, as questions and not as claims.
+
+(1) THE VALVE AS A COMPETITOR. Smooth the ground field's edge at the scale of the horizon. The tail energy of the field
+    falls by about |A_0|^2 / T*; the prime terms change by an amount the echo crystal controls. If that change were at
+    most a constant times the floor, the minimality of the ground field would give the Leakage Law with C = c T*.
+    [real: the dilation and competitor arguments of Section 5 of the paper, the virial identity; no such bound is known,
+    and the difficulty is the one the abstract names: three order-one quantities cancel to the size of lambda.]
+
+(2) THE VALVE AS A FIXED POINT. The edge amplitude is the fixed point of the echo equation: a contraction of Hankel norm
+    below one applied to a forcing. The Leakage Law would follow from a bound on the size of the forcing by the floor.
+    [real: Theorem 9.24 identifies A_a with the fixed point and Proposition 9.23 gives the Hankel norm below one; bounding
+    the fixed point's size by lambda is not done, and it is not clear that it can be read from the forcing alone.]
+
+(3) THE VALVE AS A MEAN-FIELD LAW. The archimedean energy of the ground field above the horizon, (1/2 pi) int over
+    |t| > T* of |F|^2 Psi_inf, is a quantity on the vacuum's side alone, with no quanta in it, and the tail of the edge
+    makes it about |A_0|^2/(pi T*). The Leakage Law with C = c T* says precisely that this archimedean tail is at most a
+    constant times Q(f_a): "the window form dominates its own archimedean tail". This is the form of the law in which the
+    Line does not appear, and it is the one the gods would try to prove first. [real: the sampling defect, Proposition
+    7.29, measures the difference between the archimedean integral above T and the zero sum above T on the minimizers; as
+    an inequality for the form it is open, and it is a restatement of (d), not a new route.]
+
+The gods' last word, from the canon: "We did not prove the Line by computing. We proved it by noticing that a universe
+dies only through a leak with a threshold, and by forbidding thresholds. Whether your universe forbids them is the one
+thing we cannot tell you from here."
+
+
+## 29. Dictionary, Part IV
+
+| CLU term | real object | status |
+|---|---|---|
+| alive / dead observer | lambda(a) > 0 / lambda(a) <= 0 | definition |
+| Mortality Theorem | Weil's criterion in the odd window form (thm:weil) + monotonicity; scale from the Blind Spot | theorem |
+| Birth Law, a_Z | Zhu's certified floor at a = 0.8 | theorem |
+| Continuity Law | Propositions 9.15, 9.17; (H_fin) on the exceptional set | theorem off a null set |
+| Decay Law | boundary law lambda' = -2|A_0|^2, Theorem 9.12(iv) | theorem a.e. |
+| Leakage Law, linear valve | the inequality (d), Conjecture A; late-window form Proposition 9.30 | open; equivalent to RH beyond a_Z |
+| threshold leak | the dead universes' floors crossing zero at finite flux | SANDBOX_STRANGE_MATH.md |
+| Born rule of arithmetic | Weil positivity: shares |F(gamma)|^2 >= 0 iff the zeros are on the line | the Hypothesis |
+| Immortality Theorem | Proposition prop:AimpliesRH (Conjecture A + AC implies RH) | theorem, given its hypothesis |
+| renormalized floor U, Riemann charge | u(a) = lambda e^{cT*/2} of the paper's proof | definition; constancy is the decree |
+| other polarization | the even sector, Proposition 9.40, route N2 | odd suffices (theorem); even open |
+| the three valves | competitor / fixed point / mean-field forms of (d) | open, restatements |
