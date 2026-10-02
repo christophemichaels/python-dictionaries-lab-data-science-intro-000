@@ -4,3 +4,28 @@ a=0.50  2a^2=0.500
    R1  terms= 1  E=  0.24023  lambda= 0.00019418018  sign=+  neg=0  (120s)
    R2  terms= 1  E=  0.24023  lambda= 0.00019418018  sign=+  neg=0  (120s)
    R3  terms= 1  E=  0.24023  lambda= 0.00019418018  sign=+  neg=0  (120s)
+a=0.60  2a^2=0.720
+   T   terms= 2  E=  0.64254  lambda=   5.987114e-7  sign=+  neg=0  (244s)
+   R1  terms= 2  E=  0.64254  lambda=   5.987114e-7  sign=+  neg=0  (244s)
+   R2  terms= 2  E=  0.64254  lambda=   5.987114e-7  sign=+  neg=0  (244s)
+   R3  terms= 2  E=  0.64254  lambda=   5.987114e-7  sign=+  neg=0  (244s)
+a=0.70  2a^2=0.980
+   T   terms= 3  E=  0.76266  lambda= 2.5829703e-10  sign=+  neg=0  (369s)
+   R1  terms= 3  E=    1.123  lambda= 3.7938962e-10  sign=+  neg=0  (369s)
+   R2  terms= 3  E=  0.76266  lambda= 2.5829703e-10  sign=+  neg=0  (369s)
+   R3  terms= 4  E=   1.2807  lambda= 4.1972211e-10  sign=+  neg=0  (369s)
+a=0.80  2a^2=1.280
+   T   terms= 3  E=  0.76266  lambda= 1.6340891e-14  sign=+  neg=0  (497s)
+   R1  terms= 3  E=    1.123  lambda=   -0.12948488  sign=-  neg=2  (497s)
+   R2  terms= 3  E=  0.76266  lambda= 1.6340891e-14  sign=+  neg=0  (497s)
+   R3  terms= 4  E=   1.2807  lambda=   -0.37818407  sign=-  neg=2  (497s)
+a=0.90  2a^2=1.620
+   T   terms= 4  E=   1.2807  lambda= 8.5203871e-20  sign=+  neg=0  (628s)
+   R1  terms= 5  E=   2.1761  lambda=   -0.21595827  sign=-  neg=2  (628s)
+   R2  terms= 4  E=   1.2431  lambda=  -0.010440456  sign=-  neg=3  (628s)
+   R3  terms= 6  E=   2.3444  lambda=   -0.50088744  sign=-  neg=3  (628s)
+a=1.00  2a^2=2.000
+   T   terms= 5  E=   1.8217  lambda= 5.1158094e-25  sign=+  neg=0  (757s)
+   R1  terms= 6  E=   2.7171  lambda=   -0.50915489  sign=-  neg=4  (757s)
+   R2  terms= 5  E=   1.7612  lambda=  -0.023052403  sign=-  neg=4  (757s)
+   R3  terms= 7  E=   2.8504  lambda=   -0.73793975  sign=-  neg=4  (757s)

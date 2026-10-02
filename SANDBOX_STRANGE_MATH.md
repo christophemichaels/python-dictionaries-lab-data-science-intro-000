@@ -62,9 +62,36 @@ in the place of the primes, each entering the form as -2 c g_f(d) at positions d
 Below a = (log 4)/2 = 0.693 the systems T and R1 coincide (the integers below 4 are the primes 2, 3), and for a < 0.805 they
 differ only in the weight at 4: log 4 as a prime against log 2 as the square of 2. The results:
 
-RESULTS_TABLE
+    K = 30 modes, 40 digits (rh_sandbox_rank_primes.py 30 40; the K-mode floor is an upper bound for the true floor; Zhu's
+    certified value at a = 0.8 is 8.2e-15 <= lambda <= 2.3e-14, and the row below sits inside it).
 
-What the table says. [RESULTS_TEXT]
+      a     2a^2  |  T  terms  E(a)    lambda          |  R1 terms  E(a)   lambda      |  R2 terms  E(a)   lambda      |  R3 terms  E(a)   lambda
+     0.50   0.50  |  1  0.240  +1.94e-4   |  1  0.240  +1.94e-4    |  1  0.240  +1.94e-4    |  1  0.240  +1.94e-4
+     0.60   0.72  |  2  0.643  +5.99e-7   |  2  0.643  +5.99e-7    |  2  0.643  +5.99e-7    |  2  0.643  +5.99e-7
+     0.70   0.98  |  3  0.763  +2.58e-10  |  3  1.123  +3.79e-10   |  3  0.763  +2.58e-10   |  4  1.281  +4.20e-10
+     0.80   1.28  |  3  0.763  +1.63e-14  |  3  1.123  -0.129  (2) |  3  0.763  +1.63e-14   |  4  1.281  -0.378  (2)
+     0.90   1.62  |  4  1.281  +8.52e-20  |  5  2.176  -0.216  (2) |  4  1.243  -0.0104 (3) |  6  2.344  -0.501  (3)
+     1.00   2.00  |  5  1.822  +5.12e-25  |  6  2.717  -0.509  (4) |  5  1.761  -0.0231 (4) |  7  2.850  -0.738  (4)
+
+    (the number in parentheses is the count of negative eigenvalues of the K-mode form; "terms" is the number of positions
+    d < 2a; E(a) = sum c^2 is the prime energy; log data/sandbox_rank_primes.log).
+
+What the table says. The true primes give a floor that is positive at every support and collapses as the paper says, from 2e-4 at a = 0.5
+to 5e-25 at a = 1.0 (and the K = 30 value at 0.8 sits inside Zhu's certified interval). Each rank system agrees with the
+truth exactly as long as it coincides with it (R1 and R3 to a = 0.6, R2 to a = 0.8, because the ranks 1, 2 of the primes 2, 3
+are the primes themselves shifted by one), and the first time it differs the floor collapses to a negative number OF ORDER
+ONE, not to a slightly negative number: R1 at a = 0.8, where the only change is that 4 counts as a prime of weight log 4
+instead of the square of 2 with weight log 2, has floor -0.13 with two negative eigenvalues, against +1.6e-14 for the
+truth; R3, which puts the prime 5 at the position of 4, has -0.38. R2 is the sharpest test: it keeps every position and
+changes only the energies of 5 and 7 by about four per cent (log 4/2 = 0.693 for log 5/sqrt 5 = 0.720; log 5/sqrt 5 for
+log 7/sqrt 7 = 0.735), and that is enough to take the floor from +8.5e-20 to -0.010 at a = 0.9. One more detail: just
+after a modification, before the sign change, the modified floor is LARGER than the true one (a = 0.7: 3.8e-10 and
+4.2e-10 against 2.6e-10): extra energy at an entry lifts the floor for a moment and then breaks it.
+
+So the sequence of the primes, their ranks, their density and their energy law, is not what holds the floor above zero.
+The positions and the energies of the individual primes are, at the precision of their actual values; four per cent in
+one weight is already fatal. This is the razor edge of the paper (positivity fails under a shift of one part in 10^14 at
+a = 0.8) seen from the other side: the window does not read "a prime-like sequence", it reads the primes.
 
 
 ## 3. The alien axioms, and what the real object says to each
