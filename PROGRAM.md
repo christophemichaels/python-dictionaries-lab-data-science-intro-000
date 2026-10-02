@@ -602,6 +602,12 @@ edge-dominated (observed, no argument yet). Under RH this is Conjecture A at tha
 must eventually be replaced by its prime-side form: the dilation derivative of the ground state controlled by T* lambda
 using only the Euler product and the archimedean symbol.
 
+## Blueprint
+The if-then tree from the present state to RH, with the status of every node, the leaves (proved, false,
+reformulation, conditional) and the critical path, is RH_IF_THEN_TREE.md (2026-10-02). It is a plan and is updated after
+each round, after the paper; the order of every round is mathematics and computation, verification, paper, program files,
+build, commit, PDF.
+
 ## Next (as of 2026-10-01, evening)
 (a) [CLOSED by Theorem 9.31: no first-order quantity exists, the floor is the sharpest second-order one] The quantity the branches force apart BEFORE the floor changes sign, now sharpened by 9.3: both readings are blind below the
 detection scale a_det ~ delta^{-1} log(1/delta), so the quantity must be visible at supports where lambda > 0 and the Mobius budget is
