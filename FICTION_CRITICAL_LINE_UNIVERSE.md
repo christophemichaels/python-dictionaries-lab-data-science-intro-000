@@ -547,6 +547,9 @@ of Section 27 says which coat. No computation is used anywhere in this part. The
 the earlier parts for illustration only. Nothing here is a claim about the real zeta function. The proof itself,
 written out as a formal manuscript of the CLU with definitions, laws, lemmas and theorems, is FICTION_PROOF_OF_THE_LINE.md;
 this part is its narrative and its ledger.
+Manuscript II, FICTION_PROOF_OF_THE_LINE_II.pdf, makes the proof unconditional inside the fiction by moving the one
+load-bearing law from the quanta (the Born rule) to the charges (the Random Walk Law of the primes at every scale) and
+proving the Line by the Mellin lemma; Sections 21 to 29 below describe the observer-side proof of Manuscript I.
 
 
 ## 21. The demotion, and what has to be shown

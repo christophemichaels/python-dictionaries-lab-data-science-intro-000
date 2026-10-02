@@ -687,6 +687,15 @@ What the exercise isolates: the inequality in its mean-field form, "the window f
 FICTION_PROOF_OF_THE_LINE.md (2026-10-02): the same proof as a formal CLU manuscript (nine laws, Mortality Theorem with
 the classical construction of a dying observer, Leakage Law derived and shown equivalent to immortality, Immortality
 Theorem, mirror-term lemma, translator's note). Fiction. Typeset as FICTION_PROOF_OF_THE_LINE.tex/.pdf (8 pages).
+FICTION_PROOF_OF_THE_LINE_II.tex/.pdf (2026-10-02, 'make it unconditional, back to number theory'): the proof with no law
+about the quanta. Laws of the charges: unique factorization, the mean field, the Random Walk Law (|psi(x+h) - psi(x) - h|
+<= h^{1/2} x^eps for x^eps <= h <= x), the mirror law; the Line by von Koch's Mellin argument; Born rule, Leakage Law and
+Immortality become theorems; the Random Walk Law derived in the fiction from Sieve Independence (uniform Hardy-Littlewood
+k-tuples, square-root error), the Gaussian law of primes in short intervals (Montgomery-Soundararajan under it) and a
+No-Large-Deviations decree (Cramer's model). Honest status in the translator's note: the Random Walk Law is a conjecture
+stronger than RH (equivalent to it only at h = x); the chain is non-circular by our standards but its hypothesis is
+unproved. The fiction's point: the whole Hypothesis sits in a law about primes in short intervals that number theorists
+believe for sieve reasons unrelated to zeros.
 
 ROUND 'LETS RUN IT' (2026-10-02): the tail law at a = 1.75, run on explicit request as the fiction's adjudicating
 measurement (Part III, Section 18). The old K-mode engine could not reach it (K^4 assembly, eig); rh_weil_fast.py was
