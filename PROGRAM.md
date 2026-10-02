@@ -686,7 +686,7 @@ What the exercise isolates: the inequality in its mean-field form, "the window f
 (Section 28(3)), as the statement to attack without the zeros. Nothing enters the paper.
 FICTION_PROOF_OF_THE_LINE.md (2026-10-02): the same proof as a formal CLU manuscript (nine laws, Mortality Theorem with
 the classical construction of a dying observer, Leakage Law derived and shown equivalent to immortality, Immortality
-Theorem, mirror-term lemma, translator's note). Fiction.
+Theorem, mirror-term lemma, translator's note). Fiction. Typeset as FICTION_PROOF_OF_THE_LINE.tex/.pdf (8 pages).
 
 ROUND 'LETS RUN IT' (2026-10-02): the tail law at a = 1.75, run on explicit request as the fiction's adjudicating
 measurement (Part III, Section 18). The old K-mode engine could not reach it (K^4 assembly, eig); rh_weil_fast.py was
