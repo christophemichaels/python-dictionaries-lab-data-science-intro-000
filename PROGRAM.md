@@ -684,6 +684,9 @@ probabilities) and the Local Law. The ledger (Section 27) says what is real: eve
 (or (H_fin) on the null set); the Leakage Law is the inequality (d) / Conjecture A, and the Born rule is RH restated.
 What the exercise isolates: the inequality in its mean-field form, "the window form dominates its own archimedean tail"
 (Section 28(3)), as the statement to attack without the zeros. Nothing enters the paper.
+FICTION_PROOF_OF_THE_LINE.md (2026-10-02): the same proof as a formal CLU manuscript (nine laws, Mortality Theorem with
+the classical construction of a dying observer, Leakage Law derived and shown equivalent to immortality, Immortality
+Theorem, mirror-term lemma, translator's note). Fiction.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.

@@ -530,7 +530,9 @@ In this part they do what every god with a single axiom eventually does: they tr
 proof, inside the CLU, that every quantum is massless. It is a proof in the sense that every step follows from the laws
 stated; it is a fiction in the sense that one of those laws is the Hypothesis wearing a different coat, and the ledger
 of Section 27 says which coat. No computation is used anywhere in this part. The few numbers that appear are quoted from
-the earlier parts for illustration only. Nothing here is a claim about the real zeta function.
+the earlier parts for illustration only. Nothing here is a claim about the real zeta function. The proof itself,
+written out as a formal manuscript of the CLU with definitions, laws, lemmas and theorems, is FICTION_PROOF_OF_THE_LINE.md;
+this part is its narrative and its ledger.
 
 
 ## 21. The demotion, and what has to be shown
