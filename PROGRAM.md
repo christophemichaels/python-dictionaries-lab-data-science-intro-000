@@ -702,6 +702,14 @@ No-Large-Deviations decree (Cramer's model). Honest status in the translator's n
 stronger than RH (equivalent to it only at h = x); the chain is non-circular by our standards but its hypothesis is
 unproved. The fiction's point: the whole Hypothesis sits in a law about primes in short intervals that number theorists
 believe for sieve reasons unrelated to zeros.
+FICTION_PROOF_OF_THE_LINE_III.tex/.pdf (2026-10-02, 'expand upon what's correct and give an unconditional proof, no
+exceptions', meant inside the fiction): the proof with eight axioms of the Academy and every step proved in full, no
+hedges in the body (the fiction marker is one line at the top; the dictionary stays in the companion file). The
+arithmetic axiom is Bounded Deviation: in every stretch between x^delta and x^{1-delta} the charge deviates from its
+mean by at most (h log(x/h))^{1/2} (log x)^A. From it: square-root cancellation at the largest scale by a block
+argument (h = x^{1-delta}/2, x^delta blocks), von Koch's Mellin lemma, the Line; then Born rule, sampling lemma (Jensen),
+Immortality, Proportional Leakage with U constant. Real status unchanged from Manuscript II: Bounded Deviation is a
+conjecture stronger than RH (Cramer / Montgomery-Soundararajan scale); everything else is a theorem. 5 pages.
 
 ROUND 'LETS RUN IT' (2026-10-02): the tail law at a = 1.75, run on explicit request as the fiction's adjudicating
 measurement (Part III, Section 18). The old K-mode engine could not reach it (K^4 assembly, eig); rh_weil_fast.py was

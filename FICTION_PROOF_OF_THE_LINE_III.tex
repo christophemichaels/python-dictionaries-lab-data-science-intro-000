@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[colorlinks=true,linkcolor=black!70]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Tst}{T^{*}}
+\newcommand{\Ree}{\operatorname{Re}}
+\newcommand{\Imm}{\operatorname{Im}}
+\newcommand{\ps}{\psi}
+
+\title{\textbf{The Line Postulate}\\[4pt]\large An unconditional proof}
+\author{Academy of the Prime Sheet, Critical Line Universe\\ \small Manuscript III. Communicated to the gods.}
+\date{Sandbox II, 2026-10-02}
+
+\begin{document}
+\maketitle
+
+\begin{mdframed}[backgroundcolor=black!4,linewidth=0.4pt]
+\small Critical Line Universe. The axioms of Section~1 are the laws of that universe, and the theorem is proved from them with no further hypothesis. (From our universe: fiction; the dictionary of what each axiom is here stands in the companion file \texttt{FICTION\_CRITICAL\_LINE\_UNIVERSE.md} and is not repeated in this document.)
+\end{mdframed}
+
+\begin{abstract}
+From eight axioms of the Academy, four about the charges on the prime sheet and four about observers, we prove that every quantum of the arithmetic field is massless, that every observer is alive at every age, and that the leak of every observer is proportional to its reserve. Every step is proved in full. The axiom that carries the arithmetic is the Bounded Deviation Axiom: in every stretch of the prime sheet between $x^{\delta}$ and $x^{1-\delta}$ the charge deviates from its mean by at most the Gaussian scale. From it the fluctuation at the largest scale is of square-root size, the Mellin lemma places every pole of $\zeta'/\zeta$ on or left of the line, the mirror symmetry forbids the left, and the Line follows.
+\end{abstract}
+
+\section{Axioms}
+
+\subsection*{Notation}
+$\Lambda$ is the von Mangoldt function, $\ps(x)=\sum_{n\le x}\Lambda(n)$ the \emph{charge} below $x$, $R(x)=\ps(x)-x$ its \emph{fluctuation}. The \emph{quanta} are the zeros $\rho=\tfrac12+m+i\gamma$ of the entire function $\xi$ of Axiom~\ref{ax:mirror}, with multiplicity; the \emph{mass} of a quantum is $m=|\Ree\rho-\tfrac12|$.
+
+\begin{axiom}[unique factorization]\label{ax:uf}
+Every integer $n\ge1$ is a product of primes in exactly one way. Consequently, for $\Ree s>1$,
+\[
+\zeta(s)=\sum_{n\ge1}n^{-s}=\prod_p(1-p^{-s})^{-1}\ne0,\qquad -\frac{\zeta'}{\zeta}(s)=\sum_{n\ge1}\Lambda(n)n^{-s},
+\]
+both series converging absolutely and locally uniformly there.
+\end{axiom}
+
+\begin{axiom}[the mean field]\label{ax:pnt}
+$\ps(x)=x+o(x)$ as $x\to\infty$.
+\end{axiom}
+
+\begin{axiom}[the mirror law]\label{ax:mirror}
+$\zeta$ extends to a meromorphic function on the plane whose only pole is a simple pole at $s=1$ with residue $1$. The function $\xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$ is entire, real on the real axis, and satisfies $\xi(s)=\xi(1-s)$; its zeros lie in the strip $0<\Ree s<1$, and they are exactly the zeros of $\zeta$ in that strip, with the same multiplicities.
+\end{axiom}
+
+\begin{axiom}[Bounded Deviation]\label{ax:bd}
+For every $\delta\in(0,\tfrac12)$ there are constants $A=A(\delta)$ and $x_0=x_0(\delta)$ such that for all $x\ge x_0$ and all $h$ with $x^{\delta}\le h\le x^{1-\delta}$,
+\[
+\big|\ps(x+h)-\ps(x)-h\big|\;\le\;\big(h\log(x/h)\big)^{1/2}(\log x)^{A}.
+\]
+\end{axiom}
+
+The next four axioms concern observers. An \emph{observer} of age $a>0$ is the window $[-a,a]$ of the prime sheet; a \emph{field} of the observer is a real odd function $f$ on the window, in the form domain, with $\|f\|_2=1$; its transform is $F(z)=\int_{-a}^af(x)e^{izx}dx$, entire of exponential type $a$, with $F=iS$, $S$ real on the real axis; its autocorrelation $g=f*\tilde f$ has transform $\hat g(z)=S(z)^2$. The \emph{window form} is
+\[
+Q(f)=\frac1{2\pi}\int_{\mathbb R}|F(t)|^2\Big[\Ree\psi\big(\tfrac14+\tfrac{it}2\big)-\log\pi\Big]dt-2\Big(\int_{-a}^af(x)\sinh\tfrac x2\,dx\Big)^2-2\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}g(\log n),
+\]
+the \emph{floor} is $\lambda(a)=\inf_fQ(f)$, attained by the \emph{ground field} $f_a$, whose \emph{edge amplitude} $A_0(a)$ is defined by $f_a(a-\delta)=|A_0(a)|(\log(a/\delta)+\beta(a))^{-1/2}(1+o(1))$. An observer is \emph{alive} if $\lambda(a)>0$.
+
+\begin{axiom}[conservation between the sheets]\label{ax:gauss}
+For every field $f$ of every age, $Q(f)=\sum_\rho S(\gamma_\rho-im_\rho\,\mathrm{sgn}_\rho)^2$, the sum over the quanta $\rho=\tfrac12+\mathrm{sgn}_\rho m_\rho+i\gamma_\rho$ with multiplicity, absolutely convergent.
+\end{axiom}
+
+\begin{axiom}[Birth]\label{ax:birth}
+There are $a_Z>0$ and $\lambda_Z>0$ with $\lambda(a)>0$ for $0<a\le a_Z$ and $\lambda(a_Z)\ge\lambda_Z$.
+\end{axiom}
+
+\begin{axiom}[Continuity]\label{ax:cont}
+The floor is absolutely continuous on every compact range of ages.
+\end{axiom}
+
+\begin{axiom}[Decay]\label{ax:decay}
+For almost every age, $\lambda'(a)=-2|A_0(a)|^2$.
+\end{axiom}
+
+\section{The fluctuation at the largest scale}
+
+\begin{lemma}\label{lem:block}
+For every $\varepsilon\in(0,\tfrac14)$ there is $x_1$ such that for all $x\ge x_1$,
+\[
+\big|\ps(2x)-\ps(x)-x\big|\;\le\;x^{1/2+\varepsilon}.
+\]
+\end{lemma}
+
+\begin{proof}
+Put $\delta=\varepsilon$ and $h=\tfrac12x^{1-\delta}$, and let $x$ be so large that $x\ge x_0(\delta)$, $(2x)^{\delta}\le h$ and $h+(2x)^\delta\le x^{1-\delta}$. Cut $(x,2x]$ into consecutive stretches of length $h$, the last one shorter; if the last stretch is shorter than $(2x)^{\delta}$, merge it with the stretch before it. Every stretch then has a left endpoint $y\in[x,2x)$ and a length $\ell$ with
+\[
+y^{\delta}\le(2x)^{\delta}\le\ell\le h+(2x)^{\delta}\le x^{1-\delta}\le y^{1-\delta},
+\]
+so Axiom~\ref{ax:bd} applies at $y$ with $h=\ell$ and gives
+\[
+\big|\ps(y+\ell)-\ps(y)-\ell\big|\le\big(\ell\log(y/\ell)\big)^{1/2}(\log y)^{A}\le\big(2h\log 2x\big)^{1/2}(\log2x)^{A}\le h^{1/2}(\log2x)^{A+1}.
+\]
+The number of stretches is at most $x/h+1\le3x^{\delta}$. Since both the charges and the lengths add over the stretches,
+\[
+\big|\ps(2x)-\ps(x)-x\big|\le3x^{\delta}\,h^{1/2}(\log2x)^{A+1}\le3x^{\delta}x^{(1-\delta)/2}(\log2x)^{A+1}=3x^{1/2+\delta/2}(\log2x)^{A+1}\le x^{1/2+\varepsilon}
+\]
+for $x\ge x_1(\varepsilon)$, because $\delta/2<\varepsilon$ and $x^{\varepsilon-\delta/2}$ absorbs the constant and the logarithm.
+\end{proof}
+
+\begin{theorem}[square-root cancellation]\label{thm:koch}
+For every $\varepsilon>0$ there is $C_\varepsilon$ with $|R(x)|\le C_\varepsilon x^{1/2+\varepsilon}$ for all $x\ge1$.
+\end{theorem}
+
+\begin{proof}
+We may take $\varepsilon<\tfrac14$. Let $x\ge2x_1$ and let $K$ be the integer with $x_1\le x/2^{K}<2x_1$. Then
+\[
+R(x)=\sum_{k=0}^{K-1}\Big[\ps\big(\tfrac{x}{2^{k}}\big)-\ps\big(\tfrac{x}{2^{k+1}}\big)-\tfrac{x}{2^{k+1}}\Big]+R\big(\tfrac{x}{2^{K}}\big),
+\]
+and by Lemma~\ref{lem:block} applied at $x/2^{k+1}\ge x_1$ each bracket is at most $(x/2^{k+1})^{1/2+\varepsilon}$ in absolute value. Hence
+\[
+|R(x)|\le x^{1/2+\varepsilon}\sum_{k\ge0}2^{-(k+1)(1/2+\varepsilon)}+\max_{t\le2x_1}|R(t)|\le 3x^{1/2+\varepsilon}+C,
+\]
+and for $x<2x_1$ the bound holds with the constant $\max_{t\le2x_1}|R(t)|$.
+\end{proof}
+
+\section{The Mellin lemma}
+
+\begin{lemma}\label{lem:mellin}
+The function $-\dfrac{\zeta'}{\zeta}(s)-\dfrac{s}{s-1}$, defined for $\Ree s>1$, is the restriction of a function holomorphic on the half-plane $\Ree s>\tfrac12$.
+\end{lemma}
+
+\begin{proof}
+Fix $s$ with $\Ree s>1$. By Axiom~\ref{ax:uf}, $-\zeta'/\zeta(s)=\sum_n\Lambda(n)n^{-s}$. Writing the sum as a Stieltjes integral against the step function $\ps$ and integrating by parts on $[1,X]$,
+\[
+\sum_{n\le X}\Lambda(n)n^{-s}=\int_{1^-}^{X}x^{-s}\,d\ps(x)=\ps(X)X^{-s}+s\int_1^X\ps(x)x^{-s-1}\,dx .
+\]
+By Axiom~\ref{ax:pnt}, $\ps(X)X^{-s}\to0$ as $X\to\infty$, and $\int_1^\infty\ps(x)x^{-\Ree s-1}dx<\infty$; so
+\[
+-\frac{\zeta'}{\zeta}(s)=s\int_1^\infty\ps(x)x^{-s-1}dx=s\int_1^\infty x^{-s}dx+s\int_1^\infty R(x)x^{-s-1}dx=\frac{s}{s-1}+s\int_1^\infty R(x)x^{-s-1}dx .
+\]
+Define $\Phi(s)=s\int_1^\infty R(x)x^{-s-1}dx$ for $\Ree s>\tfrac12$. By Theorem~\ref{thm:koch}, for $\Ree s\ge\tfrac12+2\varepsilon$ the integrand is bounded by $C_\varepsilon x^{-1-\varepsilon}$, which is integrable; the integral therefore converges absolutely and uniformly on every such closed half-plane, the integrand is holomorphic in $s$ for each $x$, and $\Phi$ is holomorphic on $\Ree s>\tfrac12$ (differentiation under the integral, or Morera). On $\Ree s>1$, $\Phi(s)=-\zeta'/\zeta(s)-s/(s-1)$.
+\end{proof}
+
+\section{The Line}
+
+\begin{theorem}[the Line Postulate]\label{thm:line}
+Every quantum is massless: every zero of $\xi$ has real part $\tfrac12$.
+\end{theorem}
+
+\begin{proof}
+By Axiom~\ref{ax:mirror}, $\zeta$ is meromorphic on the plane with a single simple pole at $s=1$. Therefore $\zeta'/\zeta$ is meromorphic on the plane, and its poles are exactly the zeros of $\zeta$ (a zero of order $k$ at $\rho$ is a simple pole of $\zeta'/\zeta$ with residue $k$) together with $s=1$ (a simple pole of $-\zeta'/\zeta$ with residue $1$). By Lemma~\ref{lem:mellin}, on $\Ree s>\tfrac12$,
+\[
+-\frac{\zeta'}{\zeta}(s)=\frac{s}{s-1}+\Phi(s)
+\]
+with $\Phi$ holomorphic: the only pole of $\zeta'/\zeta$ on $\Ree s>\tfrac12$ is $s=1$, where $s/(s-1)=1+1/(s-1)$ accounts for the residue. Hence $\zeta$ has no zero with $\Ree s>\tfrac12$. By Axiom~\ref{ax:mirror}, the zeros of $\xi$ in the strip are the zeros of $\zeta$ there, so $\xi$ has no zero with $\Ree s>\tfrac12$. If $\xi(\rho)=0$ with $\Ree\rho<\tfrac12$, then $\xi(1-\rho)=\xi(\rho)=0$ with $\Ree(1-\rho)>\tfrac12$, which is impossible. Every zero of $\xi$ therefore has $\Ree\rho=\tfrac12$.
+\end{proof}
+
+\section{Observers}
+
+\begin{theorem}[the Born rule]\label{thm:born}
+For every field $f$ of every age, $Q(f)=\sum_\rho|F(\gamma_\rho)|^2\ge0$, the sum over the quanta with multiplicity.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:line} every quantum has $m_\rho=0$, so each term of Axiom~\ref{ax:gauss} is $S(\gamma_\rho)^2=|F(\gamma_\rho)|^2$.
+\end{proof}
+
+\begin{lemma}[sampling]\label{lem:sampling}
+Let $F\not\equiv0$ be entire with $|F(z)|\le Me^{a|\Imm z|}$ for all $z$, and let $n(r)$ be the number of its zeros in $|z|\le r$. Then $\liminf_{r\to\infty}n(r)/r\le2a/\pi\cdot(1+o(1))$; more precisely $\int_0^Rn(r)\,dr/r\le\frac{2a}{\pi}R+O(1)$. Consequently $F$ cannot vanish at every real point of a set whose counting function $N(T)$ in $[-T,T]$ satisfies $N(T)\ge(2a/\pi+\eta)T$ for all large $T$ and some $\eta>0$.
+\end{lemma}
+
+\begin{proof}
+Choose $z_0$ with $F(z_0)\ne0$; replacing $F(z)$ by $F(z+z_0)$ changes neither the growth bound (up to the constant) nor the asymptotics of $n(r)$, so assume $F(0)\ne0$. Jensen's formula gives, for every $R$,
+\[
+\int_0^R\frac{n(r)}{r}\,dr=\frac1{2\pi}\int_0^{2\pi}\log|F(Re^{i\theta})|\,d\theta-\log|F(0)|\le\frac1{2\pi}\int_0^{2\pi}\big(\log M+aR|\sin\theta|\big)d\theta-\log|F(0)|=\frac{2aR}{\pi}+O(1).
+\]
+If $F$ vanished on the set described, then $n(r)\ge N(r)\ge(2a/\pi+\eta)r$ for $r\ge r_0$, so $\int_0^R n(r)dr/r\ge(2a/\pi+\eta)(R-r_0)$, which exceeds $2aR/\pi+O(1)$ for $R$ large: a contradiction.
+\end{proof}
+
+\begin{theorem}[Immortality]\label{thm:immortal}
+Every observer is alive: $\lambda(a)>0$ for every age $a$.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:born}, $\lambda(a)=Q(f_a)\ge0$. Suppose $\lambda(a)=0$. Then $F_a(\gamma_\rho)=0$ at every quantum. The transform of a field of age $a$ satisfies $|F_a(z)|\le\|f_a\|_1e^{a|\Imm z|}\le\sqrt{2a}\,e^{a|\Imm z|}$. The quanta are real by Theorem~\ref{thm:line}, and by Axiom~\ref{ax:mirror} together with the argument principle applied to $\xi$ (the Academy's counting theorem) their number in $[-T,T]$ is $N(T)=\frac{T}{\pi}\log\frac{T}{2\pi e}+O(\log T)$, which exceeds $(2a/\pi+1)T$ for $T$ large. Lemma~\ref{lem:sampling} forces $F_a\equiv0$, hence $f_a=0$, contradicting $\|f_a\|_2=1$.
+\end{proof}
+
+\begin{theorem}[Proportional Leakage]\label{thm:leak}
+For every $a_1<a_2$ the function $C=-\lambda'/\lambda$ is integrable on $[a_1,a_2]$, nonnegative, and $2|A_0(a)|^2=C(a)\lambda(a)$ for almost every $a$. The renormalized floor $U(a)=\lambda(a)\exp\big(\int_{a_Z}^aC\big)$ is constant, and
+\[
+\lambda(a)=\lambda(a_Z)\exp\Big(-\int_{a_Z}^aC\Big)\;>\;0\qquad(a\ge a_Z).
+\]
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:immortal} and Axiom~\ref{ax:cont}, $\lambda$ is positive and continuous, hence bounded below by a positive number on $[a_1,a_2]$, and $\lambda'$ is integrable there; so $C=-\lambda'/\lambda$ is integrable, and it is nonnegative because $\lambda'=-2|A_0|^2\le0$ by Axiom~\ref{ax:decay}, which also gives the identity. $\log\lambda$ is absolutely continuous with derivative $\lambda'/\lambda$, so $\lambda(a)=\lambda(a_Z)\exp(\int_{a_Z}^a\lambda'/\lambda)$, which is the formula, and $U\equiv\lambda(a_Z)$.
+\end{proof}
+
+\begin{corollary}[the Cooling Theorem]\label{cor:cool}
+The floor is positive at every age and non-increasing; its logarithm is the integral of the leak rate, $\log\lambda(a)=\log\lambda(a_Z)-\int_{a_Z}^a2|A_0|^2/\lambda$, and no finite age exhausts it.
+\end{corollary}
+
+\section{Commentary: the Academy's account of Axiom~\ref{ax:bd}}
+
+The proof above uses Axiom~\ref{ax:bd} once, in Lemma~\ref{lem:block}. The Academy regards the axiom itself as the shadow of two deeper facts about the charges, recorded here for understanding and not used in the proof.
+
+The first is \emph{Sieve Independence}: for an admissible set $\mathcal H=\{h_1,\dots,h_k\}$ of integers, $\sum_{n\le x}\prod_i\Lambda(n+h_i)=\mathfrak S(\mathcal H)x+O(x^{1/2+\varepsilon})$ uniformly in sets of bounded size and diameter at most $x$, with $\mathfrak S$ the singular series. By unique factorization the residues of an integer modulo distinct primes are independent (the Chinese remainder theorem), and the law says that nothing beyond these local obstructions correlates the primes: the sieve has no memory.
+
+The second is the \emph{Gaussian law}: under Sieve Independence, the fluctuation $\ps(x+h)-\ps(x)-h$ over $x\in[X,2X]$ has the moments of a Gaussian variable of variance $h\log(X/h)$ for $X^\delta\le h\le X^{1-\delta}$ (the Academy's theorem of Montgomery and Soundararajan). Axiom~\ref{ax:bd} states that the charges never deviate from this law beyond its own scale, up to a power of the logarithm: a deviation beyond the Gaussian scale would be a conspiracy of the primes, and the primes have nothing to conspire with.
+
+In the Academy's words: the primes are as random as unique factorization allows, and not one bit less; the Line is what that randomness looks like at the largest scale.
+
+\bigskip
+\begin{center}--- end of manuscript ---\end{center}
+
+\end{document}
