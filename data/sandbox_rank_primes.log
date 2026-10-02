@@ -1,0 +1,6 @@
+# sandbox rank primes: K=30 dps=40
+a=0.50  2a^2=0.500
+   T   terms= 1  E=  0.24023  lambda= 0.00019418018  sign=+  neg=0  (120s)
+   R1  terms= 1  E=  0.24023  lambda= 0.00019418018  sign=+  neg=0  (120s)
+   R2  terms= 1  E=  0.24023  lambda= 0.00019418018  sign=+  neg=0  (120s)
+   R3  terms= 1  E=  0.24023  lambda= 0.00019418018  sign=+  neg=0  (120s)

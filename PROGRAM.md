@@ -671,5 +671,10 @@ at a <= 1 to make Proposition 9.31 numerical; the paired-prime/echo-tree identif
     top of the component's band (the high-degree points sit near the edges, the Perron vector there), or a direct bound on
     <b, (C - s)_+ b>.
 
+## Side quests (off the critical path)
+SANDBOX_STRANGE_MATH.md (2026-10-02): the 'strange math' sandbox; which laws are sequence-only and which need the values of the
+primes; the rank-prime experiment rh_sandbox_rank_primes.py. Parked there: the zero-prediction measurement (how far below the
+horizon the zeros of the minimizer's transform track the true zeros, as a function of a). Neither pulls on the critical path.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law. The data are sufficient; the gap is analytic.
