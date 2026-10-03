@@ -32,7 +32,7 @@ Of the four responses requested, the one that can be given is the fourth.
 \item No proof of $\Hrec$ is given.
 \item No theorem in the supplied research implies $\Hrec$. Theorem~\ref{thm:equiv} shows that $\Hrec$ is equivalent to the Riemann Hypothesis, and the atlas entry M38, which is where the debit identity and the record induction come from, already labels the debit estimate ``open and equivalent in strength to the target''. The block, cofactor-flow and covariance results are exact identities or bounds in terms of the heights of $M$; Section~\ref{sec:supplied} checks each one's definitions and scope and finds that each transfers correctly and moves the whole difficulty into those heights.
 \item No weaker sufficient alternative exists. The closing deduction ends in $R(N)\ll_\varepsilon N^\varepsilon$, which is itself equivalent to the Riemann Hypothesis (Theorem~\ref{thm:equiv}), so every statement that closes the same argument has the strength of the Riemann Hypothesis.
-\item What is established here, with proofs: the exact structure of the debit in terms of the smooth M\"obius sum $A(k)$ and the high-prime sum $S(k)$, in which the two enter only through $A-S=M$ (Proposition~\ref{prop:partial}); the exponent dictionary, in which $\Hrec$ with a fixed exponent $\theta$ is a zero-free half-plane $\Re s>\tfrac12+\theta$ and the unconditional exponent is $1-o(1)$ (Theorem~\ref{thm:exponent}); the lower bounds $E(W)\ge(1-o(1))\,m/(24\log^2 m)$ and $E(u_0)+2M(m)h(u_0)\ge(1-o(1))\,m/(24\log^2m)$, so that the signed cross term $2\ip aW$ is positive and cancels both to within $\Delta_N$ (Theorem~\ref{thm:components}); the bound $\sum_pE(v_p)\le(\log2+o(1))\Rstar(m)$ for the diagonal of the prime-copy Gram matrix, so that the off-diagonal covariance carries all of $E(W)$ but at most $(\log2+o(1))\Rstar(m)$ (Corollary~\ref{cor:gram}); and the exact statement of the unsupported step (Section~\ref{sec:gap}).
+\item What is established here, with proofs: the exact structure of the debit in terms of the smooth M\"obius sum $A(k)$ and the high-prime sum $S(k)$, in which the two enter only through $A-S=M$ (Proposition~\ref{prop:partial}); the exponent dictionary, in which $\Hrec$ with a fixed exponent $\theta$ is a zero-free half-plane $\Re s>\tfrac12+\theta$ and the unconditional exponent is $1-o(1)$ (Theorem~\ref{thm:exponent}); the lower bounds $E(W)\ge(1-o(1))\,m/(24\log^2 m)$ and $E(u_0)+2M(m)h(u_0)\ge(1-o(1))\,m/(24\log^2m)$, so that the signed cross term $2\ip aW$ is positive and cancels both to within $\Delta_N$ (Theorem~\ref{thm:components}); the bound $\sum_pE(v_p)\le(\log2+o(1))\Rstar(m)$ for the diagonal of the prime-copy Gram matrix, so that the off-diagonal covariance carries all of $E(W)$ but at most $(\log2+o(1))\Rstar(m)$ (Corollary~\ref{cor:gram}); the exact statement of the unsupported step (Section~\ref{sec:gap}); and the route around $h$ (Section~\ref{sec:aroundh}): the two-endpoint compression of M37 removes the history interaction exactly, the remainder's energy is the harmonic-weighted variance of $M$ over the block, and $h$ reappears as the mean obligation, a square-root-strength bound on $\sum_{m<n\le N}\mu(n)/n$ at records.
 \end{enumerate}
 
 \noindent\emph{Status labels.} Following the fixed dictionary, every statement is one of: \textbf{Definition}; \textbf{Proved} (here, or cited with its hypotheses); \textbf{Remaining hypothesis}. Numerical values appear only in Section~\ref{sec:verification}, as verification of identities and of orders of magnitude, and are labelled \textbf{Computation}.
@@ -289,6 +289,60 @@ In the prime-side form, the same step reads: show that the signed cross term $2\
 
 The strongest statements established here toward the target are Theorem~\ref{thm:exponent} (the exact strength of $\Hrec(\theta)$ for each $\theta$), Theorem~\ref{thm:components} with Corollaries~\ref{cor:gram} and~\ref{cor:noterm} (the sign and the size of the cross term, and the impossibility of a term-by-term proof in the regime of the conclusion), and the identity \eqref{eq:flow} with its exact hypotheses. They are what the target rules out and what any proof has to go through; they do not reduce its strength.
 
+\section{A route around $h$: the two-endpoint compression}\label{sec:aroundh}
+
+The past enters the debit only through the scalar $h(u)$ (Lemma~\ref{lem:history}). The compression of atlas entry M37 removes it: subtract from the block the two-point vector that carries its total and its harmonic total; the remainder is orthogonal to the past, to the future and to its own endpoint pair. This section makes that exact, identifies the remainder, and records what the record estimate becomes without $h$.
+
+Write $u=\mu\mathbf 1_{(m,N]}$, $s=m+1$, $B=M(N)-M(m)$ for its total, $h=h(u)=\sum_{m<n\le N}\mu(n)/n$ for its harmonic total, $w_k=1/(k(k+1))$ for $m<k<N$, $\beta=\sum_{k=m+1}^{N-1}w_k=\frac1{m+1}-\frac1N$, and let
+\[
+\overline M=\frac1\beta\sum_{k=m+1}^{N-1}w_kM(k),\qquad \operatorname{Var}_w(M)=\frac1\beta\sum_{k=m+1}^{N-1}w_k\big(M(k)-\overline M\big)^2
+\]
+be the mean and the variance of $M$ on the interior of the block in the harmonic weight $w$.
+
+\begin{theorem}[The $h$-free decomposition; \textbf{Proved}]\label{thm:aroundh}
+Let $c=h-B/N$, $\hat u=(c/\beta)\,e_s+(B-c/\beta)\,e_N$ and $z=u-\hat u$. Then:
+\begin{enumerate}
+\item[(i)] $z$ has total zero and harmonic total zero; $\ip gz=0$ for every $g$ supported in $[1,m]$ or in $(N,\infty)$; and $\ip z{\hat u}=0$.
+\item[(ii)] $c/\beta=\overline M-M(m)$; the partial sums of $z$ are $M(k)-\overline M$ for $m<k<N$ and $0$ at $N$; hence $E(z)=\beta\operatorname{Var}_w(M)$.
+\item[(iii)] $\beta^{-1}\big(h+M(m)\beta-B/N\big)^2=\beta\,\overline M^{\,2}$.
+\item[(iv)] $\displaystyle \Delta_N=E(z)+\beta\,\overline M^{\,2}+\frac{M(N)^2}N-\frac{M(m)^2}{m+1}=\beta\operatorname{Var}_w(M)+\beta\,\overline M^{\,2}+\frac{M(N)^2}N-\frac{M(m)^2}{m+1}.$
+\end{enumerate}
+In particular $E(u)=E(z)+c^2/\beta+B^2/N$, which is the identity of M37, and $E(z)\ge0$ is its compatibility inequality $c^2\le\beta\,(E(u)-B^2/N)$.
+\end{theorem}
+
+\begin{proof}
+(i) The total of $\hat u$ is $B$, and $h(\hat u)=\frac{c/\beta}s+\frac{B-c/\beta}N=\frac c\beta\big(\frac1s-\frac1N\big)+\frac BN=h$. For $g$ supported in $[1,m]$ the proof of Lemma~\ref{lem:history} gives $\ip gz=G(m)h(z)=0$; for $g$ supported in $(N,\infty)$, $\ip zg=\sum_jg(j)j^{-1}\sum_iz(i)=0$; $\ip z{e_N}=N^{-1}\sum_iz(i)=0$, and since $\supp z\subseteq[s,N]$, $\ip z{e_s}=\sum_{i\ge s}z(i)/i=h(z)=0$. (ii) Abel summation gives $h=\sum_{k=m+1}^{N-1}w_k\big(M(k)-M(m)\big)+B/N$, so $c/\beta=\overline M-M(m)$. For $s\le k<N$ the partial sum of $z$ is $\big(M(k)-M(m)\big)-c/\beta=M(k)-\overline M$, and at $N$ it is $B-B=0$; Lemma~\ref{lem:cum} gives $E(z)=\sum w_k(M(k)-\overline M)^2$. (iii) $h+M(m)\beta-B/N=c+M(m)\beta=\beta\,\overline M$ by (ii). (iv) By (i), $E(u)=E(z)+E(\hat u)$ and $\ip{\mu\mathbf 1_{[1,m]}}u=\ip{\mu\mathbf 1_{[1,m]}}{\hat u}=M(m)h$; and $E(\hat u)=\frac{c_s^2}s+\frac{c_N^2}N+\frac{2c_sc_N}N=c_s^2\beta+\frac{B^2}N=\frac{c^2}\beta+\frac{B^2}N$ with $c_s=c/\beta$, $c_N=B-c_s$. Hence $\Delta_N=E(u)+2M(m)h=E(z)+c^2/\beta+2M(m)h+B^2/N$, and with $A=M(m)$,
+\[
+\frac{c^2}\beta+2Ah+\frac{B^2}N=\frac{(c+A\beta)^2}\beta+2A(h-c)-A^2\beta+\frac{B^2}N=\frac{(c+A\beta)^2}\beta+\frac{(A+B)^2-A^2}N-A^2\beta=\frac{(c+A\beta)^2}\beta+\frac{M(N)^2}N-\frac{M(m)^2}{m+1},
+\]
+using $h-c=B/N$ and $\beta=\frac1{m+1}-\frac1N$. With (iii) this is (iv). Comparing (iv) with \eqref{eq:debitM} is the identity $\sum_{k=m+1}^{N-1}w_kM(k)^2=\beta\,\overline M^{\,2}+\beta\operatorname{Var}_w(M)$.
+\end{proof}
+
+\begin{corollary}[The record estimate without $h$; \textbf{Proved}]\label{cor:aroundh}
+$\Hrec$ is equivalent to the conjunction, at all large strict records and with constants changed by bounded factors, of
+\[
+\text{(V)}\ \ \beta\operatorname{Var}_w(M)\le A_\eta N^\eta R(m),\qquad
+\text{(M)}\ \ \beta\,\overline M^{\,2}\le A_\eta N^\eta R(m),\qquad
+\text{(T)}\ \ \frac{M(N)^2}N\le A_\eta N^\eta R(m).
+\]
+The mean obligation (M) is a bound on $h$ itself: at a strict record $N$ at which $\Hrec$ holds,
+\begin{equation}\label{eq:hbound}
+\Big|\sum_{m<n\le N}\frac{\mu(n)}n\Big|\le4\,(A_\eta N^\eta+1)^{1/2}\Big(\frac{R(m)}m\Big)^{1/2}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+In Theorem~\ref{thm:aroundh}(iv) every term is nonnegative except $-M(m)^2/(m+1)\ge-R(m)$, so $\Hrec$ gives each of (V), (M), (T) with $A_\eta N^\eta+1$ in place of $A_\eta N^\eta$; conversely $\Delta_N$ is at most their sum. For \eqref{eq:hbound}, (iii) gives $h=\beta\,\overline M-M(m)\beta+B/N$, and $\beta\le1/m$, $|M(m)|\le\sqrt{mR(m)}$, $|M(N)|\le\sqrt{NR(N)}\le\sqrt{N(1+A_\eta N^\eta)R(m)}$ at a record give $\beta|\overline M|\le\big(\beta(A_\eta N^\eta+1)R(m)\big)^{1/2}$, $\beta|M(m)|\le(R(m)/m)^{1/2}$ and $|B|/N\le(|M(N)|+|M(m)|)/N\le2\big((A_\eta N^\eta+1)R(m)/m\big)^{1/2}$.
+\end{proof}
+
+\begin{remark}[What the route around $h$ changes]\label{rem:aroundh}
+\begin{enumerate}
+\item[(a)] It removes the history interaction exactly. No scalar of the past multiplies a scalar of the block; the block interacts with the past and the future only through $\hat u$, and the remainders $z_j$ of disjoint blocks are mutually orthogonal and orthogonal to every endpoint pair, so their energies are permanent storage: $R(N)=\sum_jE(z_j)+E\big(\sum_j\hat u_j\big)$, the formula of M37.
+\item[(b)] It identifies the compression: $\hat u$ subtracts the harmonic-weighted mean level $\overline M$ of $M$ over the block, and $E(z)$ is the variance of $M$ about that level in the weight $w$. The scalars retained by M37, the total $B$ and the harmonic total $h$, are the terminal $M(N)$ and the mean $\overline M$.
+\item[(c)] It does not change the strength, as Theorem~\ref{thm:equiv} requires, and it shows where $h$ goes: it reappears as the mean obligation (M), which at records is the square-root-strength bound \eqref{eq:hbound} on the tail of the harmonic M\"obius sum beyond $m=\lfloor\sqrt N\rfloor$. Unconditionally only $\sum_{n>x}\mu(n)/n\ll\exp(-c\sqrt{\log x})$ is known \cite[Ch.~12]{ivic}, while $x^{-1/2+\varepsilon}$ is the Riemann Hypothesis bound. The variance obligation (V) is the centered mean square of $M$ over $(\sqrt N,N)$ in the measure $dk/k$, that is \eqref{eq:gap} with its mean removed. The route separates the obligation into the tail of the harmonic sum and the centered mean square; it shrinks neither.
+\end{enumerate}
+\end{remark}
+
 \section{Verification}\label{sec:verification}
 
 \begin{computation}[Identities and orders of magnitude]
@@ -315,6 +369,8 @@ last record $N'$; $\Delta_{N'}/R(\lfloor\sqrt{N'}\rfloor)$ & $355733$; $0.229$ &
 \end{tabular}
 \end{center}
 At $N=10^6$: $S(k)=\pi(k)-\pi(m)$ for $m<k<2(m+1)$ was checked exactly; $S(k)\log^2k/k=-1.02,-1.10,-1.22,-1.25$ at $k=N/8,N/4,N/2,N$; the energy of the single cell $L=1$ is $1681.8$. The identity \eqref{eq:flow} was checked to $10^{-12}$ at $(N,p)=(10^5,1009),(10^5,317),(10^6,1009)$, and $|2M(L)m_1(L)|\le(\sqrt L-1)R(L)$ holds for $2\le L\le10^6$ with maximal ratio $0.546$ at $L=3$; also $|m_1(L)|\le\tfrac12$ for $2\le L\le10^6$.
+
+The decomposition of Theorem~\ref{thm:aroundh} was checked at the same two values: at $N=10^6$, $E(z)=\beta\operatorname{Var}_w(M)=0.201998$, $\beta\overline M^{\,2}=0.005894$, $M(N)^2/N=0.0449$, $M(m)^2/(m+1)=0.0040$, summing to $\Delta_N=0.248840$ to $10^{-15}$, with $\overline M=-2.43$, $\operatorname{sd}_w(M)=14.2$, $h=-4.21\times10^{-3}$ against $(R(m)/m)^{1/2}=3.8\times10^{-2}$; at $N=10^7$ the four terms are $0.233315$, $0.000353$, $0.1075$, $0.0455$, summing to $0.295678$, with $\overline M=-1.06$, $\operatorname{sd}_w(M)=27.2$, $h=-4.02\times10^{-3}$ against $2.2\times10^{-2}$. The total, the harmonic total and $\ip z{\hat u}$ vanished to $10^{-14}$, $10^{-18}$ and $10^{-16}$.
 \end{computation}
 
 \begin{thebibliography}{9}

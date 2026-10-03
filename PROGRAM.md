@@ -838,6 +838,13 @@ E(x - U_p x) = (1 + 1/p)R(L) - (2/p)M(L)m_1(L) under p <= N < p^2; not summable 
 Verified at N = 10^6, 10^7: Delta = 0.249, 0.296 against components 101, 105, -206 and 529, 541, -1072; S(k) log^2 k/k in
 [-1.25, -1.0]. The unsupported step: any bound on sum_{m<=k<N} M(k)^2/(k(k+1)) below N exp(-c (log N)^{3/5-o(1)}).
 No supplied theorem implies H_record; no weaker sufficient alternative exists (the conclusion R(N) << N^eps is RH).
+The route around h (Section 7 of the note, on request): M37's two-endpoint compression u-hat = (c/beta) e_s + (B - c/beta) e_N,
+z = u - u-hat, made exact: z has zero total and zero harmonic total, is orthogonal to past, future and u-hat; c/beta =
+mean_w(M) - M(m) (harmonic weight w_k = 1/(k(k+1)) on (m, N)); E(z) = beta Var_w(M); and
+Delta_N = beta Var_w(M) + beta mean_w(M)^2 + M(N)^2/N - M(m)^2/(m+1). So H_record = variance obligation + mean
+obligation + terminal, and the mean obligation is |sum_{m<n<=N} mu(n)/n| <= 4 (A N^eta + 1)^{1/2} (R(m)/m)^{1/2} at
+records: h does not disappear, it becomes the square-root bound on the tail of the harmonic Moebius sum. Strength
+unchanged. Verified at 10^6 (0.201998 + 0.005894 + 0.0449 - 0.0040 = 0.248840) and 10^7.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
