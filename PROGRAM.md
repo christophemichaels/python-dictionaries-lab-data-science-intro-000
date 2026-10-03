@@ -782,6 +782,16 @@ polar functional (size e^{a/2}) against the far-edge feedback, which for the odd
 so alpha_0 obeys a scalar self-consistency equation; NEXT: derive it exactly for the prime-free operator with the polar
 source, then with one entry. The user's updated eight-page addendum is awaited (the sandbox link is not reachable here).
 
+## 2026-10-03, later: the updated addendum (v2) audited; the cancellation located
+received/Prime_Side_Completion_Addendum_v2.pdf (8 pages): Propositions 4-6, (8.1), (9.1), (10.1) all verified
+(RESEARCH_SECULAR_FORM.md, Section 8); Proposition 5's two-sided bound checked to 5 digits at five supports. Finding
+recorded (Section 9): the prime-free floor is negative beyond a = 0.35 (lambda_pf(0.4) = -0.078, (0.5) = -0.32, (0.6) =
+-0.54), so positivity, and the margin, are a prime effect; the archimedean-only scalar equation is not informative; the
+first informative case is one entry (0.347 < a < 0.549) with sigma_eff = sigma~_inf - c_2^2/sigma~_inf. For the forced
+problem the far feedback is fixed by continuity of the regular part of the force at the edge, r(0+) = sqrt2 sinh(a/2) =
+the source value, so the cancellation is among the source step, the echo value u(a - log 2) and the rational corrections
+at the real zeros. NEXT: the one-entry Wiener-Hopf solution of (H - lambda) u = v written out (steps (a)-(d) in the note).
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

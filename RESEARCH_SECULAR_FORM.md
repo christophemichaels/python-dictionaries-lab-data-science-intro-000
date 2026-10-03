@@ -196,3 +196,58 @@ Proposition prop:whexact, where sigma_+- are explicit through Lemma lem:factor) 
 the remainder; then with one entry (sigma_eff = sigma~_inf - c_2^2/sigma~_inf). The question is whether the equation,
 combined with m(0,a) = <v_a, u_0> written in the same data, forces |alpha_0|^2 <= M (1 - m(0,a)) by an identity rather
 than by a cancellation one has to prove separately. Nothing below a_inf involves the zeros.
+
+## 8. Audit of the updated addendum (received/Prime_Side_Completion_Addendum_v2.pdf, Sections 8-10)
+
+| statement | check | status |
+|---|---|---|
+| Proposition 4 (polar decomposition; Q >= 0 iff m <= 1; Q >= delta <f,Hf> >= h delta ||f||^2) | identical to (P1); necessity of m <= 1 by f = H^{-1}v with Q = m(1-m) | PROVED |
+| (8.1): u_lambda = u_0 + lambda R_lambda u_0, delta = lambda <u_0, u_lambda>, the inner product real positive | resolvent identity; positivity by spectral calculus | PROVED |
+| Proposition 5: delta <= lambda N <= (h/(h - lambda)) delta, delta >= lambda ||u_0||^2 | spectral measure of H at v; numerically delta/(lambda N) = 0.99987, 0.99998, 0.99998, 0.999990, 0.999994 against 1/(1 + lambda/h) = 0.99981, 0.99996, 0.99996, 0.999984, 0.999990 at a = 0.6..0.84 (within the bound), and delta = lambda ||u_0||^2 to 5 digits | PROVED; sharp here because lambda << h |
+| (9.1) alpha_lambda = alpha_0 + lambda beta_lambda | linearity of the boundary map on its justified domain | PROVED under the domain hypothesis |
+| Proposition 6: 2|alpha_lambda|^2 <= (4M + 4 D^2 lambda/n) delta, hence L <= K lambda | uses lambda^2 <= lambda delta/n from Proposition 5 and delta <= lambda N; cleaner than the K of (P10) | PROVED under (9.2) |
+| Section 10: (10.1) |B H^{-1} v|^2 <= M (1 - <v, H^{-1} v>) is the target; the far-edge feedback depends on the solution; ker H = ker Q cap v^perp when Q >= 0 | correct; the kernel statement is immediate from <f,Hf> = Q(f) + |<v,f>|^2 | correct |
+
+Nothing to correct. The two source bounds (9.2) are exactly (S1), (S2) of Section 6; the assessment there stands: (S2) is
+absolute and accessible, (S1) = (10.1) carries the cancellation.
+
+## 9. Where the cancellation lives: not in the archimedean operator
+
+[computation already in the repository, data/dilation_a*_primefree.log, K = 48] The prime-free floor, the bottom of
+K_infinity - |v><v| (archimedean part minus the polar term, no entries), is
+        lambda_pf(0.3) = +0.2226,   lambda_pf(0.4) = -0.0780,   lambda_pf(0.5) = -0.3222,   lambda_pf(0.6) = -0.5359 ,
+negative from about a = 0.35 on, while the full floor is +0.0147, +1.9e-4, +6.0e-7 at a = 0.4, 0.5, 0.6. So:
+  (i) positivity of Q_a, and of H_a itself beyond a = 0.35, is a PRIME effect: at the minimizer the autocorrelation at the
+      entries is negative and the term -2 sum c_n g(log n) is positive, lifting an indefinite archimedean form to a
+      doubly-exponentially small positive floor;
+ (ii) the archimedean-only scalar equation for alpha_0 (the NEXT of Section 7) is not the right first step: in the
+      prime-free problem the margin 1 - <v, K_infinity^{-1} v> is negative beyond 0.35 and there is nothing to cancel;
+(iii) the first informative case is ONE ENTRY, a_2 = 0.347 < a < a_3 = 0.549, where H_a = K_infinity - c_2 (tau_{log 2} +
+      tau_{-log 2}), c_2 = (log 2)/sqrt2, the effective symbol is sigma_eff = sigma~_inf - c_2^2/sigma~_inf (Corollary
+      cor:full), and the full floor already falls from 0.0147 to 1.9e-4 across the interval.
+
+The forced problem in this case. (H_a - lambda) u = v with v = sqrt2 sinh(x/2): the representation of Corollary cor:full
+applies verbatim with the minimizer's self-consistent polar coefficient 2P replaced by the fixed coefficient sqrt2
+(Proposition prop:whfull is proved for sources in L^1 cap L^2 with y h in L^2, which v is). In its proof the near source
+of H^'_- is the step -2iP sinh(a/2) - i c f(a - d) at the edge plus a smooth part, and "the far feedback is again
+-i r(0^+) + O(1/t)". For the forced problem the step is -i sqrt2 sinh(a/2) - i c_2 u(a - log 2). So
+
+        alpha = [ Wiener-Hopf functional of the step  -i sqrt2 sinh(a/2) - i c_2 u(a - log 2) ]  -  i r(0^+)  +  (rational corrections at +-t_lambda),
+
+where r is the regular part of the force at the edge, determined by the solution u itself (the paper's Lemma lem:cont:
+the regular part of K u is continuous across the edge, so for the minimizer g_reg(a) = 2P sinh(a/2), and for the forced
+problem g_reg(a) = (H u)(a^-) + lambda u(a) = v(a) = sqrt2 sinh(a/2) since u(a) = 0). This is the exact form of the
+"opposite-edge feedback": the regular part of the force at the near edge equals the source value there, by continuity,
+and the boundary coefficient is what is left of the near-source step after that return is subtracted, together with the
+echo term c_2 u(a - log 2) and the rational corrections. The cancellation that (10.1) requires is therefore between the
+step of the source at the edge, the value of the solution at the echo point a - log 2 (one step inside), and the return
+through the real zeros of sigma_eff. All three are explicit in the one-entry case.
+
+NEXT (replacing the NEXT of Section 7): (a) write, for a_2 < a < a_3, the Wiener-Hopf solution of (H_a - lambda) u = v in
+the right-edge frame with sigma_eff and its factors sigma_eff,+-, the near-source step -i sqrt2 sinh(a/2) - i c_2
+u(a - log 2), the far feedback -i r(0^+) with r(0^+) = sqrt2 sinh(a/2) by continuity, and the rational corrections at
++-t_lambda; (b) read off alpha as the residue at infinity and m(0,a) = <v, u_0> as the pairing; (c) express u(a - log 2),
+the only non-explicit datum, through the echo relation (eq:localecho with one echo: u near a - log 2 equals c_2 (k * u(a
++ .)) plus smooth); (d) check whether the resulting scalar relation for alpha_0 yields |alpha_0|^2 <= M (1 - m) with M
+locally bounded on (a_2, a_3). Everything in (a)-(c) is in the paper's Section 8 for the minimizer; the forced problem
+changes only the coefficient of the step.
