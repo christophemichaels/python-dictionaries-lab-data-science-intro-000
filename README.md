@@ -1,153 +1,88 @@
+# Riemann Hypothesis: Weil positivity, the Möbius Green energy, and the prime relay
 
-# Dictionaries lab
+Research repository of Christophe Michaels. Everything here surrounds the Riemann Hypothesis; nothing here proves it. Each document labels its statements as theorem (cited), proposition (proved here), computation (with precision and cross-checks), or heuristic.
 
-### Introduction
+## Papers and notes
 
-Now that we know about dictionaries in Python, it is time to practice using them. In this lesson, we'll use our knowledge of dictionaries to retrieve and assign data about various cities.
+| File | What it is |
+|---|---|
+| `mobius_modifier_v2.pdf` / `.tex` | *The Michaels Möbius Modifier and the Michaels Dynamic DNA Sieve*, version 2. The Green energy of the Möbius vector, its block decomposition, and (new in v2) its identification with the Nyman–Beurling–Báez-Duarte norm on the critical line; RH ⇔ R(N) = O(N^ε); closure statistics to 5×10⁷; the Möbius mean-square constant. |
+| `atlas_potential_set.pdf` / `.tex` | Two remarks for the Mathematical Theory Atlas: the potential set 𝒫(a) of the light cone (Krein extensions of the truncated Weil distribution), and the ground-state transform of the Weil form with its spectral corollary (RH ⇔ E_Γ + E_P ≥ ½ Var_ν). |
+| `weil_window.pdf` / `.tex` | *The Odd Weil Form on a Window: the sliding-window identity, the logarithmic edge law, and the bounded-relay conjecture.* The paper drawn from the memo: the wall and the (log)^{−1/2} edge law, the soft kink, the exact dilation identity, the boundary law λ′ = −2C², the floor to height 130, the conjectures and what a proof must be; Section 9 proves the edge law and the boundary law at almost every support, with the amplitude identified as the fixed point of the mirror equation through the Hankel norm of the window's symbol (Theorem 9.24). |
+| `RH_IF_THEN_TREE.md` | The if-then tree of the Weil-window program: from the present state of the paper to RH, every node with its status (proved, proved almost everywhere, conditional, open, equivalent to RH, false, numerical, plan), its IF/THEN branches and fallbacks, the leaves, the critical path and a dependency table of the paper's statements. A plan, updated after each round. |
+| `SANDBOX_STRANGE_MATH.md` | A side project, not part of the paper: the 'strange math' sandbox. Which laws of the window picture depend only on the sequence and density of the primes (the rank clock, the energy law 2a², the conservation of the edge's spectral mass, the confined-walk constants 5/12, 151/360, 4033/6720, the flux law, the blind spot) and which depend on their values (positivity, the critical line); the rank-prime experiment of `rh_sandbox_rank_primes.py`. |
+| `FICTION_CRITICAL_LINE_UNIVERSE.md` | Fiction, clearly labelled: a monograph from a universe in which the Riemann Hypothesis is a law of nature, asking why the primes are where they are. Two sheets, the Gauss law of arithmetic, the arithmetic vacuum, the First to Third Laws, the Cooling Theorem, the Repulsion Principle, the echo crystal, the dead universes, the Window Oracle, and a dictionary from each invented law to the real theorem, conjecture or computation it shadows. Part II explores the equation of state: the macrostate of an observer (floor, flux, three pressures), the virial law, the Riemann number κ(a) measured at nine supports, the temperature reading, the substate, and the one undetermined function. Part IV (2026-10-02): the Line Postulate derived inside the fiction (immortality of observers from a Leakage Law), with the ledger that names the one load-bearing axiom. |
+| `FICTION_PROOF_OF_THE_LINE.md`, `.tex`, `.pdf` | The fictional proof as a formal manuscript of the Critical Line Universe (the .tex/.pdf is the corrected second version; the .md keeps the first with a revision note): the two sheets, nine laws, the Mortality Theorem (masses iff deaths), the Leakage Law derived from the Born rule and the Local Law, the Immortality Theorem by continuation in age, the mirror-term lemma. Fiction; the translator's note says what each law is here. |
+| `FICTION_PROOF_OF_THE_LINE_II.tex`, `.pdf` | Manuscript II: the proof made unconditional inside the fiction and moved to the prime sheet. Laws about the charges only (unique factorization, mean field, the Random Walk Law of the primes at every scale, the mirror law); the Line by the Mellin lemma in one page; the Born rule, the Leakage Law and Immortality recovered as theorems; the Random Walk Law derived from Sieve Independence (Hardy–Littlewood) and No Large Deviations (Cramér). The translator's note: in our universe this is von Koch's theorem with a hypothesis stronger than RH. |
+| `FICTION_PROOF_OF_THE_LINE_III.tex`, `.pdf` | Manuscript III: the unconditional proof inside the fiction. Eight axioms of the Academy (unique factorization, mean field, mirror law, Bounded Deviation; conservation, Birth, Continuity, Decay), every step proved in full: square-root cancellation at the largest scale by blocks, the Mellin lemma, the Line, the Born rule, the sampling lemma by Jensen, Immortality, Proportional Leakage. No hedges in the body; the dictionary stays in the companion file. |
+| `received/The_Critical_Line_Theorem_and_Dictionary.pdf` | The user's number-theoretic revision (2026-10-02/03): the critical-line theorem as a conditional theorem of number theory (square-root error premise, Mellin identity, holomorphy, reflection), the Weil-form consequences with the multiplicity caveat, and the dictionary translating the sandbox's terms into number theory. Closes the sandbox; the work continues in number theory only. |
+| `received/Prime_Side_Completion_Addendum.pdf` | The user's addendum (2026-10-03): proved small estimates (Schur bound, BV-to-Lipschitz autocorrelation), the first-zero criterion, the measure-inequality target, and the finite-tree comparison still to be proved. Audited in RESEARCH_SECULAR_FORM.md. |
+| `received/Prime_Side_Completion_Addendum_v2.pdf` | The updated addendum (8 pages): the polar decomposition on the full operator, the source-transfer identities, the quantitative equivalence of the margins, the sufficient source estimate with explicit K, and the target (10.1). Audited in RESEARCH_SECULAR_FORM.md, Section 8. |
+| `received/Prime_Side_Completion_Addendum_v3.pdf` | The third version (11 pages): the small-energy identity Q(u₀) = mδ, the energy splitting at height T, the source comparison from a tail lower bound and a signed low-frequency bound, the correction bound, the fully specified K. Audited in RESEARCH_SECULAR_FORM.md, Section 10. |
+| `received/Prime_Side_Completion_Addendum_v4.pdf` | The fourth version (14 pages): the finite-window Fourier concentration lemma, the direct coercivity criterion from an all-function signed comparison at a fixed cutoff, its source-only corollary. Audited in RESEARCH_SECULAR_FORM.md, Section 11: the cutoff must scale with the horizon, where the constant is the paper's prolate count. |
+| `received/Prime_Side_Completion_Addendum_v5.pdf` | The fifth version (17 pages): the fixed-cutoff criterion shown equivalent to positivity on the largest window; the prime-square reflection saving of the CP20 document shown to be a + O(1) against a charge of order 2e^a. Audited in RESEARCH_SECULAR_FORM.md, Section 12. |
+| `received/Primes_Folds_One_Dot_visual_atlas.pdf` | The user's visual atlas of 27–28 September 2026 (45 pages, Chromium export; figures 17–31 are placeholders): the prime relay, the color energies, the zeta tuning, the magenta envelope, the parabola sieve, the magenta staircase and walk, the infinity and quadratic planes, the fold, the horn of rings, the light cone of the odd Weil form with the horizon T* = 2πe^{2a}, and the prime redshift. Companion of the paper version `primes_folds_one_dot.pdf` whose Figure 29 draws the cone. |
+| `RESEARCH_SECULAR_FORM.md` | Research note (2026-10-03): the prime-side form at a finite-tree support as the secular function of the polar source; the floor as its lowest root; the Hadamard formula of the resolvent; (d) as a level-set slope inequality; RH beyond a_Z as ⟨K_a⁻¹s, s⟩ ≤ 1/2; the finding that the prime-side operator's own bottom collapses doubly exponentially. |
+| `RESEARCH_H_RECORD.tex` / `.pdf` | Research note (2026-10-03): the record estimate H_record for the Möbius energy R(N). Proved: the debit identity in terms of the smooth sum A and the high-prime sum S, which enter only through A − S = M; H_record ⇔ RH, and the exponent dictionary (H_record(θ) ⇒ no zeros with Re s > 1/2 + θ; the unconditional exponent is 1 − o(1)); E(W) and E(u₀) + 2M(m)h(u₀) are each ≥ (1 − o(1)) m/(24 log² m), so the signed cross term carries the cancellation and no term-by-term bound can give the target; the diagonal of the prime-copy Gram matrix is ≤ (log 2 + o(1)) R*(m). The block, cofactor-flow (exact identity, hypotheses p ≤ N < p²) and covariance results are checked and transfer the whole difficulty to the heights of M. The unsupported step is stated exactly. Section 7, the route around h: the two-endpoint compression (M37) removes the history term exactly, E(z) is the harmonic-weighted variance of M over (√N, N), and h reappears as the mean obligation, a square-root-strength bound on Σ_{m<n≤N} μ(n)/n at records. Verified at N = 10⁶, 10⁷. |
+| `DICTIONARY.md` | The fixed dictionary of the program (2026-10-03): one mathematical meaning per term, three status labels, the prime-side objects, the Fourier convention, the closing deduction with its three inputs. |
+| `RH_ROUTES.md` | One hundred research routes toward RH, tiered by credibility, each with its known obstruction and a publishable next step; seven filters any route must pass. |
+| `RH_TOP3_PROOF_ARCHITECTURE.md` | The Weil-floor program as one object Φ(a) = −log λ(a): the derivative formula, the kink proposition for finite-mode forms and the soft kink of the exact form (the archimedean wall, the (log)^{−1/2} edge law, and its consequence for the relay), the Φ′ budget, rigidity of positivity under displacement of a prime, the relay conjecture (§2.7: Φ′ ≤ c·T\*, which implies RH, with its evidence to a = 1.2), and the four-lemma architecture with the lemma equivalent to RH isolated. |
+| `FOLDS_ERRATA.md` | Corrections and additions for *Primes, Folds, and the One Dot* (draft of 2026-09-28). |
+| `atlas/Michaels_Theta_Atlas_CP20.pdf` | *Theta Kernels, Weil Positivity, and the Mathematical Theory Atlas*, complete research compilation through Checkpoint 20 (23 September 2026), 679 pages, bookmarked. Foundations (Sections 1–20, Appendices A–G), Checkpoints 9–20, the 301 atlas entries, ten earlier notes, and the research record. |
+| `ATLAS_INDEX.md` | Index of the atlas: contents with PDF page numbers, the 301 entries grouped as the atlas groups them, provenance of the recovered file, and where the atlas meets the work in this repository. |
 
-### Objectives
+## Code
 
-* Practice retrieving information from dictionaries
-* Practice assigning new information to dictionaries
-* Practice retrieving information from a list of dictionaries
+All scripts are Python 3 and need only `numpy` and `mpmath` (plus `pymupdf` for PDF handling).
 
-### Working with a single dictionary
+| Script | Purpose |
+|---|---|
+| `rh_weil_odd.py` | 24–64-mode engine for the odd-sector Weil form on [−a, a] at 50 digits. Reproduces the floors and the Table 1 failure points of the folds paper to 4–6 digits. Finite-mode minima are upper bounds on the true floor; negative values certify indefiniteness, positive values do not certify positivity. |
+| `rh_kink_test.py`, `rh_kink_steps.py`, `rh_kink_modes.py`, `rh_kink_endpoint.py`, `rh_kink_profile.py` | The relay transition at the entry of 3: the derivative jump 4Λ(n)n^{−1/2} f(a_n)², its convergence in the step size and in the mode count, and the minimizer's profile near the endpoint. |
+| `rh_edge_fem.py` | Edge-adapted finite-element solver for the same form (hat functions on a mesh graded geometrically to 10⁻¹² of the window edge; exact cross-correlations, closed-form archimedean tails). Resolves the minimizer to log(a/δ) ≈ 25 and shows the edge law f(a−δ) = C (log(a/δ) + β)^{−1/2}. Double precision, numpy only. |
+| `rh_floor_grid.py` | The floor λ(a), the endpoint value and the two next eigenvalues on a grid of 97 supports on [0.30, 1.20] with the prime-power entries resolved at ±0.004 (K = 40, 60 digits); the data behind the relay conjecture of memo §2.7, saved in `floor_grid_K40.csv`, with the 72-mode drift test in `floor_grid_K72.csv`. Runs in parallel chunks. |
+| `rh_weil_arb.py`, `rh_arb_grid.py` | Ball-arithmetic engine for the same form (python-flint), hundreds of times faster, with rigorous eigenvalue enclosures; the drift test to a = 1.5 (height 130) in `floor_grid_arb.csv`. |
+| `rh_weil_fast.py` | The K-mode engine for K up to several hundred (paper Section 3, fourth engine): archimedean integral in the shift variable, one mirrored Legendre table per node, block-symmetric products, four processes, Q, Q′(a) and Q(a±δ) from one pass, inverse iteration with the Hellmann–Feynman derivative, sub-K floors from the leading blocks. Validated to every digit against the K = 80 reference at a = 1; K = 500 at 1000 bits in 1.8 h. Data: `data/tail_law_kmode/coefs_1.75.json`, `coefs_2.0.json`. |
+| `rh_zeros_arb.py` | Zeros of zeta to high precision with Arb (`acb.zeta_zeros`): `data/zeros_hp/` holds zeros 1–700 to 178 digits and 701–5200 to 63 digits, needed by the tail law's plunge region at a ≥ 1.75. |
+| `rh_hadamard.py` | The boundary law λ′(a) = −2C(a)² (memo §2.9): the edge amplitude from the FEM against the exact derivative; data in `boundary_law.csv`. `relay_scan.csv`: the exact derivative at ten offsets around each of the first five entries (memo §2.9, paper Computation 4.4). |
+| `rh_dilation.py` | The sliding-window identity (memo §2.8): the dilation derivative of the floor split into archimedean, prime and polar parts on the minimizer, verified to twenty digits, and the pencil (−Q′, Q) showing that the relay is a ground-state property, not an inequality between forms. |
+| `data/` | The inputs of `rh_hadamard.py` and of the soft-kink table: the edge-FEM minimizers (`fem_a*.json`, prime-free at a = 0.3–0.6 and with primes at 0.4, 0.45, 0.5, a₃) with their edge fits, the ball-arithmetic dilation logs at the same supports (`dilation_a*.log`), and the 134-node soft-kink finite differences (`softkink_134node.json`). `python3 rh_hadamard.py data/fem_a0.3_primefree.json data/dilation_a0.3_primefree.log data/fem_a3_full.json data/dilation_a0.549_full.log` reproduces the boundary-law table. |
+| `rh_fourier_check.py` | Independent Fourier-side check of the sliding-window identity at K = 12, a = 0.6 (paper Computation 5.9): D_∞ from (1/2π)∫|F|² t ∂_t Re ψ with F through spherical Bessel functions and the Parseval tail, D_P from g′(log n) of the exact autocorrelation, against the matrix-side a·λ_K′; twelve digits. |
+| `rh_bv_check.py` | Bounded variation of the minimizers (paper Computation 5.8): sup, total variation and the Hardy integral of the edge-FEM minimizers (`data/fem_*.json`, including the 124- and 237-node refinements at a = 0.5) and of the K-mode minimizers; outputs in `data/bv_fem.log`, `data/bv_fem_refinement.log`, `data/bv_kmode.log`. Behind the hypothesis (H_BV) under which the floor is Lipschitz. |
+| `rh_zero_side.py` | The floor and the sliding-window identity on the zero side (paper Computation 7.5): for the K-mode minimizer, 2Σ_{γ>0}|F(γ)|² against λ_K and λ_K + 2Σγ(|F|²)′(γ) against a·λ_K′, over the first 6000 zeros (`data/zeros_6000.txt`, from `mpmath.zetazero`, the first 400 to 36 digits), with Riemann–von Mangoldt tails, the share of the floor carried by the zeros below the horizon, and the zeros carrying most of it; logs in `data/zero_side_*.log`. |
+| `rh_tail_law.py` | The tail law (paper Computation 7.6, Conjecture 7.7): the fraction of the floor carried by the zeros above height T is Φ′/(πT), i.e. Φ′ = π·T_eff. Modes `fem` (edge-FEM minimizers on the zeros, closed-form transform of the piecewise-linear function), `coefs`/`shares` (per-zero shares of the K-mode minimizers), `shares_arb` (the same shares in ball arithmetic by Miller's recurrence, for a ≥ 1.75), `overlay` (ϑ(T/T*) across supports, medians). Data: `data/tail_law_fem.log`, `data/tail_law_kmode/`, `data/zeros_1500_50digits.txt` (first 1500 zeros to 50 digits, needed at a = 1.5), `data/zeros_hp/` (a ≥ 1.75). |
+| `rh_alignment.py` | The zeros' rotation at the entries (paper Computation 7.28): the tail-weighted average of cos(2γa) over the first 6000 zeros anti-aligns to −0.5…−0.6 exactly at the entries of the primes and is a cusp there; output in `data/alignment.log`. |
+| `rh_sum_rule.py` | The tail identity (paper Proposition 7.9, Computation 7.10; `jl` and `j1` give the overlap integrals J(L) of Lemma 7.11 and J₁(L) of Proposition 8.3): for the minimizer, the high-frequency energy against Ψ − λ equals the polar tail minus the overlap of the low-pass leak with the force outside the window; the three pieces on the edge-FEM minimizers with primes, and the edge-law model overlap; logs in `data/sum_rule_*.log`. |
+| `rh_cutoff_identity.py` | The cutoff dilation identity (paper Proposition 7.15): the dilation form as the sum of the tail at height T, the boundary term, the polar high-pass and twice the Hadamard pairing of the outside force with the low-pass of the dilation generator; every term computed independently on the prime-free FEM critical point; log in `data/cutoff_identity_a0.5_primefree.log`. |
+| `rh_wiener_hopf.py` | The Wiener–Hopf phase of the edge (paper Conjecture 7.19, Computation 7.20; the exact representation is Proposition 7.23 and Corollary 7.24): the phase θ = ½H[log σ̃] of the symbol by the Hilbert integral, the nulls of S = ∫f sin(tx) against ta = π/2 + kπ − θ(t) + κ/t, and the pointwise form −|A| cos(ta + θ − κ/t)/(t σ̃^{1/2}) with |A|² = −λ′/2; with primes also the echo form (the edge's symbol σ_∞ − c²/σ_∞ and the echo (c/σ_∞)e^{−it log n} of the edge at a − log n) (`python3 rh_wiener_hopf.py data/fem_a0.5_primefree.json -2.25815`; logs `data/wiener_hopf_a0.5_*.log`). Block (iv), the echo tree (Proposition 8.14, Corollary 8.15, Computation 8.17): the effective symbol as the Schur complement of the tree's adjacency, the echo amplitudes ρ = (σ̃ − C)^{−1}b, and the nulls and the pointwise form against the tree, the first generation alone and the window's symbol (`data/wiener_hopf_a0.6_full.log`). |
+| `rh_edge_constants.py` | The constants of the edge from the representation (paper Proposition 8.4, Computation 8.7; with the prime inside the window Proposition 8.8, Corollary 8.9, Computation 8.10): the profile against the predicted (−λ′/2)^{1/2}(log(a/δ) + β)^{−1/2}, β = −γ − log(2πa) − λ, nothing fitted, on the prime-free critical points at a = 0.3–0.6 and on the minimizers with the prime 2 inside the window at a = 0.4, 0.45, 0.5 and with the entries 2, 3 at a = 0.6 (Computation 8.17) (`python3 rh_edge_constants.py`; log `data/edge_constants.log`). |
+| `rh_sampling_defect.py` | The sampling defect of the zeros is the prime sum at the entries (paper Proposition 7.29, Corollary 7.30, Computation 7.31): under RH the explicit formula for h = |F|²χ_T, χ_T = 1 − e^{−(t/T)⁴}, turns the defect of the zeros above T against their density into −2ΣΛ(n)n^{−1/2}ȟ_T(log n) − 2P²(1 − e^{−1/(16T⁴)}), ȟ_T the smoothed autocorrelation of f; every term on the minimizers with primes at a = 0.4, 0.45, 0.5 with the first 6000 zeros at T = κT\*, κ = 1…20, and M_χ against 1 + 2c²/σ_∞(T)², the square of the echo's amplitude with the cutoff exponent 2m as an argument (m even; the polar term is 2P²(1 − e^{−(2T)^{−2m}})) and the prediction of Corollary 8.15(vi) for the echo tree, at T and averaged over the tail with the weight χ_T/t² (`python3 rh_sampling_defect.py [2m]`; logs `data/sampling_defect.log` (2m = 4) and `data/sampling_defect_exp8.log` (2m = 8)). |
+| `rh_echo_tree.py` | The echo tree of a support (paper Lemma 8.13, Proposition 8.14, Computation 8.16): the echo set S reached from the edges by walks with the entries as steps, the weighted adjacency C and the couplings b, the Schur-complement symbol σ_eff = σ̃ − b^T(σ̃ − C)^{−1}b and the echo amplitudes; the scan of |S°|, chain lengths, orbit sizes (confinement), spectra of C and C_a and the connectivity of the two edges' trees over 0.35 ≤ a ≤ 0.84, and the tree at a = 0.6 (`python3 rh_echo_tree.py [a_min a_max step]`; log `data/echo_tree.log`). |
+| `rh_band.py` | The sharp form inside the band (paper Proposition 8.18, Computation 8.20): on the K-mode minimizers of `data/tail_law_kmode/` (odd Legendre modes, transform through spherical Bessel functions at 80 digits), the local envelope ⟨t²(Ψ − λ)|F|²⟩/(−λ′) over windows of width 4T\* at κT\*, the fraction of the window where the window's symbol is negative, the parts of the envelope on the positive and the negative set, and the correlation of t²|F|² with 1/|σ_a| (`python3 rh_band.py 1.0 1.25 1.5`; logs `data/band_a*.log`). |
+| `rh_lattice_band.py` | The band of the confined echo lattice (paper Proposition 8.21, Computation 8.22): the echo set beyond a_∞ by breadth-first search in the exponent-vector representation, the top eigenvalue of the truncated weighted adjacency by power iteration (increasing to the spectral radius ρ(C)), the largest weighted degree, and the band tops 2πe^{ρ(C)} of the confined lattice and 2πe^{2Σc_d} of the periodic limit in units of the horizon (`python3 rh_lattice_band.py 0.8 0.9 1.0 1.1 1.25 1.5`; logs `data/lattice_band.log`, `data/lattice_band_large.log`). |
+| `rh_spectral_measure.py` | The band the edge sees (paper Proposition 8.23, Computation 8.24): the spectral measure μ_b of the confined lattice's adjacency at the edge's coupling b, by a dense eigenproblem on the first N points (`python3 rh_spectral_measure.py 6000 1.0 1.25`) or by Lanczos from b on a large truncation (`python3 rh_spectral_measure.py lanczos 150000 80 1.5 2.0`); the weight of μ_b above the heights σ̃_∞(κT\*), the return R(s), σ_eff/s, and the heights at which the weight above s drops below 10, 5, 1 percent (logs `data/spectral_measure.log`, `data/spectral_measure_lanczos.log`); `python3 rh_spectral_measure.py moments 150000 80 1.0 2.0` prints the moments m_k = ⟨b, C^k b⟩/|b|², the weighted multiplicative relations among prime powers below e^{2a} (paper Computation 9.2; log `data/spectral_moments.log`). |
+| `rh_plane.py` | The floor on the plane (paper Theorem 9.3, Corollary 9.4, Computation 9.5): on the K-mode minimizers, the quadratic functional q(z) = 4S(z)² of the transform at complex heights; the stiffness of the floor against the zeros leaving the line, κ₂ = Σ_{γ>0}16S′(γ)², and the critical displacement y_c = (λ/κ₂)^{1/2}; the growth of |q| off the line against the edge's cosh(2ya); and the fraction of heights at which Re q(x+iy) < 0 (`python3 rh_plane.py 0.6 0.8 1.0`; log `data/plane.log`). |
+| `rh_mirror_chains.py` | The mirror chains and what the K-mode minimizers resolve (paper Theorem 9.12, Computation 9.18): at a = 0.6, the edge FEM (interior resolved to 34 T*) against the K-mode polynomial of degree 95, which departs from it above (2K−1)/a = 7.6 T*; the first-generation echo phase in the FEM nulls (regression coefficients c₂, c₃) and its absence from the K-mode nulls; and, on the FEM nulls, the residual of the window's symbol phase removed by the two-step mirror chains at the frequencies v − 2a with the chain weights c_d c_d′ (`python3 rh_mirror_chains.py`; log `data/mirror_chains_a0.6.log`). |
+| `rh_walk_exact.py` | Exact rational evaluation of the polytope integrals of the confined walk (paper Proposition 9.39): J_2 = 5/12, J_3 = 17/24, hence κ_4 = 151/360 and the limiting kurtosis 302/125 = 2.416 (`data/walk_exact.log`). |
+| `rh_walk_exact4.py` | The sixth-order constants exactly, by four-dimensional exact polytope integration (paper Proposition 9.39): J_4 = 3329/1680 for the distinct-prime groups, 2L_6 = 877/2016 for the groups with one cancelling pair (orderings returning to the edge excluded), κ_6 = 4033/6720 and the sixth standardized moment 36297/4375 = 8.30 (`data/walk_exact4.log`, `data/walk_exact4_L6.log`); tested on the 4-cube, the 4-simplex and J_3. |
+| `rh_sandbox_rank_primes.py` | Sandbox (SANDBOX_STRANGE_MATH.md): the K-mode floor with the true primes replaced by three rank-based prime systems (every integer a prime; rank energies at true positions; true energies at rank positions), to separate what the window reads from the sequence of the primes from what it reads from their values. Log `data/sandbox_rank_primes.log`. |
+| `rh_walk_constants.py` | The continuum constants of the edge's measure (paper Proposition 9.39): the closed walks through the edge grouped by the rational they land on, with Mertens' density for the squared weights; J_2 = 5/12 reproduced, J_3 = 17/24 to 2e-4, the fourth-order constant κ_4 = 151/360 (limiting kurtosis 2.42) including the groups with a cancelling pair, and κ_6 ≈ 0.60 by Monte Carlo, confirmed exactly by `rh_walk_exact4.py` (`data/walk_constants.log`, `data/walk_constants_L6.log`). |
+| `rh_weil_even.py` | The even sector of the Weil form on the window (external review, 2026-10-01): the operator K_a^even without the polar term has exactly one negative eigenvalue and a positive ground state (Perron–Frobenius), the secular number 1 + 2⟨c,K⁻¹c⟩ is just below zero and the even floor min spec(K + 2cc^T) just above, both collapsing to zero from a = 0.7 (`data/weil_even_K30.log`, `data/weil_even_K40.log`). |
+| `rh_band_phase.py` | The K-mode minimizers above the horizon (paper Computation 9.18): the nulls of S on 3–400 T* against the archimedean and the window's symbol Hilbert phases, the pointwise form with the asymptotic amplitude, the local amplitude by height band, and the echo-phase regression, which vanishes: above (2K−1)/a the polynomial carries the edge alone, resolved to (2K−1)²/a (`python3 rh_band_phase.py 1.0 3 400`; logs `data/band_phase_a*.log`).; the 200-mode minimizer at a = 1 (`data/kmode_K200/coefs_1.0.json`, `data/band_phase_a1.0_K200_3-8.log`) resolves the interior to 8.6 T* and gives the echo regression the signs of the echo form at 60–80% of its size, the residual staying at 0.54 (the band dominates). |
+| `rh_blind_spot.py` | The blind spot of the window (paper Theorem 9.34, Computation 9.35) and the variation of the minimizer (Proposition 9.31): on the K-mode minimizers, the second-order formula for the quartet of an off-line zero against a double zero at its height, the single-zero sensitivity δ_c(γ) = (λ/16S′(γ)²)^{1/2} by height (e^{−cT*/2} below the horizon, above 1/2 from about 1.5 horizons on), and sup|f| and the total variation 4 sup|f| (`python3 rh_blind_spot.py 0.6 0.8 1.0 1.25`; log `data/blind_spot.log`). |
+| `rh_lattice_connect.py` | Connectivity of the interior echo lattice (paper Proposition 9.33): the right edge's closure by breadth-first search with the edge vertex removed, its connected components among the first N points, and the component of the first-generation points, which carries the edge's spectral measure; the two edges' closures are disjoint point sets at a non-resonant support (`python3 rh_lattice_connect.py 20000 0.9 1.0 1.25 1.5 2.0`; log `data/lattice_connect.log`). |
+| `rh_edge_moments.py` | The second and fourth moments of the edge's spectral measure, exactly, to a = 5 (paper Proposition 9.33(v), Computation 9.36): the two- and three-step walks from the edge grouped by their rational landing point, m₂|b|² = ‖Cb‖² and m₄|b|² = ‖C²b‖² as finite sums over the entries, the Chebyshev bounds on the mass above the horizon, and the comparison with the asymptotic bound m₂ ≤ (5/12)(2a)² (`python3 rh_edge_moments.py 1.0 2.0 3.0 4.0 5.0`; log `data/edge_moments.log`). |
+| `rh_soft_kink.py` | The soft kink at the entry of 3: finite differences of the edge-FEM floor across a₃ at scales 10⁻³ … 10⁻⁷, against the first-order entering energy and the law 4Λ(3)3^{−1/2}C²/(log(1/ε) + β). |
+| `rh_deleted_form.py` | Failure points of the form with the newest prime power deleted (Table 1 of the folds paper). |
+| `rh_rigidity.py` | Sensitivity of positivity to displacing a single prime. |
+| `rh_symbol_sign.py` | Where the truncated Weil symbol is negative, relative to the horizon. |
+| `rh_decay_fit.py` | Fits of −log λ(a) against T\*(a) and T\* log T\*. |
+| `rh_mobius_green.py`, `rh_mobius_zeros.py`, `rh_mobius_analyze.py` | The Möbius Green energy to 5×10⁷, the zero-side constants from the first 4000 zeros, and the comparison. |
 
-Here is a dictionary representing the city of Greenville, North Carolina in the USA.  The population is in units of 1000 people. The area is in units of kilometers squared.
+## Status
 
+Reviewed items are marked in the documents. External reviews of 2026-09-29 (independent referee on §12 of the Möbius paper; a four-branch review of the atlas and the folds paper) and of 2026-09-30 (independent referee on the Weil-window paper, whose report is applied in the revised `weil_window.pdf` and in memo §§2.6–2.9) have been applied; see the commit history.
 
-```python
-greenville = {'Area': 68, 'City': 'Greenville', 'Country': 'USA', 'Population': 93}
-```
+## Building the papers
 
-> Remember to press shift + enter to run the code.
-
-Let's retrieve the population of the city and assign it to the variable `greenville_population`.
-
-
-```python
-greenville_population = None # change None
-greenville_population # 93
-```
-
-Now retrieve the area of Greenville and assign it to the variable `greenville_area`.
-
-
-```python
-greenville_area = None
-greenville_area # 68
-```
-
-Now let's take a look at all of the keys in the `greenville` dictionary and coerce them into a list.  Assign this variable to the list `city_keys`.
-
-
-```python
-city_keys = None
-city_keys # ['Area', 'City', 'Country', 'Population']
-```
-
-Alright, next let's get all of the values in our greenville dictionary and coerce it into a list.  Assign that list to the variable `city_values`.
-
-
-```python
-city_values = None
-city_values # [68, 'Greenville', 'USA', 93]
-```
-
-### Working with multiple cities
-
-We can retrieve our data from an excel or Google sheets like the one [shown here](https://docs.google.com/spreadsheets/d/1kv8z2lZ3NLWbJcdE6ysd40BZLresdl5W6mWrtIunMn4/edit?usp=sharing) named Travel Cities and Countries.
-
-<img src="./countries-cities.png" width="500">
-
-Lukily for us, we already have the spreadsheet downloaded and located in the current folder.  You can find the file [in the github repository](https://github.com/learn-co-curriculum/python-dictionaries-lab/tree/solution). Next, we will use a Library called **Pandas** to get this data from the excel file into Python code. We already have the code for reading an excel file into Python written for us below. Let's check it out.
-
-> **Note:** To import a library or module in Python, we do so by writing `import` followed by the name of the thing we want to import. We can optionally include an *alias* for our import, which is done by writing **as** after the name of the thing we are importing followed by the name we would like to use for our *alias*. **Do not worry** about aliases right now. Just know that the *convention* for importing the pandas library is to import it and alias it as `pd` like we see below. 
-
-
-```python
-import pandas as pd
-file_name = './cities.xlsx'
-travel_df = pd.read_excel(file_name)
-cities = travel_df.to_dict('records')
-```
-
-> Remember to press shift + enter.
-
-Great! We just used pandas to read the data from our excel file and turn each row of data into a dictionary. Again, don't worry about exactly how pandas is doing this, but know that pandas is a great tool when trying to accomplish a task such as turning data from an excel file into data we can use in Python.
-
-Run the cell below to see what our data looks like now.
-
-
-```python
-cities
-```
-
-Ok, so the list of countries associated with each city has been assigned to the variable `cities`.  Now we will work with reading and manipulating this list of cities.
-
-### Working with our list of cities
-
-First, access the third to last element and set it equal to the variable `salina`.
-
-
-```python
-salina = None 
-salina
-# {'City': 'Salina Island', 'Country': 'Italy', 'Population': 3, 'Area': 26}
-```
-
-Now access the fifth country in the list, and set it's population equal to a variable called `los_cabos_pop`.
-
-
-```python
-los_cabos_pop = None
-los_cabos_pop # 288
-```
-
-Now calculate the number of cities in the list and assign the number to the variable `city_count`.
-
-
-```python
-city_count = None
-city_count # 12
-```
-
-Finally, change the spelling of the South Korean city, Pyeongchang, to the string `'PyeongChang'`, its alternative spelling.
-
-
-```python
-cities[7]['City'] = None
-cities[7]['City'] # 'PyeongChang'
-```
-
-Now let's work on retrieving a collection of information about a dictionary.  Use the appropriate dictionary function to return a list of values in the dictionary regarding Pyeongchang.   Assign the list to the variable `pyeongchang_values`.
-
-
-```python
-pyeongchang_values = None
-
-pyeongchang_values # ['PyeongChang', 'South Korea', 44, 1464]
-```
-
-
-```python
-type(pyeongchang_values) # list
-```
-
-And now set `pyeongchang_keys` equal to a list of keys in the dictionary regarding Pyeongchang.
-
-
-```python
-pyeongchang_keys = None
-
-pyeongchang_keys # ['City', 'Country', 'Population', 'Area']
-```
-
-
-```python
-type(pyeongchang_keys) # list
-```
-
-### Summary
-
-In this section we saw how to retrieve and re-assign data in a dictionary.  We saw how we can retrieve a collection of information from a dictionary, like a list of it's keys and values, and we saw how we can work with a list of dictionaries.
+`tectonic mobius_modifier_v2.tex` or `pdflatex` (packages: amsmath, amssymb, amsthm, booktabs, hyperref, enumitem, graphicx).

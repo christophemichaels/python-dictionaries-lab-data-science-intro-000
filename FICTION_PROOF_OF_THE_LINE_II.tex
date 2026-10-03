@@ -1,0 +1,273 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[colorlinks=true,linkcolor=black!70,citecolor=black!70]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{law}{Law}
+\renewcommand{\thelaw}{\Alph{law}}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Tst}{T^{*}}
+\newcommand{\Ree}{\operatorname{Re}}
+\newcommand{\Imm}{\operatorname{Im}}
+\newcommand{\ps}{\psi}
+\newcommand{\con}{c_{\mathrm{on}}}
+
+\title{\textbf{The Line from the Random Walk of the Primes}\\[4pt]\large An unconditional proof in the Critical Line Universe, on the prime sheet alone}
+\author{Academy of the Prime Sheet, Critical Line Universe\\ \small Manuscript II. Communicated to the gods.}
+\date{Sandbox II, 2026-10-02}
+
+\begin{document}
+\maketitle
+
+\begin{mdframed}[backgroundcolor=black!4,linewidth=0.4pt]
+\small\textbf{Fiction notice (from our universe).} This manuscript is written from inside the Critical Line Universe of the companion file \texttt{FICTION\_CRITICAL\_LINE\_UNIVERSE.md}. Its hypotheses are laws of that universe. In our universe one of them, the Random Walk Law, is a conjecture about primes that number theorists believe and have not proved; the translator's note at the end says exactly what is known. Nothing here is a claim about the real zeta function, and nothing here enters the paper.
+\end{mdframed}
+
+\begin{abstract}
+In Manuscript I the Line was derived from the Law of Proportional Leakage, and that law rested on the Born rule of arithmetic, a statement about the quanta. Here we remove the quanta from the hypotheses altogether. We take as laws three statements about the charges on the prime sheet, unique factorization, the mean field and the Random Walk Law (the charge in any stretch of the prime sheet fluctuates by at most the square root of itself), together with the mirror symmetry of the arithmetic zeta function, and we derive the Line from them by the Mellin lemma, in one page. The Born rule and the Leakage Law then become theorems, and the leakage picture of Manuscript I becomes the physics of a universe whose primes are as random as the sieve allows. A final section says where the Random Walk Law comes from in this universe: the Sieve Independence Principle, the Gaussian law of the charges in short stretches, and the absence of large deviations. The proof is unconditional in the Critical Line Universe. In ours it is the theorem that square-root cancellation of the primes at every scale forces every zero onto the line.
+\end{abstract}
+
+\section{Arithmetic laws}
+
+Throughout, $\Lambda$ is the von Mangoldt function ($\Lambda(n)=\log p$ if $n=p^k$, else $0$), $\ps(x)=\sum_{n\le x}\Lambda(n)$ is the \emph{charge} below $x$, and $R(x)=\ps(x)-x$ is the \emph{fluctuation} of the charge. On the prime sheet, coordinate $l=\log x$, the charge at $l=\log n$ has strength $q(n)=\Lambda(n)n^{-1/2}$; the count $\ps$ is the same information in the coordinate $x$.
+
+\begin{law}[unique factorization]\label{law:uf}
+Every integer $n\ge1$ is a product of primes in exactly one way. Consequently, for $\Ree s>1$,
+\[
+\zeta(s)=\sum_{n\ge1}n^{-s}=\prod_p\big(1-p^{-s}\big)^{-1},\qquad -\frac{\zeta'}{\zeta}(s)=\sum_{n\ge1}\Lambda(n)\,n^{-s},
+\]
+and the logarithms of the primes are linearly independent over the rationals.
+\end{law}
+
+\begin{law}[the mean field]\label{law:pnt}
+$\ps(x)=x\,(1+o(1))$ as $x\to\infty$.
+\end{law}
+
+\begin{law}[the Random Walk Law]\label{law:rw}
+For every $\varepsilon>0$ there is $x_\varepsilon$ such that for all $x\ge x_\varepsilon$ and all $h$ with $x^{\varepsilon}\le h\le x$,
+\[
+\big|\ps(x+h)-\ps(x)-h\big|\;\le\;h^{1/2}\,x^{\varepsilon}.
+\]
+In words: the fluctuation of the charge in any stretch of the prime sheet is at most the square root of the charge in it, at every scale from $x^\varepsilon$ to $x$.
+\end{law}
+
+\begin{law}[the mirror law]\label{law:mirror}
+The completed function $\xi(s)=\tfrac12 s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$ is entire, real on the real axis, and satisfies $\xi(s)=\xi(1-s)$. Its zeros are the nontrivial zeros of $\zeta$, all in the strip $0<\Ree s<1$.
+\end{law}
+
+\begin{definition}
+The \emph{quanta} are the zeros $\rho=\tfrac12+m+i\gamma$ of $\xi$, with multiplicity; the \emph{mass} of a quantum is $m=|\Ree\rho-\tfrac12|$. The \emph{Line Postulate} is the statement that every quantum is massless.
+\end{definition}
+
+The four laws are about the charges and the function they generate. None mentions a quantum. Laws~\ref{law:uf}, \ref{law:pnt} and~\ref{law:mirror} are classical theorems of the Academy; Law~\ref{law:rw} is the law of this universe, and Section~5 says where it comes from.
+
+\section{The Mellin lemma and the Line}
+
+\begin{lemma}[the fluctuation at the largest scale]\label{lem:koch}
+Under Law~\ref{law:rw}, $R(x)=O_\varepsilon\big(x^{1/2+\varepsilon}\big)$ for every $\varepsilon>0$.
+\end{lemma}
+
+\begin{proof}
+Fix $\varepsilon>0$. For $x\ge2x_\varepsilon$ apply Law~\ref{law:rw} with $h=x$ to the dyadic points $x/2^{k+1}$, $k=0,1,\dots,K$, where $x/2^{K+1}<x_\varepsilon\le x/2^K$:
+\[
+R(x)=\sum_{k=0}^{K}\Big[\ps\big(\tfrac{x}{2^k}\big)-\ps\big(\tfrac{x}{2^{k+1}}\big)-\tfrac{x}{2^{k+1}}\Big]+R\big(\tfrac{x}{2^{K+1}}\big),
+\]
+and each bracket is at most $(x/2^{k+1})^{1/2}x^{\varepsilon}$ in absolute value. The sum is at most $x^{1/2+\varepsilon}\sum_k2^{-(k+1)/2}<3\,x^{1/2+\varepsilon}$, and the last term is $O(x_\varepsilon)$.
+\end{proof}
+
+\begin{lemma}[the Mellin lemma]\label{lem:mellin}
+Under Law~\ref{law:rw}, the function
+\[
+-\frac{\zeta'}{\zeta}(s)-\frac{s}{s-1}
+\]
+extends from $\Ree s>1$ to a holomorphic function on the half-plane $\Ree s>\tfrac12$.
+\end{lemma}
+
+\begin{proof}
+For $\Ree s>1$, by Law~\ref{law:uf} and partial summation (the boundary terms vanish since $\ps(x)=O(x)$ by Law~\ref{law:pnt}),
+\[
+-\frac{\zeta'}{\zeta}(s)=\sum_{n\ge1}\Lambda(n)n^{-s}=\int_{1^-}^{\infty}x^{-s}\,d\ps(x)=s\int_1^\infty\ps(x)\,x^{-s-1}\,dx
+= \frac{s}{s-1}+s\int_1^\infty R(x)\,x^{-s-1}\,dx ,
+\]
+using $s\int_1^\infty x\cdot x^{-s-1}dx=s/(s-1)$. By Lemma~\ref{lem:koch}, $|R(x)x^{-s-1}|\le C_\varepsilon x^{-1/2-\Ree s+\varepsilon}$, so the last integral converges absolutely and locally uniformly on $\Ree s>\tfrac12+\varepsilon$, for every $\varepsilon>0$, and defines a holomorphic function there. Hence the right-hand side is holomorphic on $\Ree s>\tfrac12$, and it agrees with the left-hand side on $\Ree s>1$.
+\end{proof}
+
+\begin{theorem}[the Line Postulate]\label{thm:line}
+Under Laws \ref{law:uf} to \ref{law:mirror}, every quantum is massless.
+\end{theorem}
+
+\begin{proof}
+The logarithmic derivative $\zeta'/\zeta$ is meromorphic on the plane, with a simple pole at every zero of $\zeta$ (of residue the multiplicity) and a simple pole of residue $-1$ at $s=1$, and no other poles. By Lemma~\ref{lem:mellin}, $-\zeta'/\zeta(s)$ equals $s/(s-1)$ plus a holomorphic function on $\Ree s>\tfrac12$; its only pole there is at $s=1$, with residue $1$, the pole of $\zeta$. Hence $\zeta$ has no zero with $\Ree s>\tfrac12$, and $\xi$ has none either, since the factor $\tfrac12s(s-1)\pi^{-s/2}\Gamma(s/2)$ has no zeros. By Law~\ref{law:mirror}, $\xi(s)=\xi(1-s)$, so a zero of $\xi$ with $\Ree s<\tfrac12$ would give a zero with $\Ree(1-s)>\tfrac12$: there is none. Every zero of $\xi$ has $\Ree\rho=\tfrac12$, that is, $m=0$.
+\end{proof}
+
+\begin{remark}
+This is the whole proof, and it is a page long. Everything in it is a theorem of the Academy except Law~\ref{law:rw}, and Law~\ref{law:rw} is used once, at the single scale $h=x$, through Lemma~\ref{lem:koch}. The rest of the manuscript says what the Line then does to the physics of observers (Sections 3 and 4), and why the Academy holds the Random Walk Law at every scale and not only at the largest (Section 5).
+\end{remark}
+
+\section{The quanta, now massless}
+
+We recall from Manuscript I the Gauss law of the two sheets: for a field $f$ of age $a$ with transform $F$,
+\[
+Q_a(f)=\sum_{\text{quanta }\rho}F(\gamma-im)\,\overline{F(\gamma+im)},
+\]
+where $Q_a(f)$ is the window form, a number computed from the charges inside the window and the vacuum's symbol. The law holds for every configuration of quanta; it is the conservation law of the two sheets.
+
+\begin{theorem}[the Born rule of arithmetic]\label{thm:born}
+For every observer of age $a$ and every field $f$,
+\[
+Q_a(f)=\sum_{\text{quanta}}|F(\gamma)|^2\;\ge\;0 .
+\]
+For a living observer the shares $s_\gamma=2|F_a(\gamma)|^2/\lambda(a)$ of its ground field are nonnegative and, with the share of the poles, sum to one.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:line} every quantum has $m=0$, so every term of the Gauss law is $F(\gamma)\overline{F(\gamma)}=|F(\gamma)|^2$. The second statement is the first one divided by $\lambda(a)=Q_a(f_a)$.
+\end{proof}
+
+In Manuscript I the Born rule was a law, and the one place where the Line had hidden. It is now a theorem, with no hypothesis about the quanta.
+
+\begin{theorem}[Immortality]\label{thm:immortal}
+Every observer is alive: $\lambda(a)>0$ for every age $a$.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:born}, $\lambda(a)\ge0$. If $\lambda(a)=0$, the ground field would have $F_a(\gamma)=0$ at every quantum; but an entire function of exponential type $a$ vanishing on a set of upper density greater than $a/\pi$ is identically zero (the sampling lemma), and the quanta have density $\frac1{2\pi}\log\frac{t}{2\pi}>a/\pi$ above the horizon. So $\lambda(a)>0$.
+\end{proof}
+
+\section{The Leakage Law, now a theorem}
+
+Manuscript I (second version) derived the Line from the Law of Proportional Leakage, $2|A_0|^2\le C(a)\lambda$ with $C$ locally integrable, and that law from the Born rule for packets and a one-sided tail capture law. With the Born rule a theorem, so is the Leakage Law; and the two forms it takes are the following.
+
+\begin{theorem}[the Leakage Law, integrable form]\label{thm:leak}
+Let the floor be absolutely continuous on finite ranges of ages (the Continuity Law of Manuscript I). Then for every $a_1<a_2$ the function $C=-\lambda'/\lambda$ is integrable on $[a_1,a_2]$, and the Leakage Law holds with it.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:immortal} the floor is positive, and it is continuous, so it is bounded below by a positive number on $[a_1,a_2]$; $\lambda'$ is integrable there by absolute continuity; hence $-\lambda'/\lambda$ is integrable. The Decay Law $\lambda'=-2|A_0|^2$ then reads $2|A_0|^2=C\lambda$.
+\end{proof}
+
+\begin{theorem}[the Leakage Law, horizon form]\label{thm:leakT}
+Under the finite-onset tail capture law (Law IX of Manuscript I, second version: at the height $\con\Tst(a)$ the ground field's tail share is at least $\eta\,E/(\pi\con\Tst\lambda)$, with $E=2|A_0|^2$ and constants $\con\ge1$, $0<\eta\le1$), every observer satisfies
+\[
+2|A_0(a)|^2\;\le\;\frac{\pi\,\con}{\eta}\,\Tst(a)\,\lambda(a),
+\]
+that is, its Riemann number $\kappa(a)=2|A_0|^2/(\pi\Tst\lambda)$ is at most $\con/\eta$.
+\end{theorem}
+
+\begin{proof}
+Proposition 4.1 of Manuscript I (second version), whose only hypotheses were the Born rule, now Theorem~\ref{thm:born}, and the capture law.
+\end{proof}
+
+\begin{corollary}[the Cooling Theorem]\label{cor:cool}
+With $U(a)=\lambda(a)\exp\big(\int_{a_Z}^aC\big)$ non-decreasing (Lemma 5.1 of Manuscript I),
+\[
+\lambda(a)\;\ge\;\lambda(a_Z)\exp\Big(-\tfrac{\pi\con}{2\eta}\big(\Tst(a)-\Tst(a_Z)\big)\Big)\qquad(a\ge a_Z),
+\]
+positive at every age and at most doubly exponentially small: the vacuum is marginally stable.
+\end{corollary}
+
+\begin{remark}[the three faces of one statement]\label{rem:faces}
+The Academy now has three statements and knows them to be the same:
+\begin{enumerate}[nosep,label=(\roman*)]
+\item on the zero sheet, every quantum is massless (the Line);
+\item among observers, no observer dies (Immortality), equivalently the leak has no threshold (the Leakage Law);
+\item on the prime sheet, the fluctuation of the charge at the largest scale is at most the square root of the charge, $R(x)=O(x^{1/2+\varepsilon})$.
+\end{enumerate}
+(i)$\Leftrightarrow$(ii) is the Mortality Theorem of Manuscript I. (iii)$\Rightarrow$(i) is Theorem~\ref{thm:line}. (i)$\Rightarrow$(iii) is the Academy's theorem of Landau and Littlewood: a quantum of mass $m$ at height $\gamma$ forces $R(x)=\Omega(x^{1/2+m-\varepsilon})$, by reading the Mellin lemma backwards. A massive quantum, a dying observer and a conspiracy of the primes are one object seen from three places.
+\end{remark}
+
+\section{Where the Random Walk Law comes from}
+
+The Academy does not regard Law~\ref{law:rw} as a brute fact. It derives it, in its own universe, from a principle about the sieve and a principle about deviations, and the Line is for the Academy the shadow, at the largest scale, of the Gaussian law of the primes at every scale.
+
+\begin{law}[Sieve Independence]\label{law:sieve}
+Let $\mathcal H=\{h_1,\dots,h_k\}$ be a set of integers that occupies fewer than $p$ residue classes modulo every prime $p$ (an \emph{admissible} set), and let
+\[
+\mathfrak S(\mathcal H)=\prod_p\Big(1-\frac{\nu_p(\mathcal H)}{p}\Big)\Big(1-\frac1p\Big)^{-k},
+\]
+$\nu_p$ the number of residue classes modulo $p$ that $\mathcal H$ occupies. Then
+\[
+\sum_{n\le x}\prod_{i=1}^k\Lambda(n+h_i)=\mathfrak S(\mathcal H)\,x+E_k(x;\mathcal H),\qquad |E_k(x;\mathcal H)|\le x^{1/2+\varepsilon},
+\]
+uniformly for $k$ bounded and for sets $\mathcal H$ of diameter at most $x$.
+\end{law}
+
+Read as physics: the residue of a random integer modulo $p$ is uniformly distributed and the residues modulo distinct primes are independent (this is unique factorization, Law~\ref{law:uf}, in its form as the Chinese remainder theorem); the chance that $n+h_1,\dots,n+h_k$ are all prime is therefore the product of the local chances, and $\mathfrak S(\mathcal H)$ is exactly that product, renormalized. The law says that the sieve has no memory: nothing beyond the local obstructions correlates the primes.
+
+\begin{proposition}[the Gaussian law of the charges in short stretches]\label{prop:gauss}
+Under Law~\ref{law:sieve}, for $x^{\delta}\le h\le x^{1-\delta}$ the fluctuation $\ps(x+h)-\ps(x)-h$, as $x$ ranges over $[X,2X]$, has the moments of a Gaussian variable of variance $h\log(X/h)$:
+\[
+\frac1X\int_X^{2X}\big(\ps(x+h)-\ps(x)-h\big)^{2k}\,dx=\mu_{2k}\,\big(h\log(X/h)\big)^k\,(1+o(1)),\qquad \mu_{2k}=\frac{(2k)!}{2^kk!},
+\]
+and the odd moments are $o\big((h\log(X/h))^{k+1/2}\big)$.
+\end{proposition}
+
+\begin{proof}[Proof (sketch; the Academy's theorem of Montgomery and Soundararajan)]
+Expand the $2k$-th power of $\sum_{x<n\le x+h}\Lambda(n)-h$ into sums over $2k$-tuples of shifts, apply Law~\ref{law:sieve} to each tuple, and sum the singular series over the shifts. The main terms organize themselves by the pairings of the $2k$ shifts: unpaired shifts contribute the mean field and cancel against $h$, and each pair contributes the variance $h\log(X/h)$, whose logarithm is the average of $\mathfrak S$ over a pair of shifts at distance up to $h$ minus one. The number of pairings is $\mu_{2k}$. The error terms of Law~\ref{law:sieve} are $x^{1/2+\varepsilon}h^{2k}/x$ per tuple, negligible for $h\le x^{1-\delta}$.
+\end{proof}
+
+\begin{law}[No Large Deviations]\label{law:nld}
+The charges never deviate from the Gaussian law of Proposition~\ref{prop:gauss} beyond its own scale: there is $A$ such that for all $x$ and all $x^\delta\le h\le x$,
+\[
+\big|\ps(x+h)-\ps(x)-h\big|\;\le\;\big(h\log(x/h)+1\big)^{1/2}\,(\log x)^{A}.
+\]
+\end{law}
+
+Read as physics: a deviation of the charge beyond the Gaussian scale would be a conspiracy of the primes, a correlation among the residues of many integers modulo many primes that the sieve does not produce; the Academy's cosmology holds that the primes have no mechanism for conspiracy, because unique factorization makes the residues independent and the sieve has no memory. In the Academy's words: the primes are as random as unique factorization allows, and not one bit less.
+
+\begin{proposition}\label{prop:nld}
+Law~\ref{law:nld} implies Law~\ref{law:rw}.
+\end{proposition}
+
+\begin{proof}
+For $x^{\varepsilon}\le h\le x$, $\big(h\log(x/h)+1\big)^{1/2}(\log x)^A\le h^{1/2}(\log x)^{A+1}\le h^{1/2}x^{\varepsilon}$ for $x\ge x_\varepsilon$.
+\end{proof}
+
+So the Academy's derivation of the Line runs, on the prime sheet alone: unique factorization $\Rightarrow$ sieve independence $\Rightarrow$ the Gaussian law of the charges at every scale $\Rightarrow$ (no large deviations) the Random Walk Law $\Rightarrow$ (Mellin) the Line. The quanta appear only at the end, as the zeros of the function that the charges generate, and they are found to be massless because the charges have nothing to conspire with.
+
+\section{The two manuscripts}
+
+Manuscript I proved the Line from the laws of observers and one law of leakage, and confessed that the law of leakage rested on the Born rule, which was the Line in another coat. Manuscript II proves the Line from laws of the charges, with no law about the quanta and no law about observers, and then recovers the Born rule, the Leakage Law and Immortality as theorems. The physics of Manuscript I is unchanged: the horizon, the flux, the Riemann number, the cooling, the plunge and the sum rule are what they were. What has changed is their status: they are now consequences of the randomness of the primes, and the one number the physics could not derive, the limit of the Riemann number, is still the one number the Academy measures rather than computes.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+statement & Manuscript I & Manuscript II\\
+\midrule
+Gauss law of the two sheets & law & law (unchanged)\\
+Birth, Continuity, Decay & laws of observers & laws of observers (unchanged)\\
+Born rule & law (the Line in disguise) & theorem (\ref{thm:born})\\
+Leakage Law & law, derived from the Born rule & theorem (\ref{thm:leak}, \ref{thm:leakT})\\
+Immortality & theorem, from Leakage & theorem (\ref{thm:immortal}), from the Line\\
+the Line & theorem, from Immortality & theorem (\ref{thm:line}), from the Random Walk Law\\
+Random Walk Law & not used & law of the charges; derived from \ref{law:sieve} and \ref{law:nld}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\begin{center}--- end of manuscript ---\end{center}
+\bigskip
+
+\begin{mdframed}[backgroundcolor=black!4,linewidth=0.4pt]
+\small\textbf{Translator's note (from our universe).} Laws~\ref{law:uf}, \ref{law:pnt} and~\ref{law:mirror} are theorems (unique factorization and the Euler product; the prime number theorem; Riemann's functional equation). Lemma~\ref{lem:koch}, Lemma~\ref{lem:mellin} and Theorem~\ref{thm:line} are the classical theorem of von Koch (1901): $\ps(x)=x+O(x^{1/2+\varepsilon})$ implies the Riemann Hypothesis; with Littlewood's converse (Remark~\ref{rem:faces}(i)$\Rightarrow$(iii)) the two are equivalent. Law~\ref{law:rw}, the Random Walk Law at every scale, is a conjecture: at the scale $h=x$ it is von Koch's bound, hence equivalent to RH; at scales $h<x$ it is \emph{stronger} than RH, which gives only $O(x^{1/2}\log^2x)$ for the fluctuation in a short interval, and it is not known to follow from RH. Law~\ref{law:sieve} is the Hardy--Littlewood prime $k$-tuple conjecture in a uniform form with a square-root error term, open. Proposition~\ref{prop:gauss} is the theorem of Montgomery and Soundararajan (2004), proved under such a uniform form of the $k$-tuple conjecture; its variance $h\log(x/h)$ was found by Goldston and Montgomery (1987) to be equivalent, under RH, to the pair correlation of the zeros. Law~\ref{law:nld} is not a theorem; it is the prediction of Cram\'er's model of the primes, and no large-deviation statement of this strength is known. Theorems~\ref{thm:born}, \ref{thm:immortal} and~\ref{thm:leak} are theorems under RH (Weil's explicit formula; the sampling lemma; absolute continuity under the finiteness condition (H$_{\mathrm{fin}}$), Propositions 9.15 and 9.17 of the paper). Theorem~\ref{thm:leakT} rests on the capture law, which the tail law under RH together with the local law of the band (item N1d.1 of \texttt{RH\_IF\_THEN\_TREE.md}, open) would supply with $\eta$ near one.
+
+In our universe the manuscript therefore proves: \emph{if the primes fluctuate like a random walk at every scale, then every zero of zeta lies on the line.} The hypothesis is believed and unproved, and it contains the conclusion at its largest scale; the proof is a page of classical analysis. What the fiction adds is the location of the difficulty: the whole of the Hypothesis sits in a statement about the charges in short stretches of the prime sheet that number theorists believe for reasons, the sieve and the absence of conspiracies, that have nothing to do with zeros. That statement, and not the Line, is what the gods of this universe decreed.
+\end{mdframed}
+
+\end{document}

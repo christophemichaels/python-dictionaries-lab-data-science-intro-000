@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{computation}[proposition]{Computation}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Ree}{Re}
+
+\title{The potential set of the light cone\\ \large A remark for the Mathematical Theory Atlas}
+\author{Christophe Michaels}
+\date{September 29, 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\emph{Status.} Definitions and Propositions~\ref{prop:basic}--\ref{prop:limit} are proved here from the explicit formula and Weil's criterion; the converse in Proposition~\ref{prop:basic}(iii) is Krein's extension theorem and is cited; Computation~\ref{comp:identity} is taken from \cite[Table 1]{folds}; Remarks make no claim.
+
+\section*{Setup}
+Let $W$ be the Weil distribution on $\R$, so that for every even $g\in C_c^\infty(\R)$ the explicit formula reads
+\begin{equation}\label{eq:explicit}
+\sum_\rho\widehat g(\gamma_\rho)=\langle W,g\rangle,\qquad
+\langle W,g\rangle=\widehat g\big(\tfrac i2\big)+\widehat g\big(-\tfrac i2\big)-\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\big(g(\log n)+g(-\log n)\big)+W_\infty(g),
+\end{equation}
+where $\rho=\frac12+i\gamma_\rho$ runs over the nontrivial zeros with multiplicity, $\gamma_\rho\in\C$, and $W_\infty$ is the archimedean term \cite{weil,folds}. For $g$ supported in $(-2a,2a)$ only the prime powers with $\log n<2a$ enter: the light cone of \cite[\S12]{folds}. Write $T^*(a)=2\pi e^{2a}$ for its horizon.
+
+\begin{definition}[The potential set]\label{def:P}
+For $a>0$ let $\mathcal P(a)$ be the set of positive Radon measures $\nu$ on $\R$, symmetric under $t\mapsto-t$ and with $\int(1+t^2)^{-1}d\nu<\infty$, such that
+\begin{equation}\label{eq:agree}
+\int_\R\widehat g\,d\nu=\langle W,g\rangle\qquad\text{for every even } g\in C_c^\infty(-2a,2a).
+\end{equation}
+An element of $\mathcal P(a)$ is a configuration of real ``zeros'' that no prime power inside the cone can distinguish from the true zeros. Put $\nu_\zeta=\sum_\rho\delta_{\gamma_\rho}$ when all $\gamma_\rho$ are real.
+\end{definition}
+
+\begin{proposition}\label{prop:basic}
+\begin{enumerate}
+\item[(i)] $\mathcal P(a)$ is nonincreasing in $a$: $a<a'$ implies $\mathcal P(a')\subseteq\mathcal P(a)$.
+\item[(ii)] If $\mathcal P(a)\neq\emptyset$ then the Weil form is nonnegative at support $a$: $\langle W,f*\tilde f\rangle\ge0$ for every $f\in C_c^\infty(-a,a)$, in both the even and the odd sector.
+\item[(iii)] Conversely, if $\langle W,f*\tilde f\rangle\ge0$ for every $f\in C_c^\infty(-a,a)$, then $\mathcal P(a)\neq\emptyset$ (Krein's extension theorem \cite{krein}, in its distributional form \cite{jpt}).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The condition \eqref{eq:agree} for $a'$ contains the condition for $a$. (ii) For $f\in C_c^\infty(-a,a)$ the function $g=f*\tilde f$ is even, supported in $(-2a,2a)$, and $\widehat g=|\widehat f|^2\ge0$; hence $\langle W,g\rangle=\int|\widehat f|^2d\nu\ge0$ for any $\nu\in\mathcal P(a)$. (iii) The restriction of $W$ to $(-2a,2a)$ is a positive-definite distribution. Krein's theorem produces a positive-definite distribution on $\R$ agreeing with it on $(-2a,2a)$; by the Bochner--Schwartz theorem that distribution is the Fourier transform of a positive tempered measure $\nu$, which is symmetric because $W$ is even, and \eqref{eq:agree} holds by construction.\footnote{Krein's original statement concerns continuous positive-definite functions on an interval. The operator-theoretic proof (self-adjoint extensions of the generator of translations on the Hilbert space of the form) uses only the Hilbert-space structure and translation invariance and applies to positive-definite distributions; see \cite{jpt}. The reader who prefers not to rely on this may take (iii) as the definition of the regime in which $\mathcal P(a)$ is studied.}
+\end{proof}
+
+\begin{proposition}[The limit of the potential set]\label{prop:limit}
+\[
+\bigcap_{a>0}\mathcal P(a)=\begin{cases}\{\nu_\zeta\}&\text{if the Riemann Hypothesis holds},\\ \emptyset&\text{otherwise.}\end{cases}
+\]
+\end{proposition}
+
+\begin{proof}
+Let $\nu\in\bigcap_a\mathcal P(a)$. Then \eqref{eq:agree} holds for every even $g\in C_c^\infty(\R)$, and by \eqref{eq:explicit}
+\begin{equation}\label{eq:match}
+\int_\R\widehat g\,d\nu=\sum_\rho\widehat g(\gamma_\rho)\qquad\text{for all even }g\in C_c^\infty(\R).
+\end{equation}
+If all $\gamma_\rho$ are real, the right side is $\int\widehat g\,d\nu_\zeta$, and since the functions $\widehat g$ are dense in the Schwartz space, the two tempered measures $\nu$ and $\nu_\zeta$ coincide; conversely $\nu_\zeta\in\mathcal P(a)$ for every $a$ by \eqref{eq:explicit}. If some $\gamma_{\rho_0}$ is not real, Weil's criterion \cite{weil,bombieri} provides $f\in C_c^\infty(\R)$ such that, for $g=f*\tilde f$, $\sum_\rho\widehat g(\gamma_\rho)<0$; then \eqref{eq:match} would give $\int|\widehat f|^2d\nu<0$, impossible for a positive measure. So the intersection is empty.
+\end{proof}
+
+\begin{computation}[The identity phase]\label{comp:identity}
+For $a<\frac12\log2=0.346574$ no prime power lies inside the cone, and the Weil form at support $a$ is the archimedean and polar part alone. In the odd sector this prime-free form is positive definite for $a<0.371601$ and indefinite beyond \cite[Table 1, row $n=2$]{folds}. Hence, in the odd sector, $\mathcal P(a)$ is nonempty for $a<0.3716$ on the strength of the archimedean term alone, and the first prime power required to keep it nonempty is $2$, which enters at $a=0.3466$ and is needed by $a=0.3716$. The corresponding entry points and deadlines for $3,4,5,7,8,9$ are the remaining rows of the same table.
+\end{computation}
+
+\begin{remark}[What the identity fixes and what the primes fix]
+As $a\downarrow0$ the test functions in \eqref{eq:agree} concentrate near $x=0$, where $W$ is dominated by the singularity of $W_\infty$; this constrains only the large-scale density of $\nu$, which must be that of the Riemann--von Mangoldt law $\frac1{2\pi}\log\frac{t}{2\pi}$. Every prime power that enters the cone adds a constraint at the frequency $\log n$, that is, on the fluctuations of $\nu$ at the scale $2\pi/\log n$. In this sense the identity prescribes how many zeros there are and the primes prescribe where they are, one frequency at a time, and $\mathcal P(a)$ is what remains undetermined at support $a$.
+\end{remark}
+
+\begin{remark}[The control]
+Nothing in Proposition~\ref{prop:basic} uses the Euler product. For the Davenport--Heilbronn function the same construction gives a family $\mathcal P_{\mathrm{DH}}(a)$, nonempty for small $a$ by the same archimedean mechanism, and by \cite[Remark 12.9]{folds} expected to become empty near $a\approx2.1$, where the horizon $\frac{2\pi}{5}e^{2a}$ reaches the off-line zero at height $85.7$. The potential set can therefore contain configurations that are never realized by any zeta function; that it collapses to $\nu_\zeta$ for $\zeta$ itself is the Riemann Hypothesis, not a property of the construction.
+\end{remark}
+
+\begin{remark}[Dictionary]
+The symbolic line ``$1=A\Omega$'' reads: at $a=0^+$ the potential set is everything with the right density; ``the first distinction is $2$'' is Computation~\ref{comp:identity}; ``potential defined by the primes'' is Definition~\ref{def:P}; and the subscript $\alpha,\omega$ is the limit $a\to\infty$ of Proposition~\ref{prop:limit}. The line is not an equation and should not be presented as one; the definition is.
+\end{remark}
+
+\section*{Second remark: the ground-state transform and the spectral form of positivity}
+
+\noindent\emph{Status.} This section re-derives, from the explicit formula alone, the identity that the external review of 29 September 2026 attributes to the source of the atlas entries T51--T53. Proposition~\ref{prop:gs} and Corollary~\ref{cor:gap} are proved here; the facts about the theta kernel are classical and cited. The inequality in Corollary~\ref{cor:gap} is not proved.
+
+\subsection*{The theta kernel}
+Let $\phi$ be the even function on $\R$ whose Fourier transform is Riemann's $\Xi$: $\widehat\phi(z)=\int\phi(u)e^{izu}du=\Xi(z)=\xi(\tfrac12+iz)$. Explicitly $\phi(u)=\sum_{n\ge1}(2\pi^2n^4e^{9u/2}-3\pi n^2e^{5u/2})\exp(-\pi n^2e^{2u})$ for $u\ge0$ \cite[\S10.1]{titchmarsh}. Three facts are used: $\phi>0$ on $\R$ (for $u\ge0$ each term is positive since $2\pi n^2e^{2u}>3$, and $\phi$ is even); $\phi$ and all its derivatives decay like $\exp(-\pi e^{2|u|})$; and $\widehat\phi(\pm i/2)=\xi(0)=\xi(1)=\tfrac12$. Put
+\[
+d\nu(u)=2\cosh(u/2)\,\phi(u)\,du,\qquad \nu(1)=2\,\widehat\phi(i/2)=1,
+\]
+a probability measure, and for $h$ in $L^2(\nu)$ write $\nu(h)=\int h\,d\nu$, $\operatorname{Var}_\nu(h)=\int|h|^2d\nu-|\nu(h)|^2$, and $b(h)=\int\tanh(u/2)\,h\,d\nu=\int2\sinh(u/2)\phi h\,du$.
+
+\subsection*{Null directions}
+For $j\ge0$ the Fourier transform of $\phi^{(j)}$ is $(-iz)^j\Xi(z)$, which vanishes at every zero of $\Xi$, on or off the critical line. Since $\phi^{(j)}$ and any $q\in C_c^\infty(\R)$ satisfy the hypotheses of the explicit formula, the completed Weil form obeys
+\begin{equation}\label{eq:null}
+Q(\phi^{(j)},q)=\sum_\rho\overline{\widehat{\phi^{(j)}}(\gamma_\rho)}\,\widehat q(\gamma_\rho)=0\qquad(j\ge0,\ q\in C_c^\infty(\R)\ \text{or}\ q=\phi^{(k)},\ k\ge0),
+\end{equation}
+where $Q(f,q)=\langle W,f*\tilde q\rangle$ is the sesquilinear form of the Weil distribution. In particular ($j=0$) $W*\phi=0$ pointwise, which in the $x$-space form of the archimedean term reads
+\begin{equation}\label{eq:gseq}
+c_1\phi(u)+\int_\R\big(\phi(u)-\phi(v)\big)J_\Gamma(u-v)\,dv+\cosh(u/2)=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\big(\phi(u+\log n)+\phi(u-\log n)\big),
+\end{equation}
+with $J_\Gamma(s)=e^{-|s|/2}/(1-e^{-2|s|})$ and a constant $c_1$ (namely $-(\gamma+\log\pi)+\int_\R(e^{-2|s|}-e^{-|s|/2})(1-e^{-2|s|})^{-1}ds$); the term $\cosh(u/2)$ is the polar kernel $2\cosh((u-v)/2)$ applied to $\phi$, using $\int\cosh(v/2)\phi=\tfrac12$ and $\int\sinh(v/2)\phi=0$.
+
+\begin{proposition}[Ground-state transform]\label{prop:gs}
+For $h\in C_c^\infty(\R)$, with $f=\phi h$,
+\begin{equation}\label{eq:gs}
+Q(f)=E_\Gamma(h)+E_P(h)-\tfrac12\operatorname{Var}_\nu(h)-\tfrac12|b(h)|^2,
+\end{equation}
+where
+\[
+E_\Gamma(h)=\frac12\iint J_\Gamma(u-v)\,\phi(u)\phi(v)\,|h(u)-h(v)|^2\,du\,dv,\qquad
+E_P(h)=\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\int\phi(u)\phi(u+\log n)\,|h(u+\log n)-h(u)|^2\,du.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $Q(f)=A(f)+P_r(f)+P_o(f)$ with $A$ the archimedean part, $P_r$ the prime part and $P_o$ the polar part. In $x$-space, for $g=f*\tilde f$, $A(f)=c_1\|f\|^2+\int(g(0)-g(s))J_\Gamma(s)\,ds=c_1\|f\|^2+\frac12\iint J_\Gamma(u-v)|f(u)-f(v)|^2$, the last step by expanding the square; the singularity $J_\Gamma(s)\sim1/(2|s|)$ is integrable against $|f(u)-f(v)|^2=O(|u-v|^2)$. Next, $P_r(f)=-\sum_n\frac{\Lambda(n)}{\sqrt n}\big(g(\log n)+g(-\log n)\big)=-2\sum_n\frac{\Lambda(n)}{\sqrt n}\Ree\!\int\overline{f(u)}f(u-\log n)\,du$. Expanding the square in $E_P$ and substituting $u\mapsto u+\log n$ in one term,
+\[
+E_P(h)=\int\phi(u)|h(u)|^2\sum_n\frac{\Lambda(n)}{\sqrt n}\big(\phi(u+\log n)+\phi(u-\log n)\big)\,du+P_r(f).
+\]
+Insert \eqref{eq:gseq} for the inner sum: $E_P(h)=c_1\|f\|^2+\int\phi(u)|h(u)|^2\!\int(\phi(u)-\phi(v))J_\Gamma(u-v)\,dv\,du+\int\cosh(u/2)\phi|h|^2+P_r(f)$. Hence
+\[
+A(f)+P_r(f)=E_P(h)+\frac12\iint J_\Gamma|\phi h(u)-\phi h(v)|^2-\int\phi(u)|h(u)|^2\!\int(\phi(u)-\phi(v))J_\Gamma(u-v)\,dv\,du-\tfrac12\int|h|^2d\nu,
+\]
+and the two $J_\Gamma$ terms combine, after symmetrizing in $u,v$, to $\frac12\iint J_\Gamma\phi(u)\phi(v)|h(u)-h(v)|^2=E_\Gamma(h)$. Finally $\cosh((u-v)/2)=\cosh(u/2)\cosh(v/2)-\sinh(u/2)\sinh(v/2)$ gives $P_o(f)=2|\!\int\cosh(u/2)\phi h|^2-2|\!\int\sinh(u/2)\phi h|^2=\tfrac12|\nu(h)|^2-\tfrac12|b(h)|^2$. Adding the pieces gives \eqref{eq:gs}. All interchanges are justified by the superexponential decay of $\phi$ and the compact support of $h$.
+\end{proof}
+
+Put $D(h,k)=2\big(E_\Gamma+E_P\big)(h,k)-\operatorname{Cov}_\nu(h,k)$, so that $Q(\phi h,\phi k)=\tfrac12\big[D(h,k)-\overline{b(h)}b(k)\big]$, and let $h_*=\phi'/\phi$. Then $\nu(h_*)=\int2\cosh(u/2)\phi'=0$ and $b(h_*)=\int2\sinh(u/2)\phi'=-\int\cosh(u/2)\phi=-\tfrac12$ by parts, and \eqref{eq:null} with $j=1$ gives $D(h_*,h)=\overline{b(h_*)}b(h)=-\tfrac12b(h)$ and $D(h_*,h_*)=\tfrac14$. Let $\mathcal H$ be the span of $C_c^\infty(\R)$ and $h_*$ (the form \eqref{eq:gs} extends to it by the decay of $\phi$), and define $\mathcal Ph=h+2b(h)h_*$.
+
+\begin{corollary}[Spectral form of Weil positivity]\label{cor:gap}
+$b(\mathcal Ph)=0$, $D(h,h)=D(\mathcal Ph,\mathcal Ph)+|b(h)|^2$, and $Q(\phi h)=\tfrac12D(\mathcal Ph,\mathcal Ph)$ for $h\in\mathcal H$. Consequently the Riemann Hypothesis is equivalent to
+\begin{equation}\label{eq:gap}
+E_\Gamma(h)+E_P(h)\ \ge\ \tfrac12\operatorname{Var}_\nu(h)\qquad\text{for all }h\in\mathcal H .
+\end{equation}
+Moreover, if \eqref{eq:gap} holds, equality is attained on the infinite-dimensional space spanned by the centered functions $\phi^{(j)}/\phi-\nu(\phi^{(j)}/\phi)$, $j\ge2$.
+\end{corollary}
+
+\begin{proof}
+$b(\mathcal Ph)=b(h)+2b(h)b(h_*)=0$. Expanding $D(h+ch_*,h+ch_*)$ with $c=2b(h)$ and the two relations above gives $D(h,h)-2|b(h)|^2+|b(h)|^2$. The third identity is \eqref{eq:gs} rewritten. If \eqref{eq:gap} holds, $D\ge0$ on $\mathcal H$ and $Q(\phi h)\ge0$ for every $h\in C_c^\infty$; since $\phi>0$, every $f\in C_c^\infty$ is of the form $\phi h$, and Weil's criterion gives RH. Conversely, under RH $Q\ge0$ on $C_c^\infty$, and $Q(\phi\mathcal Ph)=Q(\phi h+2b(h)\phi')=Q(\phi h)$ by \eqref{eq:null}, so $D(\mathcal Ph,\mathcal Ph)\ge0$ for $h\in C_c^\infty$, whence $D(h,h)\ge|b(h)|^2\ge0$; on $\mathcal H$ the same follows by the Cauchy--Schwarz inequality in the nonnegative form $D$ applied to $h$ and $h_*$. For the last claim, \eqref{eq:null} for $\phi^{(j)}$ gives $D(\phi^{(j)}/\phi,\,h)=\overline{b(\phi^{(j)}/\phi)}\,b(h)$ for all $h$; integrating by parts, $b(\phi^{(2k)}/\phi)=0$ and $\nu(\phi^{(2k+1)}/\phi)=0$, so the centered even-order quotients are null vectors of $D$, and $D=0$ on a vector means equality in \eqref{eq:gap}. Linear independence holds because a finite relation would make a nonzero polynomial times $\Xi$ vanish identically.
+\end{proof}
+
+\begin{remark}
+The form $E_\Gamma+E_P$ is the Dirichlet form of a reversible Markov generator $L$ on $L^2(\nu)$: gamma couples nearby positions with conductance $J_\Gamma(u-v)\phi(u)\phi(v)$, and each prime power couples $u$ with $u\pm\log n$ with conductance $\frac{\Lambda(n)}{\sqrt n}\phi(u)\phi(u\pm\log n)$. In that language \eqref{eq:gap} says that the bottom of the spectrum of $L$ on mean-zero functions is exactly $\tfrac12$, and Corollary~\ref{cor:gap} adds that $\tfrac12$ is then an eigenvalue of infinite multiplicity. This is why no uniform improvement of the constant is possible, and it is the same fact as the rigidity of \cite[\S2.4]{memo}: positivity of the Weil form has no slack. The atlas entries T51--T53 and the review's inequality IR-7 are this corollary. What is missing is a proof of \eqref{eq:gap}; the identity \eqref{eq:gs} only relocates the difficulty from the sign of $Q$ to a spectral gap, in a form where the equality directions are known.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{titchmarsh} E. C. Titchmarsh, The Theory of the Riemann Zeta-Function, 2nd ed., revised by D. R. Heath-Brown, Oxford University Press, 1986.
+\bibitem{memo} C. Michaels (with Claude), Three routes, one mechanism: what an unconditional proof through the Weil floor would have to look like, note, September 29, 2026 (\texttt{RH\_TOP3\_PROOF\_ARCHITECTURE.md}).
+\bibitem{weil} A. Weil, Sur les ``formules explicites'' de la th\'eorie des nombres premiers, Comm. S\'em. Math. Univ. Lund, tome suppl\'ementaire (1952), 252--265.
+\bibitem{bombieri} E. Bombieri, Remarks on Weil's quadratic functional in the theory of prime numbers, I, Rend. Mat. Acc. Lincei (9) 11 (2000), 183--233.
+\bibitem{krein} M. G. Krein, Sur le probl\`eme du prolongement des fonctions hermitiennes positives et continues, Dokl. Akad. Nauk SSSR 26 (1940), 17--22.
+\bibitem{jpt} P. Jorgensen, S. Pedersen and F. Tian, Extensions of Positive Definite Functions: Applications and Their Harmonic Analysis, Lecture Notes in Mathematics 2160, Springer, 2016.
+\bibitem{folds} C. Michaels, Primes, Folds, and the One Dot: A Computational Atlas of Weil Positivity, Prime-Sieve Geometry and the Zeta Zeros, manuscript, September 28, 2026.
+\end{thebibliography}
+\end{document}

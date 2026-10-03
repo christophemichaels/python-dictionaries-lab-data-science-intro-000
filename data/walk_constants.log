@@ -1,0 +1,17 @@
+Monte Carlo with 20000000 samples per order
+  n   J_n (± s.e.)        kappa_{2(n-1)} = 2 J_n/n!      exact J_2 = 5/12 = 0.416667
+  2   0.416761 ± 0.000060     0.416761
+  3   0.708334 ± 0.000130     0.236111
+  4   1.981573 ± 0.000440     0.165131
+limiting kurtosis kappa_4/kappa_2^2 = 1.3594   (semicircle 2, Gaussian 3)
+kappa_6/kappa_2^3 = 2.2812   (semicircle 5, Gaussian 15)
+Traceback (most recent call last):
+  File "/home/user/python-dictionaries-lab-data-science-intro-000/rh_walk_constants.py", line 95, in <module>
+    K4 = K4_exact(); print(f"backtracking groups of m_4 (exact integral): 11/60 = {K4:.6f};  kappa_4 = J_3/3 + 11/60 = {res[3]/1 + K4 if 3 in res else float('nan'):.6f}  (17/72 + 11/60 = 151/360 = {151/360:.6f} if J_3 = 17/24)")
+         ^^^^^^^^^^
+  File "/home/user/python-dictionaries-lab-data-science-intro-000/rh_walk_constants.py", line 62, in K4_exact
+    return 2*np.trapz(f, xs)                       # = 2 * 11/120 = 11/60
+             ^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/numpy/__init__.py", line 792, in __getattr__
+    raise AttributeError(f"module {__name__!r} has no attribute {attr!r}")
+AttributeError: module 'numpy' has no attribute 'trapz'. Did you mean: 'trace'?

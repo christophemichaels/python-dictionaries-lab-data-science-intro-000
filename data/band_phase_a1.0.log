@@ -1,0 +1,38 @@
+a = 1.0, K = 80, lambda = 1.4820e-26, lambda' = -2.5169e-24, T* = 46.43, entries [2, 3, 4, 5, 7], 2 sum c_d = 5.852, periodic band top 47.1 T*
+real zeros of the window's symbol: 87, the last at 33.4 T*; of the archimedean symbol: [6.29]
+
+(i) 5755 nulls on 3.0-400.0 T* (113 brackets without a sign change); r_k = t_k a - pi/2 - k pi
+      3- 10 T* (  93 nulls): rms r = 0.7251;  window's symbol: rms r + theta_a - kappa/t = 1.4552 (kappa =  617.09);  archimedean symbol: rms r + theta_inf - kappa/t = 0.6980 (kappa = -131.09)
+     10- 30 T* ( 193 nulls): rms r = 0.9273;  window's symbol: rms r + theta_a - kappa/t = 4.1026 (kappa = 12363.45);  archimedean symbol: rms r + theta_inf - kappa/t = 0.3062 (kappa =  732.44)
+     30- 47 T* ( 251 nulls): rms r = 0.5980;  window's symbol: rms r + theta_a - kappa/t = 1.3587 (kappa = 23572.29);  archimedean symbol: rms r + theta_inf - kappa/t = 0.0098 (kappa =  790.09)
+     47-100 T* ( 784 nulls): rms r = 0.3935;  window's symbol: rms r + theta_a - kappa/t = 0.2025 (kappa = 26042.03);  archimedean symbol: rms r + theta_inf - kappa/t = 0.0123 (kappa =  838.55)
+    100-200 T* (1478 nulls): rms r = 0.2378;  window's symbol: rms r + theta_a - kappa/t = 0.1734 (kappa = 26540.86);  archimedean symbol: rms r + theta_inf - kappa/t = 0.0117 (kappa =  806.08)
+    200-400 T* (2955 nulls): rms r = 0.1278;  window's symbol: rms r + theta_a - kappa/t = 0.2740 (kappa = 26151.74);  archimedean symbol: rms r + theta_inf - kappa/t = 0.0168 (kappa =  313.02)
+
+(ii) relative L^2 distance of S from -|A| cos(ta + theta - kappa/t)/(t sigma~^(1/2)) over [T - 2T*, T + 2T*] (step 0.25), |A| = (-lambda'/2)^(1/2) = 1.1218e-12, kappa from the fit on the nulls above the band top (5215 nulls): window's symbol kappa = 26190.33, archimedean kappa = 759.96
+    T/T*   dist(window's symbol)   dist(archimedean symbol)   <t^2 sigma_a |F|^2>/(-lambda') over the window
+       5           1.0000               0.5204           1.0718
+      10           1.0000               0.1486           0.9992
+      20           1.0000               0.0466           0.9665
+      30           1.0000               0.0439           0.9884
+      47           0.9870               0.0139           1.0085
+      70           0.8508               0.0317           1.0325
+     100           0.6022               0.0321           0.9802
+     200           0.3034               0.0343           0.9584
+     300           0.3102               0.0428           0.9760
+
+(iii) the local amplitude |A(t)|^2/(-lambda'/2) = <4 t^2 sigma~_a S^2> over one period 4 pi/a (101 points), one period per horizon; mean and standard deviation by height band:
+      3- 10 T* (   7 periods): mean 25103887601272853889024.0000, std 61193034937530310459392.0000, min 1228272831292389120.0000, max 174994723377905286512640.0000
+     10- 30 T* (  20 periods): mean 6987304297631846400.0000, std 20670983676459077632.0000, min 30330427065.2720, max 85607914906865664000.0000
+     30- 47 T* (  17 periods): mean 1194473391.4879, std 2324693688.8683, min 8864.9245, max 8243004018.9769
+     47-100 T* (  53 periods): mean 436.7952, std 1162.9569, min 6.1778, max 6959.1770
+    100-200 T* ( 100 periods): mean 2.6021, std 1.1719, min 1.3342, max 6.1242
+    200-400 T* ( 200 periods): mean 1.2193, std 0.1353, min 0.9411, max 1.6515
+
+(iv) the echo phase on 10-30 T* (193 nulls): rms r + theta_inf - kappa/t = 0.3062; regression on (alpha_d sin(td) + beta_d cos(td))/sigma~_inf:
+      m = 2: alpha = +0.0040 (echo form: c_d = 0.4901), beta = +0.1574
+      m = 3: alpha = -0.0389 (echo form: c_d = 0.6343), beta = -0.0252
+      m = 4: alpha = +0.0213 (echo form: c_d = 0.3466), beta = +0.1945
+      m = 5: alpha = -0.1665 (echo form: c_d = 0.7198), beta = -0.2319
+      m = 7: alpha = -0.2594 (echo form: c_d = 0.7355), beta = -0.2494
+   rms after the regression 0.2971; the polynomial resolves the interior to about (2K-1)/a = 3.4 T* and the edge to about (2K-1)^2/a = 545 T*
