@@ -744,6 +744,19 @@ checked; its content in our terms is von Koch's theorem (and, with Littlewood's 
 written, plus the paper's Proposition prop:AimpliesRH in general form. From here the sandbox is closed and the work is
 number theory: the critical path of RH_IF_THEN_TREE.md in arithmetic terms.
 
+## ROUND 'BACK TO OUR ACTUAL RESEARCH' (2026-10-03)
+received/Prime_Side_Completion_Addendum.pdf audited (RESEARCH_SECULAR_FORM.md, Section 1): correct, nothing beyond the
+paper except two reformulations (the measure inequality nu(E) <= int_E K lambda; the explicit insistence that absolute
+bounds on |A_0|^2 do not suffice), adopted. Then N1d.2 taken up in its prime-side form: the secular function
+sigma(lambda, a) = <(K_a - lambda)^{-1} s_a, s_a> of the polar source (K_a the prime-side operator without the polar
+term). Theorems (verified on the K-mode form at a = 0.6..0.84): the floor is the lowest root of sigma = 1/2; d_a sigma =
+-lambda' ||phi||^2 = 2|A_0^(1)|^2 (Hadamard formula of the resolvent, under the boundary law); (d) <=> the level curve of
+sigma has logarithmic slope >= -c T*; beyond a_Z, RH <=> <K_a^{-1} s_a, s_a> <= 1/2 (given mu_0 > 0), the deficit
+D = 1/2 - sigma(0) decaying like the floor (rates 70.9 vs 69.7, 104.4 vs 103.4). Finding: mu_0(K_a) itself collapses
+doubly exponentially (3e-3, 7e-6, 9e-8, 1e-9, 2e-11 at a = 0.6, 0.7, 0.75, 0.8, 0.84), lambda*/mu_0 ~ 1e-4..1e-5, and the
+ground state of K_a is nearly orthogonal to the polar source (<e_0,s>^2 = 1e-17 at 0.8): a two-stage cancellation. Open
+sub-questions Q1-Q3 in the note. NEXT: Q3, the slope inequality in the finite-tree regime with the explicit factors.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

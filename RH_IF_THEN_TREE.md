@@ -198,6 +198,10 @@ N1d.1 The reachable target, stated correctly.  [OPEN; the local law of the band;
     IF NOT THEN the equivalence stays one-directional, and N1d.2 proceeds without the exact shape of the target.
 
 N1d.2 Unconditional attack on (d).  [OPEN; as hard as RH]
+    2026-10-03, RESEARCH_SECULAR_FORM.md: prime-side form as a level-set inequality for the secular function
+    sigma(lambda,a) = <(K_a - lambda)^{-1} s_a, s_a> (floor = lowest root of sigma = 1/2; d_a sigma = 2|A_0^(1)|^2;
+    (d) <=> d log lambda*/da >= -c T* along the level set; RH beyond a_Z <=> <K_a^{-1} s_a, s_a> <= 1/2 given mu_0 > 0).
+    Finding: mu_0(K_a) collapses doubly exponentially too; the polar source is nearly orthogonal to K_a's ground state.
     The missing piece (memo RH_TOP3_PROOF_ARCHITECTURE.md, Section 3.2): a structure theorem for the minimizer stated
     in terms of the primes alone, sensitive at relative resolution e^{-cT*} (positivity fails under a perturbation of
     size 1e-14 of the prime positions at a = 0.8). Three vectors, each with its likely fatal flaw (memo Section 4):
