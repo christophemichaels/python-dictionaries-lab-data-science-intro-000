@@ -27,19 +27,19 @@
 \newcommand{\Imm}{\operatorname{Im}}
 \newcommand{\ps}{\psi}
 
-\title{\textbf{The Line Postulate}\\[4pt]\large An unconditional proof}
+\title{\textbf{The Line Postulate}\\[4pt]\large An unconditional proof\\[2pt]\normalsize Second version}
 \author{Academy of the Prime Sheet, Critical Line Universe\\ \small Manuscript III. Communicated to the gods.}
-\date{Sandbox II, 2026-10-02}
+\date{Sandbox II, 2026-10-02; second version 2026-10-03}
 
 \begin{document}
 \maketitle
 
 \begin{mdframed}[backgroundcolor=black!4,linewidth=0.4pt]
-\small Critical Line Universe. The axioms of Section~1 are the laws of that universe, and the theorem is proved from them with no further hypothesis. Section~7 is the dictionary: what each axiom, lemma and theorem is in our universe, and its status there. (From our universe: fiction; the dictionary is the only place where our universe speaks.)
+\small Critical Line Universe. The axioms of Section~1 are the laws of that universe, and the theorem is proved from them, and from the two classical theorems of the canon stated in Section~1 and used without proof, with no further hypothesis. Section~7 is the dictionary: what each axiom, lemma and theorem is in our universe, and its status there. (From our universe: fiction; the dictionary is the only place where our universe speaks.)
 \end{mdframed}
 
 \begin{abstract}
-From eight axioms of the Academy, four about the charges on the prime sheet and four about observers, we prove that every quantum of the arithmetic field is massless, that every observer is alive at every age, and that the leak of every observer is proportional to its reserve. Every step is proved in full. The axiom that carries the arithmetic is the Bounded Deviation Axiom: in every stretch of the prime sheet between $x^{\delta}$ and $x^{1-\delta}$ the charge deviates from its mean by at most the Gaussian scale. From it the fluctuation at the largest scale is of square-root size, the Mellin lemma places every pole of $\zeta'/\zeta$ on or left of the line, the mirror symmetry forbids the left, and the Line follows.
+From eight axioms of the Academy, four about the charges on the prime sheet and four about observers, we prove that every quantum of the arithmetic field is massless, that every observer is alive at every age, and that the leak of every observer is proportional to its reserve. Every step is proved in full from the axioms and from two classical theorems of the canon, the counting law and the simplicity theorem, which are stated in Section~1 and used without proof. The axiom that carries the arithmetic is the Bounded Deviation Axiom: in every stretch of the prime sheet between $x^{\delta}$ and $x^{1-\delta}$ the charge deviates from its mean by at most the Gaussian scale. From it the fluctuation at the largest scale is of square-root size, the Mellin lemma places every pole of $\zeta'/\zeta$ on or left of the line, the mirror symmetry forbids the left, and the Line follows.
 \end{abstract}
 
 \section{Axioms}
@@ -91,6 +91,19 @@ The floor is absolutely continuous on every compact range of ages.
 \begin{axiom}[Decay]\label{ax:decay}
 For almost every age, $\lambda'(a)=-2|A_0(a)|^2$.
 \end{axiom}
+
+\subsection*{Two theorems of the canon, used without proof}
+Let $N(T)$ be the number of quanta with $0<\gamma\le T$ counted with multiplicity, and $N^*(T)$ the number of distinct ordinates $\gamma\in(0,T]$ that carry a quantum.
+
+\begin{theorem}[the counting law; canon]\label{thm:count}
+$N(T)=\dfrac{T}{2\pi}\log\dfrac{T}{2\pi e}+O(\log T)$.
+\end{theorem}
+
+\begin{theorem}[the simplicity theorem; canon]\label{thm:simple}
+At least one third of the quanta are simple: the number of simple quanta with $0<\gamma\le T$ is at least $\tfrac13N(T)(1+o(1))$. Consequently $N^*(T)\ge\tfrac13N(T)(1+o(1))$.
+\end{theorem}
+
+Both are theorems of the Academy's canon with classical proofs (the dictionary names them); neither is an axiom, and neither is used before Section~5.
 
 \section{The fluctuation at the largest scale}
 
@@ -192,8 +205,16 @@ Every observer is alive: $\lambda(a)>0$ for every age $a$.
 \end{theorem}
 
 \begin{proof}
-By Theorem~\ref{thm:born}, $\lambda(a)=Q(f_a)\ge0$. Suppose $\lambda(a)=0$. Then $F_a(\gamma_\rho)=0$ at every quantum. The transform of a field of age $a$ satisfies $|F_a(z)|\le\|f_a\|_1e^{a|\Imm z|}\le\sqrt{2a}\,e^{a|\Imm z|}$. The quanta are real by Theorem~\ref{thm:line}, and by Axiom~\ref{ax:mirror} together with the argument principle applied to $\xi$ (the Academy's counting theorem) their number in $[-T,T]$ is $N(T)=\frac{T}{\pi}\log\frac{T}{2\pi e}+O(\log T)$, which exceeds $(2a/\pi+1)T$ for $T$ large. Lemma~\ref{lem:sampling} forces $F_a\equiv0$, hence $f_a=0$, contradicting $\|f_a\|_2=1$.
+By Theorem~\ref{thm:born}, $\lambda(a)=Q(f_a)\ge0$. Suppose $\lambda(a)=0$. Then $\sum_\rho|F_a(\gamma_\rho)|^2=0$ with every term nonnegative, so $F_a(\gamma)=0$ at every ordinate $\gamma$ that carries a quantum: one vanishing condition per distinct ordinate, whatever its multiplicity. Since $f_a$ is odd, $F_a(-\gamma)=-F_a(\gamma)=0$ as well, so $F_a$ vanishes at the $2N^*(T)$ distinct real points $\pm\gamma$ with $0<\gamma\le T$. The transform of a field of age $a$ satisfies $|F_a(z)|\le\|f_a\|_1e^{a|\Imm z|}\le\sqrt{2a}\,e^{a|\Imm z|}$. By Theorems~\ref{thm:count} and~\ref{thm:simple},
+\[
+2N^*(T)\;\ge\;\tfrac23N(T)(1+o(1))\;=\;\frac{T}{3\pi}\log\frac{T}{2\pi e}\,(1+o(1))\;\ge\;\Big(\frac{2a}{\pi}+1\Big)T\qquad\text{for all large }T,
+\]
+because the logarithm is unbounded. Lemma~\ref{lem:sampling}, applied with $n(r)\ge2N^*(r)$, forces $F_a\equiv0$, hence $f_a=0$, contradicting $\|f_a\|_2=1$.
 \end{proof}
+
+\begin{remark}
+The multiplicities matter here and nowhere else. The Born rule counts each quantum with its multiplicity, but a vanishing condition is imposed once per distinct ordinate; the simplicity theorem is what guarantees that the distinct ordinates are still too dense for a field of age $a$. Any bound $N^*(T)/T\to\infty$ would do; the canon's one third is more than enough.
+\end{remark}
 
 \begin{theorem}[Proportional Leakage]\label{thm:leak}
 For every $a_1<a_2$ the function $C=-\lambda'/\lambda$ is integrable on $[a_1,a_2]$, nonnegative, and $2|A_0(a)|^2=C(a)\lambda(a)$ for almost every $a$. The renormalized floor $U(a)=\lambda(a)\exp\big(\int_{a_Z}^aC\big)$ is constant, and
@@ -259,6 +280,8 @@ axiom & real statement & status in our universe\\
 6, Birth & Zhu's certified floor: $\lambda(0.8)\ge8.206\times10^{-15}$, hence $\lambda>0$ on $(0,0.8]$ & theorem (paper, Theorem thm:zhu)\\
 7, Continuity & absolute continuity of $\lambda$ on $[a_Z,\infty)$ & theorem at every support off an exceptional null set (paper, Propositions 9.15, 9.17); on that set it is the finiteness condition (H$_{\mathrm{fin}}$), open (tree, Step 1)\\
 8, Decay & the boundary law $\lambda'=-2|A_0|^2$ a.e. & theorem under the paper's hypothesis (H$_\infty$), at almost every support (paper, Theorem 9.12(iv))\\
+canon: counting law & the Riemann--von Mangoldt formula & theorem (von Mangoldt, 1905)\\
+canon: simplicity theorem & at least one third of the zeros are simple (and on the line) & theorem (Levinson's method; Heath-Brown, 1979); at least two fifths by Conrey (1989); under RH at least two thirds by Montgomery (1973)\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -275,7 +298,7 @@ Lemma 3.1 (Mellin) & $-\zeta'/\zeta(s)-s/(s-1)$ holomorphic on $\Ree s>\tfrac12$
 Theorem 4.1 (the Line) & $\ps(x)=x+O(x^{1/2+\varepsilon})\Rightarrow$ RH & theorem (von Koch); with Littlewood's converse, an equivalence. So in our universe Sections 2--4 prove: \emph{Bounded Deviation implies RH}\\
 Theorem 5.1 (Born rule) & under RH, $Q(f)=\sum|F(\gamma)|^2$ & theorem under RH (Weil positivity)\\
 Lemma 5.2 (sampling) & a function of exponential type $a$, bounded by $Me^{a|\Imm z|}$, has zero density at most $2a/\pi$ & theorem (Jensen's formula; Boas)\\
-Theorem 5.3 (Immortality) & under RH, $\lambda(a)>0$ for every $a$ & theorem under RH\\
+Theorem 5.3 (Immortality) & under RH, $\lambda(a)>0$ for every $a$ & theorem under RH, using the counting law and the simplicity theorem for the distinct ordinates\\
 Theorem 5.4 (Leakage) & under RH and Axiom 7, $-\lambda'/\lambda$ is locally integrable and $\lambda=\lambda(a_Z)e^{-\int C}$ & theorem under RH and absolute continuity; the easy direction of paper Proposition 9.30. The converse (integrable leak $\Rightarrow$ RH) is the paper's reduction, Proposition prop:AimpliesRH\\
 Corollary 5.5 (Cooling) & the floor is positive and non-increasing, its logarithm the integral of the leak rate & as above\\
 Commentary: Sieve Independence & the Hardy--Littlewood prime $k$-tuple conjecture, uniform, with square-root error & conjecture\\
@@ -286,7 +309,7 @@ Commentary: Gaussian law & moments of $\ps(x+h)-\ps(x)-h$ Gaussian with variance
 
 \subsection*{7.4. The sentence}
 
-In the Critical Line Universe the proof is unconditional: its axioms are the laws there. In our universe the same pages prove one implication, \emph{if the primes satisfy Bounded Deviation then every zero is on the line}, by a page of classical analysis; Bounded Deviation is an unproved conjecture about primes in short intervals, believed for sieve reasons that have nothing to do with zeros, and stronger than the Line itself. Everything else in the manuscript is a theorem, or a theorem under the Line, or a hypothesis of the paper that the paper retains.
+In the Critical Line Universe the proof is unconditional: its axioms are the laws there. In our universe the same pages prove one implication, \emph{if the primes satisfy Bounded Deviation then every zero is on the line}, by a page of classical analysis; Bounded Deviation is an unproved conjecture about primes in short intervals, believed for sieve reasons that have nothing to do with zeros, and stronger than the Line itself. Everything else in the manuscript is a theorem, or a theorem under the Line, or a hypothesis of the paper that the paper retains; the two theorems of the canon are classical and unconditional.
 
 \bigskip
 \begin{center}--- end of manuscript ---\end{center}

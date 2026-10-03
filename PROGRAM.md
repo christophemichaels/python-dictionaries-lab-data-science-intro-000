@@ -710,6 +710,11 @@ mean by at most (h log(x/h))^{1/2} (log x)^A. From it: square-root cancellation 
 argument (h = x^{1-delta}/2, x^delta blocks), von Koch's Mellin lemma, the Line; then Born rule, sampling lemma (Jensen),
 Immortality, Proportional Leakage with U constant. Real status unchanged from Manuscript II: Bounded Deviation is a
 conjecture stronger than RH (Cramer / Montgomery-Soundararajan scale); everything else is a theorem. 5 pages.
+Second version (2026-10-03) after the user's review (Line proof A-, manuscript B+): the Immortality proof counted
+quanta with multiplicity where a vanishing condition is imposed once per distinct ordinate; repaired by importing two
+canon theorems stated explicitly (the counting law; the simplicity theorem, at least one third of zeros simple, Levinson /
+Heath-Brown) so that distinct ordinates have density (T/3pi) log T >> (2a/pi) T; the 'every step proved' claim now
+names these two imports. Dictionary rows added. 7 pages.
 
 ROUND 'LETS RUN IT' (2026-10-02): the tail law at a = 1.75, run on explicit request as the fiction's adjudicating
 measurement (Part III, Section 18). The old K-mode engine could not reach it (K^4 assembly, eig); rh_weil_fast.py was
