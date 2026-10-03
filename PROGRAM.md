@@ -770,6 +770,18 @@ delta_a alone. (P7): alpha is a residue-at-infinity functional of (sigma_+, V_a)
 write both explicitly for one entry and for the entries 2,3,4. Remark recorded: (H+) is the polar-free half of Weil
 positivity, not known to be equivalent to RH; if it were a theorem, RH beyond a_Z would be the scalar statement m_a <= 1.
 
+## 2026-10-03, later: computation stopped; the source transfer
+The a = 2.0 tail-law run was stopped at the user's request (task 51/430; data/tail_law_kmode/coefs_2.0.log). The
+computational side quest is closed; the work is analytical. The user's source-transfer identities u_lambda = u_0 +
+lambda (H - lambda)^{-1} u_0, delta = lambda <u_0, u_lambda>, alpha_lambda = alpha_0 + lambda beta_lambda verified and
+recorded (RESEARCH_SECULAR_FORM.md, Section 6, P8-P10) with an explicit K = 4M + 4 lambda D^2 ||v||^2/m^2 from the two
+source bounds (S1) |alpha_0|^2 <= M delta, (S2) |beta_lambda| <= D. Assessment: (S2) is absolute and accessible (source
+norms of cor:edgeform); (S1) is the comparison in its lambda = 0 form (Gronwall for the margin) and carries the whole
+cancellation; (P11) positivity forces the cancellation only integrated over supports. Section 7: the explicit near-edge
+polar functional (size e^{a/2}) against the far-edge feedback, which for the odd problem is the mirror of the near edge,
+so alpha_0 obeys a scalar self-consistency equation; NEXT: derive it exactly for the prime-free operator with the polar
+source, then with one entry. The user's updated eight-page addendum is awaited (the sandbox link is not reachable here).
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

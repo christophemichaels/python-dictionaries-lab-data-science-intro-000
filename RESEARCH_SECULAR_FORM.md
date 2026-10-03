@@ -123,3 +123,76 @@ PROVED: P1-P5 (P5 for the K-mode form; for the exact form under the derivative i
 HYPOTHESIS: (H+) where used; the Hadamard formula at lambda = 0 (P6); the TARGET 2|alpha|^2 <= K delta_a, equivalently
 the prime-side comparison. NEXT: the explicit one-entry and three-entry forms of alpha and m(0,a) through sigma_eff and its
 factors (P7), to see what structure, if any, bounds the residue functional by the pairing deficit.
+
+## 6. The source transfer (the user's calculation of 2026-10-03, second part; verified)
+
+DEFINITION. u_z = (H_a - zI)^{-1} v_a for z < h_a; u_0 = H_a^{-1} v_a; u_lambda at the root lambda = lambda(a).
+
+(P8) Exact identities (PROVED, resolvent identity and (P3)):
+        u_lambda = u_0 + lambda (H_a - lambda)^{-1} u_0,         delta_a = lambda <u_0, u_lambda> .
+     The second is (P3) written on u_0: delta = lambda <v, H^{-1}(H-lambda)^{-1} v> = lambda <H^{-1} v, (H-lambda)^{-1} v>.
+
+(P9) Transfer of the boundary coefficient (PROVED where the boundary representation applies to u_0, u_lambda and
+     (H_a - lambda)^{-1} u_0 with a common linear boundary-coefficient functional):
+        alpha_lambda = alpha_0 + lambda beta_lambda,        beta_lambda = boundary coefficient of (H_a - lambda)^{-1} u_0 .
+
+(P10) From source bounds to the comparison (PROVED, given (P8)-(P9)). Suppose
+        (S1)  |alpha_0(a)|^2 <= M(a) delta_a,          (S2)  |beta_lambda(a)| <= D(a),
+     with M, D >= 0 locally bounded. Then, since ||u_lambda|| >= ||u_0|| (spectral calculus) and
+     ||u_0|| >= <v_a, u_0>/||v_a|| = m_a/||v_a||,
+        L(a) = 2|alpha_lambda|^2/||u_lambda||^2 <= 4(|alpha_0|^2 + lambda^2 |beta_lambda|^2)/||u_lambda||^2
+             <= 4 M delta_a/||u_lambda||^2 + 4 lambda^2 D^2 ||v_a||^2/m_a^2 ,
+     and delta_a = lambda <u_0, u_lambda> <= lambda ||u_0|| ||u_lambda|| <= lambda ||u_lambda||^2, so
+        L(a) <= K(a) lambda(a),        K(a) = 4 M(a) + 4 lambda(a) D(a)^2 ||v_a||^2 / m_a^2 ,
+     which is locally bounded (lambda <= lambda(a_Z) on the living range, m_a = 1 - delta_a >= 1/2 once delta_a <= 1/2,
+     ||v_a||^2 = sinh(a) - a... explicit). This is the user's explicit coefficient up to the constants chosen here.
+
+What (S1) and (S2) are.
+  (S2) is an ABSOLUTE bound on the boundary coefficient of a resolvent applied to the smooth source u_0: the kind of
+       bound the source norms of Corollary cor:edgeform are expected to give (paper, Lemma lem:A0bound, Proposition 9.15),
+       locally uniform in a away from the entries. It carries no cancellation and is the accessible half.
+  (S1) is RELATIVE: the squared boundary coefficient of H_a^{-1} v_a against the margin. By the Hadamard formula at
+       lambda = 0 (P6, HYPOTHESIS), 2|alpha_0|^2 = d_a m(0,a) = -delta_a'(a), so (S1) is  -delta_a' <= 2M delta_a : the
+       Gronwall statement for the margin itself. It carries the whole cancellation; it is the comparison in its lambda = 0
+       form, and nothing in (P8)-(P10) weakens it. The measured values: 2|alpha_0|^2/delta_a = 70.9, 91.7, 98.7, 104.0,
+       121.9 at a = 0.6, 0.7, 0.75, 0.8, 0.84 (Section 3), so M(a) must be at least Phi'(a)/2 (1 + 1%).
+
+(P11) An integrated consequence (PROVED under Q_a >= 0 for all a, i.e. under RH, with (P6)). Since m(0,a) is
+     non-decreasing in a and m(0,a) <= 1,
+        int_a^infinity 2|alpha_0(a')|^2 da' = lim m - m(0,a) <= delta_a .
+     The far-edge cancellation that (S1) asks for pointwise is forced, integrated over all larger supports, by positivity
+     alone. A proof of (S1) must supply something that holds at every single support; positivity supplies it only on
+     average, and the average is useless because delta decays doubly exponentially.
+
+## 7. The structure of the cancellation (the explicit near-edge functional)
+
+In the dictionary convention F(t) = int f(x) e^{-itx} dx, the polar source v_a = sqrt2 sinh(x/2) on [-a,a] has
+        V_a(t) = sqrt2 [ e^{-ita} Sigma_R(t) + e^{+ita} Sigma_L(t) ],
+        Sigma_R(t) = ( e^{a/2}/(1/2 - it) + e^{-a/2}/(1/2 + it) )/2,     Sigma_L(t) = -( e^{-a/2}/(1/2 - it) + e^{a/2}/(1/2 + it) )/2,
+with Sigma_L(t) = -Sigma_R(-t) (oddness). In the right-edge frame (multiply by e^{ita}) the source is Sigma_R + e^{2ita} Sigma_L:
+a near-edge part of size e^{a/2} and a far-edge part of the same size carrying the phase e^{2ita}. The exact
+representation (paper, Proposition prop:whexact for the archimedean operator; Proposition prop:tree with sigma_eff below
+a_inf) writes the solution's transform in that frame as P_-[H^_-/sigma_+]/sigma_-, where H^_- is the source plus the
+force outside the FAR edge, with the real-zero corrections at +-t_lambda; and the boundary coefficient is the residue at
+infinity, alpha = lim t P_-[ (H^_- - far)/sigma_+ ](t) - lim t P_+[ far/sigma_+ ](t) (Corollary cor:edgeform), that is,
+up to the slowly varying factor 1/sigma_+ ~ (log t)^{-1/2}, a Cauchy integral of the source against 1/sigma_+.
+
+So alpha_0 = ell_near + ell_far with
+        ell_near = -(1/2 pi i) int Sigma_R(u)/sigma_+(u) du  (regularized at +-t_lambda)  =  O(e^{a/2}) ,
+and ell_far the contribution of e^{2ita} Sigma_L and of the outside force beyond the far edge. For the odd problem the
+force beyond the far edge is the mirror image of the force beyond the near edge, g_out(-a-v) = -g_out(a+v), and the near
+force is itself determined by the solution: the far-edge term is not an independent datum but a self-consistency term,
+a scalar equation for alpha_0 of the form
+        alpha_0 = ell_near(a, lambda) + rho(a, lambda) conj(alpha_0) + (smaller),
+with rho the return of the near edge through the far edge (the mirror chain of the paper, Section 9: the walk across the
+window and back, weight O(1) through the real zeros +-t_lambda, not exponentially small, because the symbol has real
+zeros). (S1) says |alpha_0|^2 <= M delta_a with delta_a doubly exponentially small while ell_near is e^{a/2}: the
+cancellation between ell_near and rho conj(alpha_0) + (smaller) must be exact to a relative e^{-Phi/2 - a/2}. That is the
+statement "the source representation retains opposite-edge feedback; its cancellation has not been established", made
+explicit.
+
+NEXT (analytical, no computation): write the scalar equation for alpha_0 exactly for the archimedean operator (prime-free,
+Proposition prop:whexact, where sigma_+- are explicit through Lemma lem:factor) with the polar source, isolating rho and
+the remainder; then with one entry (sigma_eff = sigma~_inf - c_2^2/sigma~_inf). The question is whether the equation,
+combined with m(0,a) = <v_a, u_0> written in the same data, forces |alpha_0|^2 <= M (1 - m(0,a)) by an identity rather
+than by a cancellation one has to prove separately. Nothing below a_inf involves the zeros.
