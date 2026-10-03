@@ -729,6 +729,21 @@ saturation yet. Paper: comp:tail row and text, Section 'Four engines' item 4. Th
 in progress (data/tail_law_kmode/coefs_2.0.log). The lasting product is the engine: K-mode floors to K ~ 600 are now
 hours, not weeks.
 
+## Direction from 2026-10-03: number theory only
+The user's document received/The_Critical_Line_Theorem_and_Dictionary.pdf (13 pages, 'number-theoretic revision')
+replaces the fictional framing. It states the critical-line theorem as a conditional theorem of number theory: from
+Axiom A (Euler product), Axiom D (entire xi, functional equation) and the singleton case of Axiom E (the prime-correlation
+estimate with square-root error; at H = {0} the singular series is 1 and the premise is psi(x) = x + O(x^{1/2+eps})),
+or alternatively Axiom C (short-interval error bound including h = t), it proves R(x) = O(x^{1/2+eps}), the Mellin
+identity, holomorphy of -zeta'/zeta - s/(s-1) on Re s > 1/2 with the pole at 1 handled (xi(1) = 1/2), no zeros right of
+the line, reflection. It records that the square-root error is a premise not derived from unique factorization. Sections
+9-12: Weil-form consequences (nonnegativity under the line; strict positivity only from the relative-derivative theorem
+with a locally integrable majorant; signed-orbit criterion; mirror expansion with remainder), with the multiplicity
+caveat. Sections 13-14: dictionary (fiction terms -> number theory) and dependency record. Assessment: correct as far as
+checked; its content in our terms is von Koch's theorem (and, with Littlewood's converse, an equivalence), carefully
+written, plus the paper's Proposition prop:AimpliesRH in general form. From here the sandbox is closed and the work is
+number theory: the critical path of RH_IF_THEN_TREE.md in arithmetic terms.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
