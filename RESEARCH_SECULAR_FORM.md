@@ -357,8 +357,8 @@ where the all-function estimate at T = c T* can be attacked on the explicit repr
 |---|---|---|
 | Proposition 12: the fixed-cutoff criterion (14.1) for all odd f, a <= A, is equivalent to lambda(A) > 0 | the converse uses nesting of the windows and the crude bound with C_A = (J_A + V_A^2)/gamma_A; this is (R4) of Section 11 | PROVED |
 | (17.1): 0 <= v - s_{p,r} = N - u <= v^2/u for both path-norm cases | rationalize sqrt(u^2+v^2) - u and (sqrt(u^2+4v^2) - u)/2; denominators >= 2u | PROVED (the path-norm formulas themselves come from [T, CP20], not in this repository) |
-| Proposition 13: S_sq(a) = a + O(1) | sum_p sum_r v^2/u = sum_p (log p) p^{-3/2}/(1 - p^{-3/2}) < infinity; r >= 2 terms bounded; sum_{p<e^a} log p/p = a + O(1) (Mertens; the PNT with its classical error gives the O(1) by partial summation) | PROVED; checked numerically: sum - a = 1.33, 1.33, 1.33 (constant) at a = 4, 6, 8 |
-| (17.3): B_ref(a) = sum_{p^k < e^{2a}} log p / p^{k/2} ~ 2 e^a | partial summation from psi(X) ~ X; checked: ratio to 2e^a is 1.09, 1.03, 1.01 at a = 4, 6, 8 | PROVED |
+| Proposition 13: S_sq(a) = a + O(1) | sum_p sum_r v^2/u = sum_p (log p) p^{-3/2}/(1 - p^{-3/2}) < infinity; r >= 2 terms bounded; sum_{p<e^a} log p/p = a + O(1) (Mertens; the PNT with its classical error gives the O(1) by partial summation) | PROVED; checked numerically: sum_{p<e^a} log p/p - a = -1.16, -1.27, -1.31 at a = 4, 6, 8, tending to Mertens' constant -1.33 |
+| (17.3): B_ref(a) = sum_{p^k < e^{2a}} log p / p^{k/2} ~ 2 e^a | partial summation from psi(X) ~ X; checked: ratio to 2e^a is 0.978, 0.997, 0.9996 at a = 4, 6, 8 | PROVED |
 | consequence: the scalar saving is a/(2e^a) of the reflection charge; the sign of the full form is decided by the retained positive path matrices, the continuous reserve and their interactions | correct as stated | correct |
 
 Remark. B_ref(a) is the Schur bound B(a) of the addendum's Lemma 1 up to the factor 2 (the band top 2 sum c_d of the
