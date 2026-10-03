@@ -792,6 +792,16 @@ problem the far feedback is fixed by continuity of the regular part of the force
 the source value, so the cancellation is among the source step, the echo value u(a - log 2) and the rational corrections
 at the real zeros. NEXT: the one-entry Wiener-Hopf solution of (H - lambda) u = v written out (steps (a)-(d) in the note).
 
+## 2026-10-03, later: addendum v3 (Sections 11-12) audited; the three gates folded into one
+received/Prime_Side_Completion_Addendum_v3.pdf (11 pages): Q u_0 = delta v, Q(u_0) = m delta (exact), the energy
+splitting, Proposition 7 (tail lower bound + signed low-frequency bound give |alpha_0|^2 <= pi T (1 + C) m delta),
+Proposition 8 (the correction beta_lambda from a forced-source tail bound), K = 4 pi T (1 + C) m + 4 lambda D^2/||u_0||^2.
+All verified (RESEARCH_SECULAR_FORM.md, Section 10). Content: with the asymptotic tail law for the forced solution
+(expected from the paper's proofs with the step coefficient sqrt2; to be re-verified), (11.4) at T is the statement that
+the tail law has set in by T with bounded error: the three gates are one, the onset T_0(a) of the tail law for u_0 =
+H^{-1} v at a bounded multiple of the horizon (N1d.1 for the forced solution). NEXT: the one-entry tail identity for u_0
+and the lower bound of E_<= on the explicit negative set of sigma_eff.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

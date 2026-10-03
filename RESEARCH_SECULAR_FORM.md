@@ -251,3 +251,52 @@ the only non-explicit datum, through the echo relation (eq:localecho with one ec
 + .)) plus smooth); (d) check whether the resulting scalar relation for alpha_0 yields |alpha_0|^2 <= M (1 - m) with M
 locally bounded on (a_2, a_3). Everything in (a)-(c) is in the paper's Section 8 for the minimizer; the forced problem
 changes only the coefficient of the step.
+
+## 10. Audit of the third version (received/Prime_Side_Completion_Addendum_v3.pdf, Sections 11-12)
+
+| statement | check | status |
+|---|---|---|
+| (11.1): Q u_0 = delta v and Q(u_0) = m delta, with 0 < m < 1 at a positive secular root | H u_0 = v gives (H - v v*) u_0 = (1 - m) v; pair with u_0; m(0) < m(lambda) = 1 since m increases in lambda and lambda > 0 | PROVED, exact; no boundary input |
+| (11.2): E_>(u;T) + E_<=(u;T) = m delta with the polar subtraction -m^2 booked in E_<= | (1/2pi) int Psi_a |U|^2 = <u, H u> = m; subtract m^2 | PROVED (bookkeeping) |
+| Proposition 7: (11.3) E_> >= |alpha_0|^2/(pi T) and (11.4) E_<= >= -C m delta give |alpha_0|^2 <= pi T (1 + C) m delta | immediate | PROVED under (11.3), (11.4) |
+| Proposition 8: |beta_lambda|^2 <= pi T V^2 h^{-2} ( (h - lambda)^{-1} + J (h - lambda)^{-2} ) under the forced tail bound (12.1) | pairing (H - lambda) w = u with w; low part >= -J ||w||^2 by Parseval; ||u|| <= V/h, ||w|| <= V/(h(h - lambda)) | PROVED under (12.1) and (H+) |
+| (12.3): K = 4 pi T (1 + C) m + 4 lambda D^2/||H^{-1} v||^2; local boundedness under h_0, m >= 1/2 | from Propositions 6-8 | PROVED under the hypotheses |
+
+Nothing to correct. Two remarks on content.
+
+(R1) The identity Q u_0 = delta v is the sharpest exact statement so far: the zero-parameter forced solution is a near-null
+vector of the window form with residual delta v, and its Weil energy is m delta. Everything about the comparison is a
+statement about how a near-null vector of Q with residual delta v distributes its energy in frequency.
+
+(R2) What (11.3) and (11.4) are, against the paper. The tail identity of Proposition prop:tailid and the sum rule (Lemmas
+lem:overlap, lem:cont, Proposition prop:sumrule) are proved for a critical point K f = lambda f + 2 P s + g_out on the
+line, and never use the self-consistency P = <f, s>; the Wiener-Hopf representation (Propositions prop:whexact,
+prop:whfull, prop:tree) is proved for sources in L^1 cap L^2 with y h in L^2, which the polar source is. So, below
+a_inf, the forced solution u_0 has the edge law with two derivatives and the asymptotic tail law by the same proofs with
+the step coefficient 2P replaced by sqrt2 (status: expected from the same proofs; to be re-verified line by line before it
+is called a theorem):
+        E_>(u_0; T) = 2 |alpha_0|^2 / (pi T) (1 + o(1)),   T -> infinity,
+a factor 2 stronger than (11.3). But then (11.4) at a cutoff T, together with this asymptotic, says exactly
+        2 |alpha_0|^2 / (pi T) (1 + o(1)) <= (1 + C) m delta        at T = T_0(a),
+which is the comparison with K(a) = pi T_0(a) (1 + C): the obligation (11.4) is the statement that the tail law has set
+in by the height T_0(a) with its error controlled, i.e. the Fourier-tail onset for the forced solution, locally uniform
+in a. For T beyond 2 |alpha_0|^2/(pi m delta) the inequality (11.4) with C = 0 is automatic and Proposition 7 returns
+|alpha_0|^2 <= 2 |alpha_0|^2. So Sections 11-12 fold the three gates into one: the onset T_0(a) of the tail law for the
+forced solution u_0 = H_a^{-1} v_a at a locally bounded multiple of the horizon, with E_<= not more negative than a
+bounded multiple of the whole. That is item N1d.1 of the tree (the local law of the band) for the forced solution.
+
+(R3) Where the sign of E_<= comes from. E_<= = (1/2pi) int_{|t| <= T} Psi_a |U|^2 - m^2, and Psi_a is negative on a set
+reaching from t = 0 (Psi_infinity(0) = -5.4) up to the last sign change (33, 259, 397 horizons at a = 1, 1.25, 1.5 in the
+paper's Computation comp:band; below the horizon for a < a_inf). (11.4) therefore asks that the forced solution's
+transform carry little mass on the negative set of the symbol relative to m delta: the forced-solution form of the
+observation that the minimizer's transform hides from the negative set of the symbol as it hides from the zeros below
+the horizon (paper, discussion after Proposition prop:window; the fiction's "darkness"). In the finite-tree regime the
+negative set lies below the horizon and is explicit: {t : sigma~_inf(t) < X_max}, with X_max = 2.25 at a = 0.6.
+
+NEXT, analytical: in the one-entry regime, (a) carry the tail identity through for u_0 (step coefficient sqrt2) and
+isolate the onset, i.e. the first T at which the two order-C L^{-1/2}/T pieces (the polar piece and the smooth overlap)
+cancel to within a bounded multiple of 2|alpha_0|^2/(pi T), using the continuity lemma g_reg(a) = sqrt2 sinh(a/2) for the
+forced problem; (b) bound E_<= from below on the explicit negative set of sigma_eff by the representation of U below the
+horizon (Proposition prop:tree gives U = P_-[H^''_-/sigma_eff,+]/sigma_eff,- with all sources explicit). If (a) and (b)
+give T_0(a) <= c T*(a) and C(a) bounded on (a_2, a_3), the comparison is a theorem there, and the first null is excluded
+on (a_2, a_3) by Proposition 7 and the closing deduction, without zeros.
