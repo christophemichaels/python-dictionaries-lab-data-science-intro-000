@@ -105,10 +105,10 @@ and
 
 \begin{proof}
 Write $\mu\mathbf 1_{[1,N]}=\mu\mathbf 1_{[1,m]}+(u_0-W)$ with $u_0-W$ supported in $(m,N]$. Expanding and using Lemma~\ref{lem:history},
-\[
-R(N)=R(m)+E(u_0-W)+2M(m)\big(h(u_0)-h(W)\big)
-=R(m)+E(u_0)+E(W)-2\ip{u_0}W+2M(m)h(u_0)-2M(m)h(W).
-\]
+\begin{align*}
+R(N)&=R(m)+E(u_0-W)+2M(m)\big(h(u_0)-h(W)\big)\\
+&=R(m)+E(u_0)+E(W)-2\ip{u_0}W+2M(m)h(u_0)-2M(m)h(W).
+\end{align*}
 Since $a=\mu\mathbf 1_{[1,m]}+u_0$, Lemma~\ref{lem:history} gives $\ip aW=M(m)h(W)+\ip{u_0}W$, which is \eqref{eq:debit}. For \eqref{eq:debitM}, subtract the cumulative forms of $R(N)$ and $R(m)$ and use $\sum_{k=m}^{N-1}\frac1{k(k+1)}+\frac1N=\frac1m$ for the terminal term $M(m)^2/m$ of $R(m)$.
 \end{proof}
 
