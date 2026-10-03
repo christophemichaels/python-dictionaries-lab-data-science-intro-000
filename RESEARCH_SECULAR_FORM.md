@@ -350,3 +350,28 @@ which is a real simplification of the deduction if the all-function estimate can
 
 NEXT, unchanged: the one-entry regime, where the negative set of the symbol is explicit and below the horizon, and
 where the all-function estimate at T = c T* can be attacked on the explicit representation of U below the horizon.
+
+## 12. Audit of the fifth version (received/Prime_Side_Completion_Addendum_v5.pdf, Sections 16-17)
+
+| statement | check | status |
+|---|---|---|
+| Proposition 12: the fixed-cutoff criterion (14.1) for all odd f, a <= A, is equivalent to lambda(A) > 0 | the converse uses nesting of the windows and the crude bound with C_A = (J_A + V_A^2)/gamma_A; this is (R4) of Section 11 | PROVED |
+| (17.1): 0 <= v - s_{p,r} = N - u <= v^2/u for both path-norm cases | rationalize sqrt(u^2+v^2) - u and (sqrt(u^2+4v^2) - u)/2; denominators >= 2u | PROVED (the path-norm formulas themselves come from [T, CP20], not in this repository) |
+| Proposition 13: S_sq(a) = a + O(1) | sum_p sum_r v^2/u = sum_p (log p) p^{-3/2}/(1 - p^{-3/2}) < infinity; r >= 2 terms bounded; sum_{p<e^a} log p/p = a + O(1) (Mertens; the PNT with its classical error gives the O(1) by partial summation) | PROVED; checked numerically: sum - a = 1.33, 1.33, 1.33 (constant) at a = 4, 6, 8 |
+| (17.3): B_ref(a) = sum_{p^k < e^{2a}} log p / p^{k/2} ~ 2 e^a | partial summation from psi(X) ~ X; checked: ratio to 2e^a is 1.09, 1.03, 1.01 at a = 4, 6, 8 | PROVED |
+| consequence: the scalar saving is a/(2e^a) of the reflection charge; the sign of the full form is decided by the retained positive path matrices, the continuous reserve and their interactions | correct as stated | correct |
+
+Remark. B_ref(a) is the Schur bound B(a) of the addendum's Lemma 1 up to the factor 2 (the band top 2 sum c_d of the
+paper); so Section 17 says that the prime-square reflection pairing of [T] saves O(a) out of a charge of order e^a:
+nothing at the exponential scale. That is consistent with everything above: positivity is a cancellation to doubly
+exponential precision between the archimedean part and the entries at the minimizer, not a bookkeeping of the charges.
+[T] (Michaels_Consolidated_Theta_Local_Amplitude_Proof 2.pdf, CP20) is not in this repository; its formulas are taken as
+quoted.
+
+Status after the five versions. Proved and recorded: the polar decomposition, the source transfer, the quantitative
+equivalence of the margins, the small-energy identity Q u_0 = delta v, the fixed-cutoff equivalence, the Mertens-scale
+size of the reflection saving. Open and the same throughout: the all-support signed comparison, in any of its equivalent
+forms (the prime-side comparison L <= K lambda; (10.1); (11.4) at a horizon cutoff; (14.1) on each window), which is
+Weil positivity with a margin on the range in question. The structural facts established on the way (Sections 4, 9, 11:
+the collapse of h_a, the prime-free form negative beyond 0.35, the natural cutoff at the horizon with the prolate scale)
+locate where the content sits: the one-entry regime, below the horizon, on the explicit negative set of sigma_eff.

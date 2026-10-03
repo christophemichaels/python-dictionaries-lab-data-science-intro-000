@@ -813,6 +813,13 @@ T = kappa T* the Slepian constant gives -log eta ~ 2 a kappa T* = 4 pi kappa a e
 paper's prolate count, and the Cooling Theorem's form. The route is a simplification of the deduction, not of the
 obligation, which is the local law of the band in all-function form. NEXT unchanged: the one-entry regime.
 
+## 2026-10-03, later: addendum v5 (Sections 16-17) audited
+received/Prime_Side_Completion_Addendum_v5.pdf (17 pages): Proposition 12 (the fixed-cutoff criterion is equivalent to
+lambda(A) > 0; = (R4)), Proposition 13 (the prime-square reflection saving of [T, CP20] is S_sq(a) = a + O(1) against a
+reflection charge B_ref ~ 2 e^a: nothing at the exponential scale). Both verified (RESEARCH_SECULAR_FORM.md, Section 12;
+B_ref/(2e^a) = 1.09, 1.03, 1.01 and S_sq - a = 1.33 constant at a = 4, 6, 8). [T] is not in the repository. Status: the
+all-support signed comparison is the one open gate in every formulation; NEXT unchanged (one-entry regime).
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
