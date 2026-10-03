@@ -757,6 +757,19 @@ doubly exponentially (3e-3, 7e-6, 9e-8, 1e-9, 2e-11 at a = 0.6, 0.7, 0.75, 0.8, 
 ground state of K_a is nearly orthogonal to the polar source (<e_0,s>^2 = 1e-17 at 0.8): a two-stage cancellation. Open
 sub-questions Q1-Q3 in the note. NEXT: Q3, the slope inequality in the finite-tree regime with the explicit factors.
 
+## ROUND 'DICTIONARY FIXED; THE POLAR SEPARATION' (2026-10-03)
+DICTIONARY.md: the user's fixed dictionary (one meaning per term; labels DEFINITION / PROVED / HYPOTHESIS), with the
+prime-side objects added (H_a, v_a = sqrt2 sinh(x/2), m(lambda,a), delta_a = 1 - m_a, phi, alpha, alpha_0, h_a; the polar
+branch); the Fourier convention fixed as e^{-itx}; the closing deduction stated with its three inputs. The user's exact
+separation of the polar term (P1-P4 in RESEARCH_SECULAR_FORM.md, rewritten in the fixed notation) verified on the K-mode
+form: m(lambda*) = 1 to 14 digits; delta <= lambda ||phi||^2 is an equality to 1e-4..6e-6; lambda >= h_a delta is weak by
+8x to 1e9 because h_a collapses. Answer to 'does the margin control alpha': yes, with K(a) = Phi'(a) = pi kappa T* to
+1e-4 and no slack; the target is the comparison itself on the resolvent at the polar source. lambda = 0 reduction (P6):
+alpha_0 differs from alpha by 0.5-1.8%; with the Hadamard formula at lambda = 0 (hypothesis) the whole deduction runs on
+delta_a alone. (P7): alpha is a residue-at-infinity functional of (sigma_+, V_a), m(0,a) a pairing functional; NEXT:
+write both explicitly for one entry and for the entries 2,3,4. Remark recorded: (H+) is the polar-free half of Weil
+positivity, not known to be equivalent to RH; if it were a theorem, RH beyond a_Z would be the scalar statement m_a <= 1.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
