@@ -802,6 +802,17 @@ the tail law has set in by T with bounded error: the three gates are one, the on
 H^{-1} v at a bounded multiple of the horizon (N1d.1 for the forced solution). NEXT: the one-entry tail identity for u_0
 and the lower bound of E_<= on the explicit negative set of sigma_eff.
 
+## 2026-10-03, later: addendum v4 (Sections 13-15) audited; the fixed-cutoff route placed
+received/Prime_Side_Completion_Addendum_v4.pdf (14 pages): Lemma 9 (finite support forces a positive fraction of
+Fourier mass beyond any fixed cutoff; the top Slepian eigenvalue is below one), Theorem 10 (the all-function signed
+comparison at a fixed cutoff gives lambda >= eta/(1 + C_A) with no derivative, no regularity, no boundary asymptotic),
+Corollary 11 (source version: a uniform lower bound on the margin). Verified (RESEARCH_SECULAR_FORM.md, Section 11).
+Placed: (14.1) for all f is equivalent to uniform coercivity on (0, A]; at a fixed cutoff the constant C must be ~1e11 to
+1e13 at a = 0.8-0.84 because the margin is doubly exponentially small, so the cutoff must scale with the horizon; at
+T = kappa T* the Slepian constant gives -log eta ~ 2 a kappa T* = 4 pi kappa a e^{2a}, about twice the measured Phi: the
+paper's prolate count, and the Cooling Theorem's form. The route is a simplification of the deduction, not of the
+obligation, which is the local law of the band in all-function form. NEXT unchanged: the one-entry regime.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

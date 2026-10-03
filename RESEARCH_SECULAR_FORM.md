@@ -300,3 +300,53 @@ forced problem; (b) bound E_<= from below on the explicit negative set of sigma_
 horizon (Proposition prop:tree gives U = P_-[H^''_-/sigma_eff,+]/sigma_eff,- with all sources explicit). If (a) and (b)
 give T_0(a) <= c T*(a) and C(a) bounded on (a_2, a_3), the comparison is a theorem there, and the first null is excluded
 on (a_2, a_3) by Proposition 7 and the closing deduction, without zeros.
+
+## 11. Audit of the fourth version (received/Prime_Side_Completion_Addendum_v4.pdf, Sections 13-15)
+
+| statement | check | status |
+|---|---|---|
+| Lemma 9: for f supported in [-A, A], (1/2pi) int_{|t|>T} |f^|^2 >= eta(A,T) ||f||^2 with eta = 1 - ||K_{A,T}|| > 0 | the sinc operator on [-A,A] is compact, positive, a contraction; norm one would give a band-limited f of compact support, hence f = 0 (Paley-Wiener); this is the top Slepian eigenvalue lambda_0(c) < 1, c = AT | PROVED (classical) |
+| (13.2): Psi_a >= Psi_inf - B(A), and beyond T_A with Psi_inf >= B(A) + 1 the high energy obeys E_> >= eta ||f||^2 | immediate | PROVED |
+| Theorem 10: (14.1) E_<= >= -C_A Q_a(f) for all admissible odd f, a <= A, gives lambda(a) >= eta/(1 + C_A) | algebra | PROVED under (14.1) |
+| Corollary 11: E_<=(a,u) >= -C m delta at a cutoff with (13.2) gives delta >= eta/((1 + C) V^2 + eta) | (1+C) m delta >= E_>(u) >= eta ||u||^2 >= eta m^2/V^2 | PROVED under its hypothesis |
+| Section 15: a large support-dependent cutoff is not a locally controlled estimate; the crude absolute bound gives a coefficient with no proof that it is below one | correct | correct |
+
+Nothing to correct. Three remarks on content, the last of which connects the route to the paper.
+
+(R4) Scope of (14.1). With Lemma 9 and the crude bound E_<= >= -(J_A + V_A^2) ||f||^2, the hypothesis (14.1) for all f
+and a <= A is EQUIVALENT to uniform coercivity lambda(a) >= c_A > 0 on (0, A]: one direction is Theorem 10; conversely
+E_> = Q - E_<= <= Q + (J_A + V_A^2) ||f||^2 <= (1 + (J_A + V_A^2)/c_A) Q. So (14.1) is positivity with a margin on the
+range, restated; it bypasses the derivative and the regularity but not the content.
+
+(R5) The fixed cutoff is incompatible with the data. Corollary 11 gives a lower bound for the margin, delta >=
+eta/((1+C)V^2 + eta), uniform in a <= A, whereas delta is doubly exponentially small (2.5e-5, 5.4e-13, 5.3e-15 at a =
+0.6, 0.8, 0.84). Hence at a fixed cutoff T_A the constant must satisfy C >= eta (1 - delta)/(V^2 delta) - 1, which is
+5e3, 1e11, 9e12 at those supports for eta = 0.01: the signed comparison with bounded C is false at any fixed cutoff. The
+forced solution's energy above T_A is of order one while its total Weil energy is m delta; the low part is of order
+minus one. The only cutoff at which C can be bounded is support-dependent, T_0(a) ~ 2|alpha_0|^2/(pi m delta) = kappa T*(a)
+(Section 10), the horizon scale.
+
+(R6) At the horizon cutoff the route reproduces the cooling form, and it is the paper's prolate count. With T = kappa
+T*(a) and A = a, Slepian's asymptotic for the top eigenvalue, 1 - lambda_0(c) ~ 4 sqrt(pi c) e^{-2c}, c = a T, gives
+-log eta(a, kappa T*) ~ 2 a kappa T*(a) = 4 pi kappa a e^{2a}, against the measured Phi = -log lambda:
+
+      a      2 a kappa T*    Phi     ratio   (4a/pi)
+      0.6        26.6        14.3    1.86     0.76
+      0.8        52.7        31.8    1.66     1.02
+      1.0       108.1        59.5    1.82     1.27
+      1.25      229.8       116.2    1.98     1.59
+      1.5       469.1       209.6    2.24     1.91
+      1.75      926.3       372.3    2.49     2.23
+
+So Theorem 10 at the horizon cutoff with bounded C would give lambda(a) >= exp(-4 pi kappa a e^{2a} (1 + o(1))), the
+Cooling Theorem's doubly exponential form, weaker than the truth by the factor exp(2c - Phi) and consistent with C = 0;
+this is the "prolate-type count" of the paper's Section 7, which "bounds Phi below by about half of what is observed"
+(the ratio column). The obligation (14.1) at that cutoff, for the minimizer, is theta(kappa T*) <= 1 + C, true with C = 0
+under the Born rule; for all f it is coercivity (R4). The route therefore sits exactly where the others sit: the local
+law of the band at the horizon, now in the form "the window form dominates its own energy above kappa T*, for every odd
+f of support a", with a coefficient 1 + C locally bounded. Nothing is lost and nothing is gained relative to Section 10,
+except the form: no derivative identity, no absolute continuity, and no boundary asymptotic are needed on this route,
+which is a real simplification of the deduction if the all-function estimate can be approached directly.
+
+NEXT, unchanged: the one-entry regime, where the negative set of the symbol is explicit and below the horizon, and
+where the all-function estimate at T = c T* can be attacked on the explicit representation of U below the horizon.
