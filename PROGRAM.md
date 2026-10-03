@@ -820,6 +820,25 @@ reflection charge B_ref ~ 2 e^a: nothing at the exponential scale). Both verifie
 B_ref/(2e^a) = 0.978, 0.997, 0.9996 and sum log p/p - a = -1.16, -1.27, -1.31 at a = 4, 6, 8, tending to Mertens' -1.33). [T] is not in the repository. Status: the
 all-support signed comparison is the one open gate in every formulation; NEXT unchanged (one-entry regime).
 
+## 2026-10-03, later: the record estimate H_record (RESEARCH_H_RECORD.tex/pdf)
+The user's target: at strict energy records N, Delta_N = R(N) - R(m) <= A_eta N^eta R(m), m = floor(sqrt N), with the
+prime-side expression Delta_N = E(u_0) + 2M(m)h(u_0) + E(W) - 2<a,W> (atlas M38). Result: response (4) of the four
+requested. Proved: the debit identity and its partial-sum form (A = smooth Moebius sum, S = high-prime sum, A - S = M,
+and A^2 + S^2 - 2AS = M^2 termwise, so the regrouping is an identity); H_record <=> RH (the M38 induction reproduced,
+and the Green-energy equivalence of mobius_modifier_v2 Section 12); the exponent dictionary: H_record(theta) implies no
+zeros with Re s > 1/2 + theta, a zero-free half-plane implies H_record(2 theta + delta), unconditionally the exponent is
+1 - o(1) (Vinogradov-Korobov); E(W) and E(u_0) + 2M(m)h(u_0) are each >= (1 - o(1)) m/(24 log^2 m) (S(k) = pi(k) - pi(m)
+for m < k < 2(m+1), PNT), so 2<a,W> is positive and cancels them to within Delta_N, and in the regime R(n) << n^eps no
+term-by-term bound E(W) <= A N^eta R(m) can hold for eta < (1 - eps)/2; the Gram diagonal sum_p E(v_p) =
+sum_p R(floor(N/p))/p <= (log 2 + o(1)) R*(m), so the off-diagonal covariance is all of E(W). Checked: the block budget
+(heights H_B = |M(k) - M(m)|; the history term 2M(m)h is not small on its own), the cofactor flow (exact identity
+E(x - U_p x) = (1 + 1/p)R(L) - (2/p)M(L)m_1(L) under p <= N < p^2; not summable over p; the two-sided bound needs
+|2 M m_1| <= (sqrt L - 1) R, true numerically to 10^6), the joint covariance (the single cell L = 1 has energy
+>= N/(4 log^2 N), larger than E(W): cells cancel across cells), the record reductions M15/M16 (strength unchanged).
+Verified at N = 10^6, 10^7: Delta = 0.249, 0.296 against components 101, 105, -206 and 529, 541, -1072; S(k) log^2 k/k in
+[-1.25, -1.0]. The unsupported step: any bound on sum_{m<=k<N} M(k)^2/(k(k+1)) below N exp(-c (log N)^{3/5-o(1)}).
+No supplied theorem implies H_record; no weaker sufficient alternative exists (the conclusion R(N) << N^eps is RH).
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
