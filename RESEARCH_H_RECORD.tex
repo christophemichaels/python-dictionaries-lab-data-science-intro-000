@@ -312,9 +312,10 @@ In particular $E(u)=E(z)+c^2/\beta+B^2/N$, which is the identity of M37, and $E(
 
 \begin{proof}
 (i) The total of $\hat u$ is $B$, and $h(\hat u)=\frac{c/\beta}s+\frac{B-c/\beta}N=\frac c\beta\big(\frac1s-\frac1N\big)+\frac BN=h$. For $g$ supported in $[1,m]$ the proof of Lemma~\ref{lem:history} gives $\ip gz=G(m)h(z)=0$; for $g$ supported in $(N,\infty)$, $\ip zg=\sum_jg(j)j^{-1}\sum_iz(i)=0$; $\ip z{e_N}=N^{-1}\sum_iz(i)=0$, and since $\supp z\subseteq[s,N]$, $\ip z{e_s}=\sum_{i\ge s}z(i)/i=h(z)=0$. (ii) Abel summation gives $h=\sum_{k=m+1}^{N-1}w_k\big(M(k)-M(m)\big)+B/N$, so $c/\beta=\overline M-M(m)$. For $s\le k<N$ the partial sum of $z$ is $\big(M(k)-M(m)\big)-c/\beta=M(k)-\overline M$, and at $N$ it is $B-B=0$; Lemma~\ref{lem:cum} gives $E(z)=\sum w_k(M(k)-\overline M)^2$. (iii) $h+M(m)\beta-B/N=c+M(m)\beta=\beta\,\overline M$ by (ii). (iv) By (i), $E(u)=E(z)+E(\hat u)$ and $\ip{\mu\mathbf 1_{[1,m]}}u=\ip{\mu\mathbf 1_{[1,m]}}{\hat u}=M(m)h$; and $E(\hat u)=\frac{c_s^2}s+\frac{c_N^2}N+\frac{2c_sc_N}N=c_s^2\beta+\frac{B^2}N=\frac{c^2}\beta+\frac{B^2}N$ with $c_s=c/\beta$, $c_N=B-c_s$. Hence $\Delta_N=E(u)+2M(m)h=E(z)+c^2/\beta+2M(m)h+B^2/N$, and with $A=M(m)$,
-\[
-\frac{c^2}\beta+2Ah+\frac{B^2}N=\frac{(c+A\beta)^2}\beta+2A(h-c)-A^2\beta+\frac{B^2}N=\frac{(c+A\beta)^2}\beta+\frac{(A+B)^2-A^2}N-A^2\beta=\frac{(c+A\beta)^2}\beta+\frac{M(N)^2}N-\frac{M(m)^2}{m+1},
-\]
+\begin{align*}
+\frac{c^2}\beta+2Ah+\frac{B^2}N&=\frac{(c+A\beta)^2}\beta+2A(h-c)-A^2\beta+\frac{B^2}N\\
+&=\frac{(c+A\beta)^2}\beta+\frac{(A+B)^2-A^2}N-A^2\beta=\frac{(c+A\beta)^2}\beta+\frac{M(N)^2}N-\frac{M(m)^2}{m+1},
+\end{align*}
 using $h-c=B/N$ and $\beta=\frac1{m+1}-\frac1N$. With (iii) this is (iv). Comparing (iv) with \eqref{eq:debitM} is the identity $\sum_{k=m+1}^{N-1}w_kM(k)^2=\beta\,\overline M^{\,2}+\beta\operatorname{Var}_w(M)$.
 \end{proof}
 
