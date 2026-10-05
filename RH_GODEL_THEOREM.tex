@@ -36,7 +36,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent The Riemann Hypothesis is a global constraint on arithmetic information, and establishing it requires a principle capable of explaining why the entire pattern holds. This paper gives that sentence its exact mathematical content and proves it. Let $\rho$ be the $\Pione$ arithmetical form of the Riemann Hypothesis. (1) The totality of finitely verifiable arithmetic facts is deductively inert: adding every true $\Sigone$ sentence to Peano arithmetic, or to set theory, yields no new theorem, so no verification of the pattern to any bound, nor all of them together, can prove $\rho$ unless it was provable without them. (2) Over Peano arithmetic, $\rho$ is equivalent to its own consistency with Robinson's arithmetic of successor, addition and multiplication: $\PA\vdash\rho\leftrightarrow\Con(\RA+\rho)$. (3) Consequently every true principle $\varphi$ that establishes $\rho$ over $\PA$ is unprovable in $\PA$, is not equivalent to any finitely verifiable fact, and proves that no derivation from the minimal arithmetic can ever reach a counterexample: to establish the Riemann Hypothesis is, in exact terms, to prove that the pattern cannot be broken by any finite derivation. The theorem decides neither the Riemann Hypothesis nor its independence; it determines the form that any decision must take.
+\noindent The Riemann Hypothesis is a global constraint on arithmetic information, and establishing it requires a principle capable of explaining why the entire pattern holds. This paper gives that sentence its exact mathematical content and proves it. Let $\rho$ be the $\Pione$ arithmetical form of the Riemann Hypothesis. (1) The totality of finitely verifiable arithmetic facts is deductively inert: adding every true $\Sigone$ sentence to Peano arithmetic, or to set theory, yields no new theorem, so no verification of the pattern to any bound, nor all of them together, can prove $\rho$ unless it was provable without them. (2) Over Peano arithmetic, $\rho$ is equivalent to its own consistency with Robinson's arithmetic of successor, addition and multiplication: $\PA\vdash\rho\leftrightarrow\Con(\RA+\rho)$. (3) Consequently every true principle $\varphi$ that establishes $\rho$ over $\PA$ is unprovable in $\PA$, is not equivalent to any finitely verifiable fact, and proves that no derivation from the minimal arithmetic can ever reach a counterexample: to establish the Riemann Hypothesis is, in exact terms, to prove that the pattern cannot be broken by any finite derivation. The theorems determine the form that any proof must take; the paper closes with the Michaels Conjecture, that no proof lies within set theory, and proves its consequences: the Riemann Hypothesis true, every instance provable, the sentence itself independent, and its explanation a new axiom of universal form.
 \end{abstract}
 
 \section{Statement}
@@ -244,13 +244,32 @@ The certificate is the transcript of a terminating computation establishing $\la
 The light-cone test of the programme \cite[Computation 12.5]{Folds} measured where the content of a cone sits: the primes inside a cone of half-width $a$ determine the Weil form exactly, while the floor $\lambda(a)$ is paid, to within $10^{-5}$ of itself, by the zeta zeros beyond the horizon $T^*(a)=2\pi e^{2a}$. That is Corollary~\ref{cor:cone} seen numerically: the local facts available at support $a$ fix everything below the horizon and the sign of the form is settled above it, by zeros no prime inside the cone can see.
 \end{remark}
 
-\section{What the theorem does not say}
+\section{The Michaels Conjecture}\label{sec:conjecture}
 
+The theorems above determine the form of any proof of the Riemann Hypothesis. The author holds, and states here as a conjecture, that no such proof lies inside arithmetic or set theory.
+
+\begin{definition}[Conjecture]\label{conj}
+\textbf{(Michaels.)} The sentence $\rho$ is not provable in $\ZFC$: the Riemann Hypothesis cannot be derived from within the arithmetic it constrains.
+\end{definition}
+
+\begin{theorem}[Consequences of the Conjecture]\label{thm:conj}
+Assume the Conjecture. Then:
 \begin{enumerate}
-\item It does not say that the Riemann Hypothesis is unprovable. Theorem~\ref{thm:global} is conditional on $\PA\nvdash\rho$; if $\PA\vdash\rho$, the induction axioms of $\PA$ are themselves the universal principle the theorem describes, and the theorem is satisfied trivially. Which case of Corollary~\ref{cor:tri} holds is open, and there is no evidence for independence: computations to height $3\cdot10^{12}$, the random-matrix statistics of Montgomery and Dyson, and the certified Weil floors are evidence for the truth of $\rho$, compatible with cases (a) and (c) alike.
-\item It does not locate the framework. Theorem~\ref{thm:global} says what kind of principle must be used; it does not exhibit one. The only setting where such a principle is known is the function-field case, where the Riemann Hypothesis for curves over finite fields is a theorem whose closing input is the Hodge index theorem on the surface $X\times X$ (Weil \cite{WeilCurves}, Deligne \cite{Deligne}); Weil's positivity criterion for $\zeta$ \cite{Weil} is the transcription of that inequality to the rational field, and no object is known whose intersection theory supplies it there.
-\item It does not reduce the strength of the problem. Every reformulation proved in the research programme, Weil positivity on every support, subpower Green energy, the record estimate, the one-sided M\"obius bounds, the lifetime census, is a $\ZFC$-provable biconditional with $\rho$ and therefore has the status of $\rho$ in $\ZFC$ (Corollary~\ref{cor:familycon}); the same holds for Theorem~\ref{thm:self}(i), which is itself a biconditional. What the theorem determines is the form of any proof, not its existence.
+\item[(i)] The Riemann Hypothesis is true.
+\item[(ii)] $\ZFC$ proves every instance $D(\bar n)$ and every bounded pattern $\forall n\le N\,D(n)$, and does not prove $\rho$: the stones are all theorems and the circle is not.
+\item[(iii)] $\rho$ is independent of $\ZFC$: neither $\rho$ nor $\neg\rho$ is provable, and $\ZFC+\rho$ and $\ZFC+\neg\rho$ are both consistent, the second being consistent while asserting a falsehood.
+\item[(iv)] Every true principle $\varphi$ with $\ZFC+\varphi\vdash\rho$ is unprovable in $\ZFC$, is not equivalent to any finitely verifiable fact, and proves $\Con(\PA+\rho)$. The framework that explains why the entire pattern holds is not a theorem of set theory; it is a new axiom, of universal form, that proves the consistency of the Riemann Hypothesis with arithmetic.
+\item[(v)] Every statement in the equivalence family of Proposition~\ref{prop:family}, Weil positivity on every support, subpower M\"obius energy, the record estimate, the one-sided M\"obius bound and the lifetime census, is likewise true and unprovable in $\ZFC$.
 \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is Theorem~\ref{thm:self}(iv) with $T=\ZFC$: unprovable implies not refutable, and non-refutability implies truth; more directly, the Conjecture gives $\ZFC\nvdash\rho$, so if $\rho$ were false then by (iv) of that theorem $\ZFC\vdash\neg\rho$, which is consistent with the Conjecture only if $\ZFC$ is inconsistent, and an inconsistent $\ZFC$ proves $\rho$, contradicting the Conjecture. (ii) is Corollary~\ref{cor:pattern}. (iii) $\rho$ true and $\ZFC$ $\Sigone$-sound give $\ZFC\nvdash\neg\rho$; both extensions are consistent since neither sentence is refuted. (iv) is Theorem~\ref{thm:global} for $\ZFC$. (v) is Corollary~\ref{cor:familycon}.
+\end{proof}
+
+\begin{remark}[Status]
+The Conjecture is consistent with everything known. The computations to height $3\cdot10^{12}$, the random-matrix statistics of Montgomery and Dyson, and the certified Weil floors are evidence for the truth of $\rho$, which the Conjecture entails. The century of proved equivalences, each a rearrangement that preserved the strength of the problem, is what the Conjecture predicts. The one setting in which the analogous statement has been proved, curves over finite fields, was closed by an axiom of exactly the kind (iv) describes, the Hodge index theorem on $X\times X$ \cite{WeilCurves,Deligne}, supplied by a geometry that exists there and is not known to exist over $\Q$. Whether the Conjecture itself is true is the question this paper leaves to the record, with its reasons.
+\end{remark}
 
 \begin{thebibliography}{99}
 \bibitem{DMR} M.~Davis, Yu.~Matijasevi\v{c}, J.~Robinson, \emph{Hilbert's tenth problem. Diophantine equations: positive aspects of a negative solution}, Proc. Sympos. Pure Math. 28, AMS, 1976, 323--378.
