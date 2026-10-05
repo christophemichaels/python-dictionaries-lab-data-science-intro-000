@@ -846,6 +846,22 @@ obligation + terminal, and the mean obligation is |sum_{m<n<=N} mu(n)/n| <= 4 (A
 records: h does not disappear, it becomes the square-root bound on the tail of the harmonic Moebius sum. Strength
 unchanged. Verified at 10^6 (0.201998 + 0.005894 + 0.0449 - 0.0040 = 0.248840) and 10^7.
 
+## 2026-10-05: the Lifetime Census and the Complete Residual audited (RESEARCH_CENSUS_AUDIT.md)
+Five uploads; current pair: the 87-page master (sections 1-73) and the 26-page continuation (sections 52-73), both
+2026-10-05 01:55; the 63-page census (sections 1-51; two byte-identical copies) and the 17-page continuation
+(sections 52-67) are superseded. The later rounds quoted in conversation (sections 74-97) were not received.
+Map: I_M(N) = int M^2/t^2 (continuous Green energy); census reformulation (counting target (9)); sliding mean
+U(X) = A(2X) - A(X) with A(x) = sum mu(n) log(x/n); one-sided closure A(x) <= C x^q for all q > 1/2 => RH by Landau
+positivity (correct); hyperbola reconstruction and centered target (S34); fixed-theta allowance via Buchstab/Dickman;
+complete prime-discrepancy residual Z_N = int K_N dDelta_pi with F(N,2) = Frak(N,2) - Z_N and target Z_N >= -C N^{1/2+eps}
+(Z14); fictional law F1 (labelled invented); sections 68-73: joint integration by parts, finite expansion with
+coefficients from e^{-l z}(1-z)^{-nu}, unconditional allowance for insertions t <= (1/4) log N log log N (exponent
+(1+log 2)/4), even coefficients nonnegative, credits ~ sqrt(N)/log N, target (J27) labelled unproved. All checked:
+no error. Remarks: the credits and the paid interval are below the allowance N^{1/2+eps}, so they cannot bear on a
+one-sided bound at that scale; the paid range is the Legendre range; the sign of the cofactor cancellation is the
+parity obstruction (Selberg). Every target is RH-equivalent, as in RESEARCH_H_RECORD. The snippet's displayed
+|E^rep| <= N exp((1/8) log N/log log N) = O(N^{1/2+eps}) is false as written (exceeds N) unless the prefactor is sqrt N.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
