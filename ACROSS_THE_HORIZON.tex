@@ -39,7 +39,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent This paper joins the running proof of the Michaels programme (the 217-page manuscript of October 4, 2026, Parts 0--XVII, whose single arithmetic target is the subpower growth of the historical Möbius energy) to the work that followed it: the record estimate and the lifetime census, the light cone of the Weil form with its horizon and potential set, the Gödel theorem for the Riemann Hypothesis, and the cone over a curve over a finite field. It does three things. First it locks down where the edge is: in the stones' coordinates the subpower exponent is a statement at infinity, in the rule's coordinates it is the line $\Ree s=\tfrac12$, the fixed set of the reflection $s\mapsto1-\bar s$, and the Mellin transform is the map between the two; every proved equivalence of the programme is a different name for that one edge, and under the Hypothesis the Weil form has no null vector at any finite support, so the edge is reached at no finite half-width. Second it follows the edge through the eigenvalues: the dilation group of the running proof's Part VI is the Berry--Keating operator, the Hypothesis is the reality of its spectrum, the missing piece is an inner product, and on a curve over $\F_q$ every piece exists: Frobenius is the operator, the Lefschetz trace formula turns the stones into traces, unitarity is the Hypothesis, the Hodge index theorem supplies the inner product, and the cone closes at the finite half-width $g\log q$. Third it states what the space on the other side of the horizon must satisfy for $\zeta$ itself, six constraints with their sources in the record, and places the known candidates against them. Nothing here proves the Riemann Hypothesis. Every statement is labelled proved, cited, computed, or conjectured.
+\noindent This paper joins the running proof of the Michaels programme (the 217-page manuscript of October 4, 2026, Parts 0--XVII, whose single arithmetic target is the subpower growth of the historical Möbius energy) to the work that followed it: the record estimate and the lifetime census, the light cone of the Weil form with its horizon and potential set, the Gödel theorem for the Riemann Hypothesis, and the cone over a curve over a finite field. It does three things. First it locks down where the edge is: in the stones' coordinates the subpower exponent is a statement at infinity, in the rule's coordinates it is the line $\Ree s=\tfrac12$, the fixed set of the reflection $s\mapsto1-\bar s$, and the Mellin transform is the map between the two; every proved equivalence of the programme is a different name for that one edge, and under the Hypothesis the Weil form has no null vector at any finite support, so the edge is reached at no finite half-width. Second it follows the edge through the eigenvalues: the dilation group of the running proof's Part VI is the Berry--Keating operator and the prime-state Hamiltonian of Build v32 is its partner on the stone side, the Hypothesis is the reality of the first one's spectrum and the subexponential power of the Möbius state in logarithmic time, the missing piece is an inner product, and on a curve over $\F_q$ every piece exists: Frobenius is the operator, the Lefschetz trace formula turns the stones into traces, unitarity is the Hypothesis, the Hodge index theorem supplies the inner product, and the cone closes at the finite half-width $g\log q$. Third it states what the space on the other side of the horizon must satisfy for $\zeta$ itself, six constraints with their sources in the record, and places the known candidates against them. Nothing here proves the Riemann Hypothesis. Every statement is labelled proved, cited, computed, or conjectured.
 \end{abstract}
 
 \tableofcontents
@@ -192,6 +192,35 @@ The Riemann Hypothesis is equivalent to the positivity of the Weil distribution,
 \end{theorem}
 The Weil form $Q$ is that inner product's candidate restricted to compact supports, $\lambda(a)\ge0$ is its positivity at support $a$, and Theorem~\ref{thm:edge}(4) is the statement that the inner product exists. The sign remark is the seventh filter of \cite{routes}: any spectral route must say how it handles it.
 
+\subsection{The two Hamiltonians and the Möbius state}\label{sec:twoH}
+There is a second operator in the record, and it sits on the other side of the explicit formula from the first. Build v32 \cite{v32} writes the fundamental theorem of arithmetic as a state coordinate: on $\ell^2(\mathbb N)=\bigotimes_p\ell^2(\mathbb N_0)$ with $e_n\leftrightarrow\bigotimes_pe_{v_p(n)}$, the shifts $S_pe_n=e_{pn}$ and the height operator $H_{\mathrm{arith}}e_n=(\log n)\,e_n$ satisfy
+\[
+[H_{\mathrm{arith}},S_p]=(\log p)\,S_p,\qquad \operatorname{Tr}\,e^{-sH_{\mathrm{arith}}}=\sum_{n\ge1}n^{-s}=\zeta(s)\quad(\Ree s>1).
+\]
+This is the primon gas of Julia and the Bost--Connes system \cite{bc}, and in the cone's coordinates it is the stone side: the eigenvalues $\log n$ of $H_{\mathrm{arith}}$ are the positions of the prime powers on the prime line, the space axis of the cone, and its partition function is $\zeta$ in the half-plane where there are no zeros. The dilation operator of Section~\ref{sec:eigen} is the rule side: its candidate eigenvalues are the zeros. The Mellin transform, which carries $x^{-s}$ sums to $s$-plane functions, is the map between the two, and it is the reflection of Section~\ref{sec:edge}. Neither operator sees the other's spectrum: $H_{\mathrm{arith}}$ sees $\zeta$ only for $\Ree s>1$ (route 23 of \cite{routes}), and $H_{\mathrm{dil}}$ has continuous spectrum filling $\R$ \cite{es} and selects no zero.
+
+The subpower target of the running proof lives naturally in the dilation coordinates. Put $u=\log x$ and
+\[
+m(u)=e^{-u/2}M(e^u)=\big(\mathcal T\,\tfrac{M(x)}{x}\big)(u),\qquad (\mathcal Tf)(u)=e^{u/2}f(e^u),
+\]
+the image of the normalized Möbius sum under the unitary that conjugates $H_{\mathrm{dil}}$ to $-i\,d/du$.
+\begin{proposition}[the Möbius state]\label{prop:mstate}
+\begin{enumerate}
+\item[(i)] $I_M(e^U)=\int_0^U|m(u)|^2\,du$ for every $U>0$; hence \eqref{eq:H} holds if and only if $\int_0^U|m|^2\le C_\varepsilon e^{\varepsilon U}$ for every $\varepsilon>0$: the subpower bound is subexponential growth of the accumulated power of the Möbius state in logarithmic time.
+\item[(ii)] $\displaystyle\int_0^\infty m(u)\,e^{-(s-\frac12)u}\,du=\frac1{s\,\zeta(s)}$ for $\Ree s>1$. So the spectrum of the Möbius state is the reciprocal of $\zeta$ on the line, with its resonances at the zeros; \eqref{eq:H} makes the integral converge absolutely for $\Ree s>\tfrac12$, which is the Mellin step of Theorem~\ref{thm:closing}, and the Hypothesis is the statement that every resonance of the state has a real frequency.
+\item[(iii)] $m\notin L^2(0,\infty)$: $I_M(N)\to\infty$, unconditionally. The state has infinite total power, and norm conservation under $U_t$ never applied to it.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) is the substitution $t=e^u$ in $\int_1^NM(t)^2t^{-2}dt$. (ii) is $\sum\mu(n)n^{-s}=s\int_1^\infty M(x)x^{-s-1}dx$ with $x=e^u$. (iii) Suppose $I_M(\infty)<\infty$. By Cauchy--Schwarz, $\int_1^\infty|M(t)|t^{-\sigma-1}dt\le I_M(\infty)^{1/2}(2\sigma-1)^{-1/2}$ for $\sigma>\tfrac12$, so the Mellin integral converges absolutely on $\Ree s>\tfrac12$ and the Hypothesis holds by the argument of Theorem~\ref{thm:closing}. The Mellin--Plancherel identity then gives, for every $\sigma>\tfrac12$, $\int_1^\infty M(t)^2t^{-2\sigma-1}dt=\frac1{2\pi}\int_\R|(\sigma+it)\zeta(\sigma+it)|^{-2}dt$. The left side is at most $I_M(\infty)$. Near a zero $\rho=\tfrac12+i\gamma$ the integrand on the right is at least $c_\rho/((\sigma-\tfrac12)^2+(t-\gamma)^2)$, whose integral is $\pi c_\rho/(\sigma-\tfrac12)\to\infty$ as $\sigma\downarrow\tfrac12$. Contradiction.
+\end{proof}
+
+Build v32 \cite{v32} proves the finite-energy statement that does hold and locates exactly why it does not help. For $a>1$ the coefficient state $m_a=\sum_d\mu(d)d^{-a/2}e_d$ has $\|m_a\|^2=\zeta(a)/\zeta(2a)<\infty$, and there is a global unitary $\Omega_a$ on the bilateral lattice $\ell^2(\mathbb Q_+)$ whose negative squarefree face is the Ramanujan--Jordan colours. But the synthesis map $W_\alpha e_d=D_dK_\alpha$ that turns coefficients into the cumulative error $\sum_d\mu(d)K_\alpha(x/d)$, with Mellin transform $\zeta(s-\alpha)/(s\zeta(s))$, is not bounded from $\ell^2$ to the physical space; its Euler update
+\[
+q_\alpha\big((I-r_pS_p)c\big)=(1+r_p^2)\,q_\alpha(c)-2r_p\,\Ree\langle W_\alpha c,D_pW_\alpha c\rangle
+\]
+carries one mixed correlation whose sign positivity does not fix, and the gate ``the Jordan shell ledger is summable along a determining sequence $\alpha_k\downarrow0$'' is proved equivalent to the Hypothesis. The update has the same shape as the cofactor-flow identity $E(x-U_px)=(1+\tfrac1p)R(L)-\tfrac2p\,M(L)\,m_1(L)$ of \cite[M44]{hrec}: a positive diagonal and one signed cross term, in two normalizations. Build v32's own summary, \emph{the engine is lossless; the camera is not}, is Proposition~\ref{prop:mstate}(iii) and Proposition~\ref{prop:nofinite} in one sentence: the positivity that would decide the Hypothesis is not the $\ell^2$ norm of the coefficients, which is finite and conserved, but an inner product on the physical side in which the explicit formula is a trace (Constraint~\ref{c:pos} below), and no finite part of the record supplies it.
+
 \subsection{The quantum statistics}
 Montgomery \cite{montgomery} showed, under the Hypothesis and for restricted test functions, that the pair correlation of the zeros is that of the eigenvalues of large random Hermitian matrices (the Gaussian unitary ensemble), and Dyson identified the law; Odlyzko's computations near the $10^{20}$-th zero \cite{odlyzko} confirm it to high precision, including the nearest-neighbour spacing, which is beyond what is proved. The pair-correlation statement itself is now unconditional in its restricted range \cite{routes}. This is the ``strangeness'': the zeros repel each other exactly as the energy levels of a heavy nucleus do, and no operator is known that produces them.
 
@@ -331,6 +360,9 @@ the edge theorem (seven equivalent forms) & proved & Thm.~\ref{thm:edge}\\
 no null vector at finite support under RH & proved & Prop.~\ref{prop:nofinite}\\
 inertness; $\rho\leftrightarrow\Con(\mathrm Q+\rho)$; closing principle & proved & \cite{gstring}\\
 dilation group $=$ Berry--Keating operator; spectrum real iff RH & proved (elementary) & \S\ref{sec:eigen}\\
+prime-state Hamiltonian: $[H,S_p]=(\log p)S_p$, $\operatorname{Tr}e^{-sH}=\zeta(s)$ for $\Ree s>1$ & proved (elementary) & \cite{v32,bc}\\
+subpower $=$ power of the Möbius state; its transform $1/(s\zeta(s))$; $m\notin L^2$ & proved & Prop.~\ref{prop:mstate}\\
+Build v32: coefficient norm finite, synthesis unbounded, shell gate $\iff$ RH & cited & \cite{v32}\\
 RH $\iff$ positivity of the Weil distribution (trace form) & cited & \cite{connes99}\\
 GUE pair correlation (restricted range) & cited & \cite{montgomery}\\
 Weil's theorem for curves; trace formula & cited & \cite{weil48,milneEC}\\
@@ -369,6 +401,9 @@ the Riemann Hypothesis & \textbf{open} & \\
 \bibitem{dmr} M.~Davis, Y.~Matijasevi\v c and J.~Robinson, Hilbert's tenth problem: Diophantine equations: positive aspects of a negative solution, \emph{Proc. Symp. Pure Math.} 28 (1976), 323--378.
 \bibitem{polya} A.~M.~Odlyzko, correspondence with G.~P\'olya on the Hilbert--P\'olya conjecture (1981--82), \texttt{dtc.umn.edu/\textasciitilde odlyzko/polya}.
 \bibitem{bk} M.~V.~Berry and J.~P.~Keating, $H=xp$ and the Riemann zeros, in \emph{Supersymmetry and Trace Formulae}, Plenum, 1999, 355--367; The Riemann zeros and eigenvalue asymptotics, \emph{SIAM Review} 41 (1999), 236--266.
+\bibitem{v32} C.~Michaels, \emph{Prime DNA, Build v32: Prime-State All-Pass Geometry and the Observability Boundary}, theorem ledger of August 25, 2026, \texttt{received/Prime\_DNA\_Build\_v32\_Prime\_State\_Observability.pdf}.
+\bibitem{bc} B.~Julia, Statistical theory of numbers, in \emph{Number Theory and Physics}, Springer Proc. Phys. 47 (1990), 276--293; J.-B.~Bost and A.~Connes, Hecke algebras, type III factors and phase transitions with spontaneous symmetry breaking in number theory, \emph{Selecta Math.} 1 (1995), 411--457.
+\bibitem{es} S.~Endres and F.~Steiner, The Berry--Keating operator on $L^2(\mathbb R_>,dx)$ and on compact quantum graphs with general self-adjoint realizations, \emph{J. Phys. A} 43 (2010), 095204.
 \bibitem{connes99} A.~Connes, Trace formula in noncommutative geometry and the zeros of the Riemann zeta function, \emph{Selecta Math.} 5 (1999), 29--106.
 \bibitem{cc16} A.~Connes and C.~Consani, Geometry of the arithmetic site, \emph{Adv. Math.} 291 (2016), 274--329.
 \bibitem{ccm25} A.~Connes, C.~Consani and H.~Moscovici, zeta spectral triples, arXiv:2511.22755.

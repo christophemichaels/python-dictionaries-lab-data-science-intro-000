@@ -948,6 +948,19 @@ their 2 pi in the radius variable; one ring per pi of Riemann-Siegel phase (1.00
 1/log r falls from 1.23 to 0.14; a curve of genus g over F_q gives an exact cone of slope 1/(2 g log q) because
 its zeros are periodic in height; an off-circle pair removes two rings per period. No claim about RH.
 
+## 2026-10-05, later: Across the Horizon, Section 3.2 added (the two Hamiltonians and the Moebius state)
+On the user's instruction after ChatGPT's reading of the archive and the upload of Build v32
+(received/Prime_DNA_Build_v32_Prime_State_Observability.pdf, 2026-08-25). Added: the prime-state Hamiltonian
+H e_n = (log n) e_n with [H, S_p] = (log p) S_p and Tr e^{-sH} = zeta(s) for Re s > 1 (Julia's primon gas,
+Bost-Connes) as the stone-side partner of the dilation operator, neither seeing the other's spectrum
+(Endres-Steiner for the dilation operator); Proposition 3.3, the Moebius state m(u) = e^{-u/2} M(e^u):
+(i) I_M(e^U) = int_0^U |m|^2, so (H) is subexponential accumulated power; (ii) its transform is 1/(s zeta(s)),
+resonances at the zeros, RH = all resonances real; (iii) m is not in L^2, so norm conservation never applied.
+Build v32 placed: coefficient norm zeta(a)/zeta(2a) finite, synthesis map unbounded, Euler update with one
+signed mixed term of the same shape as the cofactor-flow identity (M44) of H_record, shell gate RH-equivalent.
+Status rows and references added. ChatGPT's reading judged correct on the mathematics it states; its "the
+Hamiltonian is already present" is true of the two known operators and not of the one that matters.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
