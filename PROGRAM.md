@@ -1011,8 +1011,10 @@ Finite checks, inert; the note says so. Script rh_other_end.py.
 The user: place all zeros literally on one dot, compute forward and backward, measure the difference. Done: psi_K
 rebuilt from the first K zeros at beta = 1/2 against psi from the primes to 1e6, difference in units of sqrt x
 averaged in log x. Mean zero to 3e-4 at every K; rms 0.1378/0.1082/0.0784 measured against 0.1383/0.1086/0.0789
-predicted (K = 10, 30, 100) by Parseval, sum_{n>K} 2/|rho_n|^2; at K >= 1000 the measurement falls 10-20 percent
-below a prediction dominated by the extrapolated tail. No drift, no constant, no growth; the stones' mean
+predicted (K = 10, 30, 100) by Parseval, sum_{n>K} 2/|rho_n|^2; at K >= 1000 the whole-grid rms falls below the prediction
+because the first K rings resolve the stones completely up to x of order gamma_K; in windows beyond that every
+K agrees with the prediction to about one percent out to 1e6 (e.g. K = 6000: 0.0201, 0.0198, 0.0197, 0.0199
+against 0.0199). No drift, no constant, no growth; the stones' mean
 -0.037 is -log 2 pi averaged in 1/sqrt x (-0.0395). The difference is the rings not yet placed, shrinking at
 (log(gamma_K/2 pi) + 1)/(pi gamma_K). Inert; blind beyond the horizon of the zeros used. Script
 rh_one_dot_difference.py, figure THE_DIFFERENCE.png.

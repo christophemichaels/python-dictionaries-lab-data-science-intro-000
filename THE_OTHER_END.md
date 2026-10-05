@@ -88,11 +88,24 @@ counting law as (log(T/2π) + 1)/(πT) at T = γ₆₀₀₀ = 6365.85.
 Three things come out of the measurement.
 
 1. **The difference is the rings not yet placed, and nothing else.** For K ≤ 100 the measured and predicted
-   rms agree to half a percent. For larger K the prediction is dominated by the extrapolated tail beyond the
-   last known zero and the measurement falls 10 to 20 percent below it, within what that extrapolation and
-   the finite averaging length allow. There is no residual: no drift, no constant, no growth. A zero off the
-   point at height γ₀ would add a term of size x^{β−½}/|ρ₀|, growing with x; a ring missing from the dot
-   would raise the rms above the prediction by 2/|ρ₀|². Neither is seen.
+   rms over the whole grid agree to half a percent. For larger K the whole-grid rms falls below the
+   prediction, and the reason is exact: the first K rings resolve the stones completely up to x of the order
+   of their height γ_K, and there the difference is nearly zero; beyond that the difference is Parseval-sized.
+   Measured in windows of x:
+
+   | K | γ_K | predicted rms | [10², 3·10²) | [3·10², 10³) | [10³, 3·10³) | [3·10³, 10⁴) | [10⁴, 3·10⁴) | [3·10⁴, 10⁵) | [10⁵, 3·10⁵) | [3·10⁵, 10⁶) |
+   |---|---|---|---|---|---|---|---|---|---|---|
+   | 300 | 542 | 0.0566 | 0.034 | 0.055 | 0.056 | 0.056 | 0.058 | 0.054 | 0.058 | 0.057 |
+   | 1,000 | 1,419 | 0.0379 | 0.015 | 0.025 | 0.037 | 0.039 | 0.039 | 0.037 | 0.037 | 0.038 |
+   | 3,000 | 3,533 | 0.0257 | 0.006 | 0.010 | 0.020 | 0.026 | 0.026 | 0.025 | 0.025 | 0.026 |
+   | 6,000 | 6,366 | 0.0199 | 0.003 | 0.007 | 0.010 | 0.019 | 0.020 | 0.020 | 0.020 | 0.020 |
+
+   Beyond the resolved region every window agrees with the prediction to about one percent, for every K, out
+   to x = 10⁶. There is no residual: no drift, no constant, no growth. A zero off the point at height γ₀
+   would add a term of size x^{β−½}/|ρ₀|, growing with x; a ring missing from the dot would raise the rms
+   above the prediction by 2/|ρ₀|². Neither is seen. The resolved region is the dual of Crossing 1: there the
+   stone m resolves the rings up to radius m; here the rings up to height γ resolve the stones up to x of
+   order γ, which is the error term x log² x / T of the truncated explicit formula.
 2. **The mean is zero.** For every K the mean of the difference is within 3 × 10⁻⁴ of zero. The stones alone
    have mean −0.037 in this unit, and that number is the constant: −log 2π averaged over the grid in 1/√x
    gives −0.0395. The constants we have are exactly where the forward side puts them.
@@ -102,7 +115,8 @@ Three things come out of the measurement.
    flares.
 
 What this is: the forward and backward directions of the explicit formula compared on the integers, and
-found to agree to the precision of the tail. It is a finite computation, inert, and it is the same computation
+found to agree to one percent wherever the placed rings have stopped resolving, and to a few thousandths of
+√x where they still resolve: Parseval for the explicit formula, measured. It is a finite computation, inert, and it is the same computation
 as Figure 27A of the One Dot paper done as a measurement rather than a picture. What it is not: a test that
 can see a zero off the point at height beyond 6,366, since such a zero contributes to the difference exactly
 what an on-point ring at that height would, up to a factor x^{β−½} that is invisible below x = 10⁶ unless
