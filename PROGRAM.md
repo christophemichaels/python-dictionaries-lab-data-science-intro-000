@@ -992,6 +992,14 @@ zeros: mean spacing 1.00003, min 0.046, jitter in [-1.36, 0.35], spacing histogr
 the GUE Wigner surmise against 0.67 from Poisson; 0.9 percent of spacings below a quarter of the mean against
 22 percent for independent rings. What remains after closing: S and the repulsion law. Script rh_horn_closed.py.
 
+## 2026-10-05, later: Crossing 8, at one exact point for all (ARITHMOPHYSICS.tex/pdf)
+The user's sentence. The one dot of the folds paper (ratio (1 - conj rho)/rho = 1 iff Re rho = 1/2; Comp. 9.6)
+with its exact miss |1 - 2 beta| / |rho|: every zero reflects onto itself in the limit, on the line or not, so RH
+is exactness at every finite height, not convergence; the DH miss 0.617/85.7 = 0.0072 reproduced. Cayley map
+w = 1 - 1/rho folds infinity to w = 1; Li's criterion (lambda_n >= 0 for all n iff RH) as the positivity of the
+one point, lambda_n arithmetic (Bombieri-Lagarias), growth (n/2) log n under RH (Lagarias), off-line pair
+growing like e^{n(2 beta - 1)/2|rho'|^2}, so lambda_n resolves to height ~ n. No claim about RH.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

@@ -38,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent \emph{Arithmophysics} is the study of the primes through the objects of physics: oscillation, spectrum, confinement, with the dictionary between the two kept exact. This paper has four chapters, one for each strand the programme now has, and each chapter states only what is proved or computed in that strand: the geometry (the explicit formula as a sum of oscillators, the light cone, the horn, the fold, the curve), the quantum theory (the two Hamiltonians that exist, the Möbius state, the inner product that does not yet exist), the primes (the running proof's target and what has been proved around it), and the border (the Gödel theorem, the potential set, the conjecture). The fifth chapter is the point of the paper: seven crossings, each an exact identity or a proved equivalence between two strands, with its proof or citation, ending at the single object none of the four strands supplies. Every physical word in this paper names a theorem, a computation, or a labelled conjecture. Nothing here proves the Riemann Hypothesis.
+\noindent \emph{Arithmophysics} is the study of the primes through the objects of physics: oscillation, spectrum, confinement, with the dictionary between the two kept exact. This paper has four chapters, one for each strand the programme now has, and each chapter states only what is proved or computed in that strand: the geometry (the explicit formula as a sum of oscillators, the light cone, the horn, the fold, the curve), the quantum theory (the two Hamiltonians that exist, the Möbius state, the inner product that does not yet exist), the primes (the running proof's target and what has been proved around it), and the border (the Gödel theorem, the potential set, the conjecture). The fifth chapter is the point of the paper: eight crossings, each an exact identity or a proved equivalence between two strands, with its proof or citation, ending at the single object none of the four strands supplies. Every physical word in this paper names a theorem, a computation, or a labelled conjecture. Nothing here proves the Riemann Hypothesis.
 \end{abstract}
 
 \tableofcontents
@@ -222,8 +222,20 @@ On a curve the stones end at degree $2g$, the cone closes at $a=g\log q$, positi
 Theorems~\ref{thm:ffcone}, \ref{thm:curve}, \ref{thm:godel}; Proposition~\ref{prop:potential}.
 \end{proof}
 
+\begin{crossing}[at one exact point, for all: the one dot]\label{cr:onedot}
+A zero $\rho=\beta+i\gamma$ reflects onto itself, $1-\bar\rho=\rho$, if and only if $\beta=\tfrac12$. The ratio $(1-\bar\rho)/\rho$ is then exactly $1$: every on-line zero lands on one point \cite[\S9, Comp.\ 9.6]{folds}. Its miss is exact,
+\[
+\Big|\frac{1-\bar\rho}{\rho}-1\Big|=\frac{|1-2\beta|}{|\rho|},
+\]
+so every zero, on the line or off it, reflects onto itself in the limit $\gamma\to\infty$, and the Hypothesis is not a statement about the limit: it is exactness at every finite height. Under the Cayley map $w=1-1/\rho$ the line becomes the unit circle and infinity becomes the single point $w=1$, where the open end of the horn goes \cite[Fig.\ 23C]{folds}; Li's criterion \cite{li} makes the one point a positivity, $\lambda_n=\sum_\rho[1-(1-1/\rho)^n]\ge0$ for every $n$ if and only if $\mathrm{RH}$, with each $\lambda_n$ an exact expression in the primes through the derivatives of $\log\xi$ at $s=1$ \cite{bl}; under $\mathrm{RH}$, $\lambda_n=\tfrac n2\log n+cn+O(\sqrt n\log n)$ \cite{lagarias}, and an off-line pair adds a term of size $e^{\,n(2\beta-1)/2|\rho'|^2}$, so $\lambda_n$ resolves the point to height about $n$ as the floor at support $a$ resolves it to $\Tst(a)$.
+\end{crossing}
+\begin{proof}
+$1-\bar\rho=(1-\beta)+i\gamma$, so $(1-\bar\rho)/\rho-1=(1-2\beta)/\rho$. For the first Davenport--Heilbronn quartet, $\beta=0.8085$ at height $85.7$, the formula gives $0.617/85.7=0.0072$, the miss computed in \cite[Comp.\ 9.6]{folds}; the first $1{,}000$ zeros of $\xi$ land within $10^{-31}$ of the point. $|1-1/\rho|^2=1+(1-2\beta)/|\rho|^2$, which is $1$ exactly on the line and exceeds $1$ for the reflected partner $\rho'=1-\bar\rho$ of an off-line zero, giving the growth rate stated. The rest is \cite{li,bl,lagarias}.
+\end{proof}
+The sentence ``at one exact point, for all'' is the Hypothesis in its purest form: a $\Pi^0_1$ sentence whose every instance is a finite landing on one point, certified to $10^{-31}$ for the first thousand, and whose universal form no landing reaches. It is also the edge of Crossing~\ref{cr:edge} seen from the zeros' side: the one dot is the point at infinity of the reflection, every zero converges to it, and what is open is the word \emph{exactly}.
+
 \subsection{The one object none of the strands supplies}
-Geometry supplies the shape and shows where it closes. Quantum theory supplies two operators and names the third. The primes supply the record and locate its end at infinity. The border says what kind of statement the missing object's positivity must be. What none of them supplies is the inner product for $\zeta$: the space in which \eqref{eq:weil} is a trace, the positivity of which is the Hypothesis. Its specification is the six constraints of \cite[\S4]{horizon}: the trace with the prime sign handled, positivity equivalent to $\mathrm{RH}$, infinite genus with the growth of $N(T)$, entries as orbit half-lengths, the axiom-from-above form, and the function-field template. Deninger's foliated spaces \cite{deninger} and the arithmetic site of Connes and Consani \cite{cc16} are the candidates, each stalled at exactly the positivity. Arithmophysics, in the sense of this paper, is the study of that one missing object through the four that exist.
+Geometry supplies the shape, shows where it closes, and folds its open end to one point. Quantum theory supplies two operators and names the third. The primes supply the record and locate its end at infinity. The border says what kind of statement the missing object's positivity must be. What none of them supplies is the inner product for $\zeta$: the space in which \eqref{eq:weil} is a trace, the positivity of which is the Hypothesis. Its specification is the six constraints of \cite[\S4]{horizon}: the trace with the prime sign handled, positivity equivalent to $\mathrm{RH}$, infinite genus with the growth of $N(T)$, entries as orbit half-lengths, the axiom-from-above form, and the function-field template. Deninger's foliated spaces \cite{deninger} and the arithmetic site of Connes and Consani \cite{cc16} are the candidates, each stalled at exactly the positivity. Arithmophysics, in the sense of this paper, is the study of that one missing object through the four that exist.
 
 \section{Status}
 \begin{center}\footnotesize
@@ -241,7 +253,7 @@ curve: trace formula, unitarity, Katz--Sarnak & cited & Thm.~\ref{thm:curve}\\
 \eqref{eq:H} $\iff\mathrm{RH}$; lifetime truncation; $\Hrec$; census; Build v32 & proved / cited & \S\ref{sec:primes}\\
 the subpower premise \eqref{eq:H} & \textbf{open} & \\
 Gödel theorems; potential set; no null vector at finite $a$ & proved & \S\ref{sec:border}\\
-Crossings 1--7 & proved & \S\ref{sec:cross}\\
+Crossings 1--8 & proved & \S\ref{sec:cross}\\
 the inner product for $\zeta$ & \textbf{not constructed} & \S\ref{sec:cross}\\
 the Michaels Conjecture & conjecture & Conj.~\ref{conj}\\
 the Riemann Hypothesis & \textbf{open} & \\
@@ -275,6 +287,9 @@ the Riemann Hypothesis & \textbf{open} & \\
 \bibitem{v32} C.~Michaels, \emph{Prime DNA, Build v32: Prime-State All-Pass Geometry and the Observability Boundary}, August 25, 2026, \texttt{received/}.
 \bibitem{routes} \texttt{RH\_ROUTES.md}, September 29, 2026.
 \bibitem{grammar} C.~Michaels, \emph{The Grammar of Things}, July 2026.
+\bibitem{li} X.-J.~Li, The positivity of a sequence of numbers and the Riemann hypothesis, \emph{J. Number Theory} 65 (1997), 325--333.
+\bibitem{bl} E.~Bombieri and J.~C.~Lagarias, Complements to Li's criterion for the Riemann hypothesis, \emph{J. Number Theory} 77 (1999), 274--287.
+\bibitem{lagarias} J.~C.~Lagarias, Li coefficients for automorphic $L$-functions, \emph{Ann. Inst. Fourier} 57 (2007), 1689--1740.
 \bibitem{weil52} A.~Weil, Sur les ``formules explicites'' de la th\'eorie des nombres premiers, \emph{Comm. S\'em. Math. Univ. Lund} (1952), 252--265.
 \bibitem{yoshida} H.~Yoshida, On Hermitian forms attached to zeta functions, \emph{Adv. Stud. Pure Math.} 21 (1992), 281--325.
 \bibitem{zhu} X.~Zhu, Weil positivity in compact windows, arXiv:2608.24827 (2026), Theorem 6.2.
