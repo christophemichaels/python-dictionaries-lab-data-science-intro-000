@@ -1028,6 +1028,14 @@ energy 2.000 N; fluctuation energy slope 0.0469 per log N against Cramer's sum 1
 against sum 2/|rho zeta'(rho)|^2 = 0.0288 (400 pairs, mpmath). Zeros = modes of the field; the pull = the signed
 cross term; the geometry is flat (no metric but the open inner product). Finite, inert; no claim.
 
+## 2026-10-05, later: the zero hole (THE_ZERO_HOLE.md)
+The user: all zeros at one point, the space warped into an onion pointing to it. Exact warp: the Kelvin inversion
+r -> 1/r of the gravity plane; shells n -> layers 1/n; infinity -> the centre (u -> -u, the fold; the one dot).
+Interaction with the point = potential at the centre = sum m(n)/n = Dirichlet series at s = 1. Moebius star: 0
+(PNT, Landau); partial sums h(N) = the mean obligation of RESEARCH_H_RECORD Section 7; sqrt N h(N) in [-0.44, 0.41],
+rms 0.17, over 1e2..1e7 (RH iff O(N^{-1/2+eps})). Prime star: log N - gamma (Mertens), measured -0.577359 vs
+-0.577216 at 1e7. Energy in onion coordinates int M(1/s)^2 ds; subpower = integrable core. Finite, inert.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
