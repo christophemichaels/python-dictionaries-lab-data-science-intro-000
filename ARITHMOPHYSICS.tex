@@ -38,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent \emph{Arithmophysics} is the name the author gave, in the first compilation of this programme, to the study of the primes through the objects of physics: oscillation, spectrum, confinement. That compilation carried an uncertainty-principle argument that was later corrected (theory atlas, entries P16--P18). This paper is the return to the name with the mathematics that was built in between. It has four chapters, one for each strand the programme now has, and each chapter states only what is proved or computed in that strand: the geometry (the explicit formula as a sum of oscillators, the light cone, the horn, the fold, the curve), the quantum theory (the two Hamiltonians that exist, the Möbius state, the inner product that does not yet exist), the primes (the running proof's target and what has been proved around it), and the border (the Gödel theorem, the potential set, the conjecture). The fifth chapter is the point of the paper: seven crossings, each an exact identity or a proved equivalence between two strands, with its proof or citation, ending at the single object none of the four strands supplies. Every physical word in this paper names a theorem, a computation, or a labelled conjecture. Nothing here proves the Riemann Hypothesis.
+\noindent \emph{Arithmophysics} is the study of the primes through the objects of physics: oscillation, spectrum, confinement, with the dictionary between the two kept exact. This paper has four chapters, one for each strand the programme now has, and each chapter states only what is proved or computed in that strand: the geometry (the explicit formula as a sum of oscillators, the light cone, the horn, the fold, the curve), the quantum theory (the two Hamiltonians that exist, the Möbius state, the inner product that does not yet exist), the primes (the running proof's target and what has been proved around it), and the border (the Gödel theorem, the potential set, the conjecture). The fifth chapter is the point of the paper: seven crossings, each an exact identity or a proved equivalence between two strands, with its proof or citation, ending at the single object none of the four strands supplies. Every physical word in this paper names a theorem, a computation, or a labelled conjecture. Nothing here proves the Riemann Hypothesis.
 \end{abstract}
 
 \tableofcontents
@@ -46,7 +46,7 @@
 \section*{Status conventions and the rule of the word}
 A \textbf{Theorem}, \textbf{Proposition} or \textbf{Lemma} without a citation is proved here or in the cited document of the programme, where the proof is complete; with a citation to the literature it is taken from there with its hypotheses. A \textbf{Computation} carries its file in the repository. A \textbf{Crossing} is an identity or a proved equivalence joining two strands. A \textbf{Conjecture} is labelled and never used.
 
-The rule of the word: in this paper ``oscillator'', ``Hamiltonian'', ``horizon'', ``light cone'', ``trace'', ``inner product'', ``witness'' each name a specific mathematical object defined where the word first appears. The physics is a dictionary, not an argument. Where the early compilation used the physics as an argument (the error-fluctuation uncertainty principle), the atlas records the correction \cite[P17--P18]{atlas}, and nothing of that argument is used here.
+The rule of the word: in this paper ``oscillator'', ``Hamiltonian'', ``horizon'', ``light cone'', ``trace'', ``inner product'', ``witness'' each name a specific mathematical object defined where the word first appears. The physics is a dictionary, not an argument.
 
 \section{Geometry: the shape of the explicit formula}\label{sec:geo}
 
@@ -65,7 +65,7 @@ $\mathrm{RH}\iff\lambda(a)\ge0$ for every $a>0$.
 \begin{theorem}[Zhu {\cite[Thm.\ 6.2]{zhu}}]\label{thm:zhu}
 $8.206\times10^{-15}\le\lambda(0.8)\le2.347\times10^{-14}$, certified; so $\lambda>0$ on $(0,0.8]$.
 \end{theorem}
-The horizon is $\Tst(a)=2\pi e^{2a}$. It is the height at which the density of zeros, $(2\pi)^{-1}\log(t/2\pi)$ by the Riemann--von Mangoldt law, equals the Cartwright bound $a/\pi$ on the zero density of a function of exponential type $a$ \cite[\S1]{window}.
+The horizon is $\Tst(a)=2\pi e^{2a}$. It is the height at which the density of zeros, $(2\pi)^{-1}\log(t/2\pi)$ by the Riemann--von Mangoldt law, equals the Cartwright bound $a/\pi$ on the zero density of a function of exponential type $a$ \cite[\S1]{window}. This is an uncertainty relation between the two sides of \eqref{eq:weil}: a window of half-width $a$ on the prime line resolves the zeros only to the density $a/\pi$, that is, only below the horizon; and a function that would resolve them further has support beyond $a$ and sees further primes.
 \begin{computation}[the floor; {\cite{folds,window}}]\label{comp:floor}
 \begin{sloppypar}\noindent From the files \texttt{floor\_grid\_K40.csv} and \texttt{floor\_grid\_arb.csv}: $\lambda(0.3)=0.2226$, $\lambda(0.549)=1.49\times10^{-5}$, $\lambda(1.2)=7.2\times10^{-37}$, and $\lambda(1.505)\approx10^{-93}$ by certified enclosure. The floor is positive at every support computed; the horizon at $a=1.5$ is $\Tst=126$. Prime $2$ enters at $a=0.3466$ and is needed by $a=0.3716$.\end{sloppypar}
 \end{computation}
@@ -75,6 +75,11 @@ Draw the $n$-th zero as a circle of circumference $\gamma_n$ at height $n$ \cite
 \begin{computation}[{\cite{horn}}; \texttt{rh\_horn.py}, 6{,}000 zeros]\label{comp:horn}
 Growth per ring $0.2239$ against $1/\log r=0.2238$ (first $1{,}000$ rings); rings minus law in $[-0.35,1.36]$; Riemann--Siegel phase advance $1.00003\,\pi$ per ring; $85.3$ percent of Gram intervals hold exactly one ring. The slope $1/\log r$ falls from $1.23$ at ring $1$ to $0.14$ at ring $6{,}000$: a horn, not a cone.
 \end{computation}
+\begin{center}
+\includegraphics[width=0.88\textwidth]{MAGENTA_HORN.png}
+\end{center}
+\noindent\emph{The horn drawn: the first $1{,}000$ zeros as rings, with the stones on its axis, prime power $m$ at the height where the ring radius is $m$ (Crossing~\ref{cr:horizon}; file \texttt{MAGENTA\_HORN.png}, script \texttt{rh\_magenta\_horn.py}).}
+
 The horn is hollow by construction, and only zeros on the line can be drawn as rings while the counting law counts every zero: for the Davenport--Heilbronn function the ring count drops by $2$ at each off-line pair \cite[Fig.\ 26C]{folds}.
 
 \subsection{The fold}
@@ -101,7 +106,7 @@ On $L^2((0,\infty),dx)$ the dilation $(U_tf)(x)=e^{t/2}f(e^tx)$ is unitary \cite
 \[
 H_{\mathrm{dil}}=-i\Big(x\frac d{dx}+\frac12\Big)=\frac{xp+px}2,\qquad H_{\mathrm{dil}}\,x^{\rho-1}=-i\big(\rho-\tfrac12\big)x^{\rho-1}=\big[\gamma-i(\beta-\tfrac12)\big]x^{\rho-1}
 \]
-for $\rho=\beta+i\gamma$. This is the operator of Berry and Keating \cite{bk}; the mode of a zero has a real eigenvalue exactly when the zero is on the line; and the modes are not in $L^2$. The operator has continuous spectrum filling $\R$ and selects no zero \cite{es}. In the coordinate $u=\log x$, $(\mathcal Tf)(u)=e^{u/2}f(e^u)$ conjugates it to $-i\,d/du$: the oscillators of Section~\ref{sec:geo} are its generalized eigenfunctions. The early compilation's modes $e^{(\beta-1/2)u}e^{i\gamma u}$ \cite[P18]{atlas} are these.
+for $\rho=\beta+i\gamma$. This is the operator of Berry and Keating \cite{bk}; the mode of a zero has a real eigenvalue exactly when the zero is on the line; and the modes are not in $L^2$. The operator has continuous spectrum filling $\R$ and selects no zero \cite{es}. In the coordinate $u=\log x$, $(\mathcal Tf)(u)=e^{u/2}f(e^u)$ conjugates it to $-i\,d/du$: the oscillators of Section~\ref{sec:geo} are its generalized eigenfunctions.
 
 \subsection{The Möbius state}
 \begin{proposition}[{\cite[Prop.\ 3.2]{horizon}}]\label{prop:mstate}
@@ -239,7 +244,6 @@ Gödel theorems; potential set; no null vector at finite $a$ & proved & \S\ref{s
 Crossings 1--7 & proved & \S\ref{sec:cross}\\
 the inner product for $\zeta$ & \textbf{not constructed} & \S\ref{sec:cross}\\
 the Michaels Conjecture & conjecture & Conj.~\ref{conj}\\
-the early uncertainty-principle argument & corrected, not used & \cite[P17--P18]{atlas}\\
 the Riemann Hypothesis & \textbf{open} & \\
 \bottomrule
 \end{tabular}
@@ -255,7 +259,6 @@ the Riemann Hypothesis & \textbf{open} & \\
 \noindent\emph{The cone over a curve closing at $g\log q$; the number-field floor decaying and never reaching zero} (\texttt{FUNCTION\_FIELD\_CONE.png}).
 
 \begin{thebibliography}{99}\small
-\bibitem{atlas} C.~Michaels, \emph{Theta Kernels, Weil Positivity, and the Mathematical Theory Atlas}, through Checkpoint 20, September 23, 2026, atlas entries P16--P18 (\texttt{atlas/Michaels\_Theta\_Atlas\_CP20.pdf}, printed p.\ 482--483).
 \bibitem{horizon} C.~Michaels, \emph{Across the Horizon}, \texttt{ACROSS\_THE\_HORIZON.pdf}, October 5, 2026.
 \bibitem{running} C.~Michaels, \emph{Michaels Unified Running Proof}, Parts 0--XVII, October 4, 2026 (the opening 217 pages of the unified manuscript, master branch).
 \bibitem{summary} C.~Michaels, \emph{Direct Historical-Energy Argument}, twelve-page companion, October 4, 2026.

@@ -962,9 +962,12 @@ Status rows and references added. ChatGPT's reading judged correct on the mathem
 Hamiltonian is already present" is true of the two known operators and not of the one that matters.
 
 ## 2026-10-05, later: Arithmophysics (ARITHMOPHYSICS.tex/pdf)
-The user's word for the cross of geometry, quantum theory, the primes and his research; it is atlas entry P16
-(the early compilation with the EFUP claim, corrected in P17-P18). The paper returns to the name with the
-rule that every physical word names a theorem, a computation or a labelled conjecture. Chapters 1-4 state only
+The user's word for the cross of geometry, quantum theory, the primes and his research. At his request the paper
+does not cite the early unpublished compilation of the same name (atlas P16-P18); its instinct, that location and
+amplitude cannot both be fixed, appears only as the horizon stated as an uncertainty relation between the two
+sides of the explicit formula. The magenta horn is drawn in the paper itself (MAGENTA_HORN.png,
+rh_magenta_horn.py), with the stones on its axis. The rule: every physical word names a theorem, a computation
+or a labelled conjecture. Chapters 1-4 state only
 what is proved per strand (citing the record); Chapter 5 is seven crossings with one-line proofs or citations:
 (1) horizon identity, stone m at ring radius m; (2) rings = wavenumbers, slope = mean spacing, pi per ring;
 (3) (H) = subexponential power of the Moebius state, transform 1/(s zeta); (4) curve: Lefschetz + Toeplitz
