@@ -961,6 +961,19 @@ signed mixed term of the same shape as the cofactor-flow identity (M44) of H_rec
 Status rows and references added. ChatGPT's reading judged correct on the mathematics it states; its "the
 Hamiltonian is already present" is true of the two known operators and not of the one that matters.
 
+## 2026-10-05, later: Arithmophysics (ARITHMOPHYSICS.tex/pdf)
+The user's word for the cross of geometry, quantum theory, the primes and his research; it is atlas entry P16
+(the early compilation with the EFUP claim, corrected in P17-P18). The paper returns to the name with the
+rule that every physical word names a theorem, a computation or a labelled conjecture. Chapters 1-4 state only
+what is proved per strand (citing the record); Chapter 5 is seven crossings with one-line proofs or citations:
+(1) horizon identity, stone m at ring radius m; (2) rings = wavenumbers, slope = mean spacing, pi per ring;
+(3) (H) = subexponential power of the Moebius state, transform 1/(s zeta); (4) curve: Lefschetz + Toeplitz
+null vector; (5) v32 Euler update and H_record cofactor flow: same shape, one signed cross term = parity;
+(6) the edge theorem and the witness/universal distinction (DH as the forced case; the forced Navier-Stokes
+remark, cited to Quanta/OpenAI, parallel in logical type only); (7) finite pattern => the axiom is a theorem.
+Ends at the inner product for zeta as the one object none of the strands supplies. Status table; figures.
+No claim about RH.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
