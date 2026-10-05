@@ -1007,6 +1007,16 @@ by sieve to x = 1e7, n = 1e6 (Schoenfeld pi ratio 0.977 overall, 0.369 past 1e5;
 max 0.567 at 199; Robin 0.98582 at 10080; Lagarias exact, equality at n = 1 only; Cramer ratio 0.279).
 Finite checks, inert; the note says so. Script rh_other_end.py.
 
+## 2026-10-05, later: forward against backward, the difference measured (THE_OTHER_END.md Section 4)
+The user: place all zeros literally on one dot, compute forward and backward, measure the difference. Done: psi_K
+rebuilt from the first K zeros at beta = 1/2 against psi from the primes to 1e6, difference in units of sqrt x
+averaged in log x. Mean zero to 3e-4 at every K; rms 0.1378/0.1082/0.0784 measured against 0.1383/0.1086/0.0789
+predicted (K = 10, 30, 100) by Parseval, sum_{n>K} 2/|rho_n|^2; at K >= 1000 the measurement falls 10-20 percent
+below a prediction dominated by the extrapolated tail. No drift, no constant, no growth; the stones' mean
+-0.037 is -log 2 pi averaged in 1/sqrt x (-0.0395). The difference is the rings not yet placed, shrinking at
+(log(gamma_K/2 pi) + 1)/(pi gamma_K). Inert; blind beyond the horizon of the zeros used. Script
+rh_one_dot_difference.py, figure THE_DIFFERENCE.png.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

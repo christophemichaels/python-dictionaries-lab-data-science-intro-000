@@ -60,3 +60,51 @@ direction, from the stones to the point: subpower, census, floor, positivity. Th
 direction, from the point to the stones, which is where every theorem above lives. None of it is new; all
 of it is what the one dot buys. The two directions meet nowhere short of infinity: the forward laws hold
 exactly if the zeros are on the point, and no finite stretch of the stones obeying them puts a zero there.
+
+## 4. Measuring the difference: forward from the dot against backward from the stones (added later on 2026-10-05)
+
+The user asked for the two directions computed and their difference measured. Forward: every zero placed
+literally on the point, β = ½, the first K of them, rebuilt into the prime-power sum by the explicit formula,
+
+    ψ_K(x) = x − Σ_{n≤K} 2 Re( x^{½+iγₙ} / (½+iγₙ) ) − log 2π − ½ log(1 − x⁻²).
+
+Backward: the actual ψ(x) from the primes, by sieve to 10⁶. The difference D_K(x) = ψ(x) − ψ_K(x) is
+measured in the dot's own unit, √x, and averaged in log x over 20,000 non-integer points of [10², 10⁶]
+(`rh_one_dot_difference.py`, figure `THE_DIFFERENCE.png`). The prediction, if every zero is on the point and
+none is missing, is Parseval for the almost periodic normalized error: the mean square of D_K/√x equals the
+sum over the rings not yet placed, Σ_{n>K} 2/|ρₙ|², with the part beyond the 6,000th zero estimated from the
+counting law as (log(T/2π) + 1)/(πT) at T = γ₆₀₀₀ = 6365.85.
+
+| K zeros on the dot | height | mean of D_K/√x | rms measured | rms predicted | max |
+|---|---|---|---|---|---|
+| 10 | 49.8 | −0.0001 | 0.1378 | 0.1383 | 0.578 |
+| 30 | 101.3 | +0.0001 | 0.1082 | 0.1086 | 0.414 |
+| 100 | 236.5 | +0.0002 | 0.0784 | 0.0789 | 0.292 |
+| 300 | 541.9 | +0.0003 | 0.0540 | 0.0566 | 0.230 |
+| 1,000 | 1,419.4 | +0.0002 | 0.0343 | 0.0379 | 0.145 |
+| 3,000 | 3,533.3 | +0.0002 | 0.0219 | 0.0257 | 0.094 |
+| 6,000 | 6,365.9 | +0.0002 | 0.0162 | 0.0199 | 0.073 |
+
+Three things come out of the measurement.
+
+1. **The difference is the rings not yet placed, and nothing else.** For K ≤ 100 the measured and predicted
+   rms agree to half a percent. For larger K the prediction is dominated by the extrapolated tail beyond the
+   last known zero and the measurement falls 10 to 20 percent below it, within what that extrapolation and
+   the finite averaging length allow. There is no residual: no drift, no constant, no growth. A zero off the
+   point at height γ₀ would add a term of size x^{β−½}/|ρ₀|, growing with x; a ring missing from the dot
+   would raise the rms above the prediction by 2/|ρ₀|². Neither is seen.
+2. **The mean is zero.** For every K the mean of the difference is within 3 × 10⁻⁴ of zero. The stones alone
+   have mean −0.037 in this unit, and that number is the constant: −log 2π averaged over the grid in 1/√x
+   gives −0.0395. The constants we have are exactly where the forward side puts them.
+3. **The difference shrinks at the rate of the horn's own law.** Σ_{n>K} 2/|ρₙ|² is, by the counting law,
+   (log(γ_K/2π) + 1)/(πγ_K): the rings beyond K contribute inversely to their height, times the density of
+   the horn at that height. Placing more zeros on the dot removes the difference at exactly the rate the horn
+   flares.
+
+What this is: the forward and backward directions of the explicit formula compared on the integers, and
+found to agree to the precision of the tail. It is a finite computation, inert, and it is the same computation
+as Figure 27A of the One Dot paper done as a measurement rather than a picture. What it is not: a test that
+can see a zero off the point at height beyond 6,366, since such a zero contributes to the difference exactly
+what an on-point ring at that height would, up to a factor x^{β−½} that is invisible below x = 10⁶ unless
+β − ½ is large. The one dot is exact to the horizon of the zeros used, and the horizon is where every measurement
+in this programme ends.
