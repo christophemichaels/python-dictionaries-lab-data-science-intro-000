@@ -873,6 +873,21 @@ omega-incompleteness (every instance provable, the universal not). Prop 4.1: bic
 programme's family: Weil positivity, R(N) << N^eps, H_record, one-sided A(x) bound, lifetime census). Prop 4.2 the
 potential set of a cone. Section 5: the function-field outside (Hodge index on X x X). Section 6: dictionary to the
 book. Section 7: established vs not: no proof, no refutation, no independence result, no evidence for independence.
+## 2026-10-05, later: A Goedel Theorem for the Riemann Hypothesis (RH_GODEL_THEOREM.tex/pdf)
+The user's statement, "RH concerns a global constraint on arithmetic information, and establishing that constraint
+requires a framework capable of explaining why the entire pattern holds", given exact content and proved. Theorem 4.1
+(inertness): Th(T + all true Sigma_1 sentences) = Th(T) for any T containing Q, so no verified pattern up to any bound,
+nor all of them, proves rho unless T already does (Sigma_1-completeness). Theorem 5.1: PA |- rho <-> Con(Q + rho)
+(formalized Sigma_1-completeness of Q for <-; provable soundness of the finitely axiomatized Q in PA, via partial truth
+definitions and cut elimination, for ->); PA |- Con(PA + rho) -> rho with the converse unprovable (Goedel 2);
+ZFC |- rho <-> Con(PA + rho); refutation yields a witness in Q; non-refutability gives truth. Theorem 6.1: if
+PA does not prove rho, any true phi with PA + phi |- rho is unprovable in PA, not PA-equivalent to any Sigma_1 sentence,
+and proves Con(Q + rho). Corollaries: trichotomy, omega-incompleteness, Loeb. Section 7 (on "we have all the math"):
+the equivalence family (Weil positivity, R(N) << N^eps, H_record, one-sided Moebius bound, lifetime census) is each
+ZFC-equivalent to Con(PA + rho); the potential set: Zhu's certified floors on (0, 0.8] are a local fact and give
+P(0.8) nonempty unconditionally; the light-cone test as the numerical face. Section 8: not a proof, not a refutation,
+not an independence result; the framework is not located; strength unchanged. Companion: RESEARCH_GODEL_NOTE.pdf.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
