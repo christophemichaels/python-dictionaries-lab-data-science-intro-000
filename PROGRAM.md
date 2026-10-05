@@ -891,6 +891,21 @@ every instance and bounded pattern provable; rho independent; any explaining pri
 Con(PA + rho); the whole equivalence family true and unprovable. Status remark: consistent with all evidence; open.
 The conjecture is labelled a conjecture; nothing is labelled proved that is not. Companion: RESEARCH_GODEL_NOTE.pdf.
 
+## 2026-10-05, later: the cone over a curve (FUNCTION_FIELD_CONE.md)
+On the user's question whether the curves over finite fields can be projected onto the magenta cone. They can,
+exactly: a closed point of degree d sits at log N(P) = d log q and enters the cone at a = d log q / 2; the Weil
+form at support D is the Toeplitz form of the zero measure (2g atoms on the circle) with moments
+nuhat(m) = q^{m/2} + q^{-m/2} - N_m q^{-m/2}, |m| <= 2D. Proposition (classical in substance: Caratheodory-Toeplitz,
+Newton's identities): positive definite for D < g; singular from D = g on, the null polynomial's roots being the
+zeros; potential set = {nu_X} for D >= g, so the cone closes at a = g log q; even sector closes at D = g, odd at
+D = g + 1; T_{2g+1} >= 0 iff every |alpha_i| = sqrt q, so positivity at the one support D = g is RH for the curve,
+and an impostor pair off the circle is caught by some D <= g. Five curves computed (g = 1, 2, 3 over F_3; g = 2, 3
+over F_5), every check passing; figure beside the number-field floor, which decays and is never zero (no null
+vector at finite a: the zeros are infinitely many; the collapse is at a = infinity). The sign closing a curve's
+cone is the Hodge index theorem on X x X, outside the counts: the one setting where the thesis of
+RH_GODEL_THEOREM Section 8 is a theorem. Nothing about zeta is claimed; no decay constant, grid or support was
+touched.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
