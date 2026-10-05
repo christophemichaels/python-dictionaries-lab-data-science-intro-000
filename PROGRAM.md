@@ -906,6 +906,16 @@ cone is the Hodge index theorem on X x X, outside the counts: the one setting wh
 RH_GODEL_THEOREM Section 8 is a theorem. Nothing about zeta is claimed; no decay constant, grid or support was
 touched.
 
+## 2026-10-05, later: Reading the curve (READING_THE_CURVE.tex/pdf)
+At the user's request ("do that for me, and we're going to dig deeper into this afterwards"): the four ideas of the
+curve case worked by hand on y^2 = x^3 + x^2 + 1 over F_3. Stones N_1 = 6, N_2 = 12 by tables (closed points
+b_1 = 6, b_2 = 3); the rule a_1 = -2, alpha = -1 +- i sqrt 2, P(T) = 1 + 2T + 3T^2, predictions N_3 = 18, N_4 = 96
+confirmed by brute force; RH for the curve as |alpha| = sqrt 3, theta = +-125.26 deg; the cone at D = 1 (a = log 3):
+T_3 with eigenvalues 0, 8/3, 10/3, even sector closed, odd open until D = 2, null vector (1, 2/sqrt 3, 1) whose
+roots are the zeros; Hasse's proof via deg(m - n pi) = m^2 - a_1 m n + 3 n^2 >= 0 (positivity one floor above
+the counts), Weil's via Hodge index on X x X for genus g; dictionary back to the integers; three places to dig.
+Nothing about zeta is claimed.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
