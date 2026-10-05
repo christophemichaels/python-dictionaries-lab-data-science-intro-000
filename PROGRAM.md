@@ -1000,6 +1000,13 @@ w = 1 - 1/rho folds infinity to w = 1; Li's criterion (lambda_n >= 0 for all n i
 one point, lambda_n arithmetic (Bombieri-Lagarias), growth (n/2) log n under RH (Lagarias), off-line pair
 growing like e^{n(2 beta - 1)/2|rho'|^2}, so lambda_n resolves to height ~ n. No claim about RH.
 
+## 2026-10-05, later: the other end (THE_OTHER_END.md)
+The user: force every zero exactly onto the point, and something should come out the other end. It does: the
+forward direction of RH on the integers. Sixteen consequences and equivalences listed with authors; four checked
+by sieve to x = 1e7, n = 1e6 (Schoenfeld pi ratio 0.977 overall, 0.369 past 1e5; psi ratio 0.804; |M|/sqrt x
+max 0.567 at 199; Robin 0.98582 at 10080; Lagarias exact, equality at n = 1 only; Cramer ratio 0.279).
+Finite checks, inert; the note says so. Script rh_other_end.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
