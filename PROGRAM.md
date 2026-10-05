@@ -977,6 +977,13 @@ remark, cited to Quanta/OpenAI, parallel in logical type only); (7) finite patte
 Ends at the inner product for zeta as the one object none of the strands supplies. Status table; figures.
 No claim about RH.
 
+## 2026-10-05, later: light units (LIGHT_UNITS.md)
+The user wanted the speed of light as a tangible constant. The only honest entry of a dimensional constant is
+as a unit: the cone's edge log n = 2a has speed 2; declare it a light cone at c, choose lambda_0 per e-fold,
+and tau_0 = 2 lambda_0 / c per unit of half-width (6.67 ns for 1 m). Tables of entries, horizons and zeros as
+frequencies (first zero 674 MHz, thousandth 67.7 GHz; stone m resolves to m x 300 MHz). The exponent 1/2 is
+dimensionless and untouched; no theorem depends on the choice. Script rh_light_units.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
