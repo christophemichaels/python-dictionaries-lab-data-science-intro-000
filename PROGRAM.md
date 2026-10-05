@@ -1036,6 +1036,17 @@ Interaction with the point = potential at the centre = sum m(n)/n = Dirichlet se
 rms 0.17, over 1e2..1e7 (RH iff O(N^{-1/2+eps})). Prime star: log N - gamma (Mertens), measured -0.577359 vs
 -0.577216 at 1e7. Energy in onion coordinates int M(1/s)^2 ds; subpower = integrable core. Finite, inert.
 
+## 2026-10-05, later: the light plane as a framework (THE_LIGHT_PLANE.md)
+The user objected that the translations transmute what he means, and restated his framework: a complete reality
+(like the curves) of which our arithmetic is a holographic projection onto a horizon; light as the massless
+constant-speed carrier; the projector (film = information, glass = horizon, screen = our universe); the colours
+of the primes as the spectrum of light; the subpower as the wall whose constant is not derivable here. Run as a
+framework: postulates stated; each mapped to its exact object; forced-and-proved separated from asserted-and-open
+(the latter = the Michaels Conjecture in cosmological form). Two exact readings added: RH = every mode of the
+field is massless (real eigenvalue, no width); the colours compose the spectrum, computed: the superposition of
+all prime-power waves to 1e6 with a smooth cut-off peaks on every zero below 60 within 0.01 (rh_spectrum_of_light.py).
+No claim about RH.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
