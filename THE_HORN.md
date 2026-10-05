@@ -130,3 +130,39 @@ have infinite genus. Each of these is a restatement of a classical fact in the p
 constrains where the zeros are. What the horn does do, and the paper already used it for, is make an off-line
 zero visible as a missing ring, which is the same event the cone over a curve catches at a finite support and
 the cone over the integers never catches at any finite support.
+
+## 6. Forcing the horn to close (added later on 2026-10-05)
+
+The horn flares forever because the zeros get denser forever. There are exactly three ways to force it to
+close, and only one of them keeps ζ.
+
+1. **Cut it off** at ring N. The zero measure becomes finite, the plane at one half becomes
+   N-dimensional, and the cone over it closes at every support at once, because a function of any compact
+   support can vanish at N given points. The hollow image loses its meaning. Nothing is learned.
+2. **Make it periodic.** This is what closes the horn of a curve: ζ_X is a function of q^{−s}, the zeros
+   repeat with period 2π/log q in height, and the horn, read modulo the period, is 2g points on a circle.
+   ζ has no period, and the Riemann–von Mangoldt law forbids one.
+3. **Unfold it.** Measure height not in γ but in the Riemann–Siegel phase, φ = θ(γ)/π + 1. Then ring n
+   sits at φₙ = n − S(γₙ): at integer height up to the wobble, and every ring has unit radius in the unit of
+   the local mean spacing. The flare is gone; the horn is a cylinder. This is the unfolding of random-matrix
+   theory, it loses nothing, and it is the one honest closure.
+
+In the plane at one half the unfolded horn is the following object. The space is L²(ν_ζ); the unfolding
+sends the atoms γₙ to the points n − S(γₙ) of the line; the measure becomes the counting measure on the
+integers displaced by S. What remains after closing is therefore exactly S(T), and the law of the rings'
+spacing.
+
+Computed on the 6,000 zeros (`rh_horn_closed.py`, figure `THE_HORN_CLOSED.png`): the unfolded rings have
+mean spacing 1.00003 and standard deviation 0.39; no two rings share a height (smallest spacing 0.046);
+the displacement from integer height stays in [−1.36, 0.35]; and the spacing histogram sits on the GUE
+Wigner surmise (32/π²) s² e^{−4s²/π} at L² distance 0.09 against 0.67 for the Poisson law e^{−s}. Only
+0.9 percent of spacings are below a quarter of the mean, against 22 percent if the rings were independent.
+The rings repel. That repulsion is Montgomery's pair correlation, proved in its restricted range, and it is
+the quantum signature of the plane: a spectrum whose levels repel is the spectrum of a Hermitian operator,
+not of independent events.
+
+So forcing the horn to close does not remove the open question; it isolates it. After the closure the
+horn is a cylinder of unit rings, and the entire content of the zeros is in two things: the wobble S, which
+is bounded on average and is the subject of the census, and the repulsion law of the spacings, which is
+the quantum theory. An off-line pair in the Davenport–Heilbronn function shows up in the closed horn as a
+missing pair of rings, a step of two in the count; in ζ no such step has ever been seen.

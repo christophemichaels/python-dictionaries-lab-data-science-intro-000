@@ -984,6 +984,14 @@ and tau_0 = 2 lambda_0 / c per unit of half-width (6.67 ns for 1 m). Tables of e
 frequencies (first zero 674 MHz, thousandth 67.7 GHz; stone m resolves to m x 300 MHz). The exponent 1/2 is
 dimensionless and untouched; no theorem depends on the choice. Script rh_light_units.py.
 
+## 2026-10-05, later: forcing the horn to close (THE_HORN.md Section 6)
+On the user's question. Three closures: cut off (trivial, meaningless), periodic (only a curve), unfold by the
+Riemann-Siegel phase (the honest one): ring n at phi_n = n - S(gamma_n), unit radius, the horn a cylinder; in
+the plane at one half the measure becomes the counting measure on the integers displaced by S. Computed on 6,000
+zeros: mean spacing 1.00003, min 0.046, jitter in [-1.36, 0.35], spacing histogram at L2 distance 0.09 from
+the GUE Wigner surmise against 0.67 from Poisson; 0.9 percent of spacings below a quarter of the mean against
+22 percent for independent rings. What remains after closing: S and the repulsion law. Script rh_horn_closed.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
