@@ -882,10 +882,10 @@ nor all of them, proves rho unless T already does (Sigma_1-completeness). Theore
 definitions and cut elimination, for ->); PA |- Con(PA + rho) -> rho with the converse unprovable (Goedel 2);
 ZFC |- rho <-> Con(PA + rho); refutation yields a witness in Q; non-refutability gives truth. Theorem 6.1: if
 PA does not prove rho, any true phi with PA + phi |- rho is unprovable in PA, not PA-equivalent to any Sigma_1 sentence,
-and proves Con(Q + rho). Corollaries: trichotomy, omega-incompleteness, Loeb. Section 7 (on "we have all the math"):
+and proves Con(Q + rho). Corollaries: trichotomy, omega-incompleteness, Loeb. Section 8 (on "we have all the math"):
 the equivalence family (Weil positivity, R(N) << N^eps, H_record, one-sided Moebius bound, lifetime census) is each
 ZFC-equivalent to Con(PA + rho); the potential set: Zhu's certified floors on (0, 0.8] are a local fact and give
-P(0.8) nonempty unconditionally; the light-cone test as the numerical face. Section 8, at the user's request, replaces the list of
+P(0.8) nonempty unconditionally; the light-cone test as the numerical face. Section 9, at the user's request, replaces the list of
 caveats with the Michaels Conjecture (rho not provable in ZFC) and Theorem 8.2 proving its consequences: RH true;
 every instance and bounded pattern provable; rho independent; any explaining principle a new universal axiom proving
 Con(PA + rho); the whole equivalence family true and unprovable. Status remark: consistent with all evidence; open.
