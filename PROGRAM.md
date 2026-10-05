@@ -862,6 +862,17 @@ one-sided bound at that scale; the paid range is the Legendre range; the sign of
 parity obstruction (Selberg). Every target is RH-equivalent, as in RESEARCH_H_RECORD. The snippet's displayed
 |E^rep| <= N exp((1/8) log N/log log N) = O(N^{1/2+eps}) is false as written (exceeds N) unless the prefactor is sqrt N.
 
+## 2026-10-05, later: the Goedel-theoretic note (RESEARCH_GODEL_NOTE.tex/pdf)
+On request, after reading The Grammar of Things (173 pages; coda: the stones never become the circle). Theorem 1.2 (cited,
+DMR 1976): RH is ZFC-equivalent to a Pi^0_1 sentence rho = forall n D(n). Theorem 3.1 (proved from Sigma_1-completeness,
+provable Sigma_1-completeness, the formalized deduction theorem, Goedel 2 and Loeb): (i) rho false => Q proves not-rho
+with an explicit witness; (ii) if PA (or ZFC, or any r.e. T containing Q) does not refute rho then rho is true;
+(iii) PA |- Con(PA + rho) -> rho; (iv) the converse is unprovable unless PA + rho is inconsistent; (v) Loeb: a proof of
+Prov(rho) -> rho is a proof of rho. Prop 3.3: ZFC |- rho iff ZFC |- Con(PA + rho). Cor 3.4 trichotomy; Cor 3.5
+omega-incompleteness (every instance provable, the universal not). Prop 4.1: biconditionals preserve status (the
+programme's family: Weil positivity, R(N) << N^eps, H_record, one-sided A(x) bound, lifetime census). Prop 4.2 the
+potential set of a cone. Section 5: the function-field outside (Hodge index on X x X). Section 6: dictionary to the
+book. Section 7: established vs not: no proof, no refutation, no independence result, no evidence for independence.
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

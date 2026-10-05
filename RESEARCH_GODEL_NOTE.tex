@@ -1,0 +1,255 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{fact}[theorem]{Fact}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\PA}{\mathsf{PA}}
+\newcommand{\ZFC}{\mathsf{ZFC}}
+\newcommand{\RA}{\mathsf{Q}}
+\newcommand{\Prov}{\mathrm{Prov}}
+\newcommand{\Con}{\mathrm{Con}}
+\newcommand{\RH}{\mathrm{RH}}
+\newcommand{\gn}[1]{\ulcorner #1\urcorner}
+\newcommand{\Pione}{\Pi^0_1}
+\newcommand{\Sigone}{\Sigma^0_1}
+\DeclareMathOperator{\lcm}{lcm}
+
+\title{The Riemann Hypothesis rests on its own consistency:\\ a G\"odel-theoretic note on the record and the rule}
+\author{Christophe Michaels}
+\date{October 5, 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\emph{Status.} Every theorem in this note is either proved here from cited standard results of mathematical logic and analytic number theory, or cited with its source. The note does not prove the Riemann Hypothesis, does not refute it, and does not prove that it is undecidable. It proves what the logical shape of the Riemann Hypothesis forces about any proof, any refutation and any independence result, and it states exactly where the open question sits. Section~\ref{sec:limits} lists what is and is not established.
+
+\section*{Summary}
+
+Write $\RH$ for the Riemann Hypothesis. Three facts, in order of strength.
+
+\begin{enumerate}
+\item $\RH$ is equivalent, provably in ordinary mathematics, to a sentence $\rho$ of the form ``for every natural number $n$, a certain finite computation succeeds'': a $\Pione$ sentence of arithmetic (Theorem~\ref{thm:pi1}, Davis--Matijasevi\v{c}--Robinson).
+\item Consequently, every refutation of $\RH$ contains a witness, a single integer at which the computation fails, and every such witness is a theorem of the weakest arithmetic; while if $\RH$ cannot be refuted, it is true. Formally: Peano arithmetic proves that $\RH$ follows from its own consistency with arithmetic,
+\[
+\PA\vdash \Con(\PA+\rho)\to\rho ,
+\]
+and the converse implication is not provable unless $\RH$ is refutable (Theorem~\ref{thm:self}). In particular, if $\RH$ is independent of $\PA$, or of $\ZFC$, then $\RH$ is true (Corollary~\ref{cor:tri}).
+\item Every reformulation of $\RH$ proved in the research programme, Weil positivity on every support, subpower Green energy, the record estimate $H_{\mathrm{record}}$, the one-sided bounds on the smoothed M\"obius sums, has the same provability status as $\RH$ in every theory that proves the equivalence (Proposition~\ref{prop:status}); and for every finite cone of primes, the set of zero configurations consistent with that cone is nonempty, with the true configuration singled out only by the intersection over all cones, and only if $\RH$ holds (Proposition~\ref{prop:potential}).
+\end{enumerate}
+
+In the vocabulary of \emph{The Grammar of Things}: the instances of $\rho$ are stones, each one provable from inside; $\rho$ itself is the circle; no accumulation of instances yields the universal sentence ($\omega$-incompleteness, Corollary~\ref{cor:omega}); truth for the sentence is not definable inside the language of its proofs (Tarski); and the one bridge arithmetic can build from itself to $\rho$, the implication $\Con(\PA+\rho)\to\rho$, has a premise that arithmetic cannot supply (G\"odel's second theorem). The gap is absolute from below. Whether $\rho$ has a proof at all is the open question, and nothing here decides it.
+
+\section{The sentence}\label{sec:sentence}
+
+\begin{definition}
+A sentence of first-order arithmetic is $\Pione$ if it has the form $\forall n\,D(n)$ with $D$ a decidable (primitive recursive) predicate, and $\Sigone$ if it has the form $\exists n\,E(n)$ with $E$ decidable. The negation of a $\Pione$ sentence is $\Sigone$. $\RA$ denotes Robinson arithmetic, $\PA$ Peano arithmetic, $\ZFC$ Zermelo--Fraenkel set theory with choice. For a recursively axiomatized theory $T\supseteq\RA$, $\Prov_T(x)$ is its standard provability predicate, $\Con(T)$ the sentence $\neg\Prov_T(\gn{0=1})$, and for a sentence $\sigma$, $\Con(T+\sigma)$ the consistency sentence of $T$ with $\sigma$ added as an axiom. $\N$ is the standard model; ``true'' means true in $\N$.
+\end{definition}
+
+\begin{theorem}[Davis, Matijasevi\v{c}, Robinson \cite{DMR}]\label{thm:pi1}
+There is a decidable predicate $D$ such that, with $\rho:=\forall n\,D(n)$,
+\[
+\ZFC\vdash\ \RH\leftrightarrow\rho .
+\]
+That is, the Riemann Hypothesis is equivalent, provably in ordinary mathematics, to a $\Pione$ sentence of arithmetic.
+\end{theorem}
+
+\begin{remark}[Where the $\Pione$ form comes from]\label{rem:form}
+The construction in \cite{DMR} rests on two classical facts. First, $\RH$ is equivalent to an explicit error term for the Chebyshev function: under $\RH$, $|\psi(x)-x|<\frac1{8\pi}\sqrt x\log^2x$ for $x\ge73.2$ (Schoenfeld \cite{Schoenfeld}), and conversely $\psi(x)-x=O(\sqrt x\log^2x)$ implies $\RH$ \cite[\S14]{Titchmarsh}. Second, $e^{\psi(n)}=\lcm(1,\dots,n)$ is an integer computable from $n$, and the harmonic numbers $\sum_{k\le m}1/k$ are rationals that approximate $\log m$ to within a bounded error. Replacing the transcendental bound by a computable rational envelope with a fixed margin yields an inequality between rationals, decidable for each $n$, whose universal closure is equivalent to $\RH$. Lagarias' elementary form, $\sigma(n)\le H_n+e^{H_n}\log H_n$ for all $n\ge1$ with equality only at $n=1$ \cite{Lagarias}, is another face of the same fact. The particular $D$ is immaterial below: only its decidability and the provable equivalence are used.
+\end{remark}
+
+\section{Five facts of logic}\label{sec:facts}
+
+The following are standard; sources are \cite{HP,Boolos,Smorynski}.
+
+\begin{fact}[$\Sigone$-completeness]\label{fact:sigma}
+Every true $\Sigone$ sentence is provable in $\RA$, hence in every theory containing $\RA$. In particular, if $D$ is decidable and $D(n)$ is true for a particular $n$, then $\RA\vdash D(\bar n)$; and if $D(n)$ is false, then $\RA\vdash\neg D(\bar n)$.
+\end{fact}
+
+\begin{fact}[Provable $\Sigone$-completeness]\label{fact:provsigma}
+For every $\Sigone$ sentence $\sigma$, $\ \PA\vdash\sigma\to\Prov_\PA(\gn\sigma)$. The same holds with $\ZFC$ in place of $\PA$ (with $\Prov_\ZFC$).
+\end{fact}
+
+\begin{fact}[Formalized deduction theorem]\label{fact:ded}
+For every sentence $\sigma$, $\ \PA\vdash\Con(\PA+\sigma)\leftrightarrow\neg\Prov_\PA(\gn{\neg\sigma})$, and likewise for $\ZFC$.
+\end{fact}
+
+\begin{fact}[G\"odel's second incompleteness theorem]\label{fact:g2}
+If $T\supseteq\PA$ is recursively axiomatized and consistent, then $T\nvdash\Con(T)$.
+\end{fact}
+
+\begin{fact}[L\"ob's theorem; Tarski's theorem]\label{fact:lob}
+If $T\supseteq\PA$ is recursively axiomatized and $T\vdash\Prov_T(\gn\sigma)\to\sigma$, then $T\vdash\sigma$. There is no arithmetical formula $\mathrm{Tr}(x)$ such that $\sigma\leftrightarrow\mathrm{Tr}(\gn\sigma)$ is true for every arithmetical sentence $\sigma$.
+\end{fact}
+
+\section{The self-resting theorem}\label{sec:self}
+
+Throughout, $\rho=\forall n\,D(n)$ is the sentence of Theorem~\ref{thm:pi1}.
+
+\begin{theorem}\label{thm:self}
+\begin{enumerate}
+\item[(i)] If $\rho$ is false, then $\RA\vdash\neg\rho$; hence $\PA\vdash\neg\rho$ and $\ZFC\vdash\neg\rho$, and there is an explicit integer $n$ with $\RA\vdash\neg D(\bar n)$.
+\item[(ii)] If $\PA\nvdash\neg\rho$, then $\rho$ is true. The same holds for $\ZFC$, and for every recursively axiomatized $T\supseteq\RA$.
+\item[(iii)] $\PA\vdash\Con(\PA+\rho)\to\rho$, and $\ZFC\vdash\Con(\ZFC+\rho)\to\rho$.
+\item[(iv)] If $\PA+\rho$ is consistent, then $\PA\nvdash\rho\to\Con(\PA+\rho)$. Likewise for $\ZFC$.
+\item[(v)] If $\PA\vdash\Prov_\PA(\gn\rho)\to\rho$, then $\PA\vdash\rho$. Likewise for $\ZFC$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) If $\rho$ is false there is $n$ with $D(n)$ false. By Fact~\ref{fact:sigma}, $\RA\vdash\neg D(\bar n)$, hence $\RA\vdash\exists n\,\neg D(n)$, which is $\neg\rho$. Every theory containing $\RA$ proves it. (ii) is the contrapositive of (i): no hypothesis on $T$ beyond $T\supseteq\RA$ is used, since (i) concerns provability in $\RA$ alone. (iii) $\neg\rho$ is $\Sigone$, so Fact~\ref{fact:provsigma} gives $\PA\vdash\neg\rho\to\Prov_\PA(\gn{\neg\rho})$; contrapose and apply Fact~\ref{fact:ded}. (iv) Suppose $\PA\vdash\rho\to\Con(\PA+\rho)$. Then $\PA+\rho\vdash\Con(\PA+\rho)$, and $\PA+\rho$ is a recursively axiomatized extension of $\PA$; by Fact~\ref{fact:g2} it is inconsistent. (v) is L\"ob's theorem.
+\end{proof}
+
+\begin{remark}[What the theorem says]
+(iii) is the formal content of the sentence ``the Riemann Hypothesis rests on the existence of itself.'' Arithmetic proves, about $\RH$, that its mere consistency with arithmetic entails it. This is the shape of G\"odel's own sentence $G$, for which $\PA\vdash\Con(\PA)\leftrightarrow G$; for $\rho$ the bridge runs one way, and (iv) says it cannot be made to run the other way from inside. (v) says the only self-support arithmetic can give $\RH$ is through non-refutability, never through provability: a proof inside $\PA$ that ``if $\RH$ is provable then $\RH$'' would already be a proof of $\RH$.
+\end{remark}
+
+\begin{proposition}[Proving $\RH$ and proving it consistent are the same task]\label{prop:same}
+$\ZFC\vdash\rho$ if and only if $\ZFC\vdash\Con(\PA+\rho)$.
+\end{proposition}
+
+\begin{proof}
+If $\ZFC\vdash\Con(\PA+\rho)$, then by Theorem~\ref{thm:self}(iii) (which holds in $\PA$, hence in $\ZFC$) $\ZFC\vdash\rho$. Conversely, $\ZFC$ proves that $\N$ is a model of $\PA$; if $\ZFC\vdash\rho$ then $\ZFC$ proves that $\N$ is a model of $\PA+\rho$, hence $\ZFC\vdash\Con(\PA+\rho)$.
+\end{proof}
+
+\begin{corollary}[Trichotomy]\label{cor:tri}
+Let $T$ be $\PA$ or $\ZFC$, assumed $\Sigone$-sound (every $\Sigone$ sentence it proves is true). Exactly one of the following holds.
+\begin{enumerate}
+\item[(a)] $T\vdash\RH$.
+\item[(b)] $T\vdash\neg\RH$. Then $\RH$ is false, and an explicit integer witness $n$ with $\neg D(n)$ exists and is provable in $\RA$.
+\item[(c)] $T$ proves neither. Then $\RH$ is true, and $\rho$ is a true $\Pione$ sentence unprovable in $T$.
+\end{enumerate}
+In particular, if $\RH$ is independent of $\ZFC$, then $\RH$ is true.
+\end{corollary}
+
+\begin{proof}
+The three cases are exhaustive and exclusive. In (b), $\neg\rho$ is a $\Sigone$ theorem of $T$, true by $\Sigone$-soundness, so some $D(n)$ fails and Fact~\ref{fact:sigma} gives the witness. In (c), Theorem~\ref{thm:self}(ii) gives that $\rho$ is true. The last sentence is (c) for $T=\ZFC$; $\Sigone$-soundness is not needed for it, since (ii) uses none.
+\end{proof}
+
+\begin{corollary}[Stones and circle: the $\omega$-incomplete case]\label{cor:omega}
+In case (c) of Corollary~\ref{cor:tri}, $T$ proves every instance and not the universal: for every $n$, $T\vdash D(\bar n)$, while $T\nvdash\forall n\,D(n)$. Every stone is a theorem; the circle is not.
+\end{corollary}
+
+\begin{proof}
+In case (c) $\rho$ is true, so each $D(n)$ is true, so each $D(\bar n)$ is provable in $\RA\subseteq T$ by Fact~\ref{fact:sigma}; and $T\nvdash\rho$ by hypothesis.
+\end{proof}
+
+\begin{remark}[The gap is absolute from below]
+Three theorems of logic say, each in its own way, that no finite record of instances reaches the sentence. $\Sigone$-completeness: every true instance is provable from inside. $\omega$-incompleteness (Corollary~\ref{cor:omega}): proving every instance is not proving the universal. Tarski (Fact~\ref{fact:lob}): there is no formula inside the language that says ``$\rho$ is true,'' though there is one that says ``$\rho$ is provable,'' and by L\"ob the two cannot be identified for $\rho$ without proving $\rho$. The border between the record and the rule is the quantifier $\forall n$, and it is not crossed by accumulation.
+\end{remark}
+
+\begin{remark}[The rule descending]
+Theorem~\ref{thm:self}(iii) is a bridge from outside to inside, built inside: $\PA$ proves that $\Con(\PA+\rho)$ implies $\rho$. To cross it one needs $\Con(\PA+\rho)$, a $\Pione$ sentence which, by G\"odel's second theorem, $\PA+\rho$ cannot prove if it is consistent, and so $\PA$ cannot either. The premise lives in the jurisdiction above. A body can state the sentence ``if there is nothing in me that contradicts this, it is so,'' and cannot certify the antecedent about itself. That is the exact formal shape of ``a thing that rests on the existence of itself and cannot be derived from within itself,'' with one correction stated in Section~\ref{sec:limits}: ``cannot be derived from within'' is, as a claim about all proofs, a conjecture, not a theorem.
+\end{remark}
+
+\section{Reformulations preserve status}\label{sec:status}
+
+\begin{proposition}\label{prop:status}
+Let $T\supseteq\RA$ be any theory and $X$ any sentence with $T\vdash\RH\leftrightarrow X$. Then $T\vdash\RH$ iff $T\vdash X$, $T\vdash\neg\RH$ iff $T\vdash\neg X$, and $\RH$ is independent of $T$ iff $X$ is. No chain of $T$-provable equivalences changes the provability status of $\RH$ in $T$.
+\end{proposition}
+
+\begin{proof}
+Immediate from $T\vdash\RH\leftrightarrow X$.
+\end{proof}
+
+\begin{remark}[The programme's family]
+The following statements are each proved equivalent to $\RH$ in ordinary mathematics, in the cited notes of this repository: Weil positivity of the odd form on every support, $\lambda(a)>0$ for all $a>0$ (Weil's criterion, odd-sector form \cite{Weil}); subpower Green energy, $R(N)\ll_\varepsilon N^\varepsilon$ \cite[\S12]{MM2}; the record estimate $H_{\mathrm{record}}$ and its fixed-exponent dictionary \cite[Theorems 3.1, 3.2]{Hrec}; the one-sided bound $\mathcal A(x)\le C_qx^q$ for all $q>\frac12$ on $\mathcal A(x)=\sum_{n\le x}\mu(n)\log(x/n)$, through Landau's positivity principle \cite[\S\S26, 62]{Census}; and the subpower bound on the lifetime census $\mathcal E_\star(N)$ \cite[\S\S3--4]{Census}. By Proposition~\ref{prop:status}, each has exactly the provability status of $\RH$ in $\ZFC$. This is the formal reason every exact rearrangement in the programme ended at an equivalence: a rearrangement is a $\ZFC$-provable biconditional, and biconditionals move nothing.
+\end{remark}
+
+\begin{proposition}[The potential set of a finite cone \cite{Potential}]\label{prop:potential}
+For $a>0$ let $\mathcal P(a)$ be the set of positive, even, tempered measures $\nu$ on $\R$ with $\int\widehat g\,d\nu=\langle W,g\rangle$ for every even $g\in C_c^\infty(-2a,2a)$, where $W$ is the Weil distribution; thus $\nu\in\mathcal P(a)$ is a configuration of real ``zeros'' that no prime power $n$ with $\log n<2a$ can distinguish from the true zeros. Then $\mathcal P(a)$ is nonincreasing in $a$, it is nonempty whenever the Weil form is nonnegative at support $a$ (Krein), and
+\[
+\bigcap_{a>0}\mathcal P(a)=\begin{cases}\{\nu_\zeta\}&\text{if }\RH\text{ holds},\\ \emptyset&\text{otherwise,}\end{cases}
+\]
+with $\nu_\zeta=\sum_\rho\delta_{\gamma_\rho}$.
+\end{proposition}
+
+\begin{remark}
+Each cone is a finite record: the prime powers below the horizon $e^{2a}$. Each certificate $\lambda(a)>0$ on a bounded range of supports is a stone, and the certified stones so far reach $a=0.8$ \cite{Zhu} with numerics to $a=1.75$ \cite{Folds}. The configuration of the rule is fixed only by the intersection over all cones, which is not inside any cone; and it is fixed at all only if $\RH$ holds. This is Corollary~\ref{cor:omega} drawn on the prime line.
+\end{remark}
+
+\section{Where an outside exists}\label{sec:outside}
+
+For a smooth projective curve $X$ over a finite field $\mathbb F_q$, the analogue of $\RH$ is a theorem: the zeros of the zeta function of $X$ have absolute value $q^{-1/2}$ (Weil \cite{WeilCurves}; for general varieties, Deligne \cite{Deligne}). The proof does not rearrange the zeta function. It imports one inequality from outside it: the positivity of the intersection form on the surface $X\times X$, the Castelnuovo--Severi inequality, which is the Hodge index theorem. Weil's positivity criterion for $\zeta$ \cite{Weil} is the transcription of that inequality into the language of $\Q$. What is missing for $\Q$ is the surface: no known object whose intersection theory yields the Weil form as a theorem of positivity. In the terms of this note, the function-field case is one where the premise of the bridge is supplied from a jurisdiction that exists; for $\Q$ no such jurisdiction is known, and the century of equivalences (Proposition~\ref{prop:status}) is evidence that it is not inside the arithmetic of the primes. It is not evidence that it is nowhere.
+
+\section{Dictionary}\label{sec:dictionary}
+
+The left column uses the vocabulary of \emph{The Grammar of Things} \cite{Grammar}; the right column is the formal object this note attaches to it.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.34\textwidth} >{\raggedright\arraybackslash}p{0.58\textwidth}}
+\toprule
+\textbf{Term} & \textbf{Formal object} \\
+\midrule
+A stone & An instance $D(\bar n)$: a finite computation, a $\Delta^0_0$ fact, provable in $\RA$ whenever true (Fact~\ref{fact:sigma}). \\
+The circle, the rule & The sentence $\rho=\forall n\,D(n)$, equivalent to $\RH$ (Theorem~\ref{thm:pi1}). \\
+Placing stones & Verifying instances: zeros computed to height $3\cdot10^{12}$, floors certified to $a=0.8$, the cone tests to $a=1.75$. \\
+The stones never become the circle & $\omega$-incompleteness (Corollary~\ref{cor:omega}): all instances provable, the universal not. \\
+The border, not crossed by accumulation & The quantifier $\forall n$; Tarski: truth of $\rho$ is not definable in the language of its instances. \\
+The gap is absolute from below & G\"odel's second theorem: $\PA+\rho$ cannot prove $\Con(\PA+\rho)$, the premise its own bridge needs. \\
+The rule descending among the stones & $\PA\vdash\Con(\PA+\rho)\to\rho$ (Theorem~\ref{thm:self}(iii)): the bridge exists inside, its premise does not. \\
+Completion is a verdict issued from outside & A proof of $\rho$ in $T$ is a verdict in $T$; that the verdict is correct is a statement about $\N$, outside $T$. \\
+Stones and rule in one & $\rho$ is at once the limit of its instances and one sentence: its falsity is a stone (a witness), its truth is the circle. \\
+Rests on the existence of itself & Consistency with arithmetic already entails it; and proving it is the same as proving it consistent (Proposition~\ref{prop:same}). \\
+Cannot be derived from within itself & Not a theorem. What is a theorem: if it cannot be, it is true (Theorem~\ref{thm:self}(ii)), and the bridge's premise is outside (iv). \\
+Every rearrangement is an identity & Proposition~\ref{prop:status}: biconditionals preserve status. \\
+The surface that exists for curves & Section~\ref{sec:outside}: the Hodge index theorem on $X\times X$. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{What is and is not established}\label{sec:limits}
+
+\textbf{Established here or cited.}
+\begin{enumerate}
+\item $\RH$ is $\ZFC$-equivalent to a $\Pione$ sentence $\rho$ (cited).
+\item Any refutation of $\RH$ yields an integer witness provable in $\RA$; if $\RH$ cannot be refuted in $\PA$, or in $\ZFC$, or in any recursively axiomatized theory containing $\RA$, then $\RH$ is true (proved).
+\item $\PA\vdash\Con(\PA+\rho)\to\rho$; the converse is unprovable unless $\RH$ is refutable; and $\PA\vdash\Prov_\PA(\gn\rho)\to\rho$ would already be a proof of $\rho$ (proved).
+\item Proving $\RH$ in $\ZFC$ is the same task as proving $\Con(\PA+\rho)$ in $\ZFC$ (proved).
+\item The trichotomy of Corollary~\ref{cor:tri}; in the third case $\ZFC$ proves every instance and not the sentence (proved).
+\item Every $\ZFC$-provable reformulation of $\RH$ has the status of $\RH$; the programme's reformulations are such (proved, with the equivalences cited).
+\item The potential set of a finite cone of primes never determines the zeros; the intersection over all cones does, and only if $\RH$ holds (cited).
+\end{enumerate}
+
+\textbf{Not established, by anyone.}
+\begin{enumerate}
+\item Which case of the trichotomy holds. There is no proof of $\RH$, no refutation, and no independence result. The sentence ``$\RH$ cannot be derived from within'' is a conjecture about all proofs; the theorems above say only what would follow if it were so.
+\item Any evidence that $\RH$ is independent. The numerical evidence (zeros to height $3\cdot10^{12}$ on the line, the random-matrix statistics of Montgomery and Dyson, the certified floors) is evidence for the truth of $\rho$, which is compatible with cases (a) and (c) alike, and says nothing about provability.
+\item An outside for $\Q$. The function-field proof shows that the premise of the bridge can be supplied by a geometry; no geometry for $\Q$ is known to supply it.
+\end{enumerate}
+
+The honest form of the thesis is therefore: $\RH$ is a $\Pione$ sentence; it is implied by its own consistency with arithmetic and proves nothing of the kind about itself in return; its refutation would be a stone and its truth is the circle; and whether the circle has a proof from any jurisdiction is the question that remains open, filed with its reasons.
+
+\begin{thebibliography}{99}
+\bibitem{DMR} M.~Davis, Yu.~Matijasevi\v{c}, J.~Robinson, \emph{Hilbert's tenth problem. Diophantine equations: positive aspects of a negative solution}, in: Mathematical developments arising from Hilbert problems, Proc. Sympos. Pure Math. 28, AMS, 1976, 323--378.
+\bibitem{Matiyasevich} Yu.~Matiyasevich, \emph{Hilbert's Tenth Problem}, MIT Press, 1993.
+\bibitem{Lagarias} J.~C.~Lagarias, \emph{An elementary problem equivalent to the Riemann hypothesis}, Amer. Math. Monthly 109 (2002), 534--543.
+\bibitem{Schoenfeld} L.~Schoenfeld, \emph{Sharper bounds for the Chebyshev functions $\theta(x)$ and $\psi(x)$. II}, Math. Comp. 30 (1976), 337--360.
+\bibitem{Titchmarsh} E.~C.~Titchmarsh, \emph{The theory of the Riemann zeta-function}, 2nd ed., revised by D.~R.~Heath-Brown, Oxford, 1986.
+\bibitem{HP} P.~H\'ajek, P.~Pudl\'ak, \emph{Metamathematics of First-Order Arithmetic}, Springer, 1993, Chapter I ($\Sigma_1$-completeness and its formalization) and Chapter III (G\"odel's theorems).
+\bibitem{Boolos} G.~Boolos, \emph{The Logic of Provability}, Cambridge University Press, 1993, Chapters 2--3 (derivability conditions, L\"ob's theorem).
+\bibitem{Smorynski} C.~Smory\'nski, \emph{The incompleteness theorems}, in: Handbook of Mathematical Logic (J.~Barwise, ed.), North-Holland, 1977, 821--865.
+\bibitem{Weil} A.~Weil, \emph{Sur les ``formules explicites'' de la th\'eorie des nombres premiers}, Comm. S\'em. Math. Univ. Lund (1952), 252--265.
+\bibitem{WeilCurves} A.~Weil, \emph{Sur les courbes alg\'ebriques et les vari\'et\'es qui s'en d\'eduisent}, Hermann, Paris, 1948.
+\bibitem{Deligne} P.~Deligne, \emph{La conjecture de Weil. I}, Publ. Math. IH\'ES 43 (1974), 273--307.
+\bibitem{Zhu} Zhu, \emph{Certified bounds for the odd Weil form}, arXiv:2608.24827 (2026).
+\bibitem{Folds} C.~Michaels, \emph{Primes, Folds, and the One Dot}, 2026 (\texttt{primes\_folds\_one\_dot.pdf}), Section 12 and Computation 12.5.
+\bibitem{Potential} C.~Michaels, \emph{The potential set of the light cone}, 2026 (\texttt{atlas\_potential\_set.pdf}), Definition 1 and Propositions 2--3.
+\bibitem{MM2} C.~Michaels, \emph{The M\"obius modifier, the dynamic DNA sieve, and the historical Green space}, version 2, 2026 (\texttt{mobius\_modifier\_v2.pdf}), Section 12.
+\bibitem{Hrec} C.~Michaels, \emph{The record estimate $H_{\mathrm{record}}$}, 2026 (\texttt{RESEARCH\_H\_RECORD.pdf}).
+\bibitem{Census} C.~Michaels, \emph{Lifetime Census and Closing Consequences}, 2026 (\texttt{received/Lifetime\_Census\_and\_Closing\_Consequences\_v2.pdf}).
+\bibitem{Grammar} C.~Michaels, \emph{The Grammar of Things}, Houston, July 2026, Volume I (\S\S VIII--IX) and the Coda.
+\end{thebibliography}
+
+\end{document}
