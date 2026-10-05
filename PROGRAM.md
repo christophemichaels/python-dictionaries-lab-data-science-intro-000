@@ -1053,6 +1053,16 @@ with the eight figures of the day (the magenta horn, the horn reopened, the horn
 gravity plane, the zero hole, the spectrum of light, the cone over a curve). Postulates, dictionary, forced vs
 asserted, then one section per computation. Status table marks Postulate 1 open and Postulate 6 the conjecture.
 
+## 2026-10-05, later: the arithmetic field (THE_FIELD.md)
+On ChatGPT's proposal relayed by the user: in u = log x the kernel 1/max is the Green function of H0 = -d^2/du^2 + 1/4
+and the Green energy is the energy of the field phi_N = H0^{-1} J_N with the Moebius source. Verified exactly to 1e6.
+Added: the exponent 1/2 is the mass of the field, |rho|^2 its energy at the zero's frequency; the field is exactly
+x^{-1/2} M(x) + x^{1/2}(h(N) - h(x)), inward (the Moebius state) plus outward (the mean obligation), each carrying
+half the energy; the new exact identity R(N) = h(N)^2 + sum_{k<N} (h(N) - h(k))^2 (energy = squared mean
+obligations; one-line proof); the spectral form with propagator 1/(k^2 + 1/4). The four proposed projects
+assessed: field equation and simulation done; quantum dynamics with H0 empty (free field, no arithmetic); the
+zero spectrum is the open inner product. Script rh_field.py, figure THE_FIELD.png.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
