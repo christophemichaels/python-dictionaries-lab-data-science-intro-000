@@ -36,7 +36,7 @@ for a in ax: a.grid(True, color=GRID, lw=0.6); a.set_axisbelow(True)
 A = ax[0]
 for p, c in zip((2, 3, 5, 7), (BLUE, ORANGE, AQUA, YELLOW)):
     A.plot(t, -2 * math.log(p) / math.sqrt(p) * np.cos(t * math.log(p)), color=c, lw=1.4, label=f"colour {p}: −2 log {p} · {p}^(−½) · cos(t log {p})")
-A.set_ylabel("amplitude"); A.set_title("A.  Four colours: the waves of the primes 2, 3, 5, 7 in the height variable t", loc="left"); A.legend(frameon=False, fontsize=8, ncol=4, loc="lower center", bbox_to_anchor=(0.5, 1.0)); A.set_ylim(-1.7, 1.7)
+A.set_ylabel("amplitude"); A.set_title("A.  Four colours: the waves of the primes 2, 3, 5, 7 in the height variable t", loc="left"); A.legend(frameon=False, fontsize=8, ncol=2, loc="lower center"); A.set_ylim(-2.6, 1.7)
 B = ax[1]
 B.plot(t, spec, color=INK, lw=1.2, label=f"all colours to {X:.0e}, smoothly cut off: −2 Σ Λ(n) n^(−½) (1 − log n/log X) cos(t log n)")
 for k, gm in enumerate(g[g < 60]):
