@@ -935,6 +935,19 @@ N(T) growth, entries = orbit half-lengths, the axiom from above, the function-fi
 against them (Deninger, Connes-Consani, spectral triples, Berry-Keating, F_1); what the record adds; the book; the
 conjecture restated. Status table. No claim about RH; no new grid, support or decay fit.
 
+## 2026-10-05, later: the horn of rings reopened (THE_HORN.md)
+The user asked how the magenta horn (One Dot paper, Figure 26, paper p. 35; the paper itself was extracted from
+pp. 545-592 of the unified manuscript into received/Primes_Folds_One_Dot_paper.pdf) was made, why it is hollow,
+and where pi enters. Built per Section 10: ring n = circle of circumference gamma_n at height n, radius
+gamma_n / 2 pi, profile = inverse counting function. Computation 10.2 reproduced on 6,000 zeros. Hollow by
+construction; the stones go inside by the horizon identity T*(log m / 2) = 2 pi m, i.e. stone m at ring radius m,
+resolving N(2 pi m) = m(log m - 1) + 7/8 + wobble rings (table for all prime powers to 1,000; at the entry of 2
+no ring is resolved yet). Pi: radius = wavenumber of the zero's wave per e-fold; counting law and horizon lose
+their 2 pi in the radius variable; one ring per pi of Riemann-Siegel phase (1.00003 pi measured), Gram's law
+85.3 percent; slope 1/log r = mean spacing; the roundness itself is a drawing device. Horn, not cone: slope
+1/log r falls from 1.23 to 0.14; a curve of genus g over F_q gives an exact cone of slope 1/(2 g log q) because
+its zeros are periodic in height; an off-circle pair removes two rings per period. No claim about RH.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
