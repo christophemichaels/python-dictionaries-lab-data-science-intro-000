@@ -1019,6 +1019,15 @@ against 0.0199). No drift, no constant, no growth; the stones' mean
 (log(gamma_K/2 pi) + 1)/(pi gamma_K). Inert; blind beyond the horizon of the zeros used. Script
 rh_one_dot_difference.py, figure THE_DIFFERENCE.png.
 
+## 2026-10-05, later: the plane as a gravitational field (THE_GRAVITY_PLANE.md)
+The user: give the primes mass, add the zeros, treat the plane as a space-time warped by mass, mass = energy.
+Exact version: Newton's shell theorem, potential 1/max(r, R), so the Green energy sum m_i m_j / max(i,j) is the
+gravitational self-energy of shells and equals int M^2/t^2 + M(N)^2/N (checked at N = 2000). Prime star: uniform,
+energy 2.000 N; fluctuation energy slope 0.0469 per log N against Cramer's sum 1/|rho|^2 = 2 + gamma - log 4 pi
+= 0.04619. Moebius star: self-energy (6/pi^2) log N, interaction -0.56 log N (bound), net I_M slope 0.0297
+against sum 2/|rho zeta'(rho)|^2 = 0.0288 (400 pairs, mpmath). Zeros = modes of the field; the pull = the signed
+cross term; the geometry is flat (no metric but the open inner product). Finite, inert; no claim.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
