@@ -31,16 +31,16 @@ for i in pk:
 BLUE, ORANGE, AQUA, YELLOW, MAG, INK, INK2, SURF, GRID = "#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#0b0b0b", "#52514e", "#fcfcfb", "#e6e5e1"
 plt.rcParams.update({"font.size": 10, "axes.titlesize": 11, "axes.edgecolor": GRID, "axes.labelcolor": INK2, "xtick.color": INK2, "ytick.color": INK2,
                      "axes.spines.top": False, "axes.spines.right": False, "figure.facecolor": SURF, "axes.facecolor": SURF, "text.color": INK})
-fig, ax = plt.subplots(2, 1, figsize=(13, 7.6), sharex=True)
+fig, ax = plt.subplots(2, 1, figsize=(13, 7.8))
 for a in ax: a.grid(True, color=GRID, lw=0.6); a.set_axisbelow(True)
 A = ax[0]
 for p, c in zip((2, 3, 5, 7), (BLUE, ORANGE, AQUA, YELLOW)):
     A.plot(t, -2 * math.log(p) / math.sqrt(p) * np.cos(t * math.log(p)), color=c, lw=1.4, label=f"colour {p}: −2 log {p} · {p}^(−½) · cos(t log {p})")
-A.set_ylabel("amplitude"); A.set_title("A.  Four colours: the waves of the primes 2, 3, 5, 7 in the height variable t", loc="left"); A.legend(frameon=False, fontsize=8.5, ncol=2, loc="upper right")
+A.set_ylabel("amplitude"); A.set_title("A.  Four colours: the waves of the primes 2, 3, 5, 7 in the height variable t", loc="left"); A.legend(frameon=False, fontsize=8, ncol=4, loc="lower center", bbox_to_anchor=(0.5, 1.0)); A.set_ylim(-1.7, 1.7)
 B = ax[1]
 B.plot(t, spec, color=INK, lw=1.2, label=f"all colours to {X:.0e}, smoothly cut off: −2 Σ Λ(n) n^(−½) (1 − log n/log X) cos(t log n)")
 for k, gm in enumerate(g[g < 60]):
     B.axvline(gm, color=MAG, lw=1.0, alpha=0.7, label="the zeros γₙ" if k == 0 else None)
-B.set_xlabel("height t"); B.set_ylabel("superposition"); B.set_title("B.  The spectrum: the colours superposed peak at the zeros", loc="left"); B.legend(frameon=False, fontsize=8.5, loc="upper right")
+B.set_xlim(5, 60); B.set_ylim(-12, 22); B.set_xlabel("height t"); B.set_ylabel("superposition"); B.set_title("B.  The spectrum, 5 ≤ t ≤ 60: the colours superposed peak at the zeros (the pole dominates below t = 5 and is cut from view)", loc="left"); B.legend(frameon=False, fontsize=8.5, loc="upper right")
 fig.suptitle("The colours of the primes compose the spectrum of light, and the zeros are its lines (the explicit formula read from the prime side)", fontsize=11)
 fig.tight_layout(); fig.savefig(out, dpi=160, bbox_inches="tight"); print("wrote", out)
