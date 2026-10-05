@@ -916,6 +916,25 @@ roots are the zeros; Hasse's proof via deg(m - n pi) = m^2 - a_1 m n + 3 n^2 >= 
 the counts), Weil's via Hodge index on X x X for genus g; dictionary back to the integers; three places to dig.
 Nothing about zeta is claimed.
 
+## 2026-10-05, later: Across the Horizon (ACROSS_THE_HORIZON.tex/pdf)
+At the user's request ("open the 217-page research back up and connect it to this new work ... lock down the point at
+which the edge is, then go from that edge through the eigenvalues into the new space"). The 217-page document is the
+running proof, Parts 0-XVII of the unified manuscript (Part XVII begins on p. 217; the collected sources follow).
+The paper: (1) the running proof in one page (target (H), conditional closing theorem, lifetime identity and
+truncation, the retained direction) plus H_record, the census and the Goedel theorem; the one added observation,
+that the subpower is the only non-finitary object in the programme. (2) The edge locked down: cone, horizon,
+potential set, edge law and boundary law, the edge theorem (RH <-> (H) <-> H_record <-> lambda >= 0 <-> potential-set
+collapse <-> census residual bound <-> Con(PA + rho) over ZFC; exponent dictionary as the reflection with fixed line
+Re s = 1/2), and Prop. 2.11: under RH the Weil form is positive definite at every finite support (Cartwright density
+against Riemann-von Mangoldt), so no finite half-width decides the criterion. (3) Through the eigenvalues: the
+dilation group of Part VI is the Berry-Keating operator (xp + px)/2, generalized modes x^{rho-1} with eigenvalue
+-i(rho - 1/2); Connes: RH <-> positivity of the Weil distribution; Montgomery-Odlyzko; the curve: Frobenius, trace
+formula N_m = 1 + q^m - q^{m/2} tr e^{imH_X}, unitarity = RH_X, Hodge index, the cone over a curve, Katz-Sarnak;
+dictionary and figure. (4) Six constraints on the space (trace with the sign, positivity <-> RH, infinite genus with
+N(T) growth, entries = orbit half-lengths, the axiom from above, the function-field template); candidates placed
+against them (Deninger, Connes-Consani, spectral triples, Berry-Keating, F_1); what the record adds; the book; the
+conjecture restated. Status table. No claim about RH; no new grid, support or decay fit.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
