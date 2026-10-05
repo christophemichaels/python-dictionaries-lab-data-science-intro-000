@@ -885,7 +885,7 @@ PA does not prove rho, any true phi with PA + phi |- rho is unprovable in PA, no
 and proves Con(Q + rho). Corollaries: trichotomy, omega-incompleteness, Loeb. Section 8 (on "we have all the math"):
 the equivalence family (Weil positivity, R(N) << N^eps, H_record, one-sided Moebius bound, lifetime census) is each
 ZFC-equivalent to Con(PA + rho); the potential set: Zhu's certified floors on (0, 0.8] are a local fact and give
-P(0.8) nonempty unconditionally; the light-cone test as the numerical face. Section 9, at the user's request, replaces the list of
+P(0.8) nonempty unconditionally; the light-cone test as the numerical face. Section 9 (added on request): the book's passages beside the theorems, with the book cited. Section 10, at the user's request, replaces the list of
 caveats with the Michaels Conjecture (rho not provable in ZFC) and Theorem 8.2 proving its consequences: RH true;
 every instance and bounded pattern provable; rho independent; any explaining principle a new universal axiom proving
 Con(PA + rho); the whole equivalence family true and unprovable. Status remark: consistent with all evidence; open.
