@@ -1047,6 +1047,12 @@ field is massless (real eigenvalue, no width); the colours compose the spectrum,
 all prime-power waves to 1e6 with a smooth cut-off peaks on every zero below 60 within 0.01 (rh_spectrum_of_light.py).
 No claim about RH.
 
+## 2026-10-05, later: The Light Plane, the paper (THE_LIGHT_PLANE.tex/pdf)
+At the user's request ("make the PDF and hand it to me, include all the images"): the framework paper, 11 pages
+with the eight figures of the day (the magenta horn, the horn reopened, the horn closed, the difference, the
+gravity plane, the zero hole, the spectrum of light, the cone over a curve). Postulates, dictionary, forced vs
+asserted, then one section per computation. Status table marks Postulate 1 open and Postulate 6 the conjecture.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

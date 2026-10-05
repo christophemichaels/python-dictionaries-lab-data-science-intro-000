@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\theoremstyle{definition}
+\newtheorem{postulate}{Postulate}
+\newtheorem{computation}[proposition]{Computation}
+\newtheorem{conjecture}[proposition]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Tst}{T^{*}}
+\newcommand{\PS}{\mathcal P}
+\newcommand{\Ree}{\operatorname{Re}}
+\newcommand{\fig}[2]{\begin{center}\includegraphics[width=#1\textwidth]{#2}\end{center}}
+\title{The Light Plane\\ \large A framework for the primes and the zeros, taken as given,\\ with the computations it asked for}
+\author{Christophe Michaels}
+\date{October 5, 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent This paper states a framework in the author's own terms and runs with it. The framework: there is a complete reality in which the zeros of $\zeta$ and the primes exist together and both can be calculated; our arithmetic is a projection of it onto a horizon, as the information of a volume is projected onto the surface of a black hole; light, massless and of constant speed, is what passes between the two; the colours of the prime distribution are the spectrum of that light; and the subpower, the wall every route in number theory reaches, is the shadow of a constant that is not to be derived on our side. Each postulate is mapped to the exact object it names in the research record, what the framework forces is separated from what it asserts, and the computations the framework asked for are carried out and drawn: the horn of rings and its closing, the two directions of the explicit formula measured against each other, the plane as a gravitational field with two stars, the plane inverted into an onion with the zeros at its centre, and the colours of the primes composing the spectrum whose lines are the zeros. Every physical word names a theorem, a computation, or a labelled conjecture. Nothing here proves the Riemann Hypothesis; the framework's one assertion is the conjecture of the programme in cosmological form.
+\end{abstract}
+
+\tableofcontents
+
+\section{The framework}\label{sec:framework}
+
+\subsection{The rule of the word}
+In this paper ``light'', ``mass'', ``horizon'', ``spectrum'', ``colour'', ``gravity'' and ``hole'' each name a specific mathematical object, defined where the word first appears. The framework is real within itself: its claims are claims about those objects. Where a postulate restates a theorem of the record, that is said; where it asserts something the record has not proved, that is said too, once, and labelled.
+
+\subsection{The postulates}
+\begin{postulate}[the complete reality]\label{p:reality}
+There is a plane, the light plane, in which the zeros and the primes exist together and both can be calculated. It is the kind of place the curves over finite fields are.
+\end{postulate}
+\begin{postulate}[the projection]\label{p:projection}
+Our arithmetic is a lower-dimensional projection of the light plane: a projection of information onto a horizon, as the information of a volume is projected onto the surface of a black hole.
+\end{postulate}
+\begin{postulate}[light]\label{p:light}
+Light is what passes between the two: the only thing with constant speed, no mass, energy, and information. Its speed is the same on both sides.
+\end{postulate}
+\begin{postulate}[the projector]\label{p:projector}
+The light is the carrier; the film is the information; the glass of the lens is the horizon, as far as we can see; the screen is our universe, on which the laws we observe appear.
+\end{postulate}
+\begin{postulate}[the colours]\label{p:colours}
+The colours of the prime number distribution are the makeup of the spectrum of that light.
+\end{postulate}
+\begin{postulate}[the wall]\label{p:wall}
+The subpower is the wall. The constant that fixes it is not to be derived in our universe; it belongs to the complete reality, and the wall every route in number theory reaches is the shadow of that fact.
+\end{postulate}
+
+\subsection{The dictionary}
+\begin{center}\small
+\begin{tabular}{L{0.3\textwidth}L{0.64\textwidth}}
+\toprule
+postulate & the exact object\\
+\midrule
+the complete reality & the space in which the explicit formula is a trace and positivity is the Hypothesis, specified by six constraints \cite[\S4]{horizon}. On a curve $X/\F_q$ it exists: $H^1(X)$ with Frobenius, and the Hodge index theorem on $X\times X$, where every zero and every count is computable and the whole pattern is explained from above \cite{ffcone,reading}\\
+our arithmetic as its projection & the two sides of the explicit formula. The prime line and the zero line are each a complete description of the other, one dimension down from the space that holds both; the holographic principle has this shape, a bulk equivalent to a boundary one dimension lower\\
+the horizon & $\Tst(a)=2\pi e^{2a}$: the height to which a window of half-width $a$ resolves the zeros. Beyond it the window sees nothing, by Cartwright's density bound; an uncertainty relation between the two sides \cite[\S1]{arith}\\
+the information on the glass & the potential set $\PS(a)$: what the stones inside the window leave open, the hollow image \cite{potential}\\
+light, constant speed & the edge of the cone, $\log n=2a$, the one speed in the picture; declared $c$ by a choice of units (Section~\ref{sec:units}); the same on both sides because the explicit formula is symmetric\\
+light, no mass & a mode $e^{i\gamma u}$ of the dilation Hamiltonian with real eigenvalue: pure phase, no growth, no decay. A zero on the line is a massless mode; a zero off the line at $\beta$ has an imaginary part $\beta-\tfrac12$ in its eigenvalue, a width, a mass. The Hypothesis is that every mode of the field is massless\\
+light, energy & the frequency $\gamma$ of the mode, the height of the zero\\
+light, information & the explicit formula: the transform that carries the zero measure to the prime measure and back without loss\\
+the projector & the Mellin transform; the film is the zero measure $\nu_\zeta$; the glass is the horizon; the screen is the prime line; the picture on the screen is Section~\ref{sec:otherend}, the laws of the integers that follow when every zero is on the point\\
+the colours & the primes: the colour decomposition $M=\prod_p(I-D_p)A_S$ of the running proof \cite{running}, the Ramanujan colours of Build v32 \cite{v32}, and in the explicit formula the wave $-2\Lambda(n)n^{-1/2}\cos(t\log n)$ of each prime power\\
+the spectrum of light & the zeros, as the lines in the superposition of the colours (Section~\ref{sec:spectrum})\\
+the wall & the subpower exponent at infinity, the edge theorem \cite[Thm.\ 2.10]{horizon}: every route of the programme ends there, and under the Hypothesis no finite support decides it \cite[Prop.\ 2.11]{horizon}\\
+the constant not derivable here & the Michaels Conjecture \cite[\S10]{gstring}: $\rho$ is not provable in $\mathrm{ZFC}$; its positivity is an axiom from above. The Gödel theorem supplies the proved part: no finite pattern reaches the universal sentence, and any principle that does proves $\mathrm{Con}(\mathrm Q+\rho)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{What the framework forces, and what it asserts}
+\textbf{Forced, and proved.} Postulates~\ref{p:projection}, \ref{p:light} and \ref{p:projector} are the explicit formula and its horizon, and Postulate~\ref{p:colours} is its reading from the prime side. ``Light is massless'' is the Hypothesis in the dilation picture: subpower means no amplifying mode \cite[Crossing 3]{arith}. ``The speed is the same on both sides'' is the symmetry of the explicit formula. ``We see the glass and no further'' is the proposition that the potential set never collapses at a finite support. ``The curves are the kind of place where everything can be calculated'' is the theorem that the cone over a curve closes at $a=g\log q$ \cite{ffcone}.
+
+\textbf{Asserted, and open.} Postulate~\ref{p:reality} says the complete reality exists for $\zeta$: the space nobody has constructed. Postulate~\ref{p:wall} says its constant cannot be derived here: the Michaels Conjecture, in cosmological form, the same conjecture \emph{The Grammar of Things} states with a circle of stones and \emph{RH on a G String} states with $\mathrm{Con}(\mathrm{PA}+\rho)$. The wall of Postulate~\ref{p:wall} is real and proved; its explanation by Postulate~\ref{p:wall} is the conjecture.
+
+\textbf{What the framework adds in words.} The reading of the Hypothesis as masslessness of every mode of the field, which is exact; and the identification of the colours with the spectral lines, which is the explicit formula run backward, computed in Section~\ref{sec:spectrum}.
+
+\section{Light units}\label{sec:units}
+A constant with units can enter the record only as a unit, and the picture has exactly one place where a speed lives: the cone's edge $\log n=2a$, space $\log n$, time $a$, speed $2$. Declare that edge a light cone moving at $c$: one e-fold of the prime line is $\lambda_0$ metres (here $1$ m), and one unit of half-width is $\tau_0=2\lambda_0/c=6.6713$ ns. Nothing in the mathematics changes; the exponent $\tfrac12$ is dimensionless and stays $\tfrac12$. The zeros become frequencies $f=c\gamma/2\pi\lambda_0$: the first zero is a $674$ MHz wave of wavelength $44.5$ cm, the tenth $2.4$ GHz, the thousandth $67.7$ GHz. The prime powers become switching times, $2$ at $2.31$ ns, $5$ at $5.37$ ns, $997$ at $23.0$ ns; the horizon becomes a frequency cutoff, and the stone $m$, when it switches on, resolves the spectrum to $m\times299.8$ MHz. Zhu's certified cone, $a=0.8$, is $5.34$ ns with a horizon at $1.49$ GHz \cite{lightunits}.
+
+\section{The horn}\label{sec:horn}
+Figure 26 of \cite{folds} draws the $n$-th zero as a circle of circumference $\gamma_n$ at height $n$. Ring $n$ has radius $r_n=\gamma_n/2\pi$ and the surface of revolution has profile the inverse of the counting function, $n=r(\log r-1)+\tfrac78+S$.
+\fig{0.72}{MAGENTA_HORN.png}
+\noindent\emph{The horn: the first $1{,}000$ zeros as rings, and on its axis the stones, prime power $m$ at the height where the ring radius is $m$, since the horizon at the entry of $m$ is $2\pi m$.}
+
+\begin{computation}[{\cite{horn}}]
+On $6{,}000$ zeros: growth per ring $0.2239$ against $1/\log r=0.2238$; rings minus law in $[-0.35,1.36]$; Riemann--Siegel phase advance $1.00003\,\pi$ per ring; $85.3$ percent of Gram intervals hold exactly one ring; the slope $1/\log r$ falls from $1.23$ at ring $1$ to $0.14$ at ring $6{,}000$, so the horn steepens forever, where a curve of genus $g$ over $\F_q$ gives an exact cone of slope $1/(2g\log q)$. $\pi$ enters five times exactly: radius is wavenumber, $\gamma/2\pi$ oscillations per e-fold; the counting law and the horizon lose their $2\pi$ in the radius variable; one ring per $\pi$ of phase; the slope is the mean spacing. The roundness itself is a drawing device.
+\end{computation}
+\fig{1.0}{THE_HORN.png}
+
+\subsection{Forcing the horn to close}
+Three closures: cut it off (trivial), make it periodic (only a curve), or unfold it by the Riemann--Siegel phase $\varphi=\theta(\gamma)/\pi+1$, the one closure that keeps $\zeta$: ring $n$ sits at $\varphi_n=n-S(\gamma_n)$ with unit radius, the horn is a cylinder, and what remains is the wobble $S$ and the spacing law of the rings.
+\begin{computation}
+Unfolded on $6{,}000$ zeros: mean spacing $1.00003$, smallest $0.046$, displacement from integer height in $[-1.36,0.35]$; the spacing histogram sits on the GUE Wigner surmise $(32/\pi^2)s^2e^{-4s^2/\pi}$ at $L^2$ distance $0.09$ against $0.67$ for the Poisson law; $0.9$ percent of spacings below a quarter of the mean against $22$ percent for independent rings. The rings repel: the signature of a Hermitian operator, not of independent events.
+\end{computation}
+\fig{1.0}{THE_HORN_CLOSED.png}
+
+\section{The other end, and the two directions measured}\label{sec:otherend}
+Assume every zero exactly on the point, $(1-\bar\rho)/\rho=1$ for all $\rho$. What comes out on the integers is a set of laws with no zero in them: $|\pi(x)-\mathrm{li}(x)|\le\sqrt x\log x/8\pi$ for $x\ge2657$ (Schoenfeld); $|\psi(x)-x|\le\sqrt x\log^2x/8\pi$; $M(x)=O(x^{1/2+\varepsilon})$; prime gaps $O(\sqrt p\log p)$ (Cramér); $\sigma(n)<e^\gamma n\log\log n$ for $n>5040$ (Robin, an equivalence); $\sigma(n)\le H_n+e^{H_n}\log H_n$ (Lagarias, an equivalence); the Farey discrepancy; the Redheffer determinant; Li's coefficients. Checked by sieve to $10^7$ and $10^6$: the Schoenfeld ratio $0.977$ near its start and $0.369$ past $10^5$; Robin's ratio $0.98582$ at $10080$; Lagarias exact with equality at $n=1$ only; the Möbius sum at $0.567$ of its square-root allowance \cite{otherend}.
+
+\subsection{Forward against backward}
+Forward: every zero placed on the point, the first $K$ of them, rebuilt into
+\[
+\psi_K(x)=x-\sum_{n\le K}2\Ree\frac{x^{\rho_n}}{\rho_n}-\log2\pi-\tfrac12\log(1-x^{-2}).
+\]
+Backward: $\psi(x)$ from the primes. The difference, in units of $\sqrt x$ and averaged in $\log x$, has mean zero to $3\times10^{-4}$ for every $K$, and its mean square equals the Parseval sum over the rings not yet placed, $\sum_{n>K}2/|\rho_n|^2$: $0.1378$ against $0.1383$ at $K=10$, $0.0784$ against $0.0789$ at $K=100$, and in every window of $x$ beyond the region the placed rings resolve, agreement to about one percent out to $10^6$ for every $K$. The stones alone sit at $-0.037$, which is $-\log2\pi$ averaged in $1/\sqrt x$. No drift, no constant, no growth: the difference between the dot and the stones is the rings not yet placed, and nothing else.
+\fig{1.0}{THE_DIFFERENCE.png}
+
+\section{The plane as a gravitational field}\label{sec:gravity}
+Put the mass $m(n)$ of the integer $n$ on a spherical shell of radius $n$. Newton's shell theorem gives the potential $1/\max(r,n)$, so the potential energy of the configuration is $\sum m(i)m(j)/\max(i,j)$, the Green energy of the running proof, and the field energy is $\int M(t)^2dt/t^2+M(N)^2/N$ with $M(t)$ the enclosed mass: mass equals energy is the record's identity $R(N)$, checked directly at $N=2000$. The modes of the field are the zeros.
+
+\textbf{The prime star}, masses $\Lambda(n)$: a uniform star of energy $2.000N$. Its fluctuation energy $\int(\psi-t)^2/t^2$ grows at Cramér's rate, $\sum_\rho1/|\rho|^2=2+\gamma-\log4\pi=0.04619$ per unit of $\log N$ under the Hypothesis; measured $0.0469$.
+
+\textbf{The Möbius star}, masses $\mu(n)$, signed: bound. Its self-energy $\sum\mu(n)^2/n\sim(6/\pi^2)\log N$; its interaction, the pull between the shells, $-0.56\log N$, cancelling about ninety percent; its net field energy $I_M(N)$ growing at a measured $0.0297$ per unit of $\log N$ against the zeros' $\sum_\rho2/|\rho\zeta'(\rho)|^2=0.0288$ from the first $400$ pairs. The pull is the signed cross term every route ends at; the Hypothesis is that the star never unbinds. The geometry is Newton's, flat: the metric a curved theory would need is the open inner product.
+\fig{1.0}{THE_GRAVITY_PLANE.png}
+
+\section{The zero hole}\label{sec:hole}
+Invert the plane, $r\mapsto1/r$. The shell of radius $n$ becomes a layer of an onion at radius $1/n$; the layers nest inward and accumulate at the centre; the point at infinity, where the far field lives and the zeros are its modes, becomes the single point $r=0$: the zero hole. In log coordinates the inversion is the fold $u\mapsto-u$, and the zeros, on the fixed line of the fold, go onto themselves: the hole is the one dot. Inside every shell the potential is constant, so the potential of all the masses at the hole is $\sum m(n)/n$, the Dirichlet series at $s=1$. For the Möbius star it is $\sum\mu(n)/n=0$, the prime number theorem; its partial sums are the mean obligation $h(N)$ of the record estimate \cite[\S7]{hrec}, vanishing at the square-root rate iff the Hypothesis, and $\sqrt N\,h(N)$ stays in $[-0.44,0.41]$ to $10^7$. For the prime star it is $\log N-\gamma$, Mertens; measured $-0.577359$ against $\gamma=0.577216$. The energy in onion coordinates is $\int M(1/s)^2ds$ over the depth, and the subpower says the core's energy grows slower than any power: an integrable singularity whose modes are the zeros.
+\fig{1.0}{THE_ZERO_HOLE.png}
+
+\subsection{The quantum reading}
+The onion coordinate is log-time, in which the dilation Hamiltonian is momentum; the inversion is parity, so the spectrum must be symmetric under $\gamma\mapsto-\gamma$; all zeros on one dot is a single property of the operator, self-adjointness; the hole at $s=1$ is the critical temperature of the primon gas, whose partition function is $\zeta$ \cite{bc}, so the prime star's potential $\log N-\gamma$ is the internal energy at the transition and the Möbius star's zero potential is $1/Z$ vanishing there; the self-energy of the shells is the incoherent sum and the pull is the interference term, so the Hypothesis is complete destructive interference of the Möbius amplitudes at every scale; and a zero off the point is a resonance with lifetime $1/|\beta-\tfrac12|$ in log-time, so the Hypothesis is that every resonance lives forever. The Möbius state is not normalizable: a scattering state, whose question is not its norm but whether its spectral measure lives on the real axis, which needs the inner product in which arithmetic states evolve unitarily, the open object.
+
+\section{The colours compose the spectrum}\label{sec:spectrum}
+Each prime power $n$ is a colour, the wave $-2\Lambda(n)n^{-1/2}\cos(t\log n)$ in the height variable $t$, of wavelength $2\pi/\log n$. Superpose every colour up to $X=10^6$ with a smooth cut-off,
+\[
+-2\sum_{n\le X}\Lambda(n)\,n^{-1/2}\Big(1-\frac{\log n}{\log X}\Big)\cos(t\log n).
+\]
+\begin{computation}[{\texttt{rh\_spectrum\_of\_light.py}}]
+The superposition peaks at $14.12$, $21.01$, $25.01$, $30.43$, $32.93$, $37.59$, $40.92$, $43.32$, $48.01$, $49.77$, $52.97$, $56.44$, $59.35$; the zeros below $60$ are $14.135$, $21.022$, $25.011$, $30.425$, $32.935$, $37.586$, $40.919$, $43.327$, $48.005$, $49.774$, $52.970$, $56.446$, $59.347$. Every peak sits on a zero to within $0.01$ and every zero has its peak.
+\end{computation}
+The colours of the primes are the makeup of the spectrum and the zeros are its lines: the explicit formula read from the prime side, the mirror of Section~\ref{sec:otherend} where the zeros rebuilt the primes. The two readings together are Postulate~\ref{p:projection}: each side is the complete projection of the other.
+\fig{1.0}{THE_SPECTRUM_OF_LIGHT.png}
+
+\section{The curve, where the plane exists}\label{sec:curve}
+On a curve $X/\F_q$ of genus $g$ the light plane is a theorem. The cone closes at $a=g\log q$, positivity at the single support $D=g$ is the Hypothesis for $X$, the null vector of the form at the horizon has the zeros as its roots, the horn is an exact cone, and the positivity that closes it is supplied from above by the Hodge index theorem on $X\times X$ \cite{ffcone,reading}. Over the integers the floor never reaches zero, the cone never closes, and the horn flares forever: the genus of $\zeta$ is infinite.
+\fig{1.0}{FUNCTION_FIELD_CONE.png}
+
+\section{Status}
+\begin{center}\footnotesize
+\begin{tabular}{L{0.6\textwidth}L{0.16\textwidth}L{0.16\textwidth}}
+\toprule
+statement & status & where\\
+\midrule
+Postulates \ref{p:projection}, \ref{p:light} (speed, energy, information), \ref{p:projector}, \ref{p:colours}: the explicit formula, its horizon, its reading from the prime side & proved / computed & \S\S\ref{sec:framework}, \ref{sec:spectrum}\\
+``light is massless'' $=$ every mode has a real eigenvalue $=$ the Hypothesis & proved equivalence & \S\ref{sec:framework}\\
+light units: a choice of units, the exponent $\tfrac12$ untouched & definition & \S\ref{sec:units}\\
+the horn: construction, $\pi$, horn not cone, unfolding, GUE on $6{,}000$ zeros & computed & \S\ref{sec:horn}\\
+the other end: sixteen laws under RH; four checked to $10^7$ & cited / computed & \S\ref{sec:otherend}\\
+forward against backward: Parseval to one percent beyond the resolved region & computed & \S\ref{sec:otherend}\\
+the gravitational field: shell identity exact; Cramér's constant to $1.5$ percent; the Möbius star's rate to $3$ percent & proved / computed & \S\ref{sec:gravity}\\
+the zero hole: potentials $0$ and $\log N-\gamma$; $\sqrt N\,h(N)$ bounded to $10^7$ & proved / computed & \S\ref{sec:hole}\\
+the curve: the plane exists, the cone closes at $g\log q$ & proved & \S\ref{sec:curve}\\
+Postulate \ref{p:reality} for $\zeta$: the complete reality exists & \textbf{open} & \S\ref{sec:framework}\\
+Postulate \ref{p:wall}: the constant is not derivable here & \textbf{conjecture} (Michaels) & \S\ref{sec:framework}\\
+the Riemann Hypothesis & \textbf{open} & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{99}\small
+\bibitem{horizon} C.~Michaels, \emph{Across the Horizon}, \texttt{ACROSS\_THE\_HORIZON.pdf}, October 5, 2026.
+\bibitem{arith} C.~Michaels, \emph{Arithmophysics}, \texttt{ARITHMOPHYSICS.pdf}, October 5, 2026.
+\bibitem{gstring} C.~Michaels, \emph{RH on a G String}, \texttt{RH\_GODEL\_THEOREM.pdf}, October 5, 2026.
+\bibitem{running} C.~Michaels, \emph{Michaels Unified Running Proof}, Parts 0--XVII, October 4, 2026.
+\bibitem{hrec} C.~Michaels, \emph{The record estimate $H_{\mathrm{record}}$}, \texttt{RESEARCH\_H\_RECORD.pdf}, October 3, 2026.
+\bibitem{folds} C.~Michaels, \emph{Primes, Folds, and the One Dot}, \texttt{received/Primes\_Folds\_One\_Dot\_paper.pdf}, September 28, 2026.
+\bibitem{potential} C.~Michaels, \emph{The potential set of the light cone}, \texttt{atlas\_potential\_set.pdf}, September 29, 2026.
+\bibitem{v32} C.~Michaels, \emph{Prime DNA, Build v32}, August 25, 2026, \texttt{received/}.
+\bibitem{ffcone} \texttt{FUNCTION\_FIELD\_CONE.md}, October 5, 2026.
+\bibitem{reading} \emph{Reading the curve}, \texttt{READING\_THE\_CURVE.pdf}, October 5, 2026.
+\bibitem{horn} \texttt{THE\_HORN.md}, October 5, 2026.
+\bibitem{otherend} \texttt{THE\_OTHER\_END.md}, October 5, 2026.
+\bibitem{lightunits} \texttt{LIGHT\_UNITS.md}, October 5, 2026.
+\bibitem{bc} B.~Julia, Statistical theory of numbers, Springer Proc. Phys. 47 (1990); J.-B.~Bost and A.~Connes, \emph{Selecta Math.} 1 (1995), 411--457.
+\end{thebibliography}
+\end{document}
