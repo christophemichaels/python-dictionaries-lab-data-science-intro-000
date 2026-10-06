@@ -1124,6 +1124,17 @@ of (T) is in the low modes where Moebius is 3-200 times below random; the incohe
 size J^2/N^2 (the sliced historical integral) and the total cross term is positive at every J tested. No closing
 mechanism; the residual (R) stated with its two halves. Dependency statement: (G) <=> (T) <=> RH, untouched.
 
+## 2026-10-06, later: the completion of the prime construction (SUBPOWER_CLOSURE.md, Section 8)
+The user and ChatGPT explained the late drop of panel B exactly (the last packet is the primes in (N/2, N], each
+with coefficient -1) and gave first-mode energies before/after and the packet asymptotic 0.30338 N/log^2 N;
+reproduced to the last digit. Completion principle for every P >= sqrt N verified. The hump is the pole (uniform
+prime density through the first mode; unfinished and completion parallel to six decimals; the packet's mode-j
+energy is O(N/(j^4 log^2 N)), negligible at J = 50). The identity that governs the cancellation, found and
+verified to 1e-16: the uniform completion sum_d d^{-1} E_d c_{N/d} = e_1 and mu log = -(Lambda * mu) give
+b^log + V^T e_1 = -sum_d ((Lambda(d) - 1)/d) T_d b_{N/d}: the pole cancels identically, the survivor in every
+mode is the prime fluctuation Lambda - 1, i.e. the zeros; quantitatively this is the error term of the PNT and
+no more. Script rh_completion.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

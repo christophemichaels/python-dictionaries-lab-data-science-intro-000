@@ -213,3 +213,76 @@ the incoherent sum is (G) in sliced form, and the cross term is where the signs 
 strongest refinement tested is the observation that the balance holds at N = 2000 and 4000 at every J tracked,
 with the cross term never negative in total; the strongest refinement proved is Proposition 5, which says the
 balance cannot be reached by adding the primes one at a time.
+
+## 8. The completion of the prime construction, and the identity that governs it (2026-10-06, later)
+
+The user, with ChatGPT, read panel B exactly: at the stage Q = {p ≤ N/2} every composite's coefficient is
+already present, and the remaining additions are the primes in (N/2, N], each with coefficient −1, so in every
+mode b_{j,N} = b_{Q,N}(j) − d_{j,N} with the explicit packet d_{j,N} = Σ_{N/2<p≤N} v_{j,N}(p)/p. Their first-mode
+energies λ_1|b_1|², before and after the packet, are reproduced here to the last digit (`rh_completion.py`):
+
+| N | before, λ_1 b_{Q,1}² | after, λ_1 b_1² | the packet, λ_1 d_1² | packet / (N/log²N) |
+|---|---|---|---|---|
+| 1000 | 6.674594 | 0.001316 | 6.488490 | 0.3096 |
+| 2000 | 11.628940 | 0.005139 | 11.145157 | 0.3220 |
+| 4000 | 17.432057 | 0.019781 | 18.626284 | 0.3203 |
+
+Their asymptotic for the packet, from the prime number theorem through the sine window,
+d_{1,N} ~ (√2/(√N log N)) ∫_{1/2}^1 sin(πx/2)/x dx and λ_1 d_1² ~ (8I²/π²) N/log²N = 0.30338 N/log²N, is
+confirmed (I = 0.61178629); the measured ratios 0.31–0.32 approach it slowly, as the packet's own
+corrections of relative size 1/log N dictate. This sharpens Proposition 5's constant from the crude 0.099
+to the true 0.30338.
+
+**The completion principle at every P ≥ √N.** Every n ≤ N that is not P-smooth has exactly one prime factor
+above P, and its cofactor m ≤ N/p < √N ≤ P is P-smooth automatically, so
+
+    c_N = c_{Q_P,N} − Σ_{P<p≤N} p^{−1} E_p c_{⌊N/p⌋},        φ_N = φ_{Q_P,N} − Σ_{P<p≤N} p^{−1/2} T_{log p} φ_{⌊N/p⌋},
+
+with the complete Möbius sources at the small horizons. Verified exactly at P = ⌈√N⌉, N/4, N/2. The populations
+of the unfinished state, of the completion and of the survivor (λ_J times the population of the first J modes,
+N = 2000):
+
+| P | J = 1: unfinished, completion, survivor, cosine | J = 10 | J = 50 |
+|---|---|---|---|
+| 45 | 0.381, 0.474, 0.0051, 1.000000 | 0.357, 0.536, 0.027, 0.990 | 0.162, 0.082, 0.081, 0.708 |
+| 500 | 10.25, 9.80, 0.0051, 1.000000 | 0.112, 0.098, 0.027, 0.873 | 0.083, 0.004, 0.081, 0.186 |
+| 1000 | 11.63, 11.15, 0.0051, 1.000000 | 0.066, 0.040, 0.027, 0.767 | 0.082, 0.002, 0.081, 0.123 |
+
+Two readings. In the first mode the unfinished state and its completion are parallel to six decimals at every P,
+because M_{Q_P}(N) = M(N) + (π(N) − π(P)) and the second term dominates: **the hump is the pole**, the uniform
+density of the primes seen through the first mode, and it cancels identically. In the higher low modes the
+completion is negligible (at J = 50 it is 1 to 3 % of the unfinished state) because the window sin(pθ_j)
+oscillates over the packet: integrating by parts against the prime density, d_{j,N} = O(1/(j √N log N)), so the
+packet's mode-j energy is O(N/(j⁴ log²N)) and exceeds N^ε only for j ≲ N^{1/4}. The survivor at J = 50 is simply
+the unfinished state: there the last packet neither adds nor cancels anything.
+
+**The identity that controls the cancellation.** Two exact identities, valid at every horizon and in every
+mode, with the inherited cutoffs ⌊N/d⌋ kept:
+
+    (U)   Σ_{d≤N} d^{−1} E_d c_{⌊N/d⌋} = e_1,
+
+the uniform completion of all horizons is the unit source (this is Σ_{m|n} μ(m) = [n = 1]); and, from
+μ·log = −(Λ * μ), i.e. (1/ζ)′ = (ζ′/ζ)(1/ζ),
+
+    (Λ)   b^{log}_{N} := V_N^T (c · log n) = −Σ_{d≤N} (Λ(d)/d) T_d b_{⌊N/d⌋}.
+
+Subtracting (U) from (Λ):
+
+    b^{log}_{N} + V_N^T e_1  =  −Σ_{d≤N} ((Λ(d) − 1)/d) T_d b_{⌊N/d⌋}.
+
+Verified to 2·10⁻¹⁶ at N = 1000, 2000, 4000. This is the answer to the question asked: **the cancellation between
+an unfinished source and its exact completion is governed by Λ(d) − 1, the fluctuation of the primes about
+their uniform density.** The uniform part of every completion, the pole, cancels identically through (U); what
+survives in every mode is the bilinear form of the prime fluctuation against the transported complete
+amplitudes at all smaller horizons. Measured (λ_J times populations, N = 4000): at J = 1 the log-weighted
+amplitude has 0.782, the unit term 0.0005, the fluctuation term 0.743; at J = 10: 0.650, 0.002, 0.641; at
+J = 50: 0.849, 0.009, 0.803. The survivor is the fluctuation term, nothing else.
+
+**What the identity gives and what it cannot.** It is the mode form of the classical identity
+M(x) log x = ∫_1^x M(t) dt/t − 1 − Σ_{d≤x} (Λ(d) − 1) M(x/d), through which the prime number theorem transfers to
+M(x) = o(x) (Axer's theorem handles the bilinear form). Its quantitative content is exactly the error term of the
+prime number theorem, since Λ(d) − 1 is small only on average, ψ(x) − x = −Σ_ρ x^ρ/ρ + O(1). So the identity
+locates the survivor in the zeros, uniformly across horizons and modes, and it bounds the survivor only as well
+as ψ(x) − x is bounded: x e^{−c√log x} unconditionally, x^{1/2+ε} under RH. No elementary identity does better,
+because x^{1/2+ε} for ψ is RH. The productive question is answered in that sense: the control is Λ − 1, and
+Λ − 1 is the zeros.
