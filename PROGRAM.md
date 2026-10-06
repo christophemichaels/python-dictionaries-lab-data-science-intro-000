@@ -1187,6 +1187,18 @@ J >= N^{1-eta} unchanged. Measured where the mechanism loses: not the Cauchy-Sch
 in the balancing regime) but the two sign-free squared bounds (x70-600 each); prefix -> M below L, tail -> M above
 L, sandwiched. Script rh_prefix_tail.py.
 
+## 2026-10-06, later: the boundary carry (BOUNDARY_CARRY.md)
+On the boundary-carry directive: everything supplied verified (identities, table to seven digits, inner products,
+(B), interval identities, B-orthogonality). New theorem P: partitioning (L, N] into intervals of length
+N^{3/2} J^{-5/2}/a gives total projected error <= (64 pi^6/378) J^2/N^2 for every bounded charge with <= sqrt N J^{5/2}
+intervals (proof by the weighted Cauchy-Schwarz per interval and the triangle inequality across intervals, with
+|g'| <= theta^3 x/3); so the low modes are determined to within J^2/N^2 by M(L) and the increments of M; measured
+worst case (positive control) 1e-3 of the budget. First calculation: the saving in W is joint (mixed term cancels
+the squares; max-|M| comparison loses x3 to x3200). Second: the Gram form of the increments with controls; Moebius
+increments anti-correlated (coherence 0.00-0.26) against 1 random and m positive; the candidate square-root
+cancellation of weighted increments is the target itself. (BC) not closed; surviving term the pair correlation of
+the increments. Script rh_boundary_carry.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
