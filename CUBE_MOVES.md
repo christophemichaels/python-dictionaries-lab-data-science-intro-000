@@ -91,7 +91,7 @@ A* = 500.981190149. Measured: G_N = 0.867, 1.076, 1.142, 1.217 at N = 46656, 10�
 718.1, 718.1, 718.1, 861.3 (ratios 828, 667, 629, 708). On the whole range K_N ≤ N^{1/6} ≤ 14: the family has at
 most five parents (1, 5, 7, 11, 13), forty vertices with their dilates, and W_N carries the rest of R(N). The
 increments (18): G_N − G_L = +0.198, −0.0002, +0.066, +0.141 and W_N − W_L = −0.115, +0.091, −0.055, +0.003 at the
-four horizons; ℓ_N runs through every prime from 17 to 113,557 as N runs to 10⁷ (10,701 values) and K_N changes with N, so neither piece
+four horizons; ℓ_N runs through every prime from 17 to 113,557 as N runs to 10⁷ (10,749 values) and K_N changes with N, so neither piece
 telescopes and neither has a sign.
 
 ## 2. The complete return
