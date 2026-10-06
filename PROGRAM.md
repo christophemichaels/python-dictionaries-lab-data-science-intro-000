@@ -1239,6 +1239,25 @@ Finite return R(N) <= 1.738 + 0.2453 ceil(log(N/100)/log 6) on [6, 1e7]. Control
 shuffle mean 0.56, random signs 0.27 (expectation 1.09), Mobius 0.055. No new inequality. Files: CUBE_MOVES.md,
 rh_cube_moves.py, rh_cube_moves_fig.py, CUBE_MOVES.png, data/cube_moves.json.
 
+## 2026-10-06, later: global closure and Connes geometry (GLOBAL_CLOSURE.md)
+On the light-plane global-closure directive; [CC-S] arXiv:1507.05818 and [CC-A] arXiv:1502.05580 fetched and read (the
+directive's Delta_sc is CC-S's Delta' on its last page; Lemma 6.3 O_p slopes in Z[1/p]; Lemma 6.4 quotient sheaf K_p with
+sum of orders zero; Thm 6.5 Jacobian Z/(p-1); Def 6.6 p-adic slope norm; Thm 6.7 real Riemann-Roch). Theorem 1: ambient
+object = scaling site acting on the unit potential G_1 = min(x,1); Mobius family is its Mobius inverse: sum_d rho_d
+V_{N/d} = G_1 exactly; p-orbit sum = p-free potential; (46) in potential coordinates is a unit-modulus dilation with
+coefficient -1 (the p^(-1/2) of (23) and (46) is the half-density e^(-u/2)); order of V_N at n is -mu(n), degree M(N).
+Theorem 2: fold of a degree-zero V_N onto C_p is a global section of K_p after rescaling by (p-1) c_p(N); divisor on the
+unfinished p-packets, complete packets fold to constants mu(m), degree 0 (= Lemma 6.4(ii)), diverges iff M(N) != 0
+((PB)); no circle energy: psi-energy scales by 1/p per period, CC-S norm is p-adic. Theorem 3: (17)-(22) proved and
+verified (Gauss-Legendre of the Green sum vs the potential); (23)-(25): H_0 not symmetric on the twisted domain; two
+periods => constant; the compatible all-prime object is the commuting N^x action. Theorem 4: chain-refined ledger (37):
+eps_j >= 0, sum <= 2^(-4/3); (42) R <= 43/30 + D23 + B-hat_23 + C0; d23 <= 4/5 for all N (equality on 30..35), analytic
+above 396. Finite: B-hat_23 = 0 on the chains from 1e6, 1e7; all-horizon B23(N) <= 0.5526 (N = 13), zero for 73 % of N;
+R(N) <= D23(N) + 1.053 for all N <= 1e7. (6) at N=20, (26) at N=10 verified. Complete-packet energies 1/2, 2/3, 13/15,
+116/105, 1433/1155, 21436/15015. No controlling inequality from the geometry; resume point: a bound on the inverse of
+the orbit sum on horizon families = (G); the circle carries the degree ledger, not the energy. Files: GLOBAL_CLOSURE.md,
+rh_global_closure.py, rh_global_closure_fig.py, GLOBAL_CLOSURE.png, data/global_closure.json.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
