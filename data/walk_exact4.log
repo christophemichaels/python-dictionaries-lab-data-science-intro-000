@@ -1,0 +1,24 @@
+  pattern (1, 1, 1, 1) done, running total 0.014286
+  pattern (1, 1, 1, -1) done, running total 0.231250
+  pattern (1, 1, -1, 1) done, running total 0.448214
+  pattern (1, 1, -1, -1) done, running total 0.627282
+  pattern (1, -1, 1, 1) done, running total 0.844246
+  pattern (1, -1, 1, -1) done, running total 1.023313
+  pattern (1, -1, -1, 1) done, running total 1.202381
+  pattern (1, -1, -1, -1) done, running total 1.208631
+  pattern (-1, 1, 1, 1) done, running total 1.425595
+  pattern (-1, 1, 1, -1) done, running total 1.604663
+  pattern (-1, 1, -1, 1) done, running total 1.783730
+  pattern (-1, 1, -1, -1) done, running total 1.789980
+  pattern (-1, -1, 1, 1) done, running total 1.969048
+  pattern (-1, -1, 1, -1) done, running total 1.975298
+  pattern (-1, -1, -1, 1) done, running total 1.981548
+  pattern (-1, -1, -1, -1) done, running total 1.981548
+J_4 = 3329/1680 = 1.981547619;  J_4/12 = 3329/20160 = 0.165128968
+  (e1,e2) = (1,1) done, running total 0.394444
+  (e1,e2) = (1,-1) done, running total 0.676538
+  (e1,e2) = (-1,1) done, running total 0.958631
+  (e1,e2) = (-1,-1) done, running total 0.958631
+L_6 = 3221/6720 = 0.479315476;  2 L_6 = 3221/3360 = 0.958630952
+kappa_6 = J_4/12 + 2 L_6 = 4531/4032 = 1.123759921;  kappa_6/kappa_2^3 = 13593/875 = 15.534857
+6 = J_4/12 + 2 L_6 = 2595880055892179059/1778446285056000000 = 1.459633658;  kappa_6/kappa_2^3 = 2595880055892179059/128649181500000000 = 20.177976

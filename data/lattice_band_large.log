@@ -1,0 +1,4 @@
+a = 1.25: N = 20000, chain <= 11, rho = 2.8938, band top 1.48 T*  (18s)
+a = 1.25: N = 40000, chain <= 13, rho = 2.9115, band top 1.51 T*  (35s)
+a = 1.5: N = 20000, chain <= 6, rho = 3.7552, band top 2.13 T*  (23s)
+a = 1.5: N = 40000, chain <= 7, rho = 3.8552, band top 2.35 T*  (28s)

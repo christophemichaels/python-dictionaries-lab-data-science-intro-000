@@ -1,0 +1,6 @@
+a = 0.85: 20000 points (chains <= 1778), interior components 4, largest 9990 points; first-generation points of +a: 4, in 2 component(s) [0, 1]; -a's first generation in components [2, 3]
+a = 0.9: 20000 points (chains <= 100), interior components 2, largest 10046 points; first-generation points of +a: 4, in 1 component(s) [0]; -a's first generation in components [1]
+a = 1.0: 20000 points (chains <= 30), interior components 2, largest 10448 points; first-generation points of +a: 5, in 1 component(s) [0]; -a's first generation in components [1]
+a = 1.25: 20000 points (chains <= 11), interior components 2, largest 11146 points; first-generation points of +a: 8, in 1 component(s) [0]; -a's first generation in components [1]
+a = 1.5: 20000 points (chains <= 6), interior components 2, largest 12050 points; first-generation points of +a: 12, in 1 component(s) [0]; -a's first generation in components [1]
+a = 2.0: 20000 points (chains <= 4), interior components 3, largest 16972 points; first-generation points of +a: 24, in 1 component(s) [0]; -a's first generation in components [1, 2]

@@ -1,0 +1,5 @@
+data/fem_a0.5_primefree.json: a=0.5 lambda=-3.222425e-01 P=0.134363 M=0.271485 D_inf=1.020022  D = -a lambda' = 1.129084  (arb K-mode a lambda' from the dilation log for comparison)
+  T/T*=  3.0: D = 1.129084  vs  rhs = 1.140355 (ratio 1.0100);  tail = 1.39787e-02 = 0.9965 of the law D/(pi a T);  boundary +2.771e-02  tailD +4.354e-03  4P<s,((xf)')_(>T)> -4.748e-02  B_T = 0.52342 (B_inf = D/2 = 0.56454)
+  T/T*=  5.0: D = 1.129084  vs  rhs = 1.152638 (ratio 1.0209);  tail = 8.40279e-03 = 0.9983 of the law D/(pi a T);  boundary +7.480e-07  tailD +2.247e-03  4P<s,((xf)')_(>T)> -4.376e-02  B_T = 0.54911 (B_inf = D/2 = 0.56454)
+  T/T*= 10.0: D = 1.129084  vs  rhs = 1.151212 (ratio 1.0196);  tail = 4.17639e-03 = 0.9924 of the law D/(pi a T);  boundary +7.513e-03  tailD +9.378e-04  4P<s,((xf)')_(>T)> -3.878e-02  B_T = 0.54990 (B_inf = D/2 = 0.56454)
+  T/T*= 20.0: D = 1.129084  vs  rhs = 1.141136 (ratio 1.0107);  tail = 2.08036e-03 = 0.9886 of the law D/(pi a T);  boundary +1.427e-03  tailD +4.037e-04  4P<s,((xf)')_(>T)> -3.544e-02  B_T = 0.55089 (B_inf = D/2 = 0.56454)

@@ -1,0 +1,384 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{computation}[theorem]{Computation}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\Hrec}{H_{\mathrm{record}}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Rstar}{R^{*}}
+\DeclareMathOperator{\li}{li}
+\DeclareMathOperator{\supp}{supp}
+
+\title{The record estimate $\Hrec$:\\ exact structure, equivalence with the Riemann Hypothesis,\\ and the obstruction in the prime-side expression}
+\author{Christophe Michaels}
+\date{October 3, 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Answer}
+
+Of the four responses requested, the one that can be given is the fourth.
+\begin{enumerate}
+\item No proof of $\Hrec$ is given.
+\item No theorem in the supplied research implies $\Hrec$. Theorem~\ref{thm:equiv} shows that $\Hrec$ is equivalent to the Riemann Hypothesis, and the atlas entry M38, which is where the debit identity and the record induction come from, already labels the debit estimate ``open and equivalent in strength to the target''. The block, cofactor-flow and covariance results are exact identities or bounds in terms of the heights of $M$; Section~\ref{sec:supplied} checks each one's definitions and scope and finds that each transfers correctly and moves the whole difficulty into those heights.
+\item No weaker sufficient alternative exists. The closing deduction ends in $R(N)\ll_\varepsilon N^\varepsilon$, which is itself equivalent to the Riemann Hypothesis (Theorem~\ref{thm:equiv}), so every statement that closes the same argument has the strength of the Riemann Hypothesis.
+\item What is established here, with proofs: the exact structure of the debit in terms of the smooth M\"obius sum $A(k)$ and the high-prime sum $S(k)$, in which the two enter only through $A-S=M$ (Proposition~\ref{prop:partial}); the exponent dictionary, in which $\Hrec$ with a fixed exponent $\theta$ is a zero-free half-plane $\Re s>\tfrac12+\theta$ and the unconditional exponent is $1-o(1)$ (Theorem~\ref{thm:exponent}); the lower bounds $E(W)\ge(1-o(1))\,m/(24\log^2 m)$ and $E(u_0)+2M(m)h(u_0)\ge(1-o(1))\,m/(24\log^2m)$, so that the signed cross term $2\ip aW$ is positive and cancels both to within $\Delta_N$ (Theorem~\ref{thm:components}); the bound $\sum_pE(v_p)\le(\log2+o(1))\Rstar(m)$ for the diagonal of the prime-copy Gram matrix, so that the off-diagonal covariance carries all of $E(W)$ but at most $(\log2+o(1))\Rstar(m)$ (Corollary~\ref{cor:gram}); the exact statement of the unsupported step (Section~\ref{sec:gap}); and the route around $h$ (Section~\ref{sec:aroundh}): the two-endpoint compression of M37 removes the history interaction exactly, the remainder's energy is the harmonic-weighted variance of $M$ over the block, and $h$ reappears as the mean obligation, a square-root-strength bound on $\sum_{m<n\le N}\mu(n)/n$ at records.
+\end{enumerate}
+
+\noindent\emph{Status labels.} Following the fixed dictionary, every statement is one of: \textbf{Definition}; \textbf{Proved} (here, or cited with its hypotheses); \textbf{Remaining hypothesis}. Numerical values appear only in Section~\ref{sec:verification}, as verification of identities and of orders of magnitude, and are labelled \textbf{Computation}.
+
+\section{Definitions}\label{sec:defs}
+
+\begin{definition}[Energy]\label{def:energy}
+For finitely supported real coefficient vectors $f,g$ on the positive integers,
+\[
+\ip fg=\sum_{i,j\ge1}\frac{f(i)g(j)}{\max(i,j)},\qquad E(f)=\ip ff .
+\]
+The sum does not depend on the length $N$ of the ambient space, so $\ip fg_N=\ip fg$ and $E_N(f)=E(f)$ whenever $\supp f,\supp g\subseteq[1,N]$. With $\mu$ the M\"obius function and $M(x)=\sum_{n\le x}\mu(n)$,
+\[
+R(N)=E(\mu\mathbf 1_{[1,N]}),\qquad R(0)=0 .
+\]
+$N\ge1$ is a \emph{strict energy record} when $R(N)>\max_{0\le n<N}R(n)$. For $N\ge1$ put $m=\lfloor\sqrt N\rfloor$ and $\Delta_N=R(N)-R(m)$.
+\end{definition}
+
+\begin{definition}[The target and its fixed-exponent version]\label{def:H}
+$\Hrec$ is the statement: for every $\eta>0$ there are $A_\eta<\infty$ and $N_\eta$ such that $\Delta_N\le A_\eta N^\eta R(m)$ for every strict energy record $N\ge N_\eta$. For a fixed $\theta\ge0$, $\Hrec(\theta)$ is the statement: there are $A<\infty$ and $N_0$ with $\Delta_N\le AN^\theta R(m)$ at every strict energy record $N\ge N_0$. Thus $\Hrec$ is $\Hrec(\theta)$ for every $\theta>0$.
+\end{definition}
+
+\begin{definition}[Prime-side objects]\label{def:prime}
+Let $P^+(n)$ be the largest prime factor of $n$, $P^+(1)=1$, and let $e_j$ be the unit vector at $j$. For $N\ge1$ and $m=\lfloor\sqrt N\rfloor$:
+\[
+a=\mu\,\mathbf 1_{\{P^+\le m\}}\mathbf 1_{[1,N]},\qquad u_0=a\,\mathbf 1_{(m,N]},\qquad
+v_p=\sum_{k\le N/p}\mu(k)e_{pk},\qquad W=\sum_{m<p\le N}v_p ,
+\]
+$p$ running over primes, and $h(f)=\sum_{m<n\le N}f(n)/n$ for $f$ supported in $(m,N]$. Write $U_p$ for the dilation $U_pe_k=e_{pk}$, $L_p=\lfloor N/p\rfloor$, so that $v_p=U_p(\mu\mathbf 1_{[1,L_p]})$, and
+\[
+A(k)=\sum_{n\le k}a(n),\qquad S(k)=\sum_{n\le k}W(n),\qquad m_1(x)=\sum_{n\le x}\frac{\mu(n)}n,\qquad \Rstar(m)=\max_{1\le n\le m}R(n).
+\]
+Every integer $n\le N$ has at most one prime factor exceeding $m$, since $(m+1)^2>N$; if it has one, $p$, then $n=pk$ with $k\le N/p<m+1$, so $k\le m$ and $\mu(n)=-\mu(k)$. Hence $\mu\mathbf 1_{[1,N]}=a-W$ and $a=\mu\mathbf 1_{[1,m]}+u_0$.
+\end{definition}
+
+\section{Exact identities}\label{sec:identities}
+
+All statements in this section are \textbf{Proved}.
+
+\begin{lemma}[Cumulative form]\label{lem:cum}
+Let $f,g$ be supported in $[1,N]$ with partial sums $F(k)=\sum_{n\le k}f(n)$, $G(k)=\sum_{n\le k}g(n)$. Then
+\[
+\ip fg=\sum_{k=1}^{N-1}\frac{F(k)G(k)}{k(k+1)}+\frac{F(N)G(N)}N .
+\]
+In particular $R(N)=\sum_{k<N}M(k)^2/(k(k+1))+M(N)^2/N$, $R(N)\ge M(N)^2/N$, and $R(N)\ge\tfrac12$ for every $N\ge1$.
+\end{lemma}
+
+\begin{proof}
+$1/\max(i,j)=\sum_{k\ge\max(i,j)}\big(\tfrac1k-\tfrac1{k+1}\big)$. Insert this in $\ip fg$ and interchange the finite sums: the coefficient of $\tfrac1k-\tfrac1{k+1}$ is $\sum_{i,j\le\min(k,N)}f(i)g(j)=F(\min(k,N))G(\min(k,N))$, and $\sum_{k\ge N}(\tfrac1k-\tfrac1{k+1})=1/N$. For the last claim, $R(1)=1$ and for $N\ge2$ the term $k=1$ equals $M(1)^2/2=\tfrac12$.
+\end{proof}
+
+\begin{lemma}[The history enters through two scalars]\label{lem:history}
+If $g$ is supported in $(m,N]$ then $\ip{\mu\mathbf 1_{[1,m]}}{g}=M(m)\,h(g)$, and $E(\mu\mathbf 1_{[1,m]})=R(m)$.
+\end{lemma}
+
+\begin{proof}
+For $i\le m<j$, $\max(i,j)=j$, so $\ip{\mu\mathbf 1_{[1,m]}}{g}=\sum_{j>m}\frac{g(j)}j\sum_{i\le m}\mu(i)$. The second claim is the $N$-independence in Definition~\ref{def:energy}.
+\end{proof}
+
+\begin{proposition}[The debit identity]\label{prop:debit}
+For every $N\ge1$,
+\begin{equation}\label{eq:debit}
+\Delta_N=E(u_0)+2M(m)h(u_0)+E(W)-2\ip aW
+\end{equation}
+and
+\begin{equation}\label{eq:debitM}
+\Delta_N=\sum_{k=m}^{N-1}\frac{M(k)^2}{k(k+1)}+\frac{M(N)^2}N-\frac{M(m)^2}m .
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Write $\mu\mathbf 1_{[1,N]}=\mu\mathbf 1_{[1,m]}+(u_0-W)$ with $u_0-W$ supported in $(m,N]$. Expanding and using Lemma~\ref{lem:history},
+\begin{align*}
+R(N)&=R(m)+E(u_0-W)+2M(m)\big(h(u_0)-h(W)\big)\\
+&=R(m)+E(u_0)+E(W)-2\ip{u_0}W+2M(m)h(u_0)-2M(m)h(W).
+\end{align*}
+Since $a=\mu\mathbf 1_{[1,m]}+u_0$, Lemma~\ref{lem:history} gives $\ip aW=M(m)h(W)+\ip{u_0}W$, which is \eqref{eq:debit}. For \eqref{eq:debitM}, subtract the cumulative forms of $R(N)$ and $R(m)$ and use $\sum_{k=m}^{N-1}\frac1{k(k+1)}+\frac1N=\frac1m$ for the terminal term $M(m)^2/m$ of $R(m)$.
+\end{proof}
+
+\begin{proposition}[Partial sums of the prime-side vectors]\label{prop:partial}
+\begin{enumerate}
+\item[(i)] $A(k)=M(k)$ for $k\le m$, and $A(k)=M(k)+S(k)$ for all $k\le N$.
+\item[(ii)] $S(k)=\sum_{m<p\le k}M(\lfloor k/p\rfloor)=\sum_{j\le k/(m+1)}\mu(j)\big(\pi(k/j)-\pi(m)\big)$ for $k\le N$.
+\item[(iii)] $S(k)=0$ for $k\le m$, and $S(k)=\pi(k)-\pi(m)$ for $m<k<2(m+1)$.
+\item[(iv)] The three components of \eqref{eq:debit} are
+\begin{align}
+E(u_0)+2M(m)h(u_0)&=\sum_{k=m}^{N-1}\frac{A(k)^2}{k(k+1)}+\frac{A(N)^2}N-\frac{M(m)^2}m,\label{eq:compA}\\
+E(W)&=\sum_{k=m+1}^{N-1}\frac{S(k)^2}{k(k+1)}+\frac{S(N)^2}N,\label{eq:compS}\\
+\ip aW&=\sum_{k=m+1}^{N-1}\frac{A(k)S(k)}{k(k+1)}+\frac{A(N)S(N)}N.\label{eq:compAS}
+\end{align}
+\item[(v)] Termwise, $A(k)^2+S(k)^2-2A(k)S(k)=(A(k)-S(k))^2=M(k)^2$: the regrouping \eqref{eq:debit} is an identity in which $A$ and $S$ enter only through their difference.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Every $n\le m$ is $m$-smooth, so $a=\mu$ on $[1,m]$; and $a=\mu\mathbf 1_{[1,N]}+W$ gives $A=M+S$. (ii) $W(n)=\mu(n/p)$ when $n$ has the (unique) prime factor $p>m$ and $W(n)=0$ otherwise, so $S(k)=\sum_{m<p\le k}\sum_{j\le k/p}\mu(j)$; grouping by $j$ counts the primes $p$ with $m<p\le k/j$. (iii) If $m<n\le k<2(m+1)$ and $n=pj$ with $p>m$, then $j<2$, so $n=p$ and $W(n)=\mu(1)=1$. (iv) $u_0$ has partial sums $A(k)-M(m)$ on $[m,N]$ and $0$ before; Lemma~\ref{lem:cum} and Abel summation $h(u_0)=\sum_{k=m+1}^{N-1}\frac{A(k)-M(m)}{k(k+1)}+\frac{A(N)-M(m)}N$ give
+\[
+E(u_0)+2M(m)h(u_0)=\sum_{k=m+1}^{N-1}\frac{A(k)^2-M(m)^2}{k(k+1)}+\frac{A(N)^2-M(m)^2}N ,
+\]
+and $\sum_{k=m+1}^{N-1}\frac1{k(k+1)}+\frac1N=\frac1{m+1}$, $\frac1m-\frac1{m+1}=\frac1{m(m+1)}$, $A(m)=M(m)$ give \eqref{eq:compA}. \eqref{eq:compS} and \eqref{eq:compAS} are Lemma~\ref{lem:cum} with $S(k)=0$ for $k\le m$. (v) is algebra, and inserting it in \eqref{eq:compA}--\eqref{eq:compAS} recovers \eqref{eq:debitM}.
+\end{proof}
+
+\begin{remark}
+The identity \eqref{eq:debit} is the complete debit $D_N$ of atlas entry M38 and the two-scalar update $R(N)=R(m)+F+2Ah$ of entry M37. Proposition~\ref{prop:partial}(v) is the precise sense in which the regrouping ``retains the inherited history, every prime-copy cross term and the terminal'': it retains them because it is an identity, and for the same reason it cannot by itself make any of them smaller.
+\end{remark}
+
+\section{Equivalence with the Riemann Hypothesis}\label{sec:equiv}
+
+\begin{theorem}[\textbf{Proved}]\label{thm:equiv}
+The following are equivalent.
+\begin{enumerate}
+\item[(i)] The Riemann Hypothesis.
+\item[(ii)] $R(N)\ll_\varepsilon N^\varepsilon$ for every $\varepsilon>0$.
+\item[(iii)] For every $\eta>0$ there is $A_\eta$ with $\Delta_N\le A_\eta N^\eta R(m)$ for every $N\ge1$.
+\item[(iv)] $\Hrec$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i)$\Leftrightarrow$(ii) is the theorem ``The Green energy and the Riemann Hypothesis'' of \cite[\S12]{mm2}; for completeness: (i) gives $M(x)\ll x^{1/2+\varepsilon/2}$ \cite[\S14.25]{titchmarsh}, hence $R(N)\le\sum_{k\le N}M(k)^2/k^2\ll\sum_{k\le N}k^{\varepsilon-1}\ll N^\varepsilon$; conversely, if $R(N)\le CN^\varepsilon$, then by Lemma~\ref{lem:cum} and Cauchy--Schwarz on dyadic blocks, for $\sigma>\tfrac12$,
+\begin{align*}
+\sum_{K<k\le2K}\frac{|M(k)|}{k^{1+\sigma}}&\le K^{-\sigma}\Big(\sum_{K<k\le2K}1\Big)^{1/2}\Big(\sum_{K<k\le2K}\frac{M(k)^2}{k^2}\Big)^{1/2}\\
+&\le K^{\frac12-\sigma}\big(2C(2K+1)^\varepsilon\big)^{1/2},
+\end{align*}
+which is summable over $K=2^j$ when $\sigma>\tfrac12+\tfrac\varepsilon2$; so $\sum_n\mu(n)n^{-s}=s\int_1^\infty M(x)x^{-s-1}dx$ converges absolutely for $\Re s>\tfrac12+\tfrac\varepsilon2$ and represents $1/\zeta(s)$ there by analytic continuation from $\Re s>1$. Thus $\zeta$ has no zeros in $\Re s>\tfrac12$, and by the functional equation none in $\Re s<\tfrac12$.
+
+(ii)$\Rightarrow$(iii): $\Delta_N\le R(N)\le C_\eta N^\eta\le2C_\eta N^\eta R(m)$ by Lemma~\ref{lem:cum}, since $R(m)\ge\tfrac12$ for $m\ge1$. (iii)$\Rightarrow$(iv) is a restriction to records.
+
+(iv)$\Rightarrow$(ii) (the record induction of M38). Fix $\varepsilon>0$, put $\eta=\varepsilon/4$, take $A_\eta,N_\eta$ from $\Hrec$, and choose $N_1\ge N_\eta$ with $N_1^{\varepsilon/4}\ge1+A_\eta$. Let $C=\max\{1,\max_{n\le N_1}R(n)\}$. We show $R(n)\le Cn^\varepsilon$ for all $n\ge1$ by strong induction. It holds for $n\le N_1$. Let $N>N_1$. If $N$ is not a strict record, $R(N)\le\max_{n<N}R(n)\le C\max_{n<N}n^\varepsilon\le CN^\varepsilon$. If $N$ is a strict record, with $m=\lfloor\sqrt N\rfloor<N$,
+\[
+R(N)=R(m)+\Delta_N\le(1+A_\eta N^{\varepsilon/4})R(m)\le(1+A_\eta)N^{\varepsilon/4}\,Cm^\varepsilon\le(1+A_\eta)C\,N^{\varepsilon/4+\varepsilon/2}\le CN^\varepsilon .\qedhere
+\]
+\end{proof}
+
+\begin{theorem}[Exponent dictionary; \textbf{Proved}]\label{thm:exponent}
+Let $0\le\theta<1$.
+\begin{enumerate}
+\item[(a)] If $\Hrec(\theta)$ holds, then $R(N)\ll_\delta N^{2\theta+\delta}$ for every $\delta>0$, and $\zeta(s)\ne0$ for $\Re s>\tfrac12+\theta$.
+\item[(b)] If $\zeta(s)\ne0$ for $\Re s>\tfrac12+\theta$, then for every $\delta>0$ there is $A$ with $\Delta_N\le AN^{2\theta+\delta}R(m)$ for all $N\ge1$; in particular $\Hrec(2\theta+\delta)$ holds.
+\item[(c)] Unconditionally there is $c>0$ with $\Delta_N\le2N\exp\!\big(-c(\log N)^{3/5}(\log\log N)^{-1/5}\big)R(m)$ for all $N\ge3$. No $\theta<1$ for which $\Hrec(\theta)$ holds is known.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Run the induction of Theorem~\ref{thm:equiv} with the exponent $\varphi=2\theta+\delta$: at a record, $R(N)\le(1+AN^\theta)Cm^{\varphi}\le(1+A)CN^{\theta+\theta+\delta/2}\le CN^{\varphi}$ once $N^{\delta/2}\ge1+A$. The dyadic Cauchy--Schwarz bound then gives $K^{\frac12-\sigma}(2C(2K+1)^{\varphi})^{1/2}$, summable for $\sigma>\tfrac12+\theta+\tfrac\delta2$; so $1/\zeta$ is holomorphic in $\Re s>\tfrac12+\theta+\tfrac\delta2$ for every $\delta>0$. (b) The absence of zeros in $\Re s>\tfrac12+\theta$ gives $M(x)\ll_\delta x^{1/2+\theta+\delta/2}$: the proofs of Theorems~14.2 and~14.25 of \cite{titchmarsh} use the zero-free half-plane only to make $\log\zeta$ holomorphic in the discs to which the Borel--Carath\'eodory lemma is applied, and apply verbatim with $\tfrac12+\theta$ in place of $\tfrac12$. Then $R(N)\le\sum_{k\le N}M(k)^2/k^2\ll N^{2\theta+\delta}$ and $\Delta_N\le R(N)\le2R(N)R(m)$. (c) $M(x)\ll x\exp(-c_0(\log x)^{3/5}(\log\log x)^{-1/5})$ \cite[Theorem~12.7]{ivic}; summing $M(k)^2/k^2$ over $k\le N$, the terms with $k\le N\exp(-(\log N)^{3/5})$ contribute at most that bound, and the others at most $N\exp(-2c_0(1-o(1))(\log N)^{3/5}(\log\log N)^{-1/5})$. Finally $\Delta_N\le R(N)\le2R(N)R(m)$.
+\end{proof}
+
+\begin{remark}[What the dictionary says about the task]
+The target asks for $\Hrec(\theta)$ for every $\theta>0$. By (a), a proof for any single $\theta<\tfrac12$ would already give a zero-free half-plane of positive width, which is not known; and by (c) the exponent that is known is $1-o(1)$. Every intermediate improvement is a zero-free half-plane and the full target is the Riemann Hypothesis. The induction of M38 is correct and is reproduced above; it is the estimate it consumes that has this strength.
+\end{remark}
+
+\section{The size of the components}\label{sec:components}
+
+\begin{theorem}[\textbf{Proved}]\label{thm:components}
+As $N\to\infty$, with $m=\lfloor\sqrt N\rfloor$,
+\begin{align}
+E(W)&\ge(1-o(1))\,\frac m{24\log^2m},\label{eq:lowW}\\
+E(u_0)+2M(m)h(u_0)&\ge(1-o(1))\,\frac m{24\log^2m},\label{eq:lowU}\\
+\ip aW&\ge(1-o(1))\,\frac m{24\log^2m}-\frac{\Delta_N}2 .\label{eq:lowAW}
+\end{align}
+In particular, whenever $\Delta_N=o(m/\log^2m)$, the cross term $2\ip aW$ is positive and equals $E(u_0)+2M(m)h(u_0)+E(W)$ to within $\Delta_N$: the debit is the difference of quantities each of size at least $m/(25\log^2m)$.
+\end{theorem}
+
+\begin{proof}
+Let $m\ge3$, so that $2m\le N-1$. Put $k_0=\lceil3m/2\rceil$. By Proposition~\ref{prop:partial}(iii), $S(k)=\pi(k)-\pi(m)\ge\pi(k_0)-\pi(m)$ for $k_0\le k\le2m$. Dropping the other nonnegative terms of \eqref{eq:compS},
+\[
+E(W)\ge\big(\pi(k_0)-\pi(m)\big)^2\sum_{k=k_0}^{2m}\frac1{k(k+1)}=\big(\pi(k_0)-\pi(m)\big)^2\Big(\frac1{k_0}-\frac1{2m+1}\Big).
+\]
+By the prime number theorem $\pi(k_0)-\pi(m)=(1+o(1))\,\frac{m}{2\log m}$, and $\frac1{k_0}-\frac1{2m+1}=(1+o(1))\frac1{6m}$; this is \eqref{eq:lowW}.
+
+For \eqref{eq:lowU}, drop the nonnegative terms of \eqref{eq:compA} outside $[k_0,2m]$ and use $A(k)=M(k)+\pi(k)-\pi(m)$ there. Since $M(x)\ll x\exp(-c\sqrt{\log x})$ (the prime number theorem with the de la Vall\'ee Poussin error term \cite[Ch.~12]{ivic}), $\max_{k\le2m}|M(k)|=o(m/\log m)$, so $A(k)\ge(1-o(1))\frac m{2\log m}$ on $[k_0,2m]$, and $M(m)^2/m=o(m/\log^2m)$. The same telescoping sum gives \eqref{eq:lowU}. Finally \eqref{eq:lowAW} is \eqref{eq:debit} solved for $\ip aW$.
+\end{proof}
+
+\begin{corollary}[The diagonal of the prime-copy Gram matrix; \textbf{Proved}]\label{cor:gram}
+$E(v_p)=R(L_p)/p$, and
+\begin{gather*}
+\sum_{m<p\le N}E(v_p)=\sum_{m<p\le N}\frac{R(\lfloor N/p\rfloor)}p\le(\log2+o(1))\,\Rstar(m),\\
+\sum_{\substack{m<p,q\le N\\ p\ne q}}\ip{v_p}{v_q}\ge(1-o(1))\frac m{24\log^2m}-(\log2+o(1))\Rstar(m).
+\end{gather*}
+\end{corollary}
+
+\begin{proof}
+$E(U_pf)=E(f)/p$ because $\max(pi,pj)=p\max(i,j)$. Since $1\le L_p\le m$, $R(L_p)\le\Rstar(m)$, and $\sum_{m<p\le N}1/p=\log\frac{\log N}{\log m}+O(1/\log m)=\log2+o(1)$ by Mertens' theorem. The second display is $E(W)=\sum_{p,q}\ip{v_p}{v_q}$ with \eqref{eq:lowW}.
+\end{proof}
+
+\begin{corollary}[No term-by-term proof in the regime of the target; \textbf{Proved}]\label{cor:noterm}
+Suppose $R(n)\le Cn^{\varepsilon_0}$ for all $n\ge1$, with some $\varepsilon_0<1$. Then for all large $N$,
+\[
+E(W)\ \ge\ \frac{m^{1-\varepsilon_0}}{25C\log^2m}\,R(m)\qquad\text{and}\qquad E(u_0)+2M(m)h(u_0)\ \ge\ \frac{m^{1-\varepsilon_0}}{25C\log^2m}\,R(m).
+\]
+Hence, in the regime $R(N)\ll N^{\varepsilon}$ that the closing deduction is meant to reach, no inequality of the form $E(W)\le A_\eta N^\eta R(m)$ or $E(u_0)+2M(m)h(u_0)\le A_\eta N^\eta R(m)$ can hold with $\eta<\tfrac{1-\varepsilon}2$. A proof of $\Hrec$ can only be a bound on the signed combination \eqref{eq:debit}, to relative precision $N^{\eta-1/2}$ in its terms.
+\end{corollary}
+
+\begin{proof}
+Divide \eqref{eq:lowW} and \eqref{eq:lowU} by $R(m)\le Cm^{\varepsilon_0}$, and use $m\ge\sqrt N-1$.
+\end{proof}
+
+\begin{remark}[The size of $S$ beyond $2m$; not proved here]\label{rem:middle}
+For $k\in(m,2m)$ the high-prime sum is $\pi(k)-\pi(m)$ by Proposition~\ref{prop:partial}(iii). For $k$ of the order of $N$, formal expansion of $\sum_{j\le k/(m+1)}\mu(j)\li(k/j)$ with $\sum_j\mu(j)/j=0$ and $\sum_j\mu(j)\log j/j=-1$ suggests $S(k)\sim-k/\log^2k$ and $E(W)\asymp N/\log^4N$; the verification in Section~\ref{sec:verification} finds $S(k)\log^2k/k$ between $-1.0$ and $-1.3$ for $N/8\le k\le N$ at $N=10^6$, and $E(W)/(N/\log^4N)\approx3.7$ at $N=10^6$ and $10^7$. This stronger lower bound is not needed for Corollary~\ref{cor:noterm} and is not claimed as proved.
+\end{remark}
+
+\section{The supplied results, checked against the components}\label{sec:supplied}
+
+Each supplied result is stated with its hypotheses, verified, and then matched against \eqref{eq:debit}. The conclusion in every case is the same: the result is exact or one-sided in the heights of $M$, it transfers correctly, and after the transfer the quantity to be bounded is again the heights of $M$ over $(m,N]$.
+
+\subsection{Completed and unfinished blocks}
+
+\textbf{Proved} \cite[Theorems on future orthogonality, block energy and the native block budget, \S\S5, 8, 11]{mm2}. For a block $B=(a,b]$ on which $M(k)-M(a)$ returns to $0$ at $k=b$, the restriction $f_B=\mu\mathbf 1_{B}$ has zero mass, is orthogonal to every vector supported in $(b,\infty)$, and $E(f_B)=\sum_{k=a+1}^{b-1}(M(k)-M(a))^2/(k(k+1))\le H_B^2\big(\frac1{a+1}-\frac1b\big)$ with $H_B=\max_{a<k<b}|M(k)-M(a)|$. An unfinished block $(a,N]$ has energy at most $H_{\mathrm{open}}^2/(a+1)$.
+
+\emph{Transfer.} Apply the first-return rule to $\mu\mathbf 1_{(m,N]}$ from $a_0=m$. With $F=E(\mu\mathbf 1_{(m,N]})=\sum_BE(f_B)+E_{\mathrm{open}}$ and Lemma~\ref{lem:history},
+\begin{equation}\label{eq:blockroute}
+\Delta_N=F+2M(m)\,h(\mu\mathbf 1_{(m,N]}),\qquad F\le\sum_BH_B^2\Big(\frac1{a_B+1}-\frac1{b_B}\Big)+\frac{H_{\mathrm{open}}^2}{a_{\mathrm{open}}+1}.
+\end{equation}
+Three observations fix its scope.
+\begin{enumerate}
+\item[(a)] The bound is in the heights $H_B=\max_{k\in B}|M(k)-M(m)|$. A bound $H_B\le Cb_B^{1/2+\varepsilon}$ for all blocks is equivalent to $M(x)\ll x^{1/2+\varepsilon}$, that is to the Riemann Hypothesis; and \cite[\S12, the equivalence (iv)]{mm2} states directly that the native block budget through $N$ is $O(N^\varepsilon)$ if and only if the Riemann Hypothesis holds. The bound cannot be used with the crude height $\max_{k\le N}|M(k)|$: that would require $\max_{k\le N}|M(k)|\ll N^{1/4+\eta/2}\sqrt{R(m)}$, which in the regime $R(m)\ll m^{\varepsilon}$ of the target is false, since $M(x)=\Omega(\sqrt x)$. It has to be used block by block with $H_B$ of order $b_B^{1/2+\varepsilon}$ and block lengths of order $a_B$, which is RH together with closure-time control.
+\item[(b)] The history term in \eqref{eq:blockroute} is not small on its own: with the elementary bound $|m_1(x)|\le1$\footnote{From $\sum_{n\le x}\mu(n)\lfloor x/n\rfloor=1$: $x\,m_1(x)=1+\sum_{2\le n\le x}\mu(n)\{x/n\}$, and the last sum has at most $\lfloor x\rfloor-1$ terms of absolute value less than $1$, so $|x\,m_1(x)|\le\lfloor x\rfloor$.} one gets only $|2M(m)h(\mu\mathbf 1_{(m,N]})|\le4|M(m)|\le4\sqrt{mR(m)}$, which exceeds $N^\eta R(m)$ unless $R(m)\gg N^{1/2-2\eta}$. It is small only in combination with $F$ (the combination is \eqref{eq:debitM}) or if $\sum_{m<n\le N}\mu(n)/n$ is bounded by $N^\eta R(m)/|M(m)|$, which is again a statement of RH strength.
+\item[(c)] The triangular path of \cite[\S9, the limit $E^\triangle_a/a\to2+2\log\frac32-4\log2$]{mm2} shows that the block geometry alone permits $E_B\asymp a_B$. No bound that uses only location, length and return can give subpower growth; the arithmetic input must be a bound on the heights.
+\end{enumerate}
+
+\subsection{The whole signed cofactor flow}
+
+\textbf{Proved} (atlas entry M44, verified here). Let $p$ be a prime, $p\le N<p^2$, $L=\lfloor N/p\rfloor$, $x=\mu\mathbf 1_{[1,L]}$. Then $L<p$, so for $i\le L$ and $j\ge1$ one has $\max(i,pj)=pj$, and
+\begin{equation}\label{eq:flow}
+E(x-U_px)=E(x)+E(U_px)-2\ip x{U_px}=\Big(1+\frac1p\Big)R(L)-\frac2p\,M(L)\,m_1(L).
+\end{equation}
+The hypotheses $p\le N<p^2$ are exactly what makes $\max(i,pj)=pj$; without $L<p$ the cross term is not $M(L)m_1(L)/p$. From $|m_1(L)|\le1$ (footnote in \S5.1) and $M(L)^2\le LR(L)$ (Lemma~\ref{lem:cum}),
+\[
+\Big|E(x-U_px)-\Big(1+\frac1p\Big)R(L)\Big|\le\frac{2\sqrt{LR(L)}}p ,
+\]
+and this implies the supplied two-sided bound $(1\mp\sqrt L/p)R(L)$ exactly when $R(L)\ge4L/(\sqrt L-1)^2$. For smaller $R(L)$ the supplied bound needs $|2M(L)m_1(L)|\le(\sqrt L-1)R(L)$ separately; that inequality holds for $2\le L\le10^6$ with ratio at most $0.55$ (Section~\ref{sec:verification}) and is not implied by \eqref{eq:flow} alone. Under the Riemann Hypothesis it holds for all large $L$ since $|M(L)m_1(L)|\ll L^{\varepsilon}$.
+
+\emph{Transfer.} $W=\sum_{m<p\le N}U_p(\mu\mathbf 1_{[1,L_p]})$, so $\sum_p\big(\mu\mathbf 1_{[1,L_p]}-U_p\mu\mathbf 1_{[1,L_p]}\big)=\sum_p\mu\mathbf 1_{[1,L_p]}-W$. The vector $\sum_p\mu\mathbf 1_{[1,L_p]}$ has coefficient $\mu(n)\big(\pi(N/n)-\pi(m)\big)$ at $n\le m$; it is not $a=\mu\mathbf 1_{[1,m]}+u_0$, and the difference is of size $\mu(n)N/(n\log N)$ per coefficient. The incoming packet $a-W$ is therefore not a sum of single-prime flows $x_p-U_px_p$, and \eqref{eq:flow} cannot be summed over $p$ to bound $E(W)$, $\ip aW$ or $\Delta_N$. What \eqref{eq:flow} does control is the diagonal $E(v_p)=R(L_p)/p$ of Corollary~\ref{cor:gram}, which is at most $(\log2+o(1))\Rstar(m)$ in total, while $E(W)$ itself is at least $m/(25\log^2m)$.
+
+\subsection{Joint covariance of the prime copies}
+
+\textbf{Proved} (atlas entry M41, verified). The Gram matrix $K_{pq}=\sum_{i\le N/p}\sum_{j\le N/q}\mu(i)\mu(j)/\max(pi,qj)$ is $\ip{v_p}{v_q}$, and $E(W)=\sum_{p,q}K_{pq}$. Copies in a common quotient cell $L_p=L_q=L$ have $K_{pq}=\sum_{i,j\le L}\mu(i)\mu(j)/\max(pi,qj)$, an exact expression; neighbouring differences inside a cell are orthogonal to later coordinates because they have zero mass.
+
+\emph{Transfer.} By Corollary~\ref{cor:gram} the off-diagonal part of the Gram matrix is at least $(1-o(1))m/(24\log^2m)-(\log2+o(1))\Rstar(m)$: the common component is not a correction to the diagonal, it is all of $E(W)$. The cells also cancel against one another. The single cell $L=1$, the primes in $(N/2,N]$, has energy $\ge(1+o(1))N/(4\log^2N)$ by Lemma~\ref{lem:cum} and the prime number theorem, which at $N=10^6$ is about $1.3\times10^3$ against the computed $E(W)=104.6$ (Section~\ref{sec:verification}). An exact within-cell Gram matrix therefore has to be combined with the signed cross-cell terms before any norm is taken; keeping the common component ``explicitly included'' is necessary and is not an estimate.
+
+\subsection{Record reductions}
+
+\textbf{Remaining hypothesis} (atlas entries M15, M16, M38). M15 shows every strict $R$-record is a first passage of $|M|$; M16 shows that long records cost at most a bounded amount in the square-root envelope and reduces the needed estimate to a bound $M(N)^2/N\ll_\varepsilon N^\varepsilon(1+S(N^{1/6}))^5$ on a thinned set of records; M38 is the induction reproduced in Theorem~\ref{thm:equiv}. Each reduces the set of $N$ at which a bound is required and leaves the strength of the bound unchanged: a bound on $|M(N)|/\sqrt N$ at its first passages is a bound on $\sup_{x\le N}|M(x)|/\sqrt x$, and Theorem~\ref{thm:exponent} is the quantitative form of this for $\Hrec$ itself. The atlas labels each of these estimates open, and nothing in the present note changes that label.
+
+\section{The unsupported step}\label{sec:gap}
+
+By Proposition~\ref{prop:debit}, $\Hrec$ is the statement that at every large strict record
+\begin{equation}\label{eq:gap}
+\sum_{k=m}^{N-1}\frac{M(k)^2}{k(k+1)}+\frac{M(N)^2}N-\frac{M(m)^2}m\ \le\ A_\eta N^\eta R(m):
+\end{equation}
+the mean square of $M(k)/\sqrt k$ over $(m,N]$ in the measure $dk/k$, at the records of $R$, is at most a subpower multiple of the same quantity over $[1,m]$. Every supplied result is either an exact identity that preserves \eqref{eq:gap} (the debit identity, the block decomposition, the cofactor-flow identity, the Gram matrix) or a bound of the form \emph{energy $\le$ height$^2\times$weight} in which the heights are values of $M$. The unsupported step is the bound on those heights, equivalently on the left side of \eqref{eq:gap}, below the unconditional level $N\exp(-c(\log N)^{3/5}(\log\log N)^{-1/5})$ of Theorem~\ref{thm:exponent}(c). By Theorem~\ref{thm:exponent}(a) every improvement of the exponent below $1$ is a zero-free half-plane, and the exponent $\eta\to0$ is the Riemann Hypothesis.
+
+In the prime-side form, the same step reads: show that the signed cross term $2\ip aW$ cancels $E(u_0)+2M(m)h(u_0)+E(W)$ to within $A_\eta N^\eta R(m)$, while each of these three quantities is at least $m/(25\log^2m)$ (Theorem~\ref{thm:components}); that is a relative precision of order $N^{\eta-1/2}$. By Proposition~\ref{prop:partial}(v) the cancellation is termwise, $A(k)^2+S(k)^2-2A(k)S(k)=M(k)^2$, so no estimate of $A$ or of $S$ separately, and no regrouping of the prime copies among themselves, can replace an estimate of $M$ on $(m,N]$. The supplied bounds are compatible with $\Delta_N$ as large as the unconditional level, and none of them addresses the cancellation.
+
+The strongest statements established here toward the target are Theorem~\ref{thm:exponent} (the exact strength of $\Hrec(\theta)$ for each $\theta$), Theorem~\ref{thm:components} with Corollaries~\ref{cor:gram} and~\ref{cor:noterm} (the sign and the size of the cross term, and the impossibility of a term-by-term proof in the regime of the conclusion), and the identity \eqref{eq:flow} with its exact hypotheses. They are what the target rules out and what any proof has to go through; they do not reduce its strength.
+
+\section{A route around $h$: the two-endpoint compression}\label{sec:aroundh}
+
+The past enters the debit only through the scalar $h(u)$ (Lemma~\ref{lem:history}). The compression of atlas entry M37 removes it: subtract from the block the two-point vector that carries its total and its harmonic total; the remainder is orthogonal to the past, to the future and to its own endpoint pair. This section makes that exact, identifies the remainder, and records what the record estimate becomes without $h$.
+
+Write $u=\mu\mathbf 1_{(m,N]}$, $s=m+1$, $B=M(N)-M(m)$ for its total, $h=h(u)=\sum_{m<n\le N}\mu(n)/n$ for its harmonic total, $w_k=1/(k(k+1))$ for $m<k<N$, $\beta=\sum_{k=m+1}^{N-1}w_k=\frac1{m+1}-\frac1N$, and let
+\[
+\overline M=\frac1\beta\sum_{k=m+1}^{N-1}w_kM(k),\qquad \operatorname{Var}_w(M)=\frac1\beta\sum_{k=m+1}^{N-1}w_k\big(M(k)-\overline M\big)^2
+\]
+be the mean and the variance of $M$ on the interior of the block in the harmonic weight $w$.
+
+\begin{theorem}[The $h$-free decomposition; \textbf{Proved}]\label{thm:aroundh}
+Let $c=h-B/N$, $\hat u=(c/\beta)\,e_s+(B-c/\beta)\,e_N$ and $z=u-\hat u$. Then:
+\begin{enumerate}
+\item[(i)] $z$ has total zero and harmonic total zero; $\ip gz=0$ for every $g$ supported in $[1,m]$ or in $(N,\infty)$; and $\ip z{\hat u}=0$.
+\item[(ii)] $c/\beta=\overline M-M(m)$; the partial sums of $z$ are $M(k)-\overline M$ for $m<k<N$ and $0$ at $N$; hence $E(z)=\beta\operatorname{Var}_w(M)$.
+\item[(iii)] $\beta^{-1}\big(h+M(m)\beta-B/N\big)^2=\beta\,\overline M^{\,2}$.
+\item[(iv)] $\displaystyle \Delta_N=E(z)+\beta\,\overline M^{\,2}+\frac{M(N)^2}N-\frac{M(m)^2}{m+1}=\beta\operatorname{Var}_w(M)+\beta\,\overline M^{\,2}+\frac{M(N)^2}N-\frac{M(m)^2}{m+1}.$
+\end{enumerate}
+In particular $E(u)=E(z)+c^2/\beta+B^2/N$, which is the identity of M37, and $E(z)\ge0$ is its compatibility inequality $c^2\le\beta\,(E(u)-B^2/N)$.
+\end{theorem}
+
+\begin{proof}
+(i) The total of $\hat u$ is $B$, and $h(\hat u)=\frac{c/\beta}s+\frac{B-c/\beta}N=\frac c\beta\big(\frac1s-\frac1N\big)+\frac BN=h$. For $g$ supported in $[1,m]$ the proof of Lemma~\ref{lem:history} gives $\ip gz=G(m)h(z)=0$; for $g$ supported in $(N,\infty)$, $\ip zg=\sum_jg(j)j^{-1}\sum_iz(i)=0$; $\ip z{e_N}=N^{-1}\sum_iz(i)=0$, and since $\supp z\subseteq[s,N]$, $\ip z{e_s}=\sum_{i\ge s}z(i)/i=h(z)=0$. (ii) Abel summation gives $h=\sum_{k=m+1}^{N-1}w_k\big(M(k)-M(m)\big)+B/N$, so $c/\beta=\overline M-M(m)$. For $s\le k<N$ the partial sum of $z$ is $\big(M(k)-M(m)\big)-c/\beta=M(k)-\overline M$, and at $N$ it is $B-B=0$; Lemma~\ref{lem:cum} gives $E(z)=\sum w_k(M(k)-\overline M)^2$. (iii) $h+M(m)\beta-B/N=c+M(m)\beta=\beta\,\overline M$ by (ii). (iv) By (i), $E(u)=E(z)+E(\hat u)$ and $\ip{\mu\mathbf 1_{[1,m]}}u=\ip{\mu\mathbf 1_{[1,m]}}{\hat u}=M(m)h$; and $E(\hat u)=\frac{c_s^2}s+\frac{c_N^2}N+\frac{2c_sc_N}N=c_s^2\beta+\frac{B^2}N=\frac{c^2}\beta+\frac{B^2}N$ with $c_s=c/\beta$, $c_N=B-c_s$. Hence $\Delta_N=E(u)+2M(m)h=E(z)+c^2/\beta+2M(m)h+B^2/N$, and with $A=M(m)$,
+\begin{align*}
+\frac{c^2}\beta+2Ah+\frac{B^2}N&=\frac{(c+A\beta)^2}\beta+2A(h-c)-A^2\beta+\frac{B^2}N\\
+&=\frac{(c+A\beta)^2}\beta+\frac{(A+B)^2-A^2}N-A^2\beta=\frac{(c+A\beta)^2}\beta+\frac{M(N)^2}N-\frac{M(m)^2}{m+1},
+\end{align*}
+using $h-c=B/N$ and $\beta=\frac1{m+1}-\frac1N$. With (iii) this is (iv). Comparing (iv) with \eqref{eq:debitM} is the identity $\sum_{k=m+1}^{N-1}w_kM(k)^2=\beta\,\overline M^{\,2}+\beta\operatorname{Var}_w(M)$.
+\end{proof}
+
+\begin{corollary}[The record estimate without $h$; \textbf{Proved}]\label{cor:aroundh}
+$\Hrec$ is equivalent to the conjunction, at all large strict records and with constants changed by bounded factors, of
+\[
+\text{(V)}\ \ \beta\operatorname{Var}_w(M)\le A_\eta N^\eta R(m),\qquad
+\text{(M)}\ \ \beta\,\overline M^{\,2}\le A_\eta N^\eta R(m),\qquad
+\text{(T)}\ \ \frac{M(N)^2}N\le A_\eta N^\eta R(m).
+\]
+The mean obligation (M) is a bound on $h$ itself: at a strict record $N$ at which $\Hrec$ holds,
+\begin{equation}\label{eq:hbound}
+\Big|\sum_{m<n\le N}\frac{\mu(n)}n\Big|\le4\,(A_\eta N^\eta+1)^{1/2}\Big(\frac{R(m)}m\Big)^{1/2}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+In Theorem~\ref{thm:aroundh}(iv) every term is nonnegative except $-M(m)^2/(m+1)\ge-R(m)$, so $\Hrec$ gives each of (V), (M), (T) with $A_\eta N^\eta+1$ in place of $A_\eta N^\eta$; conversely $\Delta_N$ is at most their sum. For \eqref{eq:hbound}, (iii) gives $h=\beta\,\overline M-M(m)\beta+B/N$, and $\beta\le1/m$, $|M(m)|\le\sqrt{mR(m)}$, $|M(N)|\le\sqrt{NR(N)}\le\sqrt{N(1+A_\eta N^\eta)R(m)}$ at a record give $\beta|\overline M|\le\big(\beta(A_\eta N^\eta+1)R(m)\big)^{1/2}$, $\beta|M(m)|\le(R(m)/m)^{1/2}$ and $|B|/N\le(|M(N)|+|M(m)|)/N\le2\big((A_\eta N^\eta+1)R(m)/m\big)^{1/2}$.
+\end{proof}
+
+\begin{remark}[What the route around $h$ changes]\label{rem:aroundh}
+\begin{enumerate}
+\item[(a)] It removes the history interaction exactly. No scalar of the past multiplies a scalar of the block; the block interacts with the past and the future only through $\hat u$, and the remainders $z_j$ of disjoint blocks are mutually orthogonal and orthogonal to every endpoint pair, so their energies are permanent storage: $R(N)=\sum_jE(z_j)+E\big(\sum_j\hat u_j\big)$, the formula of M37.
+\item[(b)] It identifies the compression: $\hat u$ subtracts the harmonic-weighted mean level $\overline M$ of $M$ over the block, and $E(z)$ is the variance of $M$ about that level in the weight $w$. The scalars retained by M37, the total $B$ and the harmonic total $h$, are the terminal $M(N)$ and the mean $\overline M$.
+\item[(c)] It does not change the strength, as Theorem~\ref{thm:equiv} requires, and it shows where $h$ goes: it reappears as the mean obligation (M), which at records is the square-root-strength bound \eqref{eq:hbound} on the tail of the harmonic M\"obius sum beyond $m=\lfloor\sqrt N\rfloor$. Unconditionally only $\sum_{n>x}\mu(n)/n\ll\exp(-c\sqrt{\log x})$ is known \cite[Ch.~12]{ivic}, while $x^{-1/2+\varepsilon}$ is the Riemann Hypothesis bound. The variance obligation (V) is the centered mean square of $M$ over $(\sqrt N,N)$ in the measure $dk/k$, that is \eqref{eq:gap} with its mean removed. The route separates the obligation into the tail of the harmonic sum and the centered mean square; it shrinks neither.
+\end{enumerate}
+\end{remark}
+
+\section{Verification}\label{sec:verification}
+
+\begin{computation}[Identities and orders of magnitude]
+All quantities were computed in double precision from a sieve of $\mu$ and of the largest prime factor; the identity \eqref{eq:debit} is satisfied to $10^{-13}$.
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+ & $N=10^6$, $m=1000$ & $N=10^7$, $m=3162$\\
+\midrule
+$R(N)$ & $1.7082$ & $1.8365$\\
+$R(m)$ & $1.4594$ & $1.5409$\\
+$\Delta_N$ & $0.2488$ & $0.2957$\\
+$E(u_0)$ & $101.41$ & $529.47$\\
+$2M(m)h(u_0)$ & $0.285$ & $1.446$\\
+$E(W)$ & $104.58$ & $541.01$\\
+$-2\ip aW$ & $-206.03$ & $-1071.63$\\
+$\sum_pE(v_p)$ & $0.899$ & $0.927$\\
+$(\log2)\Rstar(m)$ & $1.205$ & $1.205$\\
+$m/(24\log^2m)$ & $0.87$ & $2.03$\\
+$N/\log^4N$ & $27.5$ & $148.2$\\
+strict records $\le N$ & $36$ & $227$\\
+last record $N'$; $\Delta_{N'}/R(\lfloor\sqrt{N'}\rfloor)$ & $355733$; $0.229$ & $6481601$; $0.274$\\
+\bottomrule
+\end{tabular}
+\end{center}
+At $N=10^6$: $S(k)=\pi(k)-\pi(m)$ for $m<k<2(m+1)$ was checked exactly; $S(k)\log^2k/k=-1.02,-1.10,-1.22,-1.25$ at $k=N/8,N/4,N/2,N$; the energy of the single cell $L=1$ is $1681.8$. The identity \eqref{eq:flow} was checked to $10^{-12}$ at $(N,p)=(10^5,1009),(10^5,317),(10^6,1009)$, and $|2M(L)m_1(L)|\le(\sqrt L-1)R(L)$ holds for $2\le L\le10^6$ with maximal ratio $0.546$ at $L=3$; also $|m_1(L)|\le\tfrac12$ for $2\le L\le10^6$.
+
+The decomposition of Theorem~\ref{thm:aroundh} was checked at the same two values: at $N=10^6$, $E(z)=\beta\operatorname{Var}_w(M)=0.201998$, $\beta\overline M^{\,2}=0.005894$, $M(N)^2/N=0.0449$, $M(m)^2/(m+1)=0.0040$, summing to $\Delta_N=0.248840$ to $10^{-15}$, with $\overline M=-2.43$, $\operatorname{sd}_w(M)=14.2$, $h=-4.21\times10^{-3}$ against $(R(m)/m)^{1/2}=3.8\times10^{-2}$; at $N=10^7$ the four terms are $0.233315$, $0.000353$, $0.1075$, $0.0455$, summing to $0.295678$, with $\overline M=-1.06$, $\operatorname{sd}_w(M)=27.2$, $h=-4.02\times10^{-3}$ against $2.2\times10^{-2}$. The total, the harmonic total and $\ip z{\hat u}$ vanished to $10^{-14}$, $10^{-18}$ and $10^{-16}$.
+\end{computation}
+
+\begin{thebibliography}{9}
+\bibitem{mm2} C.~Michaels, \emph{The M\"obius modifier, the dynamic DNA sieve, and the historical Green space}, version 2 (\texttt{mobius\_modifier\_v2.pdf}), 2026: Theorems on future orthogonality (\S5), the height bound (\S8), the native block budget (\S11), and the equivalence ``The Green energy and the Riemann Hypothesis'' (\S12).
+\bibitem{atlas} C.~Michaels, \emph{Theta kernels, Weil positivity, and the mathematical theory atlas}, through Checkpoint 20, 2026: entries M15, M16, M37, M38, M41, M44 (printed pages 412--421).
+\bibitem{titchmarsh} E.~C.~Titchmarsh, \emph{The theory of the Riemann zeta-function}, 2nd ed., revised by D.~R.~Heath-Brown, Oxford, 1986: \S14.25 and Theorem 14.2.
+\bibitem{ivic} A.~Ivi\'c, \emph{The Riemann zeta-function}, Wiley, 1985, Chapter 12 (the prime number theorem with error term and the corresponding bounds for $M(x)$, Theorem~12.7).
+\end{thebibliography}
+
+\end{document}

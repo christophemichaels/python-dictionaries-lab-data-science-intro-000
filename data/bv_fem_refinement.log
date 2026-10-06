@@ -1,0 +1,5 @@
+file                              a       primes ||f||    sup|f|   Var(f)    Var/(4sup)  H(1e-3)  increments per three decades
+fem_a0.5_primefree_124nodes.json 0.50000      0 1.00018  1.316720 5.266880  1.0000    1.8178   1.1565, nan, nan
+fem_a0.5_primefree_237nodes.json 0.50000      0 1.00016  1.316696 5.266785  1.0000    1.8179   1.1565, 0.5818, 0.3924
+fem_a0.5_primefree_471nodes.json 0.50000      0 1.00004  1.316694 5.266777  1.0000    1.7793   1.1041, 0.5300, 0.3779
+fem_a0.5_primefree.json          0.50000      0 1.00000  1.316694 5.266777  1.0000    1.8277   1.0120, 0.5826, 0.3927

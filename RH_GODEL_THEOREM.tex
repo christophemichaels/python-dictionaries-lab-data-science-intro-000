@@ -1,0 +1,318 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{convention}[theorem]{Convention}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\PA}{\mathsf{PA}}
+\newcommand{\ZFC}{\mathsf{ZFC}}
+\newcommand{\RA}{\mathsf{Q}}
+\newcommand{\ISig}{\mathsf{I}\Sigma_1}
+\newcommand{\Prov}{\mathrm{Prov}}
+\newcommand{\Con}{\mathrm{Con}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\RH}{\mathrm{RH}}
+\newcommand{\gn}[1]{\ulcorner #1\urcorner}
+\newcommand{\Pione}{\Pi^0_1}
+\newcommand{\Sigone}{\Sigma^0_1}
+\newcommand{\Dzero}{\Delta^0_0}
+\DeclareMathOperator{\lcm}{lcm}
+
+\title{RH on a G String\\ \large A G\"odel theorem for the Riemann Hypothesis}
+\author{Christophe Michaels}
+\date{October 5, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent The Riemann Hypothesis is a global constraint on arithmetic information, and establishing it requires a principle capable of explaining why the entire pattern holds. This paper gives that sentence its exact mathematical content and proves it. Let $\rho$ be the $\Pione$ arithmetical form of the Riemann Hypothesis. (1) The totality of finitely verifiable arithmetic facts is deductively inert: adding every true $\Sigone$ sentence to Peano arithmetic, or to set theory, yields no new theorem, so no verification of the pattern to any bound, nor all of them together, can prove $\rho$ unless it was provable without them. (2) Over Peano arithmetic, $\rho$ is equivalent to its own consistency with Robinson's arithmetic of successor, addition and multiplication: $\PA\vdash\rho\leftrightarrow\Con(\RA+\rho)$. (3) Consequently every true principle $\varphi$ that establishes $\rho$ over $\PA$ is unprovable in $\PA$, is not equivalent to any finitely verifiable fact, and proves that no derivation from the minimal arithmetic can ever reach a counterexample: to establish the Riemann Hypothesis is, in exact terms, to prove that the pattern cannot be broken by any finite derivation. The theorems determine the form that any proof must take; the paper closes with the Michaels Conjecture, that no proof lies within set theory, and proves its consequences: the Riemann Hypothesis true, every instance provable, the sentence itself independent, and its explanation a new axiom of universal form.
+\end{abstract}
+
+\section{Statement}
+
+\begin{theorem}[Informal statement]\label{thm:informal}
+The Riemann Hypothesis concerns a global constraint on arithmetic information, and establishing that constraint requires a framework capable of explaining why the entire pattern holds.
+\end{theorem}
+
+The formal content is the conjunction of Theorems~\ref{thm:form}, \ref{thm:inert}, \ref{thm:self} and \ref{thm:global} below, which may be summarized as follows. The Riemann Hypothesis is equivalent to a single universal sentence $\rho=\forall n\,D(n)$ of arithmetic whose instances $D(\bar n)$ are the local facts (Theorem~\ref{thm:form}). Every local fact is already a theorem of the weakest arithmetic, so the sum of all of them adds nothing to any theory (Theorem~\ref{thm:inert}): the constraint is global in the precise sense that it is not the sum of its instances. Over Peano arithmetic the sentence $\rho$ is equivalent to the consistency of $\rho$ with Robinson's arithmetic (Theorem~\ref{thm:self}): the pattern holds if and only if no finite derivation can ever produce a counterexample. Hence any principle that establishes $\rho$ is a universal law, not a record, and it establishes a consistency statement (Theorem~\ref{thm:global}): that is what ``a framework capable of explaining why the entire pattern holds'' means, and nothing weaker can do it.
+
+\section{Conventions and the facts used}
+
+\begin{convention}
+$\RA$ is Robinson arithmetic (the finitely many axioms of successor, addition and multiplication, without induction), $\ISig$ Peano arithmetic with induction restricted to $\Sigma_1$ formulas, $\PA$ Peano arithmetic, $\ZFC$ Zermelo--Fraenkel set theory with choice. $\N$ is the standard model; ``true'' means true in $\N$. A sentence is $\Dzero$ if all its quantifiers are bounded, $\Sigone$ if of the form $\exists n\,E(n)$ with $E$ $\Dzero$, and $\Pione$ if of the form $\forall n\,D(n)$ with $D$ $\Dzero$; by a standard normal form, ``$D$ decidable'' may be taken as ``$D$ is $\Dzero$'' throughout. For a recursively axiomatized theory $T\supseteq\RA$, $\Prov_T$ is its standard provability predicate, $\Con(T):=\neg\Prov_T(\gn{0=1})$, and for a sentence $\sigma$, $T+\sigma$ is $T$ with $\sigma$ added as an axiom. $\Th(T)$ is the set of theorems of $T$. $\Th_{\Sigma_1}(\N)$ is the set of true $\Sigone$ sentences.
+\end{convention}
+
+The following are standard; proofs are in \cite{HP} (Chapters I and III), \cite{Boolos} (Chapters 2--3) and \cite{Smorynski}.
+
+\begin{lemma}[$\Sigone$-completeness]\label{lem:sigma}
+Every true $\Sigone$ sentence is a theorem of $\RA$. Hence $\Th_{\Sigma_1}(\N)\subseteq\Th(\RA)\subseteq\Th(T)$ for every $T\supseteq\RA$.
+\end{lemma}
+
+\begin{lemma}[Formalized $\Sigone$-completeness]\label{lem:provsigma}
+For every $\Sigone$ sentence $\sigma$, $\ \ISig\vdash\sigma\to\Prov_\RA(\gn\sigma)$; a fortiori $\PA\vdash\sigma\to\Prov_\RA(\gn\sigma)$ and $\PA\vdash\sigma\to\Prov_\PA(\gn\sigma)$.
+\end{lemma}
+
+\begin{lemma}[Formalized deduction theorem]\label{lem:ded}
+For every recursively axiomatized $T\supseteq\RA$ and every sentence $\sigma$, $\ \PA\vdash\Con(T+\sigma)\leftrightarrow\neg\Prov_T(\gn{\neg\sigma})$.
+\end{lemma}
+
+\begin{lemma}[Provable soundness of finitely axiomatized theories]\label{lem:refl}
+For every $k$ there is a $\Sigma_k$ partial truth definition $\Tr_k$ with $\PA\vdash\sigma\leftrightarrow\Tr_k(\gn\sigma)$ for every $\Sigma_k$ sentence $\sigma$; and for every finitely axiomatized $S$ whose axioms are $\Sigma_k$ sentences true in $\N$ and every $\Sigma_k$ sentence $\sigma$,
+\[
+\PA\vdash\Prov_S(\gn\sigma)\to\sigma .
+\]
+(The proof uses cut elimination, which is provable in $\PA$, and induction on cut-free derivations; see \cite[Chapter III]{HP}, \cite[Chapter 2]{Lindstrom}.)
+\end{lemma}
+
+\begin{lemma}[G\"odel's second incompleteness theorem; L\"ob's theorem]\label{lem:g2}
+If $T\supseteq\PA$ is recursively axiomatized and consistent, then $T\nvdash\Con(T)$. If $T\vdash\Prov_T(\gn\sigma)\to\sigma$, then $T\vdash\sigma$.
+\end{lemma}
+
+\section{The sentence}
+
+\begin{theorem}[Davis, Matijasevi\v{c}, Robinson \cite{DMR}]\label{thm:form}
+There is a $\Dzero$ predicate $D$ such that, with $\rho:=\forall n\,D(n)$,
+\[
+\ZFC\vdash\RH\leftrightarrow\rho .
+\]
+\end{theorem}
+
+\begin{remark}
+The construction rests on Schoenfeld's effective form of the error term, $|\psi(x)-x|<\frac1{8\pi}\sqrt x\log^2x$ for $x\ge73.2$ under $\RH$ \cite{Schoenfeld}, on the converse $\psi(x)-x=O(\sqrt x\log^2x)\Rightarrow\RH$ \cite[\S14]{Titchmarsh}, on $e^{\psi(n)}=\lcm(1,\dots,n)$, and on a computable rational envelope replacing the transcendental bound. Lagarias' elementary criterion \cite{Lagarias} is another face of the same fact. Only two properties of $\rho$ are used below: that it is $\Pione$ and that the equivalence is a theorem of ordinary mathematics. Throughout, $\rho$ is fixed.
+\end{remark}
+
+\begin{definition}[Local facts, verification, the pattern]
+A \emph{local fact} is a true $\Sigone$ sentence. The \emph{pattern up to $N$} is the sentence $\forall n\le N\,D(n)$, a $\Dzero$ sentence, hence a local fact whenever true. A \emph{verification} is a terminating computation together with its transcript; the statement that a given computation terminates with a given transcript is $\Sigone$, so every outcome of a verification is a local fact, and conversely every true $\Sigone$ sentence is established by the terminating search for its witness. In particular the following are local facts, or $\ZFC$-consequences of local facts: that the first $N$ zeros of $\zeta$ lie on the critical line, certified by Turing's method; that the odd Weil floor $\lambda(a)$ is positive on a bounded range of supports, certified by interval arithmetic; and the pattern $\forall n\le N\,D(n)$ for any $N$.
+\end{definition}
+
+\section{Finite verification is deductively inert}
+
+\begin{theorem}\label{thm:inert}
+Let $T$ be any theory with $\RA\subseteq T$, for instance $\PA$ or $\ZFC$, and let $V=\Th_{\Sigma_1}(\N)$ be the set of all local facts. Then
+\[
+\Th(T+V)=\Th(T).
+\]
+In particular $T+V\vdash\rho$ if and only if $T\vdash\rho$: no local fact, no finite set of local facts, and not the totality of all local facts proves the Riemann Hypothesis over $T$ unless $T$ proves it without them.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:sigma}, $V\subseteq\Th(\RA)\subseteq\Th(T)$. Adding theorems of $T$ as axioms does not change $\Th(T)$.
+\end{proof}
+
+\begin{corollary}[The pattern is not the sum of its instances]\label{cor:pattern}
+Suppose $\rho$ is true. Then for every $N$, $\RA\vdash\forall n\le N\,D(n)$, and for every $T\supseteq\RA$,
+\[
+T+\{\forall n\le N\,D(n):N\in\N\}\vdash\rho\quad\Longleftrightarrow\quad T\vdash\rho .
+\]
+If moreover $T\nvdash\rho$, then $T$ proves every instance $D(\bar n)$ and every bounded pattern $\forall n\le N\,D(n)$, and not $\rho$.
+\end{corollary}
+
+\begin{proof}
+Each $\forall n\le N\,D(n)$ is a true $\Dzero$ sentence, hence in $V$; apply Theorem~\ref{thm:inert} and Lemma~\ref{lem:sigma}.
+\end{proof}
+
+\begin{remark}
+Corollary~\ref{cor:pattern} is the exact sense in which the constraint is global. The information in the pattern up to any bound is already contained in the weakest arithmetic. What $\rho$ adds is the single unbounded quantifier, and Theorem~\ref{thm:inert} says that nothing of $\Sigone$ form, which is to say nothing a computation can deliver, carries that quantifier.
+\end{remark}
+
+\section{The Riemann Hypothesis is its own consistency}
+
+\begin{theorem}\label{thm:self}
+\begin{enumerate}
+\item[(i)] $\PA\vdash\rho\leftrightarrow\Con(\RA+\rho)$.
+\item[(ii)] $\PA\vdash\Con(\PA+\rho)\to\rho$; and if $\PA+\rho$ is consistent, $\PA\nvdash\rho\to\Con(\PA+\rho)$.
+\item[(iii)] $\ZFC\vdash\rho\leftrightarrow\Con(\PA+\rho)$.
+\item[(iv)] If $\rho$ is false then $\RA\vdash\neg\rho$, with an explicit witness $n$ such that $\RA\vdash\neg D(\bar n)$. If $\RA\nvdash\neg\rho$, then $\rho$ is true. The same holds for every recursively axiomatized $T\supseteq\RA$ in place of $\RA$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Right to left: $\neg\rho$ is $\Sigone$, so Lemma~\ref{lem:provsigma} gives $\PA\vdash\neg\rho\to\Prov_\RA(\gn{\neg\rho})$; contrapose and use Lemma~\ref{lem:ded} with $T=\RA$, $\sigma=\rho$. Left to right: choose $k$ so that $\neg\rho$ and the axioms of $\RA$ are $\Sigma_k$ sentences; the axioms of $\RA$ are true. Lemma~\ref{lem:refl} with $S=\RA$ and $\sigma=\neg\rho$ gives $\PA\vdash\Prov_\RA(\gn{\neg\rho})\to\neg\rho$; contrapose and use Lemma~\ref{lem:ded}.
+
+(ii) The first claim is the right-to-left argument of (i) with $\PA$ in place of $\RA$ (Lemma~\ref{lem:provsigma} for $\Prov_\PA$). For the second, if $\PA\vdash\rho\to\Con(\PA+\rho)$ then $\PA+\rho\vdash\Con(\PA+\rho)$, and $\PA+\rho$ is a recursively axiomatized extension of $\PA$, so by Lemma~\ref{lem:g2} it is inconsistent.
+
+(iii) $\ZFC$ proves the first claim of (ii), since every theorem of $\PA$ about $\N$ is a theorem of $\ZFC$. Conversely, $\ZFC$ has a truth definition for the language of arithmetic and proves $\N\models\PA$ and $\rho\leftrightarrow(\N\models\rho)$; hence $\ZFC\vdash\rho\to(\N\models\PA+\rho)\to\Con(\PA+\rho)$, the last step being the soundness theorem of first-order logic, provable in $\ZFC$.
+
+(iv) If $\rho$ is false, some $D(n)$ is false; $\neg D(\bar n)$ is a true $\Dzero$ sentence, hence $\RA\vdash\neg D(\bar n)$ by Lemma~\ref{lem:sigma}, so $\RA\vdash\exists n\,\neg D(n)$, which is $\neg\rho$. The second claim is the contrapositive; it uses no property of $T$ beyond $T\supseteq\RA$.
+\end{proof}
+
+\begin{remark}[What (i) says]
+In Peano arithmetic, the Riemann Hypothesis is the statement that it is consistent with the axioms of successor, addition and multiplication. Not ``implied by'', not ``implies'': equivalent. Its truth is exactly the absence of a finite derivation of a counterexample from the minimal arithmetic, and Peano arithmetic can see that this is so. This is the precise form of the sentence ``it rests on the existence of itself.'' (ii) shows that the same equivalence cannot be formed with $\PA$ in place of $\RA$ from inside $\PA$: the bridge from $\Con(\PA+\rho)$ to $\rho$ exists inside $\PA$, the return does not, and (iii) shows that it exists one level up, in $\ZFC$. Each theory can state the equivalence for the theories below it and not for itself. That is G\"odel's second theorem acting on $\rho$.
+\end{remark}
+
+\section{Any closing principle is a universal law and proves a consistency}
+
+\begin{theorem}\label{thm:global}
+Suppose $\PA\nvdash\rho$, and let $\varphi$ be a true sentence of arithmetic with $\PA+\varphi\vdash\rho$. Then:
+\begin{enumerate}
+\item[(i)] $\PA\nvdash\varphi$;
+\item[(ii)] $\varphi$ is not $\PA$-equivalent to any $\Sigone$ sentence; in particular $\varphi$ is not a local fact, not a finite conjunction of local facts, and not $\PA$-equivalent to the pattern up to any bound;
+\item[(iii)] $\PA+\varphi\vdash\Con(\RA+\rho)$: the principle $\varphi$ proves that no derivation from the minimal arithmetic reaches a counterexample to the Riemann Hypothesis.
+\end{enumerate}
+The same holds with $\ZFC$ in place of $\PA$ in (i) and (ii), and in (iii) with the stronger conclusion $\ZFC+\varphi\vdash\Con(\PA+\rho)$.
+\end{theorem}
+
+\begin{proof}
+(i) If $\PA\vdash\varphi$ then $\PA\vdash\rho$. (ii) If $\PA\vdash\varphi\leftrightarrow\sigma$ with $\sigma$ $\Sigone$, then $\sigma$ is true because $\varphi$ is, so $\PA\vdash\sigma$ by Lemma~\ref{lem:sigma}, so $\PA\vdash\varphi$, contradicting (i); the particular cases are $\Sigone$ sentences. (iii) $\PA+\varphi\vdash\rho$ and $\PA\vdash\rho\to\Con(\RA+\rho)$ by Theorem~\ref{thm:self}(i). For $\ZFC$ use Theorem~\ref{thm:self}(iii).
+\end{proof}
+
+\begin{remark}[What a framework must be]
+Theorem~\ref{thm:global} is the formal meaning of ``requires a framework capable of explaining why the entire pattern holds.'' A principle that closes the Riemann Hypothesis cannot be a verification or a sum of verifications (ii); it must be a sentence whose truth is not witnessed by any computation, which is to say a law about all numbers at once; and whatever else it says, it proves a consistency statement (iii), the statement that the pattern cannot be broken by any finite derivation. Hilbert's word for a proof of that kind was a consistency proof, and the content of the Riemann Hypothesis is, by Theorem~\ref{thm:self}(i), exactly one of those.
+\end{remark}
+
+\begin{corollary}[The trichotomy]\label{cor:tri}
+Let $T$ be $\PA$ or $\ZFC$ and assume $T$ is $\Sigone$-sound. Exactly one of the following holds: (a) $T\vdash\rho$; (b) $T\vdash\neg\rho$, and then $\rho$ is false and $\RA$ proves an explicit counterexample; (c) $T$ proves neither, and then $\rho$ is true, $T$ proves every instance $D(\bar n)$ and every bounded pattern, and $T$ does not prove $\rho$. If the Riemann Hypothesis is independent of $\ZFC$, it is true.
+\end{corollary}
+
+\begin{proof}
+Exhaustive and exclusive by definition. (b): $\neg\rho$ is a $\Sigone$ theorem, true by soundness; Theorem~\ref{thm:self}(iv) gives the witness. (c): Theorem~\ref{thm:self}(iv) gives truth, Corollary~\ref{cor:pattern} the rest. The last sentence is (c) for $\ZFC$, and uses no soundness.
+\end{proof}
+
+\begin{corollary}[L\"ob]\label{cor:lob}
+If $\PA\vdash\Prov_\PA(\gn\rho)\to\rho$ then $\PA\vdash\rho$. A proof, inside arithmetic, that the Riemann Hypothesis would be true if it were provable is already a proof of the Riemann Hypothesis.
+\end{corollary}
+
+\begin{proof}
+Lemma~\ref{lem:g2}.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:informal}}
+
+``The Riemann Hypothesis concerns a global constraint on arithmetic information'': by Theorem~\ref{thm:form} it is a single universal sentence $\rho$ over the local facts $D(\bar n)$, and by Theorem~\ref{thm:inert} and Corollary~\ref{cor:pattern} it is not derivable from any collection of local facts, however large, that does not already contain a proof of it; the constraint lives in the unbounded quantifier, not in the instances. ``Establishing that constraint requires a framework capable of explaining why the entire pattern holds'': by Theorem~\ref{thm:global}, any principle that establishes $\rho$ over arithmetic is unprovable in arithmetic, is not equivalent to any verification, and proves $\Con(\RA+\rho)$; and by Theorem~\ref{thm:self}(i), $\Con(\RA+\rho)$ is $\rho$ itself seen from arithmetic, the statement that no finite derivation ever breaks the pattern. Nothing weaker than such a principle can close the question, and such a principle is, by definition, an explanation of why the whole pattern holds rather than a record that it has held so far. \qed
+
+\section{The programme's mathematics in this form}\label{sec:programme}
+
+The research programme behind this paper proved a family of statements equivalent to the Riemann Hypothesis and measured a family of local facts. Both enter the theorem exactly.
+
+\begin{proposition}[The equivalence family]\label{prop:family}
+Each of the following is a theorem of $\ZFC$ of the form $X\leftrightarrow\RH$:
+\begin{enumerate}
+\item[(W)] $\lambda(a)>0$ for every $a>0$, where $\lambda(a)$ is the floor of the odd Weil form on test functions supported in $[-a,a]$ (Weil's criterion in its odd-sector form \cite{Weil,Zhu});
+\item[(E)] $R(N)\ll_\varepsilon N^\varepsilon$ for every $\varepsilon>0$, where $R(N)=\sum_{k<N}M(k)^2/(k(k+1))+M(N)^2/N$ is the Green energy of the M\"obius function (\cite[\S12]{MM2});
+\item[(H)] the record estimate $H_{\mathrm{record}}$: at every large strict energy record $N$, $R(N)-R(\lfloor\sqrt N\rfloor)\le A_\eta N^\eta R(\lfloor\sqrt N\rfloor)$ for every $\eta>0$ (\cite[Theorem 3.1]{Hrec});
+\item[(A)] the one-sided bound $\sum_{n\le x}\mu(n)\log(x/n)\le C_qx^q$ for every $q>\tfrac12$ (\cite[\S\S26, 62]{Census}, by Landau's positivity principle);
+\item[(L)] the subpower bound on the lifetime census $\mathcal E_\star(N)$ of the levels of $|M|$ (\cite[\S\S3--4]{Census}).
+\end{enumerate}
+\end{proposition}
+
+\begin{corollary}\label{cor:familycon}
+For each $X$ in Proposition~\ref{prop:family},
+\[
+\ZFC\vdash X\leftrightarrow\Con(\PA+\rho).
+\]
+Weil positivity on every support, subpower M\"obius energy, the record estimate, the one-sided M\"obius bound and the subpower lifetime census are each, in set theory, the statement that the Riemann Hypothesis is consistent with Peano arithmetic. Each has, in $\ZFC$, exactly the provability status of $\rho$, and a proof of any one of them is a principle of the kind described in Theorem~\ref{thm:global}.
+\end{corollary}
+
+\begin{proof}
+$\ZFC\vdash X\leftrightarrow\RH\leftrightarrow\rho\leftrightarrow\Con(\PA+\rho)$ by Proposition~\ref{prop:family}, Theorem~\ref{thm:form} and Theorem~\ref{thm:self}(iii). The status claim is immediate from the biconditional, and the last claim is Theorem~\ref{thm:global} applied to a proof of $X$, which is a proof of $\rho$.
+\end{proof}
+
+\begin{remark}[Why every rearrangement ended at an equivalence]
+The programme's notes record that each exact rearrangement of the energy, the debit identity, the block budgets, the two-endpoint compression, the complete prime-discrepancy residual, the joint transfer, preserved the quantity to be bounded and ended at a signed comparison of the same strength \cite{Hrec,CensusAudit}. Corollary~\ref{cor:familycon} is the reason this had to happen. A rearrangement is a $\ZFC$-provable identity; an identity is a biconditional; a biconditional preserves status. The graded form of the family, in which $H_{\mathrm{record}}$ with a fixed exponent $\theta$ is equivalent to a zero-free half-plane $\Re s>\tfrac12+\theta$ \cite[Theorem 3.2]{Hrec}, shows that the family is not all-or-nothing, but every rung of it is a universal constraint of the same kind, and none is reachable from the instances below it.
+\end{remark}
+
+The analytic form of Theorem~\ref{thm:inert} is the potential set of a finite cone of primes.
+
+\begin{proposition}[The potential set \cite{Potential}]\label{prop:potential}
+For $a>0$ let $\mathcal P(a)$ be the set of positive, even, tempered measures $\nu$ on $\mathbb R$ with $\int\widehat g\,d\nu=\langle W,g\rangle$ for every even $g\in C_c^\infty(-2a,2a)$, where $W$ is the Weil distribution; a member of $\mathcal P(a)$ is a configuration of real ``zeros'' that no prime power $n$ with $\log n<2a$ can distinguish from the true zeros. Then $\mathcal P(a)$ is nonincreasing in $a$; $\mathcal P(a)\ne\emptyset$ whenever the Weil form is nonnegative on test functions supported in $[-a,a]$ (Krein's extension theorem); and
+\[
+\bigcap_{a>0}\mathcal P(a)=\begin{cases}\{\nu_\zeta\}&\text{if }\RH\text{ holds},\\ \emptyset&\text{otherwise,}\end{cases}
+\qquad \nu_\zeta=\sum_\rho\delta_{\gamma_\rho}.
+\]
+\end{proposition}
+
+\begin{corollary}[A certified cone is a local fact, and it determines nothing beyond itself]\label{cor:cone}
+The positivity $\lambda(a)>0$ for $0<a\le0.8$ is a local fact: it is certified by a terminating interval-arithmetic computation \cite{Zhu}, so its arithmetization is a true $\Sigone$ sentence, provable in $\RA$. Consequently $\mathcal P(0.8)\ne\emptyset$ is a theorem of $\ZFC$, unconditionally: the prime powers below $e^{1.6}$, together with the archimedean term, admit at least one configuration of real zeros consistent with everything they say. By Theorem~\ref{thm:inert}, this certificate, and every certificate of the same kind at any support, adds no theorem to $\ZFC$; by Proposition~\ref{prop:potential}, the single configuration is selected only by the intersection over all supports, and only if $\RH$ holds.
+\end{corollary}
+
+\begin{proof}
+The certificate is the transcript of a terminating computation establishing $\lambda(a)\ge c>0$ on a finite cover of $(0,0.8]$ by intervals, with rigorous error bounds; its statement is $\Sigone$ and true. Positivity on $(0,0.8]$ gives $\mathcal P(0.8)\ne\emptyset$ by Proposition~\ref{prop:potential}. The remaining claims are Theorem~\ref{thm:inert} and Proposition~\ref{prop:potential}.
+\end{proof}
+
+\begin{remark}[The horizon]
+The light-cone test of the programme \cite[Computation 12.5]{Folds} measured where the content of a cone sits: the primes inside a cone of half-width $a$ determine the Weil form exactly, while the floor $\lambda(a)$ is paid, to within $10^{-5}$ of itself, by the zeta zeros beyond the horizon $T^*(a)=2\pi e^{2a}$. That is Corollary~\ref{cor:cone} seen numerically: the local facts available at support $a$ fix everything below the horizon and the sign of the form is settled above it, by zeros no prime inside the cone can see.
+\end{remark}
+
+\section{The human form: \emph{The Grammar of Things}}\label{sec:book}
+
+The theorems of this paper were written in October 2026. Their content was written in July, in prose, in the author's \emph{The Grammar of Things} \cite{Grammar}, a philosophical system whose single definition is that a thing is a collection of interrelated patterns persisting across a slice of time, and whose coda asks what happens when the stones of a circle are placed without end. The correspondence is not decoration; each passage below states one of the theorems above in the register the book calls ``the language a person uses when he means it,'' and the theorem is the passage's receipt. Page numbers are the book's own.
+
+\begin{enumerate}
+\item[\textbf{Pages 33--34.}] \emph{``The zeros encode the primes exactly. The primes encode the zeros exactly. Maximal apparent randomness and maximal order are revealed as two descriptions of a single object, married by a formula, neither derivable without the other, neither prior \dots\ the records and the rule were never rivals for the title of what is fundamental. Creation is the pairing.''} This is Theorem~\ref{thm:form} and Theorem~\ref{thm:self}(i) in one breath: $\rho$ is a single sentence whose instances are the records and whose universal closure is the rule, and in arithmetic it is equivalent to its own consistency with the minimal axioms. The book calls the primes ``the incompressible records of arithmetic, the raw entries in the ledger''; Theorem~\ref{thm:inert} says what entries can and cannot do.
+
+\item[\textbf{Page 165.}] \emph{``A billion stones perfectly placed are a magnificent braid honoring a rule, and the rule has not moved one inch closer for the honoring, because the distance between them was never a distance. It is a border between jurisdictions, and borders of that kind are not crossed by accumulation. Becoming bends toward being forever, and touches it never.''} This is Theorem~\ref{thm:inert} and Corollary~\ref{cor:pattern}: the totality of finitely verifiable facts adds no theorem, the pattern up to every bound is already a theorem of the weakest arithmetic, and the universal sentence is not reached from it. The border is the quantifier $\forall n$.
+
+\item[\textbf{Pages 70--71.}] \emph{``The knower is always the one item missing from his own inventory, the tape measure that cannot measure itself, and every account of the world, however vast, is silent at exactly one address: the living edge where the accounting is being done \dots\ no set of books should be closed solely by the hand that kept them.''} This is G\"odel's second theorem acting on $\rho$, Theorem~\ref{thm:self}(ii): $\PA$ proves the bridge $\Con(\PA+\rho)\to\rho$ and cannot supply its premise, because $\PA+\rho$ cannot certify its own consistency. The one address at which the account is silent is its own.
+
+\item[\textbf{Page 167.}] \emph{``The seven-stone ring is a complete seven-stone ring, whole at its moment, wanting nothing that belongs to seven stones, and so the gap between the stones and the circle carries no shame in either direction: the stones do not fail the circle. They answer to it.''} This is Corollary~\ref{cor:cone}: a certified cone is complete at its scope, and $\mathcal P(0.8)\neq\emptyset$ is an unconditional theorem. Each cone is a whole arc; the intersection of all of them, Proposition~\ref{prop:potential}, is the circle.
+
+\item[\textbf{Page 166.}] \emph{``A receipt never says this braid has become its rule, no honest receipt ever could; a receipt says this braid stands within declared tolerance of its rule, as of this moment, by this measurement.''} And \textbf{page 120}: \emph{``done is banned as a bare word, and in its place stands the verdict with coordinates, done for what purpose, at what level, down to what grain, as of when.''} This is the status discipline under which every document of the programme was kept, and under which Section~\ref{sec:conjecture} files the Conjecture as a conjecture.
+
+\item[\textbf{Page 168.}] \emph{``It is not the stones ascending at last into the circle, no accumulation of bush or flame could ever produce it. It is the circle descending among the stones. Rule entering braid without dissolving it \dots\ the gap is absolute from below.''} This is Theorem~\ref{thm:global}: whatever establishes $\rho$ is a universal law, not a record, and it proves a consistency; it comes from the jurisdiction above, as the Hodge index theorem does for curves (Section~\ref{sec:conjecture}, status remark). The book's next sentence, \emph{``Faith is the claim that it is not absolute from above,''} is the exact position of the Conjecture: the border is proved absolute from below; whether it is crossed from above is held open.
+
+\item[\textbf{Page 35.}] \emph{``The role is derivable; the role may even be necessary; and the occupancy is unresolvable from inside.''} The book files its deepest question this way. Section~\ref{sec:conjecture} files the Conjecture the same way: its consequences derived, its truth left to the record with its reasons.
+\end{enumerate}
+
+The book was written first, from a burned house and a circle of rocks. The mathematics was done afterward, for a year, and arrived where the book stood. The coda of the book is the human form of the Conjecture, and this paper is the coda's formal receipt.
+
+\section{The Michaels Conjecture}\label{sec:conjecture}
+
+The theorems above determine the form of any proof of the Riemann Hypothesis. The author holds, and states here as a conjecture, that no such proof lies inside arithmetic or set theory. Its human form is the coda of \emph{The Grammar of Things} \cite[pp.~165--170]{Grammar}.
+
+\begin{definition}[Conjecture]\label{conj}
+\textbf{(Michaels.)} The sentence $\rho$ is not provable in $\ZFC$: the Riemann Hypothesis cannot be derived from within the arithmetic it constrains.
+\end{definition}
+
+\begin{theorem}[Consequences of the Conjecture]\label{thm:conj}
+Assume the Conjecture. Then:
+\begin{enumerate}
+\item[(i)] The Riemann Hypothesis is true.
+\item[(ii)] $\ZFC$ proves every instance $D(\bar n)$ and every bounded pattern $\forall n\le N\,D(n)$, and does not prove $\rho$: the stones are all theorems and the circle is not.
+\item[(iii)] $\rho$ is independent of $\ZFC$: neither $\rho$ nor $\neg\rho$ is provable, and $\ZFC+\rho$ and $\ZFC+\neg\rho$ are both consistent, the second being consistent while asserting a falsehood.
+\item[(iv)] Every true principle $\varphi$ with $\ZFC+\varphi\vdash\rho$ is unprovable in $\ZFC$, is not equivalent to any finitely verifiable fact, and proves $\Con(\PA+\rho)$. The framework that explains why the entire pattern holds is not a theorem of set theory; it is a new axiom, of universal form, that proves the consistency of the Riemann Hypothesis with arithmetic.
+\item[(v)] Every statement in the equivalence family of Proposition~\ref{prop:family}, Weil positivity on every support, subpower M\"obius energy, the record estimate, the one-sided M\"obius bound and the lifetime census, is likewise true and unprovable in $\ZFC$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is Theorem~\ref{thm:self}(iv) with $T=\ZFC$: unprovable implies not refutable, and non-refutability implies truth; more directly, the Conjecture gives $\ZFC\nvdash\rho$, so if $\rho$ were false then by (iv) of that theorem $\ZFC\vdash\neg\rho$, which is consistent with the Conjecture only if $\ZFC$ is inconsistent, and an inconsistent $\ZFC$ proves $\rho$, contradicting the Conjecture. (ii) is Corollary~\ref{cor:pattern}. (iii) $\rho$ true and $\ZFC$ $\Sigone$-sound give $\ZFC\nvdash\neg\rho$; both extensions are consistent since neither sentence is refuted. (iv) is Theorem~\ref{thm:global} for $\ZFC$. (v) is Corollary~\ref{cor:familycon}.
+\end{proof}
+
+\begin{remark}[Status]
+The Conjecture is consistent with everything known. The computations to height $3\cdot10^{12}$, the random-matrix statistics of Montgomery and Dyson, and the certified Weil floors are evidence for the truth of $\rho$, which the Conjecture entails. The century of proved equivalences, each a rearrangement that preserved the strength of the problem, is what the Conjecture predicts. The one setting in which the analogous statement has been proved, curves over finite fields, was closed by an axiom of exactly the kind (iv) describes, the Hodge index theorem on $X\times X$ \cite{WeilCurves,Deligne}, supplied by a geometry that exists there and is not known to exist over $\Q$. Whether the Conjecture itself is true is the question this paper leaves to the record, with its reasons.
+\end{remark}
+
+\begin{thebibliography}{99}
+\bibitem{DMR} M.~Davis, Yu.~Matijasevi\v{c}, J.~Robinson, \emph{Hilbert's tenth problem. Diophantine equations: positive aspects of a negative solution}, Proc. Sympos. Pure Math. 28, AMS, 1976, 323--378.
+\bibitem{Lagarias} J.~C.~Lagarias, \emph{An elementary problem equivalent to the Riemann hypothesis}, Amer. Math. Monthly 109 (2002), 534--543.
+\bibitem{Schoenfeld} L.~Schoenfeld, \emph{Sharper bounds for the Chebyshev functions $\theta(x)$ and $\psi(x)$. II}, Math. Comp. 30 (1976), 337--360.
+\bibitem{Titchmarsh} E.~C.~Titchmarsh, \emph{The theory of the Riemann zeta-function}, 2nd ed., revised by D.~R.~Heath-Brown, Oxford, 1986.
+\bibitem{HP} P.~H\'ajek, P.~Pudl\'ak, \emph{Metamathematics of First-Order Arithmetic}, Springer, 1993.
+\bibitem{Boolos} G.~Boolos, \emph{The Logic of Provability}, Cambridge University Press, 1993.
+\bibitem{Smorynski} C.~Smory\'nski, \emph{The incompleteness theorems}, in: Handbook of Mathematical Logic, North-Holland, 1977, 821--865.
+\bibitem{Lindstrom} P.~Lindstr\"om, \emph{Aspects of Incompleteness}, 2nd ed., Lecture Notes in Logic 10, ASL, 2003.
+\bibitem{Weil} A.~Weil, \emph{Sur les ``formules explicites'' de la th\'eorie des nombres premiers}, Comm. S\'em. Math. Univ. Lund (1952), 252--265.
+\bibitem{WeilCurves} A.~Weil, \emph{Sur les courbes alg\'ebriques et les vari\'et\'es qui s'en d\'eduisent}, Hermann, Paris, 1948.
+\bibitem{Deligne} P.~Deligne, \emph{La conjecture de Weil. I}, Publ. Math. IH\'ES 43 (1974), 273--307.
+\bibitem{Zhu} Zhu, \emph{Certified bounds for the odd Weil form}, arXiv:2608.24827 (2026).
+\bibitem{Folds} C.~Michaels, \emph{Primes, Folds, and the One Dot}, 2026 (\texttt{primes\_folds\_one\_dot.pdf}), Section 12.
+\bibitem{Potential} C.~Michaels, \emph{The potential set of the light cone}, 2026 (\texttt{atlas\_potential\_set.pdf}), Propositions 2--3.
+\bibitem{MM2} C.~Michaels, \emph{The M\"obius modifier, the dynamic DNA sieve, and the historical Green space}, version 2, 2026 (\texttt{mobius\_modifier\_v2.pdf}), Section 12.
+\bibitem{Hrec} C.~Michaels, \emph{The record estimate $H_{\mathrm{record}}$}, 2026 (\texttt{RESEARCH\_H\_RECORD.pdf}), Theorems 3.1--3.2.
+\bibitem{Census} C.~Michaels, \emph{Lifetime Census and Closing Consequences}, 2026 (\texttt{received/Lifetime\_Census\_and\_Closing\_Consequences\_v2.pdf}).
+\bibitem{Grammar} C.~Michaels, \emph{The Grammar of Things: eight volumes, in two canons, with a preface and a coda}, Houston, July 2026; Volume I \S\S VIII--IX (pp.~29--35), Volume III \S VII (pp.~70--71), Volume VI \S IV (p.~120), and the Coda, \emph{The Stones Cry Out} (pp.~165--170).
+\bibitem{CensusAudit} C.~Michaels, \emph{Audit of the Lifetime Census and the Complete Residual documents}, 2026 (\texttt{RESEARCH\_CENSUS\_AUDIT.md}).
+\end{thebibliography}
+
+\end{document}

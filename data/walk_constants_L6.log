@@ -1,0 +1,11 @@
+Monte Carlo with 2000000 samples per order
+  n   J_n (± s.e.)        kappa_{2(n-1)} = 2 J_n/n!      exact J_2 = 5/12 = 0.416667
+  2   0.416585 ± 0.000188     0.416585
+  3   0.708264 ± 0.000412     0.236088
+  4   1.980601 ± 0.001392     0.165050
+limiting kurtosis kappa_4/kappa_2^2 = 1.3604   (semicircle 2, Gaussian 3)
+kappa_6/kappa_2^3 = 2.2830   (semicircle 5, Gaussian 15)
+backtracking groups of m_4 (exact integral): 11/60 = 0.183333;  kappa_4 = J_3/3 + 11/60 = 0.419421  (17/72 + 11/60 = 151/360 = 0.419444 if J_3 = 17/24)
+limiting kurtosis with the backtracking groups: 2.4168
+two-cancellation groups of m_6: 2 L_6 = 0.43589 ± 0.00189;  kappa_6 = J_4/12 + 2 L_6 = 0.60094;  kappa_6/kappa_2^3 = 8.312
+exact moments for comparison (edge_moments.log): m_4/(2a)^4 = 0.243, 0.287, 0.308, 0.324 at a = 2, 2.5, 3, 3.5; m_2/(2a)^2 = 0.322, 0.348, 0.359, 0.368

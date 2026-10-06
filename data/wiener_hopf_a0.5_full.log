@@ -1,0 +1,56 @@
+data/fem_a0.5_full.json: a = 0.5, lambda = 0.000194, lambda' = -0.0112355619502507, primes [2], T* = 17.079; nodes 487
+real zeros of the symbol: [ 3.305  6.945 10.531]  (t/T*: [0.194 0.407 0.617])
+Hilbert-transform self-test: max error 4.69e-10
+
+(i) nulls of S(t) at t_k a = pi/2 + k pi + r_k, 319 nulls on 2.9-119.8 T*; fits on t >= 10 T*:
+    kappa = 62.4438 (r + theta = kappa/t);  kappa0 = 134.226 (r = kappa0/t);  c = 1.1724 (r = c/log(t/2pi); Wiener-Hopf: -pi/4 = -0.7854)
+    t_k/T*      r_k    -theta   -theta_loc  -theta_naive   r+theta   r+theta-kappa/t   r-kappa0/t   r-c/log
+      2.91    1.2870    0.0177    0.9947     0.3798       1.2693      0.01281     -1.4138    0.7201
+      3.98    0.9898    0.0686    0.3596     0.3299       0.9212      0.00228     -0.9854    0.4974
+      5.06    0.7806    0.0706   -2.2402     0.2997       0.7100     -0.01287     -0.7732    0.3333
+      6.88    0.6277    0.0825   -7.2004     0.2682       0.5452      0.01374     -0.5147    0.2274
+      9.81    0.5376    0.1628    1.8752     0.2392       0.3748      0.00222     -0.2633    0.1806
+     14.96    0.5213    0.2925   38.0540     0.2120       0.2288     -0.01561     -0.0040    0.2049
+     20.08    0.2440    0.0481  -45.2107     0.1964       0.1959      0.01379     -0.1475   -0.0491
+     30.01    0.2470    0.1319  -14.4488     0.1784       0.1151     -0.00667     -0.0149   -0.0193
+     49.87    0.2077    0.1306  -23.2837     0.1600       0.0771      0.00376      0.0501   -0.0311
+     70.11    0.2490    0.2069   83.9566     0.1496       0.0421     -0.01008      0.1369    0.0257
+     99.91    0.2619    0.2286  162.7438     0.1401       0.0333     -0.00331      0.1832    0.0527
+    119.76    0.1152    0.0732  -134.4866     0.1358       0.0420      0.01151      0.0496   -0.0874
+    smooth alternative (phase of the prime-free symbol at the same lambda, zeros [6.291], plus kappa/t, kappa = 50.606): rms r+theta_inf-kappa/t = 0.0705 (t >= 10 T*), 0.0752 (t >= 3 T*)
+    rms over t >= 10 T*:  r: 0.2537   r+theta: 0.1060   r+theta-kappa/t: 0.00885   r-kappa0/t: 0.1130   r-c/log: 0.0807
+    rms over t >= 3 T*:   r: 0.3178   r+theta: 0.2035   r+theta-kappa/t: 0.01026   r-kappa0/t: 0.2129   r-c/log: 0.1257
+
+(ii) relative L^2 distance of S from -|A| cos(ta + theta - kappa/t)/(t sigma^{1/2}), |A| = (-lambda'/2)^(1/2) = 0.07495, over one period 4 pi/a:
+    T/T*   dist(kappa)   dist(kappa=0)   dist(theta=0)   dist*T/T*   sign
+       3      0.14387        1.04668        1.04577      0.4316   +1
+       5      0.05139        0.78261        0.89495      0.2569   +1
+      10      0.02375        0.36654        0.50076      0.2375   +1
+      20      0.01583        0.17806        0.34640      0.3165   +1
+      50      0.01026        0.07270        0.24486      0.5131   +1
+     100      0.01227        0.03949        0.18325      1.2271   +1
+
+(iii) the echo form: sigma_eff = sigma_inf - c^2/sigma_inf with c = [0.4901], real zeros [ 3.86   6.291 10.264]; phase theta_eff + arg(1 + sum (c/sigma_inf) e^(-it log n)); kappa = 62.1918
+    t_k/T*      r_k    -phase   r+phase-kappa/t
+      2.91    1.2870    0.0344      0.00124
+      3.98    0.9898    0.0740      0.00061
+      5.06    0.7806    0.0611     -0.00047
+      6.88    0.6277    0.0995     -0.00113
+      9.81    0.5376    0.1677     -0.00116
+     14.96    0.5213    0.2788     -0.00087
+     20.08    0.2440    0.0632     -0.00060
+     30.01    0.2470    0.1258     -0.00010
+     49.87    0.2077    0.1351     -0.00048
+     70.11    0.2490    0.1982     -0.00120
+     99.91    0.2619    0.2278     -0.00238
+    119.76    0.1152    0.0668      0.01799
+    rms r+phase-kappa/t: 0.00478 (t >= 10 T*), 0.00463 (t >= 3 T*)   [window's symbol: 0.00885, 0.01026]
+    rms on 5-80 T* (204 nulls): echo form 0.00111, window's symbol 0.00975, no shift 0.3249; largest |residual| of the echo form below 80 T*: 0.00358, above: 0.02090
+    relative L^2 distance of S from the echo form over one period (|A| = (-lambda'/2)^(1/2), kappa fitted):
+    T/T*   dist(echo)   dist(window symbol)   dist(echo)*T/T*
+       3      0.15177          0.14387         0.4553
+       5      0.04386          0.05139         0.2193
+      10      0.01011          0.02375         0.1011
+      20      0.00208          0.01583         0.0415
+      50      0.00068          0.01026         0.0339
+     100      0.00985          0.01227         0.9848
