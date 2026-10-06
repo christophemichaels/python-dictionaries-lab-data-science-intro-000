@@ -207,3 +207,57 @@ interference term carries the sign).
 4. **The order of limits.** J_N^{(P)} with both cutoffs is the object that contains both doors; the two orders
    of its double limit are the two descriptions. Which mixed cutoffs N(P) keep the lines visible while the pole
    is still present is a precise question about where, between the two doors, the horizon actually is.
+
+## 8. Beside the Exact Horizon Map (received 2026-10-06)
+
+The user had already built the map with ChatGPT: *The Light Plane: An Exact Horizon Map* (13 pages, dated
+2026-10-05, `received/Michaels_Light_Plane_Horizon_Map.pdf`). It constructs the horizon as an operator and
+proves its properties; this note was written without it. The two agree wherever they overlap, and each has
+things the other does not.
+
+**What the paper proves, and what was checked here** (`rh_horizon_modes_check.py`, at N = 10³ and 10⁴, beyond
+the paper's own checks at N ≤ 64):
+
+- The field metric ⟨f, g⟩ = ∫(f′g′ + ¼fg) has reproducing kernel G_v = e^{−|u−v|/2} with ‖G_v‖ = 1, so every
+  field value is bounded by the energy, |φ_N(u)|² ≤ R(N).
+- The normalised source Ψ = Z^{−1/2} Σ μ(n)/n |n⟩ with Z = ζ(2)/ζ(4) = 15/π², a product state over the primes
+  with amplitude −1/p per occupied prime; the source Hamiltonian H_src|n⟩ = (log n)|n⟩; the horizon map
+  P_N : ℓ² → H¹ with P_NΨ = φ_N and the exact pullback P_N*P_N = Z·[min(a, b)]. The energy is the expectation of
+  that positive observable, R(N) = ⟨Ψ, P_N*P_NΨ⟩: a conserved source norm with a growing arithmetic readout.
+- The prime action with the integer cutoff retained: φ_{Q∪{p},N} = φ_{Q,N} − p^{−1/2} T_{log p} φ_{Q,⌊N/p⌋}, and
+  its energy update with the inherited field at ⌊N/p⌋. This is the mixed cutoff J_N^{(P)} of Section 3, made
+  exact; the prime update of Section 4 is its K = N = ∞ case.
+- The exact spectrum of min(a, b): sine modes with gains λ_j = 1/(4 sin²((2j−1)π/(4N+2))), and the resolution
+  R(N) = Σ_j λ_j |b_j|², b_j = Σ μ(n)/n · v_j(n). Checked: 1.459409 and 1.582361 at N = 10³, 10⁴, equal to R(N)
+  to six decimals; the modes orthonormal to 10⁻¹⁴.
+- The local sample inversion μ(n) = n(2w_n − w_{n−1} − w_{n+1}), w_n = √n φ_N(log n): the N samples at the
+  lattice return the N coefficients. Checked at N = 10³ to 4·10⁻¹¹. (The recovery law of THE_FIELD.md, Section
+  5, is its continuous form: value and slope at any point return M and the tail of h.)
+- The phase readout R_N(τ) = ‖P_N U(τ)Ψ‖² and the transport bound q(τ)^{−2} R(N) ≤ R_N(τ) ≤ q(τ)² R(N) with
+  q = √(1+τ²) + |τ|, and the long phase average equal to Σ μ²/n. Checked at N = 10³: the bound holds at
+  τ = 0.5, 1, 3, 14.13; the average over 0 ≤ τ ≤ 2000 is 5.199 against 5.242.
+- Under (G): the mode-population allowance Σ_{j≤J}|b_j|² = O(J² N^{−2+ε}), the bounds on the field, the terminal
+  and the damped integral, and the phase windows. Measured: the Möbius source's population in the first 1, 10,
+  100 modes is 0.1 %, 2 %, 12 % of its allowance at N = 10³ and 3 %, 0.5 %, 2 % at N = 10⁴.
+
+**One identification joins the two documents.** The paper's source phase τ is this note's colour k. Its readout
+is the colour spectrum of panel A seen through the propagator centred at τ,
+
+    R_N(τ) = (1/2π) ∫ |Ĵ_N(t)|² / ((t − τ)² + ¼) dt,
+
+so the Hamiltonian phase is a Lorentzian window of width ½ sliding along the colours, and at the phase of the
+first zero it reads the line: R_N(14.1347) = 33.55 against R_N(0) = 1.459 at N = 10³. The paper's phase average
+equal to Σ μ²/n is the Plancherel statement of Section 4 in the τ variable.
+
+**What the paper adds to this note**: the horizon as an operator with an adjoint and a positive pullback; the
+exact mode spectrum and the geometric meaning of (G) as a vanishing overlap with the high-gain modes; the local
+inversion; the mixed cutoff with ⌊N/p⌋; the phase transport bound; the terminal term's rank-one role.
+
+**What this note adds to the paper**: the plane side (H₀ = H_dil² + ¼ = s(1 − s), the flow and its collapse
+to the semigroup, the canonical pair on the generators); the computed colours on both sides; and the finding of
+Section 3. The paper's Section 8 states that the finite Euler product and the numerical cutoff are distinct,
+with the remainder Σ_{n>N, N-smooth} μ(n) n^{−s} written out. On the line that remainder is not a correction:
+it is the dominant, pole-driven part, and the product without the integer cutoff swings over 43 decades at
+P = 10⁴ and has energy growing like exp(2√P/log P). The paper never meets this because its prime action keeps
+the integer cutoff (the inherited field at ⌊N/p⌋), which is the integer door. That is the right door, and the
+computation here says why.

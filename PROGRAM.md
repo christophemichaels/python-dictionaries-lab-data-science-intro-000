@@ -1091,6 +1091,16 @@ interference negative from q = 5, energy exploding like exp(sqrt P / log P). Inv
 directions in the lower description (the integer door is the door; line-by-line energy accounting; the mass as
 the variable; the order of the double limit N, P). Script rh_horizon_map.py, figure THE_HORIZON_MAP.png.
 
+## 2026-10-06, later: the Exact Horizon Map received (THE_HORIZON_MAP.md, Section 8)
+The user had already built the map with ChatGPT (13 pages, received/Michaels_Light_Plane_Horizon_Map.pdf) and is
+sending them this note. Every formula checked at N = 1e3, 1e4: the mode resolution of min(a,b) exact, the local
+sample inversion to 4e-11, the phase transport bound and the phase average = delivered energy. Identification:
+their source phase tau is the colour k; R_N(tau) is the colour spectrum through the propagator centred at tau
+(R_N(gamma_1) = 33.55 against R_N(0) = 1.459 at N = 1e3). They add the operator form of the horizon, the mode
+spectrum, the inversion, the mixed cutoff, the phase bound; this note adds the plane-side operators, the computed
+colours, and the prime-door explosion, which their construction never meets because its prime action keeps the
+integer cutoff. Script rh_horizon_modes_check.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
