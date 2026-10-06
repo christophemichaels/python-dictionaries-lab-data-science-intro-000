@@ -1101,6 +1101,16 @@ spectrum, the inversion, the mixed cutoff, the phase bound; this note adds the p
 colours, and the prime-door explosion, which their construction never meets because its prime action keeps the
 integer cutoff. Script rh_horizon_modes_check.py.
 
+## 2026-10-06, later: the audit (THE_HORIZON_MAP.md, Section 9)
+ChatGPT audited the horizon-map report (received/Michaels_Horizon_Map_Audit.pdf): numbers reproduced; corrections
+accepted and applied: "tempered/untempered" replaced by bounded-at-every-cutoff with the range growing slowly in N
+and like exp(4 sqrt P / log P) in P; the pole-term accuracy qualified to k away from 0 (gap 3.5255 at k = 0); the
+visibility threshold labelled an envelope heuristic; the coefficient corrected to log E_P ~ 4 sqrt P / log P (norm: 2),
+with E_P = q_P^{o(1)} against the primorial; the mass statement of (G) made with the matched source J_{m,N};
+Ng's theorem named behind the 0.0288 benchmark; the slope's sampling rule stated; the sign of C_q an observation;
+the canonical relation a covariance relation on the generators. The audit's tail theorem ||T_P||^2 ~ E_P recorded.
+Figure titles corrected (rh_horizon_map.py).
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

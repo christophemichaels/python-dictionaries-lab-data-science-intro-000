@@ -14,10 +14,13 @@ growth, where information is compressed, and what stays invariant. Script `rh_ho
 R(N) = O_ε(N^ε) for every ε > 0.
 
 (G) is taken as the governing law of the plane. Nothing below proves it; everything marked "under (G)" uses it.
-In the plane's own words (THE_FIELD.md, Section 7): for every δ > 0 the source J^{(δ)} = Σ μ(n) n^{−1/2−δ}
-δ(u − log n), the Möbius source read on the line Re s = ½ + δ, has finite inward energy in the field of mass
-½ + δ, and at mass ½ exactly the energy is infinite. So (G) is a statement about mass: **the Möbius source has
-finite energy at every mass above ½ and infinite energy at ½.**
+In the plane's own words (THE_FIELD.md, Section 7): for every m > ½ the matched source J_{m,N} = Σ_{n≤N} μ(n) n^{−m}
+δ(u − log n), the Möbius source read on the line Re s = m, has finite limiting energy in the field of mass m
+(the energy is ∫_1^N M(x)² x^{−2m−1} dx + M(N)²/(2mN^{2m}), finite as N → ∞ under (G)), and at m = ½ the
+limiting energy is infinite. So (G) is a statement about mass, with the source matched to the mass: **the matched
+Möbius source has finite limiting energy at every mass above ½ and infinite limiting energy at ½.** The matching
+is essential: with the source J_N fixed and only the operator's mass changed, the energies at all masses are
+equivalent norms, within constants independent of N, so a change of mass alone changes nothing.
 
 ## 1. The plane
 
@@ -74,16 +77,19 @@ squarefree 7-smooth numbers gives 1.104762.
 
 **By integers the colours show lines at the zeros.** |Ĵ_N(k)|² on 0 ≤ k < 60 peaks at k = 14.130 for both
 N = 10³ and N = 10⁵ (γ₁ = 14.1347); the mean within 0.25 of γ₁, γ₂, γ₃ is 8.4 times the overall mean at
-N = 10³ and 12.2 times at N = 10⁵. The lines sharpen with N. The spectrum is tempered: an entire function of
-k with no poles at any finite N, and under (G) its propagator-weighted integral grows slower than any power.
+N = 10³ and 12.2 times at N = 10⁵. The lines sharpen with N. The spectrum is an entire function of k, bounded
+by (Σ_{n≤N} n^{−1/2})², with no poles at any finite N, and under (G) its propagator-weighted integral grows
+slower than any power.
 
-**By primes the colours are not tempered, and show lines only above the colour √P/log P.** Π_{p≤P}|1 − p^{−1/2−ik}|² ranges over 8 decades
+**By primes the colours are bounded at every finite P too, but their range grows like exp(4√P/log P), and
+they show lines only above a colour of the order of √P/log P.** Π_{p≤P}|1 − p^{−1/2−ik}|² ranges over 8 decades
 at P = 100 and over 43 decades at P = 10⁴ (log₁₀ from −26.8 to 15.8). What drives it is the prime sum:
 
     log Π_{p≤P}|1 − p^{−1/2−ik}|² = −2 Re S_P(k) + O(1),        S_P(k) = Σ_{p≤P} p^{−1/2−ik},
 
-(the difference has mean −0.005 and standard deviation 0.51 over k > 2, at both P), and by the explicit formula
-for Σ_{p≤P} p^{−s},
+(the difference has mean −0.005 and standard deviation 0.51 over 2 < k < 60, at both P; the O(1) is not small
+near k = 0, where it is 2Σ_{p≤P}[log(1 − p^{−1/2}) + p^{−1/2}] = −3.5255 at P = 10⁴, since Σ 1/p enters there),
+and by the explicit formula for Σ_{p≤P} p^{−s},
 
     S_P(k) = P^{½−ik} / ((½ − ik) log P) + (bounded in P at fixed k ≠ γ) + (the zeros' terms).
 
@@ -91,15 +97,19 @@ The first term is the pole of ζ at s = 1, seen from the line at distance ½: |P
 colours swing with amplitude exp(±2√P/((log P)√(¼ + k²))): this is what the non-convergence of the Euler
 product on the critical line looks like. At a zero the prime sum has the line term −log log P (the ρ = ½ + iγ
 term of the explicit formula at k = γ), so the product at k = γ carries a factor (log P)² over its
-surroundings, against the pole's swing, which decays in colour like 1/k. The line is visible where
-γ ≳ √P/log P and drowned below: at P = 10⁴ the threshold is k ≈ 11, and the first zeros stand out as bumps of
-about two decades (panel B, where the dashed pole term reproduces the product to a standard deviation of 0.5 in
-the natural log); at P = 10⁷ the threshold is k ≈ 200 and the first eighty zeros are under the pole. Each zero
-is drowned once P exceeds about (γ log P)², so the prime door drowns every zero in turn.
+surroundings, against the pole's swing, which decays in colour like 1/k. Comparing the two sizes gives an
+envelope heuristic, not a theorem: the line should be visible where γ ≳ √P/log P and lost below. At P = 10⁴ that
+puts the crossover near k ≈ 11, and the first zeros do stand out as bumps of about two decades (panel B); at
+P = 10⁷ it puts the crossover near k ≈ 200, under which the first eighty zeros would be lost. On this heuristic
+each zero is lost once P exceeds about (γ log P)², so the prime door loses every zero in turn. A visibility
+theorem would need a stated contrast criterion and estimates uniform in the growing colour range.
 
 **The dichotomy.** The horizon has two doors. The integer door passes the zeros and stops the pole (Σ μ(n)n^{−s}
 has no pole; the lines are at the zeros and sharpen with N). The prime door passes the pole, and under it every
-zero is eventually lost (the product is dominated by P^{½−ik} below the colour √P/log P). The two doors are the
+zero is eventually lost (the product is dominated by P^{½−ik} below a colour of the order of √P/log P). The
+difference between the doors is a difference of terms: the prime cutoff keeps every squarefree product of its
+primes, up to the primorial q_P = Π_{p≤P} p, while the integer cutoff keeps n ≤ N; comparing P = N compares very
+different collections. The two doors are the
 two orders of one double limit: the P-smooth source cut at N, J_N^{(P)}, tends to J_N as P → ∞ at fixed N and to
 J^{(P)} as N → ∞ at fixed P.
 
@@ -115,10 +125,11 @@ energy grows. The two evolutions grow differently.
 
 **By integers** (Section 6 of THE_FIELD.md): R(n) − R(n−1) = μ(n)²/n + 2μ(n)M(n−1)/n. The first term is
 what the plane delivers, the self-energy of the pulse; summed it is Σ_{n≤N} μ(n)²/n = (6/π²) log N + c, a
-theorem (the density of squarefree numbers), 0.6079 per e-fold. Plancherel says the same number is the mean
-colour density: the mean of |Ĵ_N(k)|² over 0 ≤ k < 10⁴ at N = 10³ is 5.238 against Σ μ²/n = 5.242
-(Montgomery–Vaughan). So in colour, **the delivered energy is the mean over all colours, and the retained energy
-R(N) is the propagator-weighted integral**, which lives at the low colours and on the lines. Measured:
+theorem (the density of squarefree numbers), 0.6079 per e-fold. The mean-value theorem for Dirichlet
+polynomials says the same number is the long-range mean of the colours: the mean of |Ĵ_N(k)|² over 0 ≤ k < 10⁴
+at N = 10³ is 5.238 against Σ μ²/n = 5.242. So in colour, **the delivered energy is the mean over all colours,
+and the retained energy R(N) is the propagator-weighted integral**, which lives at the low colours and on the
+lines. ("Delivered" names the diagonal level; it is a reference level, not a conserved flux.) Measured:
 
 | N | delivered Σ μ²/n | retained R(N) | fraction |
 |---|---|---|---|
@@ -128,11 +139,14 @@ R(N) is the propagator-weighted integral**, which lives at the low colours and o
 | 10⁶ | 9.4427 | 1.7082 | 0.181 |
 | 10⁷ | 10.8425 | 1.8365 | 0.169 |
 
-The slope of R(N) in log N over 10⁴–10⁷ is 0.028 per e-fold against 0.608 delivered: the image keeps about
-one part in twenty at the margin, and the fraction kept falls. Under (G) the retained energy is subpower.
-The finer law, R(N) ~ C log N with C = Σ_ρ 1/|ρζ′(ρ)|² (both signs of γ), holds under more than (G) (simple
-zeros and the convergence of that sum) and is not assumed; the value of the sum over the first 6000 zeros,
-computed in `THE_GRAVITY_PLANE.md`, is 0.0288, and the measured slope is 0.0278. That is an observation.
+The least-squares slope of R(N) against log N, on 60 logarithmically spaced N from 10² to 10⁷ plus the five
+decades, restricted to N ≥ 10⁴, is 0.028 per e-fold against 0.608 delivered: the image keeps about one part in
+twenty at the margin, and the fraction kept falls. The slope depends on the sampling rule (301 points give
+0.029, the endpoint secant 0.037) and is not a growth law. Under (G) the retained energy is subpower. The
+finer law is Ng's theorem: under RH and Σ_{0<γ≤T} |ζ′(½+iγ)|^{−2} ≪ T, ∫_1^X M(x)²x^{−2} dx ~ β log X with
+β = 2Σ_{γ>0} 1/|ρζ′(ρ)|². Those hypotheses include the simplicity of the zeros and are more than (G); the law
+is not assumed here. The value of β over the first 6000 zeros, computed in `THE_GRAVITY_PLANE.md`, is 0.0288,
+and the measured slope is 0.0278. That is an observation, and the complete energy also carries M(N)²/N.
 
 **By primes.** Adding the prime q to the cutoff sends J ↦ J − q^{−1/2} S_q J, and
 
@@ -154,24 +168,32 @@ flow of the record: a positive diagonal and one signed cross term (*Across the H
 | 199 | 5.856 | 38.22 | −63.9 | 6.53 |
 | 397 | 6.534 | 264.6 | −519.6 | 40.5 |
 
-The interference is positive at q = 2, zero at q = 3, and negative from q = 5 on, growing: the shifted copy
-anti-correlates with the source (μ(qn) = −μ(n)), the energy exceeds the conserved copies from P = 67, and runs
-away: log E_P grows at the rate of Σ_{p≤P} p^{−1/2} ≈ 2√P/log P, the pole again (the ratio
-log E_P / (√P/log P) rises from 0.98 at P = 101 to 1.68 at P = 397, toward a prefactor that the pole term
-bounds by 4). **By primes nothing is tempered**; the growth law (G) is a statement about the integer door only.
+The interference is positive at q = 2, zero at q = 3, and negative at every tested prime from 5 to 397,
+growing in size: the shifted copy anti-correlates with the source (μ(qn) = −μ(n)), and the energy exceeds the
+conserved copies from P = 67 on. (A finite sign table is an observation, not a sign theorem.) The energy runs
+away, and its law is a theorem needing only the prime number theorem (audit, Proposition 1):
+
+    log E_P ~ 4√P / log P,        log ‖Φ_P‖ ~ 2√P / log P,
+
+that is, twice Σ_{p≤P} p^{−1/2} for the energy and once for the norm. The measured ratio log E_P / (√P/log P)
+rises from 0.98 at P = 101 to 1.68 at P = 397; finite ranges do not yet show the coefficient. Since
+log q_P ~ P, the same theorem gives E_P = q_P^{o(1)}: **measured against the largest integer it represents, the
+primorial, the prime-cutoff energy is already subpower, unconditionally.** The growth law (G) remains a
+statement about the integer door, whose terms are n ≤ N.
 
 ## 5. Where information is compressed
 
 1. **The flow.** A continuous one-parameter group becomes a countable free semigroup; what passes the horizon
    is the generators, the numbers log p. The primes are the compressed record of the dilations.
 2. **The source.** One point and the generators give the whole Möbius source (Section 2(b)).
-3. **The colours.** A tempered entire spectrum at every finite N becomes, in the limit, lines at the zeros;
+3. **The colours.** A bounded entire spectrum at every finite N becomes, in the limit, lines at the zeros;
    the information of the zeros passes through the integer door only. Under (G) the energy content of those
    lines grows slower than any power while the delivered energy grows like log N: the image keeps a fraction
    that falls (0.278 at 10³, 0.169 at 10⁷), and if the log law holds it tends to 0.028/0.608 = 4.6 %. That is
    the compression ratio of the integer door.
 4. **The prime door compresses nothing and amplifies the pole**: its colours carry log ζ, the pole's
-   2√P/((log P) k) in the exponent over the zeros' 2 log log P, so each zero is lost once P ≈ (γ log P)².
+   2√P/((log P) k) in the exponent over the zeros' 2 log log P, so on the envelope heuristic each zero is lost
+   once P ≈ (γ log P)².
 
 ## 6. What stays invariant
 
@@ -181,22 +203,24 @@ bounds by 4). **By primes nothing is tempered**; the growth law (G) is a stateme
 | the Green function | e^{−\|u−v\|/2} | 1/max(m, n) | exact |
 | the energy | ⟨J, H₀⁻¹J⟩ | R(N), E_P | exact; six decimals to 10⁷, P = 7 exactly |
 | the equipartition | the factorisation (−∂ + ½)(∂ + ½) | inward and outward halves | exact |
-| the canonical relation | [u, H_dil] = i | [H_arith, S_p] = (log p) S_p | exact, on the generators only |
-| the mean colour density | the mean of \|Ĵ\|² | the delivered energy Σ μ²/n | exact (Montgomery–Vaughan); checked |
+| the canonical relation | [u, H_dil] = i | [H_arith, S_p] = (log p) S_p | a covariance relation on the generators, not the same commutator |
+| the mean colour density | the long-range mean of \|Ĵ\|² | the diagonal level Σ μ²/n | exact (the mean-value theorem); checked |
 | conservation under a shift | E[U_tJ] = E[J] | the factor (1 + 1/q) of the prime update | exact |
 | the propagator weight | 1/(k² + ¼) | 1/\|ρ\|² in every Parseval sum of the record | exact |
 | the mass threshold | finite energy above ½, infinite at ½ | (G) | the premise |
 
-Not invariant: the flow itself (only its generators pass); the energy under evolution (grows: tempered by
-integers under (G), untempered by primes); the Euler product (does not converge on the line); positivity as a
+Not invariant: the flow itself (only its generators pass, and the primes generate a free monoid, not an image
+of ℝ); the energy under evolution (grows: slower than any power of N by integers under (G), like exp(4√P/log P)
+by primes unconditionally); the Euler product (does not converge on the line); positivity as a
 tool (free in the plane, where the propagator is positive; in the image the burden moves to the source, whose
 interference term carries the sign).
 
 ## 7. What the map proposes in the lower description
 
 1. **The integer door is the door.** Everything about the zeros that reaches the arithmetic passes through
-   the tempered evolution J_N, and (G) is its law. The prime evolution is a different, explosive object, and
-   results about partial Euler products on the line are results about the pole.
+   the evolution J_N, and (G) is its law. The prime evolution is a different object, with a different law
+   (log E_P ~ 4√P/log P, and E_P = q_P^{o(1)}), and results about partial Euler products on the line are
+   results about the pole.
 2. **A line-by-line energy accounting.** Under the log law each zero's line carries (log N)/|ρζ′(ρ)|² of the
    retained energy, weighted by the propagator 1/|ρ|² and the line strength 1/|ζ′(ρ)|². The measured slope
    0.0278 against the computed 0.0288 is the first test of that accounting; a test by windows around the first
@@ -258,6 +282,32 @@ to the semigroup, the canonical pair on the generators); the computed colours on
 Section 3. The paper's Section 8 states that the finite Euler product and the numerical cutoff are distinct,
 with the remainder Σ_{n>N, N-smooth} μ(n) n^{−s} written out. On the line that remainder is not a correction:
 it is the dominant, pole-driven part, and the product without the integer cutoff swings over 43 decades at
-P = 10⁴ and has energy growing like exp(2√P/log P). The paper never meets this because its prime action keeps
+P = 10⁴ and has energy growing like exp(4√P/log P). The paper never meets this because its prime action keeps
 the integer cutoff (the inherited field at ⌊N/p⌋), which is the integer door. That is the right door, and the
 computation here says why.
+
+## 9. The audit (received 2026-10-06)
+
+ChatGPT audited this note from the pasted report and the figure (`received/Michaels_Horizon_Map_Audit.pdf`,
+8 pages), reproducing the numbers independently (42.64 decades at P = 10⁴; the retained fractions 0.2784 and
+0.1694; R_N(14.1347) = 33.547249 at N = 10³ and 49.603937 at N = 10⁴; the sine resolution to 10⁻¹⁵) and
+correcting several interpretations. Every correction is accepted and is now in the text above:
+
+| the note said | the audit's correction | where fixed |
+|---|---|---|
+| integer colours tempered, prime colours not | both are bounded at every finite cutoff; the difference is the range, slow in N, exp(4√P/log P) in P | Sections 3, 5, 6, 7 |
+| the pole term reproduces the product to 0.5 in the log | only for k away from 0 (here 2 < k < 60); at k = 0 the gap is 3.5255, from Σ 1/p | Section 3 |
+| zeros visible exactly above √P/log P | an envelope heuristic, not a visibility theorem | Sections 3, 5 |
+| log E_P ~ 2√P/log P | log E_P ~ 4√P/log P (Proposition 1 of the audit, from the prime number theorem); 2 is the norm's coefficient; and E_P = q_P^{o(1)} | Section 4, panel C |
+| (G) as a mass threshold for "the Möbius source" | the source must be matched to the mass, J_{m,N} = Σ μ(n)n^{−m}δ_{log n}; a fixed source with changed mass has equivalent norms | Section 0 |
+| the 0.0288 benchmark | Ng's theorem, under RH and a derivative-moment hypothesis that includes simple zeros; more than (G) | Section 4 |
+| the measured slope 0.0278 | depends on the sampling rule; not a growth law | Section 4 |
+| C_q negative from q = 5 "on" | observed at every tested prime; no sign theorem | Section 4 |
+| the canonical relation "survives" on the generators | a covariance relation, not the same commutator; the primes generate a free monoid, not an image of ℝ | Section 6 |
+
+The audit also proves the statement this note made about the two cutoffs. With T_P = Φ_P − φ_{⌊P⌋} the
+part of the prime-cutoff field beyond the integer P, the elementary bound R(n) ≤ 2n and the triangle
+inequality give |‖T_P‖/√E_P − 1| ≤ √(2P/E_P) → 0, so **‖T_P‖² ~ E_P: the omitted tail carries the full
+prime-product energy**, in the energy norm, without (G). And it names the joint object, Φ_{P,N} = Σ_{d | q_P, d ≤ N}
+μ(d) d^{−1/2} G_{log d}, with Φ_{P,N} = φ_N for P ≥ N and Φ_{P,N} = Φ_P for N ≥ q_P, whose prime update keeps the
+inherited cutoff ⌊N/q⌋ exactly: the double limit of Section 3, with its observable specified.
