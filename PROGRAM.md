@@ -1150,6 +1150,20 @@ inverse lemma is an unconditional transfer at a controlled cost. Verdict: the id
 the problem; no additional arithmetic control obtained here; the decisive next evidence is an independent inequality
 for the signed correlations. Script rh_fluctuation.py.
 
+## 2026-10-06, later: the horizon round trip (HORIZON_ROUND_TRIP.md)
+On the round-trip directive: the supplied lemmas verified with their slack (tail inverse at L = 21 is 0.532 against
+A_21 = 0.968, N-independent; the full inverse 25.45 is n = 2, 3); the exact localization identity R(N) = R(20) +
+2M(20)(h(N) - h(20)) + R_tail(N), so the cost is fixed-index and all growth is in the tail; baseline and trivial
+range stated; diagnostics by FFT to N = 1e7 and all J < J0: the signed correlations O are negative and cancel the
+diagonal to within 3-10 % at every N, J; the residual N^2/J^2 ||Pi_J b||^2 stays in [0.03, 0.35]; random control at
+the diagonal, positive control N/J above; the large-J ratio 0.045 = Ng's constant over 6/pi^2; Gram blocks of F_N
+mostly reinforcing with suppression between adjacent blocks 3-4-5. No arithmetic improvement proved; the attempted
+inequality (10) and the obstruction (the low-frequency energy of mu(n)/n; Parseval and the large sieve cannot resolve
+below the average share; bilinear bounds see nothing smooth; the zero-free region passes through M) stated once; the
+recurrence (14) not produced by the transfers (sign-free coefficients sum to sqrt N / log N). Return calculation with
+all terms; sharpest remaining question: O <= -D + C J^2 N^{-2+eps} from an input independent of (G). Script
+rh_round_trip.py, figure HORIZON_ROUND_TRIP.png.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
