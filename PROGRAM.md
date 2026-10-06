@@ -1212,6 +1212,18 @@ along the removal before falling to 1: no per-prime contraction. Six-term recons
 Moebius signs at the random level. (Goal) not closed; resume point the profile near the parity phase. Scripts
 rh_colors_descent.py, rh_color_phase.py, figure COLOR_PHASE.png.
 
+## 2026-10-06, later: decay inside the growth (PARITY_DECAY.md)
+On the parity-decay directive. Projection reconciled to 14 digits (integer sixth-root mesh; the 1.5e-3 was my float
+mesh). Parity defect: A_N -> 0.3695 N (Selberg-Delange), delta_N = 2.706 E_P/N; 27 horizons to 8.4e6, N delta drifts
+3.86 -> 4.66, local exponents in [-0.13, 0.25], no power law, consistent with E_P ~ 1.2 + 0.03 log N; directional term
+93-99.99 %. Gram split (11)-(12) exact. Packet remainder {2,3}: components and kernel (19) verified; scan to 1e7:
+I_{2,3}(N) < 0 for all 2838 <= N <= 1e7 (last positive 2837), about 1.4 - 0.19 log N. Records: 213 to 1e7, all first
+passages; retained set NOT empty (179 of 212), contains every top of a climb exceeding the previous maximum by two,
+so (24) at retained records is the Mertens bound at the new maxima of |M|: no weakening; (22) verified at 1e7
+(loose by 4e4). Curvature (30) positive, width ~ log N/sqrt N. Shuffle expectation (31) exact. Controls incl.
+a_{2,3} linear law. No new inequality; surviving expression and the conjecture I_{2,3}(N) <= 0 for N >= 2838 stated
+as a target (weak Mertens with constant 0.203). Scripts rh_parity_decay.py, rh_parity_decay_fig.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
