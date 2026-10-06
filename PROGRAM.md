@@ -1135,6 +1135,18 @@ b^log + V^T e_1 = -sum_d ((Lambda(d) - 1)/d) T_d b_{N/d}: the pole cancels ident
 mode is the prime fluctuation Lambda - 1, i.e. the zeros; quantitatively this is the error term of the PNT and
 no more. Script rh_completion.py.
 
+## 2026-10-06, later: the coupled fluctuation equation (SUBPOWER_CLOSURE.md, Section 9)
+ChatGPT's refinement: separate d = 1, (L_N - I) b_N = -u_N - F_N, inversion bound 216 in the energy norm, sufficient
+estimate ||F_N||^2 <= C N^eps; and the correction M_{Q_P}(N) = M(N) + sum_{P<p<=N} M(N/p) for sqrt N <= P < N/2
+(189 vs 373 at N = 4000, P = 1000), applied to Section 8. Verified: the equation to 1e-16; the inversion norm is
+25.4536 at N = 1000, 2000, 4000 (N-independent; the H^{-1}-multiplier argument gives <= 95; 216 valid, loose).
+Evaluated: F_N collapses exactly to f_n = -(log n - 1) mu(n)/n (Lambda * mu = -mu log, 1 * mu = delta), so
+||F_N||^2 = R^log(N), the energy with log weights (2.5, 8.5, 13.9, 28.1, 58.1 at 1e3..1e7); R^log subpower <=> RH
+(proof both ways via zeta'/zeta^2 - 1/zeta). So the sufficient estimate is the target with log weights, and the
+signed contributions from smaller horizons combine exactly into mu (1 - log n)/n: no cancellation left in F_N.
+Non-circular only with an independent input on Lambda - 1 (Axer: PNT -> M = o(x); zero-free region -> its bound).
+Script rh_fluctuation.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.

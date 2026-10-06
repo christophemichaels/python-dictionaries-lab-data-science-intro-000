@@ -249,11 +249,16 @@ N = 2000):
 | 1000 | 11.63, 11.15, 0.0051, 1.000000 | 0.066, 0.040, 0.027, 0.767 | 0.082, 0.002, 0.081, 0.123 |
 
 Two readings. In the first mode the unfinished state and its completion are parallel to six decimals at every P,
-because M_{Q_P}(N) = M(N) + (π(N) − π(P)) and the second term dominates: **the hump is the pole**, the uniform
-density of the primes seen through the first mode, and it cancels identically. In the higher low modes the
+because M_{Q_P}(N) = M(N) + Σ_{P<p≤N} M(⌊N/p⌋) (for P ≥ N/2 every inherited cutoff is 1 and the sum is
+π(N) − π(P); at N = 4000, P = 1000 the inherited values give 189 = the actual M_{Q_P}(N), while the naive
+π(N) − π(P) would give 373) and the second term dominates: **the hump is the pole**, the uniform density of the
+primes seen through the first mode, and it cancels identically. In the higher low modes the
 completion is negligible (at J = 50 it is 1 to 3 % of the unfinished state) because the window sin(pθ_j)
-oscillates over the packet: integrating by parts against the prime density, d_{j,N} = O(1/(j √N log N)), so the
-packet's mode-j energy is O(N/(j⁴ log²N)) and exceeds N^ε only for j ≲ N^{1/4}. The survivor at J = 50 is simply
+oscillates over the packet: integrating by parts against the smooth prime density gives the main term
+d_{j,N} = O(1/(j √N log N)), so the packet's mode-j energy is O(N/(j⁴ log²N)) and exceeds N^ε only for
+j ≲ N^{1/4}; as a bound on the actual prime packet uniformly in j this needs the prime discrepancy π(x) − li(x)
+controlled against the window, which the prime number theorem with error term supplies for j ≤ N^{1/2−δ} and not
+beyond. The survivor at J = 50 is simply
 the unfinished state: there the last packet neither adds nor cancels anything.
 
 **The identity that controls the cancellation.** Two exact identities, valid at every horizon and in every
@@ -286,3 +291,73 @@ locates the survivor in the zeros, uniformly across horizons and modes, and it b
 as ψ(x) − x is bounded: x e^{−c√log x} unconditionally, x^{1/2+ε} under RH. No elementary identity does better,
 because x^{1/2+ε} for ψ is RH. The productive question is answered in that sense: the control is Λ − 1, and
 Λ − 1 is the zeros.
+
+## 9. The coupled fluctuation equation, and what its inversion gives (2026-10-06, later)
+
+The user, with ChatGPT, refined the fluctuation identity by separating its d = 1 term (Λ(1) − 1 = −1, T_1 = I),
+so that every horizon on the right is strictly smaller than N:
+
+    (L_N − I) b_N = −u_N − F_N,        L_N = V_N^T diag(log n) V_N,   u_N = V_N^T e_1,   F_N = Σ_{d=2}^N ((Λ(d) − 1)/d) T_d b_{⌊N/d⌋},
+
+and proposed the inversion bound ‖(L_N − I)^{−1}‖ ≤ 216 in the energy norm ‖z‖²_Λ = Σ λ_j z_j², hence
+√R(N) ≤ 216 (1 + ‖F_N‖_Λ), and the sufficient estimate ‖F_N‖²_Λ ≤ C_ε N^ε. Everything here is verified and
+then evaluated (`rh_fluctuation.py`).
+
+**The equation** holds to 2·10⁻¹⁶ at N = 1000, 2000, 4000, and ‖u_N‖_Λ = 1 exactly (it is B_{11}).
+
+**The inversion is bounded uniformly in N**, and the mechanism is the one stated: in coefficient space the
+operator is multiplication by g(n) = 1/(log n − 1), the energy norm of a coefficient vector is the H^{−1}-norm
+of its source Σ √n c_n δ_{log n} with respect to H₀, and multiplication by a function G on the log line with
+G(log n) = g(n) is bounded on H^{−1} by the H¹-multiplier norm of any bounded Lipschitz extension G. The
+sampled values are −1, −3.259, 10.141, 2.589, 1.640, …; the steepest pair is (log 2, log 3), with slope 33.1
+and sup 10.14, which gives the multiplier bound √(8·33.1² + 2·10.14²) ≈ 95 by the elementary estimate
+‖Gf‖²_E ≤ (8‖G′‖²_∞ + 2‖G‖²_∞)‖f‖²_E. The exact value, the 2-norm of C^T diag(g) C^{−T} (C the cumulative-sum
+matrix, B = CC^T), is
+
+    ‖(L_N − I)^{−1}‖_{Λ→Λ} = 25.4536        at N = 1000, 2000 and 4000 alike,
+
+N-independent to four decimals because the extremal vectors live at n = 2, 3 where g jumps. So the chain is
+√R(N) ≤ 25.46 (1 + ‖F_N‖_Λ); measured 1.235 ≤ 25.46 (1 + 2.165) = 80.6 at N = 4000. The bound 216 is valid and
+loose by a factor eight.
+
+**The coupled expression collapses exactly.** In coefficient space F_N = V_N^T f with
+
+    f_n = (1/n) Σ_{d | n, d ≥ 2} (Λ(d) − 1) μ(n/d) = (1/n) [ (Λ * μ)(n) − (1 * μ)(n) + μ(n) ] = −(log n − 1) μ(n)/n    (n ≥ 2),   f_1 = 0,
+
+by Λ * μ = −μ·log and 1 * μ = δ. Verified to 6·10⁻¹⁷. Therefore
+
+    ‖F_N‖²_Λ = R^{log}(N) := Σ_{a,b=2}^N μ(a)μ(b)(log a − 1)(log b − 1)/max(a, b) = Σ_{k=2}^{N−1} G(k)²/(k(k+1)) + G(N)²/N,
+
+with G(x) = Σ_{2≤n≤x} μ(n)(log n − 1) = M(x)(log x − 1) − ∫_1^x M(t) dt/t + 1. Values:
+
+| N | R^{log}(N) | R(N) | R^{log}/(R log²N) | G(N) | G(N)²/N |
+|---|---|---|---|---|---|
+| 10³ | 2.500 | 1.459 | 0.036 | 22.5 | 0.51 |
+| 10⁴ | 8.472 | 1.582 | 0.063 | −173.2 | 3.00 |
+| 10⁵ | 13.890 | 1.622 | 0.065 | −481.3 | 2.32 |
+| 10⁶ | 28.072 | 1.708 | 0.086 | 2754.7 | 7.59 |
+| 10⁷ | 58.071 | 1.837 | 0.122 | 15727.7 | 24.74 |
+
+So **the signed contributions from the smaller horizons combine exactly, by the convolution identity, into the
+log-weighted Möbius vector −(log n − 1)μ(n)/n.** There is no cancellation left in F_N to exploit: all of it has
+been used in forming μ·log from Λ * μ. The equation (L_N − I)b_N = −u_N − F_N is, once F_N is evaluated, the
+identity (L_N − I)b_N = −u_N + (L_N − I)b_N + u_N, and the inversion bound reads √R(N) ≤ 25.46 (1 + √R^{log}(N)):
+true, and circular, since R^{log} is the same energy with logarithmic weights.
+
+**The sufficient estimate is the target with logarithmic weights, equivalent to it.** R^{log}(N) = O_ε(N^ε) ⟺ RH:
+(⟸) under RH, M(x) = O(x^{1/2+ε}) gives G(x) = O(x^{1/2+ε} log x) and R^{log}(N) = O(N^{3ε}). (⟹) G(N)² ≤ N·R^{log}(N)
+gives G(x) = O(x^{1/2+ε}); by partial summation the Dirichlet series Σ_{n≥2} μ(n)(log n − 1) n^{−s} =
+ζ′(s)/ζ(s)² − 1/ζ(s) + 1 then converges, hence is analytic, on Re s > ½; at a zero ρ of ζ of order m with Re ρ > ½
+the first term has a pole of order m + 1 and the second a pole of order m, so the sum has a pole; contradiction.
+Hence R^{log} subpower ⟺ RH ⟺ (G) ⟺ (T). Also two-sidedly, without any hypothesis: R(N) ≤ 25.46² (1 + √R^{log}(N))²
+and R^{log}(N) ≤ (log N − 1)²·R(N)·(1 + o(1)) + …, so √R and √R^{log} are equivalent up to the factor log N and the
+constant 25.46.
+
+**Where the identity is not circular.** Only when the horizons are kept separate and an independent input on
+Λ(d) − 1 is fed in. Sign-free in d, (C) gives ‖T_d b_{⌊N/d⌋}‖_Λ = √(d R(⌊N/d⌋)) and the bound
+√R(N) ≤ 25.46 (1 + Σ_{d≥2} |Λ(d) − 1| d^{−1/2} √R(⌊N/d⌋)) ≤ C √N max R, the trivial bound again. With the signs
+of Λ(d) − 1 but the vectors T_d b_{⌊N/d⌋} treated as given, the available input is ψ(x) − x, and the transfer
+(Axer's theorem) yields M(x) = o(x) from ψ(x) ~ x and the zero-free-region bound from the zero-free region; it
+yields x^{1/2+ε} only from ψ(x) − x = O(x^{1/2+ε}), which is RH. Whether the coupled form has cancellation beyond
+this is answered by the collapse: as a vector, F_N is μ·(1 − log n)/n, and any cancellation it carries is the
+cancellation of μ.
