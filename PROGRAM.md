@@ -1258,6 +1258,20 @@ R(N) <= D23(N) + 1.053 for all N <= 1e7. (6) at N=20, (26) at N=10 verified. Com
 the orbit sum on horizon families = (G); the circle carries the degree ledger, not the energy. Files: GLOBAL_CLOSURE.md,
 rh_global_closure.py, rh_global_closure_fig.py, GLOBAL_CLOSURE.png, data/global_closure.json.
 
+## 2026-10-06, later: the shape of the final estimate in ball arithmetic (BALL_SHAPE.md)
+On the 44-page consolidated manuscript (Hypothesis 1.1: delta_N <= C (1+log N)^a exp(A (log N)^rho) B(N^(1/6))^5) and the
+request for ball-arithmetic calculations of its shape. python-flint arb at 200 bits, 361 s to 1e7. Certified: R, delta,
+B^5, c_N along every chain from 1e7 and at decade maxima; c* = 18307/480480 = 0.0381 at N = 13 (global max, exact);
+decade maxima of c_N 0.0381, 0.00766, 0.00647, 0.00267, 0.00266, 0.00238; delta_N <= 0.2453 above 100 with B^5 in
+{32, 85.3, 148.7}: constant-coefficient shape, fifth-power budget unused; B(X) flat 2.74 -> 2.89 over 1e2..1e7; Theorem
+11.2 constants K(c*) = 8.2542, bound log B <= 100 at 1e7 vs actual 1.06. Two-mode readout exact (isometry): nu+ ~ +0.004,
+nu- ~ -0.003, |cos| <= 0.10 above 100. Hardy coefficients via series exponential (6.1e6 terms, 81 s): head H_K = 1.07..1.31
+for K = floor((log N)^(3/4)) vs allowances 1e6..4e23; tail carries delta; gamma_1 -> 1, gamma_2 -> 1 - gamma_E; at N=1000,
+800 modes hold 92 %, coefficients stop decreasing. Three-step modifier: delta - Q3 ~ 1e-7..1e-5 at N >= 7716 vs allowance
+3.58. Circle two-phase isometry verified with certified tails (1e-5). Conclusion: constant-coefficient shape on [6, 1e7];
+nothing beyond 1e7 is certified; the data are consistent with R = O(log N) (conjecture). Files: BALL_SHAPE.md,
+rh_ball_shape.py, rh_ball_shape_fig.py, BALL_SHAPE.png, data/ball_shape.json, data/ball_shape.log.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
