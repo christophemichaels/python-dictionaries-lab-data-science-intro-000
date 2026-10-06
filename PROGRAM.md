@@ -1199,6 +1199,19 @@ increments anti-correlated (coherence 0.00-0.26) against 1 random and m positive
 cancellation of weighted increments is the target itself. (BC) not closed; surviving term the pair correlation of
 the increments. Script rh_boundary_carry.py.
 
+## 2026-10-06, later: colours inside the subpower bound (COLORS_AND_DESCENT.md)
+On the colours-and-descent directive. The orthogonal boundary compression verified and proved through the h-form
+(E_res = within-interval variance of h; uniform bound 3.3). The colour Gram by factor count: nearly rank one, same-
+colour energy 0.235N, parity annihilates it to R(N); the exact relation: prod_p (1 + z p^{-s}) with the Selberg-
+Delange main term vanishing at z = -1 (zero of 1/Gamma), so the annihilation is the PNT and the residual is the
+zeros; the profile E(t) in the colour phase computed to 1e6 against the main term (exact at t = 0; within x0.6-1.4
+across; vanishing at pi where the floor is R(N)); passage from the angular average to the parity phase has no
+inequality (nonnegative trig polynomial). Prime packets: identity verified; coprime sources' energy rises to 457
+along the removal before falling to 1: no per-prime contraction. Six-term reconstruction exact; terms cancel by
+3500; no q < 6. Signed work: E_P <= D_N holds with growing margin (weak Mertens in energy form). Controls: shuffled
+Moebius signs at the random level. (Goal) not closed; resume point the profile near the parity phase. Scripts
+rh_colors_descent.py, rh_color_phase.py, figure COLOR_PHASE.png.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
