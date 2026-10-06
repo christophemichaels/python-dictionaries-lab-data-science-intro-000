@@ -128,9 +128,10 @@ independent inequality tested here produces a negative upper bound on O at all.
 
 ## 4. The return, with all terms, and the sharpest remaining question
 
-If (10) held for w = 1 on 1 ≤ J < J₀ with exponent ε/2, then with (8), ‖Π_J b_N‖² ≤ (π²/2 + C) J² N^{−2+ε/2}, so
-λ_J ‖Π_J b_N‖² ≤ (D²/(4(2J−1)²))·(π²/2 + C) J² N^{−2+ε/2}·(π²/4)… ≤ C′ N^{ε/2} on that range (using
-λ_J ≤ D²/(4(2J−1)²)·(π²/4)... i.e. λ_J ≤ π²D²/(16(2J−1)²)); for J ≥ J₀, λ_J ≤ λ_{J₀} ≤ (9/4)ℓ⁴_N and ‖Π_J b_N‖² ≤ Z, so
+If (10) held for w = 1 on 1 ≤ J < J₀ with exponent ε/2, then with (8), ‖Π_J b_N‖² ≤ (π²/2 + C) J² N^{−2+ε/2}. Since
+sin x ≥ 2x/π on [0, π/2], λ_J = 1/(4 sin²(θ_J/2)) ≤ π²/(4θ_J²) = D²/(4(2J−1)²) ≤ (2N+1)²/(4J²), so
+λ_J ‖Π_J b_N‖² ≤ (π²/2 + C)·((2N+1)²/(4N²))·N^{ε/2} ≤ C′ N^{ε/2} on that range; for J ≥ J₀, λ_J ≤ λ_{J₀} ≤ (9/4)ℓ⁴_N
+and ‖Π_J b_N‖² ≤ Z, so
 λ_J‖Π_J b_N‖² ≤ (9/4)Zℓ⁴_N. Hence K(b_N) ≤ max(C′N^{ε/2}, (9/4)Zℓ⁴_N) and by (2), R(N) ≤ [1 + 2 log(3N)]·K(b_N) ≤
 C_ε N^ε: this is (G), with the terminal term inside R(N) throughout, no omitted range (the trivial range J ≥ J₀ is
 covered by Parseval and the high-mode bound), and the return through (2) only, without the inverse (5). The
