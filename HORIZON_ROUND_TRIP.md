@@ -231,3 +231,75 @@ above, its input is equivalent to RH, and its stopping term is the window G_j(s)
 return calculations (DR) and (13)–(14) are correct as transfers and have nothing to transfer. The next
 calculation the stopping term identifies is the pair-of-zeros form of T_j(N); every quantity in it is defined,
 and no premise-free estimate of it is known.
+
+## 6. The prefix–tail mechanism: the lowest modes of the completed prefix, and where the mechanism loses (2026-10-06, later)
+
+On `received/Michaels_Arithmophysics_Growing_Mode_Bounds.pdf`, whose Theorem 2.1 (the exact truncation inequality
+max{λ_J S_N(J), E^{≥J}_N} ≤ (√R(L) + √(λ_J T_{L,N}))²) and Theorem 3.1 (the optimised bound
+λ_J S_N(J) ≤ C (N/J) e^{−(b/2)√log(eN/J)} from the unconditional R(L) ≤ A L e^{−b√log(eL)}) are correct, and are a
+genuine intermediate result: they pay every mode cutoff J ≥ N^{1−η} with the tolerance N^η. The request was to
+improve the treatment of the prefix–tail interaction, or the lowest-mode estimate for the completed prefix.
+Script `rh_prefix_tail.py`. The paper's table of Theorem 2.1 at (N, J, L) = (64, 8, 16), (257, 8, 65),
+(1024, 32, 64), (4096, 32, 256) is reproduced here to all six decimals.
+
+**Notation.** c_{≤L}, c_{>L} the prefix and tail of c_N = μ(n)/n; h = V_N^T c_{≤L}, t = V_N^T c_{>L};
+M*(L) = max_{x≤L}|M(x)|; D = 2N + 1; θ_j = (2j−1)π/D; the monotone regime is θ_J L ≤ π/2, i.e. (2J−1)L ≤ D/2.
+
+**Proposition A (the lowest modes of the completed prefix are the Mertens function at the prefix scale).**
+In the monotone regime, for every j ≤ J,
+
+    h_j = (2θ_j/√D) ( M(L) + e_j ),        |e_j| ≤ θ_j² L² M*(L)/3,
+
+and |h_j| ≤ (2θ_j/√D) M*(L). Hence
+
+    λ_J ‖Π_J h‖² ≤ λ_J (4/D) M*(L)² Σ_{j≤J} θ_j²  ≤  (2π²/3) (J/N) M*(L)² (1 + O(1/J)).
+
+In the oscillating regime (θ_J L > π/2) the window sin(xθ_j)/x has total variation at most θ_j(1/3 + 2 log(Lθ_j))
+on [1, L], so |h_j| ≤ (2θ_j/√D) M*(L)(1 + 2 log⁺(Lθ_j)) and
+
+    λ_J ‖Π_J h‖² ≤ (2π²/3) (J/N) M*(L)² (1 + 2 log⁺(πJL/N))².
+
+Proof. Partial summation of Σ_{n≤L} μ(n) g(n) with g(x) = sin(xθ_j)/x: in the monotone regime g is positive and
+decreasing on [1, L], so |Σ| ≤ M*(L) g(1) ≤ M*(L) θ_j, and expanding sin(nθ) = nθ − (nθ)³/6 + … gives the leading
+form with Σ_{n≤L} μ(n) n² bounded by partial summation. In the oscillating regime |g′| ≤ θ²/3 on x ≤ 1/θ and
+|g′| ≤ 2θ/x beyond. The gain λ_J ≤ D²/(4(2J−1)²) and Σ_{j≤J} θ_j² = π² J(4J²−1)/(3D²) give the mode sums. ∎
+
+Measured (monotone regime, JL/N = ½): at (N, J, L) = (4096, 32, 64) the actual λ_J‖Π_J h‖² is 0.0078, the
+leading form (4/D)λ_J M(L)² Σθ² is 0.0054, the bound with M* is 0.086, and the paper's bound R(L) is 1.33; at
+(16384, 256, 32): 0.131, 0.167, 0.167, 1.74; at (16384, 32, 256): 0.0018, 0.0013, 0.086, 1.41. The error e_j is
+within its bound at every entry. **In the monotone regime the new bound improves the paper's prefix estimate by a
+factor 10 to 20, and the lowest modes of the prefix are exactly M(L) up to the sine's curvature.**
+
+**Theorem 3.1′ (the re-optimised cutoff).** With the oscillating-regime bound and M*(L) ≤ A₁ L e^{−b√log(eL)},
+balancing (J/N) L² e^{−2b√log L} against (9/4)(N/J)²/L at L = (N/J) e^{(2b/3)√v}, v = log(eN/J), gives
+
+    λ_J S_N(J) ≤ C₁ (N/J) (1 + √v)² e^{−(2b/3)√log(eN/J)},        C₁ = (√(2π²/3)·A₁ (1 + log π + 2b/3) + 3/2)²,
+
+uniformly in N and J (the case L > N as in the paper). This improves the exponential constant from b/2 to 2b/3.
+
+**Honest assessment of Theorem 3.1′.** It is asymptotic only. At every reachable size the oscillating-regime
+bound is worse than R(L): at JL/N = 4 it is 200–370 against R(L) ≈ 1.4, because the window's logarithmic
+variation and the max M*(L)² enter where R(L) sums M(k)²/k² over all scales (1.4 in total, since M(k)²/k is
+small at every k). The improvement by e^{(b/6)√log(eN/J)} overtakes the constant (2π²/3)(1 + 2 log(…))² only at
+horizons far beyond computation. And it changes nothing in the range: the mechanism pays J ≥ N^{1−η} and no
+smaller cutoff, with either prefix bound, because the tail term (9/4)(N/J)²/L forces L ≥ (N/J)² N^{−η} while any
+prefix bound of the form L^{1−o(1)} forces L ≤ N^{η+o(1)}.
+
+**Where the mechanism actually loses, measured.** The interaction Γ = ⟨Π_J h, Π_J t⟩ against its Cauchy–Schwarz
+bound: in the monotone regime |Γ|/CS is 0.3 to 0.83 with both signs; in the balancing regime (JL/N ≥ 4) it is
+0.00 to 0.1. **So the Cauchy–Schwarz step on the interaction is not where the paper's bound loses**: in the regime
+the optimisation selects, the prefix and tail low modes are nearly orthogonal and the interaction is negligible.
+The loss is in the two squared terms, both bounded sign-free: at (4096, 32, 512), actual prefix 0.022 against
+R(L) = 1.47 (×68), actual tail 0.012 against Parseval λ_J T = 1.77 (×150); at (16384, 32, 2048): 0.009 against
+1.50 (×160), 0.012 against 7.13 (×590). Improving the interaction cannot recover this; improving either squared
+bound requires arithmetic: the prefix's low modes are M at scales ≤ L (Proposition A), and the tail's low modes
+Σ_{L<n≤N} μ(n) sin(nθ_j)/n are the oscillating-window Möbius sums over (L, N], which partial summation bounds by
+M*(N) θ_j (1 + 2 log(Nθ_j)) — the (BL) regime, worse than Parseval once J > e^{b√log N}. The mechanism is
+sandwiched: prefix → M below L, tail → M above L, and the sign-free bound is sharp for each in its own regime.
+
+**What this leaves.** The lowest-mode estimate for the completed prefix is now exact in the monotone regime
+(Proposition A) and sharper asymptotically in the oscillating one (Theorem 3.1′). The specific unresolved step of
+the paper is restated with its size: the prefix's low modes are M(L), the tail's are the oscillating sums of M on
+(L, N], the interaction between them is small where it matters, and the whole slack of the mechanism is the
+factor between a sign-free bound on each piece and its true value, which is the factor between M*(x)² and the
+mean square of M at the relevant scales. The remaining instance of (PE) on J < min(J₀, N^{1−η}) is unchanged.

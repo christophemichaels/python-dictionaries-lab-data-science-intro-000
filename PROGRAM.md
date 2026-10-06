@@ -1176,6 +1176,17 @@ exact stopping term: the prime discrepancy against the complete Moebius children
 collapse holds for every kernel, so Type II gains need non-smooth kernels and the low modes are smooth. Verdict:
 no arithmetic improvement. Script rh_checkpoint_check.py.
 
+## 2026-10-06, later: the prefix-tail mechanism (HORIZON_ROUND_TRIP.md, Section 6)
+On the received Source Truncation and Growing Mode Bounds (Theorems 2.1, 3.1 correct; table reproduced), asked to
+improve the interaction treatment or the lowest-mode estimate for the completed prefix. Proposition A: in the
+monotone regime (2J-1)L <= D/2 the prefix's lowest modes are h_j = (2 theta_j/sqrt D)(M(L) + e_j), |e_j| <=
+theta_j^2 L^2 M*(L)/3, giving lambda_J ||Pi_J h||^2 <= (2 pi^2/3)(J/N) M*(L)^2, 10-20x below R(L) there (measured);
+oscillating regime with the (1 + 2 log+)^2 factor. Theorem 3.1': re-optimised cutoff, exponential constant 2b/3
+instead of b/2; assessed honestly: asymptotic only, numerically worse than R(L) at reachable sizes, range
+J >= N^{1-eta} unchanged. Measured where the mechanism loses: not the Cauchy-Schwarz interaction (|Gamma|/CS <= 0.1
+in the balancing regime) but the two sign-free squared bounds (x70-600 each); prefix -> M below L, tail -> M above
+L, sandwiched. Script rh_prefix_tail.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
