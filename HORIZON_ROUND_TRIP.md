@@ -146,3 +146,88 @@ J < J₀(N). The version with ε = 0 is presumably false in the limit (it would 
 unboundedness of M(x)/√x), so the N^ε is not decorative. What would answer it is a negative upper bound on the
 signed correlations O^{(1)}_{N,J}, of the form O ≤ −D + C J²N^{−2+ε}, proved from an input independent of (G); the
 diagnostics say this is the true size, and this pass found no such input.
+
+## 5. The shared checkpoint and the next attempt (continuation, 2026-10-06, later)
+
+On `received/Michaels_Arithmophysics_Shared_Checkpoint_Continuation.pdf`. Script `rh_checkpoint_check.py`.
+
+**What in the checkpoint is in this repository and what is not.** The prime completion, the coupled vector with
+its collapse, the source diagonal bounds and the finite-index cost are here. The density replacement
+F_N = Z_{N,D} + B_{N,D} with ‖B_{N,D}‖²_E ≤ (2N − D)/D², the cutoff freedom (3), the continuous-to-finite bridge
+(4)–(7), the kernel (8)–(9), the analytic inverse constant C₀ = 67.6159, the eleven-page report and the N = 4,
+D = 2 sign example are not: they are taken as stated and not certified here. One cross-check is exact: the
+checkpoint's ‖F_N‖²_E = 0.430376710, 1.078227825, 2.161216072 at N = 64, 256, 1024 equals R^{log}(N) computed
+from the collapsed coefficients to all nine decimals, so the continuous field F_N and the vector
+f_n = (1 − log n)μ(n)/n are the same object in the same metric.
+
+**The candidate upper comparison, and its proposed input.** Candidate: for the unweighted source,
+
+    O_{N,J} ≤ A·D_{N,J} + C_ε J² N^{−2+ε},        1 ≤ J < J₀(N),
+
+equivalently S_N(J) ≤ (1 + A)D_{N,J} + C_ε J²N^{−2+ε}, which gives (PE) and (DR). The point where information
+about the actual Möbius source enters is the Mellin representation of a single low mode: with
+g_j(x) = sin(xθ_j)/x on [1, N] and G_j(s) = ∫_1^N g_j(x) x^{s−1} dx,
+
+    b_{j,N} = (2/√D) Σ_{n≤N} μ(n) g_j(n) = (2/√D)·(1/2πi) ∫_{(σ)} G_j(s)/ζ(s) ds        (σ > 1),
+
+and |G_j(s)| ≪ N^{σ−1}·min(1, 1/(θ_j|s|))-type decay. The proposed input is the bound 1/ζ(s) ≪_δ (1 + |t|)^δ on
+Re s ≥ ½ + δ for every δ > 0, which would allow the contour to Re s = ½ + δ and give |b_{j,N}| ≪ j N^{−1/2+δ}·N^{−1/2}…,
+i.e. S_N(J) ≪ J³ N^{−2+2δ}, and with the mean-value refinement J² N^{−2+ε}. **This input is not independent**: it is
+equivalent to RH (it forbids zeros in Re s > ½ by analytic continuation, and RH gives it by the standard
+bound for 1/ζ in the half-plane, Titchmarsh §14.2). Unconditionally the contour moves only to
+σ = 1 − c/log(|t|+2), and the result is (BL). So the candidate fails as an independent estimate, and its exact
+stopping term is the integral over Re s = ½ + δ of G_j(s)/ζ(s): the low mode is the window G_j against 1/ζ on a
+line inside the critical strip, and nothing proved places 1/ζ there.
+
+**Calibration of the stronger candidates (exact at J = 1).** With M̃(N) = Σ_{n≤N} μ(n) sinc(nθ_1) and
+D_{N,1} N² → 2.3211 (measured 2.3211 at N = 10³, 10⁵, 10⁶, 10⁷; 2.3220 at 10⁴),
+
+    S_N(1)/D_{N,1} = (4θ_1²/D) M̃(N)² / D_{N,1}        (exact; measured 0.0014, 0.0506, 0.0237, 0.0341, 0.0896 at N = 10³…10⁷),
+
+which tracks M(N)²/N (0.0040, 0.0529, 0.0230, 0.0449, 0.1075). Hence at J = 1:
+
+- the sign O_{N,1} ≤ 0 is the inequality |M̃(N)| ≤ 0.686 √N;
+- the uniform comparison O ≤ A·D is M̃(N)² ≤ 0.471 (1 + A) N, a bounded M̃(N)/√N;
+- (PE) is M̃(N) ≪ N^{1/2+ε}, implied by RH.
+
+The first two are stronger than RH, and the boundedness of M(x)/√x is expected to be false (Ng's conjecture
+on the growth of M(x)/√x), while the known computations of M(x)/√x stay below 0.6 far beyond the horizons
+sampled here. So the observed universal negativity of O and the 90–97 % cancellation are the statement that
+|M(x)|/√x has not yet exceeded 0.686 at the sampled scales; they are not theorems to seek, and the N^ε in (PE)
+is not decorative. The N = 4, D = 2 example of the checkpoint concerns the Gram cross term of F_N, a different
+object, and is consistent with this.
+
+**The Ng calibration, derived and withdrawn.** For general J, S_N(J) = Σ_{j≤J}(4θ_j²/D) M̃_j² with
+M̃_j = Σ μ(n) sinc(nθ_j), and D_{N,J} = (4/D)Σ_{j≤J} Σ_n μ(n)² sin²(nθ_j)/n² ≈ (4/D)(6/π²)Σ_j θ_j(π − θ_j)/2. So
+
+    S_N(J)/D_{N,J} ≈ (π/3) · [ Σ_{j≤J} θ_j · (M̃_j²/x_j) ] / [ Σ_{j≤J} θ_j ],        x_j = 1/θ_j,
+
+a θ_j-weighted mean of M̃²/x over the scales x_j ∈ [N/(πJ), 2N/π], weighted toward the small scales. Ng's
+theorem concerns the logarithmic mean of M(x)²/x, which is a different average, and the sinc window is not the
+sharp cutoff. The identification 0.045 ≈ β/(6/π²) proposed in Section 3 is withdrawn as uncertified; what the
+number says is that the weighted mean of M̃²/x over the sampled scales is about 0.043, of the same order as β.
+
+**The continuous route, and its exact stopping term.** The retained coordinates (10) contain the discrepancy
+integral ∫_{(D,N]} (Σ_{m≤N/t} μ(m) κ_j(tm)) dE_ψ(t). Written as a bilinear form it is Σ_{t,m} (Λ(t) − 1) μ(m) f(tm)
+with f = κ_j, and for every kernel f, by the convolution identities,
+
+    Σ_{t,m: tm≤N} (Λ(t) − 1) μ(m) f(tm) = Σ_{n≤N} ( μ(n)(1 − log n) − [n = 1] ) f(n),
+
+exactly. So the bilinear structure carries no information beyond the linear form in μ·(1 − log n) for any f;
+a Type II gain needs a kernel that is not smooth at the scale of the dilations, and κ_j is smooth at scale
+N/j ≫ √N for j < J₀. The specific stopping term, after the small dilations d ≤ D = ⌈√N⌉ are kept exact, is
+
+    T_j(N) = Σ_{m≤√N} μ(m) ∫_{√N}^{N/m} κ_j(tm) dE_ψ(t),
+
+the prime discrepancy against the complete Möbius children M̃_j(N/t) at scales below √N. Bounding it with
+|E_ψ(t)| ≤ t e^{−c√log t} and the trivial |M̃| gives the (BL) level; bounding it with the target at the child
+horizons produces the growing dilation sum of the checkpoint's Section 6; no third way was found. In the explicit
+formula the term is a double sum over pairs of zeros (ρ, ρ′), E_ψ(t) ≈ −Σ_ρ t^ρ/ρ against M(N/t) ≈ Σ_{ρ′}(N/t)^{ρ′}/(ρ′ζ′(ρ′)),
+whose t-integral resonates on the diagonal ρ = ρ′: that is where the arithmetic information sits, and it is not
+reachable without the zeros.
+
+**Verdict, once.** No arithmetic improvement is proved in this pass. The attempted inequality is the candidate
+above, its input is equivalent to RH, and its stopping term is the window G_j(s) against 1/ζ on Re s = ½ + δ. The
+return calculations (DR) and (13)–(14) are correct as transfers and have nothing to transfer. The next
+calculation the stopping term identifies is the pair-of-zeros form of T_j(N); every quantity in it is defined,
+and no premise-free estimate of it is known.

@@ -1164,6 +1164,18 @@ recurrence (14) not produced by the transfers (sign-free coefficients sum to sqr
 all terms; sharpest remaining question: O <= -D + C J^2 N^{-2+eps} from an input independent of (G). Script
 rh_round_trip.py, figure HORIZON_ROUND_TRIP.png.
 
+## 2026-10-06, later: the shared checkpoint (HORIZON_ROUND_TRIP.md, Section 5)
+On the shared-checkpoint continuation: items not in this repository listed as such; the checkpoint's ||F_N||_E^2
+table at N = 64, 256, 1024 reproduced exactly as R^log(N). The candidate O <= A D + C J^2 N^{-2+eps} written with its
+input (the sine window's Mellin transform against 1/zeta on Re s = 1/2 + delta), shown equivalent to RH, stopping
+term named. Exact first-mode calibration S_N(1)/D_{N,1} = (4 theta_1^2/D) Mtilde(N)^2 / D_{N,1} (tracks M(N)^2/N):
+the universal sign is |Mtilde| <= 0.686 sqrt N and the fixed-A comparison is bounded Mtilde/sqrt N, both stronger
+than RH and expected false, so the N^eps in (PE) is not decorative. The Ng identification of 0.045 withdrawn
+(the ratio is a theta-weighted mean of Mtilde^2/x over scales, not the logarithmic mean). The continuous route's
+exact stopping term: the prime discrepancy against the complete Moebius children below sqrt N; the bilinear
+collapse holds for every kernel, so Type II gains need non-smooth kernels and the low modes are smooth. Verdict:
+no arithmetic improvement. Script rh_checkpoint_check.py.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
