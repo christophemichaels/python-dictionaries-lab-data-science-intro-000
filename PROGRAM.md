@@ -1224,6 +1224,21 @@ so (24) at retained records is the Mertens bound at the new maxima of |M|: no we
 a_{2,3} linear law. No new inequality; surviving expression and the conjecture I_{2,3}(N) <= 0 for N >= 2838 stated
 as a target (weak Mertens with constant 0.203). Scripts rh_parity_decay.py, rh_parity_decay_fig.py.
 
+## 2026-10-06, later: the cube moves (CUBE_MOVES.md)
+On the Rubik's-cube directive. All identities exact (rationals to 120, floats to 1e7; calibration at 4e6 to the digit:
+1.142012922 - 0.319880236 + 0.888378414). First move written as Delta_6 R = centred block energy + 2M(L)(m(N)-m(L));
+local bound M(N)^2/N - M(L)^2/L <= Delta_6 R <= (1+log(N/L)) max_{L<=k<=N} M(k)^2/k; (A) for every eps <=> Goal
+(both directions); uniform budget sits between M^2 <= C'x and R = O(log N). Cross term has the PNT saving, is 1e-3 of
+the increment at 1e7; the tail square (centred Mertens energy of the block) carries everything. {2,3} move: exact band
+formula for Delta Kern (newly completed parents, ratios < 6), diagonal increment <= 1.528; measured Delta D = 0.363,
+band -0.26..-0.36, sum = Delta ||g||^2 in [-0.0001, 0.058]: the diagonal is paid and the band must be bounded
+negatively = (A) again. Separated family: G_N <= A* S(N^(1/6)) verified, loose by 630-830, <= 5 parents to 1e7, no
+telescoping (l_N runs through every prime to 113557). Scan: max Delta_6 R = 1.219 at 13, 0.245 above 100, held-out (1e6,1e7] 0.203 at
+1065673; mean 0.0548; peaks are new maxima of |M|/sqrt(N) (terminal carries 0.18 of 0.23). Chain budgets max B+ 1.651.
+Finite return R(N) <= 1.738 + 0.2453 ceil(log(N/100)/log 6) on [6, 1e7]. Controls (one realization both horizons):
+shuffle mean 0.56, random signs 0.27 (expectation 1.09), Mobius 0.055. No new inequality. Files: CUBE_MOVES.md,
+rh_cube_moves.py, rh_cube_moves_fig.py, CUBE_MOVES.png, data/cube_moves.json.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
