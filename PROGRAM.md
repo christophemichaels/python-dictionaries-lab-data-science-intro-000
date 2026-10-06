@@ -1111,6 +1111,19 @@ Ng's theorem named behind the 0.0288 benchmark; the slope's sampling rule stated
 the canonical relation a covariance relation on the generators. The audit's tail theorem ||T_P||^2 ~ E_P recorded.
 Figure titles corrected (rh_horizon_map.py).
 
+## 2026-10-06, later: the subpower closure attempt (SUBPOWER_CLOSURE.md)
+On the research directive (received/Michaels_Arithmophysics_Subpower_Closure_Prompt.pdf): a direct attempt at (T)
+through the horizon modes, executed. (A)-(D) verified along the whole prime induction at N = 2000, 4000. Theorem:
+the transfer matrix in closed form, near-diagonal p^{-1/2}, alias rows, equal amplitude sharing among p modes.
+Proposition: mode j = sinc-windowed Moebius sum at scale (2N+1)/((2j-1) pi). Slice identity: the prime p adds the
+slice of the source with largest prime factor p. Two mechanisms fail for proved reasons: sign-free bounds give
+exactly the trivial Moebius bound (sharp, attained by the squarefree indicator); the increasing-prime induction
+passes through K_Q >= c N/log^2 N at the stage p <= N/2 (unconditional, PNT), measured 0.34, 0.30 times
+N/log^2 N, 35 and 52 times the final K_N. Computation: K_N sits in the high modes (Parseval mass); the content
+of (T) is in the low modes where Moebius is 3-200 times below random; the incoherent slice sum is itself of
+size J^2/N^2 (the sliced historical integral) and the total cross term is positive at every J tested. No closing
+mechanism; the residual (R) stated with its two halves. Dependency statement: (G) <=> (T) <=> RH, untouched.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
