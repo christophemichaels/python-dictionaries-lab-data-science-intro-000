@@ -339,25 +339,37 @@ with G(x) = Σ_{2≤n≤x} μ(n)(log n − 1) = M(x)(log x − 1) − ∫_1^x M(
 | 10⁷ | 58.071 | 1.837 | 0.122 | 15727.7 | 24.74 |
 
 So **the signed contributions from the smaller horizons combine exactly, by the convolution identity, into the
-log-weighted Möbius vector −(log n − 1)μ(n)/n.** There is no cancellation left in F_N to exploit: all of it has
-been used in forming μ·log from Λ * μ. The equation (L_N − I)b_N = −u_N − F_N is, once F_N is evaluated, the
-identity (L_N − I)b_N = −u_N + (L_N − I)b_N + u_N, and the inversion bound reads √R(N) ≤ 25.46 (1 + √R^{log}(N)):
-true, and circular, since R^{log} is the same energy with logarithmic weights.
+log-weighted Möbius vector −(log n − 1)μ(n)/n.** The cancellation among the horizons has been performed by the
+convolution; what remains is the cancellation inside R^{log}(N) itself, the signed Möbius correlations
+Σ μ(a)μ(b)(log a − 1)(log b − 1)/max(a, b). The collapse identifies where that cancellation resides; it does not
+show that every way of estimating it has been exhausted. The equation (L_N − I)b_N = −u_N − F_N is, once F_N is
+evaluated, the identity (L_N − I)b_N = −u_N + (L_N − I)b_N + u_N, and the inversion bound reads
+√R(N) ≤ 25.46 (1 + √R^{log}(N)): an unconditional transfer, which moves a bound on the log-weighted energy back to
+R(N) at the cost of the constant 25.46. The arithmetic bound on R^{log}(N) has to come from another estimate;
+improving the constant changes the cost of the transfer, while the subpower question concerns growth with N.
 
 **The sufficient estimate is the target with logarithmic weights, equivalent to it.** R^{log}(N) = O_ε(N^ε) ⟺ RH:
 (⟸) under RH, M(x) = O(x^{1/2+ε}) gives G(x) = O(x^{1/2+ε} log x) and R^{log}(N) = O(N^{3ε}). (⟹) G(N)² ≤ N·R^{log}(N)
 gives G(x) = O(x^{1/2+ε}); by partial summation the Dirichlet series Σ_{n≥2} μ(n)(log n − 1) n^{−s} =
 ζ′(s)/ζ(s)² − 1/ζ(s) + 1 then converges, hence is analytic, on Re s > ½; at a zero ρ of ζ of order m with Re ρ > ½
 the first term has a pole of order m + 1 and the second a pole of order m, so the sum has a pole; contradiction.
-Hence R^{log} subpower ⟺ RH ⟺ (G) ⟺ (T). Also two-sidedly, without any hypothesis: R(N) ≤ 25.46² (1 + √R^{log}(N))²
-and R^{log}(N) ≤ (log N − 1)²·R(N)·(1 + o(1)) + …, so √R and √R^{log} are equivalent up to the factor log N and the
-constant 25.46.
+Hence R^{log} subpower ⟺ RH ⟺ (G) ⟺ (T). An equivalent sufficient condition is legitimate; a closing argument
+becomes circular only if it uses that condition, or an equivalent assumption, to establish itself. Also
+two-sidedly, without any hypothesis: R(N) ≤ 25.46² (1 + √R^{log}(N))² and R^{log}(N) ≤ (log N − 1)²·R(N)·(1 + o(1)) + …,
+so √R and √R^{log} are equivalent up to the factor log N and the constant 25.46.
 
-**Where the identity is not circular.** Only when the horizons are kept separate and an independent input on
-Λ(d) − 1 is fed in. Sign-free in d, (C) gives ‖T_d b_{⌊N/d⌋}‖_Λ = √(d R(⌊N/d⌋)) and the bound
+**What the transfer needs.** An input that is not derived from (G) or an equivalent. One source of such input
+keeps the horizons separate and feeds in an independent bound on Λ(d) − 1. Sign-free in d, (C) gives ‖T_d b_{⌊N/d⌋}‖_Λ = √(d R(⌊N/d⌋)) and the bound
 √R(N) ≤ 25.46 (1 + Σ_{d≥2} |Λ(d) − 1| d^{−1/2} √R(⌊N/d⌋)) ≤ C √N max R, the trivial bound again. With the signs
 of Λ(d) − 1 but the vectors T_d b_{⌊N/d⌋} treated as given, the available input is ψ(x) − x, and the transfer
 (Axer's theorem) yields M(x) = o(x) from ψ(x) ~ x and the zero-free-region bound from the zero-free region; it
-yields x^{1/2+ε} only from ψ(x) − x = O(x^{1/2+ε}), which is RH. Whether the coupled form has cancellation beyond
-this is answered by the collapse: as a vector, F_N is μ·(1 − log n)/n, and any cancellation it carries is the
-cancellation of μ.
+yields x^{1/2+ε} only from ψ(x) − x = O(x^{1/2+ε}), which is RH. The other source would be an independent
+inequality for the signed correlations in R^{log}(N) that improves the existing low-mode estimate; none is
+produced here.
+
+**Verdict for this branch.** The fluctuation identity and the bounded inverse organise the problem: the survivor
+of every completion is located in Λ − 1, the smaller horizons combine into the log-weighted Möbius vector, and a
+bound on the log-weighted energy transfers back to R(N) at a controlled, N-independent cost. The calculations
+reported here have not produced additional arithmetic control. Another evaluation of the same identity would
+confirm the correspondence again and nothing more; what would make the reformulation useful for closure is an
+independent inequality for the signed correlations.

@@ -1144,8 +1144,11 @@ Evaluated: F_N collapses exactly to f_n = -(log n - 1) mu(n)/n (Lambda * mu = -m
 ||F_N||^2 = R^log(N), the energy with log weights (2.5, 8.5, 13.9, 28.1, 58.1 at 1e3..1e7); R^log subpower <=> RH
 (proof both ways via zeta'/zeta^2 - 1/zeta). So the sufficient estimate is the target with log weights, and the
 signed contributions from smaller horizons combine exactly into mu (1 - log n)/n: no cancellation left in F_N.
-Non-circular only with an independent input on Lambda - 1 (Axer: PNT -> M = o(x); zero-free region -> its bound).
-Script rh_fluctuation.py.
+Wording corrected on the user's assessment: the convolution performs the cancellation among horizons, the remaining
+cancellation is the signed correlations inside R^log, and the collapse does not show every estimate exhausted; the
+inverse lemma is an unconditional transfer at a controlled cost. Verdict: the identity and the bounded inverse organise
+the problem; no additional arithmetic control obtained here; the decisive next evidence is an independent inequality
+for the signed correlations. Script rh_fluctuation.py.
 
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
