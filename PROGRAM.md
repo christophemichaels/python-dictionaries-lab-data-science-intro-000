@@ -1063,6 +1063,17 @@ obligations; one-line proof); the spectral form with propagator 1/(k^2 + 1/4). T
 assessed: field equation and simulation done; quantum dynamics with H0 empty (free field, no arithmetic); the
 zero spectrum is the open inner product. Script rh_field.py, figure THE_FIELD.png.
 
+## 2026-10-06: exact recoverability of the field (THE_FIELD.md, Sections 5-7)
+On ChatGPT's follow-up relayed by the user, every statement checked and added: the recovery law M(e^u) =
+e^{u/2}(phi/2 - phi'), h(N) - h(e^u) = e^{-u/2}(phi/2 + phi'); endpoints phi_N(0) = h(N), phi_N(log N) = M(N)/sqrt N;
+the factorisation H0 = (-d + 1/2)(d + 1/2) with phi'^2 + phi^2/4 = A^2/2 + B^2/2 and each channel integrating to
+R(N) over the whole line; the successor as a field event, R(n) - R(n-1) = (mu^2 + 2 mu M(n-1))/n with the
+interaction phi_{n-1}(log n) = M(n-1)/sqrt n. One correction recorded: the criterion is subpower growth of the
+energy, R(N) = O(N^eps), equivalently finite damped energies for every delta > 0; the undamped energy diverges
+unconditionally (Prop. 3.2 (iii)); at finite N the spectral numerator is entire and the zeros enter only in the
+passage to infinity. Verified with the field summed from its pulses (recovery to 5e-14; channels to 1e7;
+successor increments to 1e-13). Script rh_field_recovery.py, figure THE_FIELD_RECOVERY.png.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
