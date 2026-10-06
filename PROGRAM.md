@@ -1074,6 +1074,23 @@ unconditionally (Prop. 3.2 (iii)); at finite N the spectral numerator is entire 
 passage to infinity. Verified with the field summed from its pulses (recovery to 5e-14; channels to 1e7;
 successor increments to 1e-13). Script rh_field_recovery.py, figure THE_FIELD_RECOVERY.png.
 
+## 2026-10-06, later: the map through the horizon (THE_HORIZON_MAP.md)
+The user's frame: the light plane as the larger information structure with the growth law (G) as its governing
+premise; investigate the source, its Hamiltonian, its positive geometry, its colours, and the map to their
+arithmetic images; find where conservation becomes growth, where information is compressed, what is invariant.
+Done as a first pass with the computation beside each claim. (G) read in the plane as the mass threshold. The
+horizon = sampling on log N with Moebius weights; the flow collapses to the prime shifts; the source is one
+point through the shifts; two evolutions, by integers and by primes. Finding not anticipated: the prime-cutoff
+colours are untempered (the Euler product does not converge on the line; the partial product is exp(-2 Re S_P(k))
+up to O(1), S_P the prime sum, dominated by the pole term P^{1/2-ik}/((1/2-ik) log P)); the integer door passes
+the zeros and stops the pole, the prime door passes the pole and drowns the zeros below the colour sqrt P / log P,
+every zero in turn (the line term 2 log log P against the pole's 2 sqrt P/((log P) k)). Conservation -> growth: delivered 6/pi^2 per e-fold = Plancherel mean colour density
+(checked), retained 0.028 per e-fold (fraction 0.28 -> 0.17 to 1e7; conditional constant 0.0288 noted as an
+observation); by primes E' = (1+1/q)E - 2 q^{-1/2} C_q with the plane's conservation as the factor (1+1/q), the
+interference negative from q = 5, energy exploding like exp(sqrt P / log P). Invariants tabled; four research
+directions in the lower description (the integer door is the door; line-by-line energy accounting; the mass as
+the variable; the order of the double limit N, P). Script rh_horizon_map.py, figure THE_HORIZON_MAP.png.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
