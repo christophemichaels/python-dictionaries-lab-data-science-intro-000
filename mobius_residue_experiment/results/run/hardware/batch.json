@@ -1,0 +1,106 @@
+{
+ "batch": [
+  {
+   "name": "mobius_N4_r2",
+   "data_qubits": 4,
+   "P0_exact": 0.11363636363636363,
+   "d": 4,
+   "Q": 1.8333333333333335,
+   "isa_depth": 97,
+   "isa_ops": {
+    "rz": 77,
+    "sx": 59,
+    "ecr": 19,
+    "x": 2,
+    "measure": 2
+   },
+   "isa_two_qubit": 19,
+   "success_bitstring": "00",
+   "shots": 4000
+  },
+  {
+   "name": "squarefree_positive_N4_r2",
+   "data_qubits": 4,
+   "P0_exact": 0.5681818181818182,
+   "d": 4,
+   "Q": 1.8333333333333335,
+   "isa_depth": 54,
+   "isa_ops": {
+    "rz": 56,
+    "sx": 38,
+    "ecr": 11,
+    "measure": 2,
+    "x": 1
+   },
+   "isa_two_qubit": 11,
+   "success_bitstring": "00",
+   "shots": 4000
+  },
+  {
+   "name": "packet_N6_r1",
+   "data_qubits": 4,
+   "P0_exact": 0.3333333333333333,
+   "d": 2,
+   "Q": 1.0,
+   "isa_depth": 96,
+   "isa_ops": {
+    "rz": 80,
+    "sx": 53,
+    "ecr": 19,
+    "x": 2,
+    "measure": 1
+   },
+   "isa_two_qubit": 19,
+   "success_bitstring": "0",
+   "shots": 4000
+  },
+  {
+   "name": "weyl_loop_r2_X",
+   "data_qubits": 3,
+   "expected": 0.0,
+   "theta": 1.5707963267948966,
+   "isa_depth": 86,
+   "isa_ops": {
+    "rz": 63,
+    "sx": 37,
+    "ecr": 14,
+    "x": 3,
+    "measure": 1
+   },
+   "isa_two_qubit": 14,
+   "shots": 4000
+  },
+  {
+   "name": "weyl_loop_r2_Y",
+   "data_qubits": 3,
+   "expected": 1.0,
+   "theta": 1.5707963267948966,
+   "isa_depth": 86,
+   "isa_ops": {
+    "rz": 63,
+    "sx": 37,
+    "ecr": 14,
+    "x": 3,
+    "measure": 1
+   },
+   "isa_two_qubit": 14,
+   "shots": 4000
+  }
+ ],
+ "estimate": {
+  "circuits": 5,
+  "shots_per_circuit": 4000,
+  "total_shots": 20000,
+  "backend": "fake_brisbane",
+  "account_found": false,
+  "note": "no saved IBM account (AccountNotFoundError); transpiled against the fake backend fake_brisbane as a stand-in target",
+  "authorization": "NOT SUBMITTED: hardware execution requires explicit user authorization; run submit-hardware --confirm with a saved account",
+  "recommended_subset": [
+   "mobius_N4_r2",
+   "packet_N6_r1",
+   "weyl_loop_r2_X",
+   "weyl_loop_r2_Y"
+  ],
+  "elapsed_s": 0.4
+ }
+}

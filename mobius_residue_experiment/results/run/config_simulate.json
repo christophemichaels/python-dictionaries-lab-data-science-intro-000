@@ -1,0 +1,34 @@
+{
+ "command": "simulate",
+ "args": {
+  "results": "results/run",
+  "cmd": "simulate",
+  "shots": 8192,
+  "seed": 20261008,
+  "N_list": [
+   4,
+   8,
+   16,
+   32,
+   64
+  ],
+  "r_list": [
+   2,
+   3,
+   4,
+   5
+  ]
+ },
+ "versions": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "qiskit": "2.5.2",
+  "qiskit_aer": "0.17.2",
+  "qiskit_ibm_runtime": "0.50.0",
+  "scipy": "1.17.1",
+  "mpmath": "1.4.1",
+  "flint": "0.9.0",
+  "matplotlib": "3.11.2"
+ },
+ "time": "2026-10-08T20:10:50Z"
+}

@@ -1,0 +1,2 @@
+# pending hardware stage; nothing submitted
+python mobius_residue_experiment.py submit-hardware --results results/run --backend <backend_name> --shots 4000 --confirm

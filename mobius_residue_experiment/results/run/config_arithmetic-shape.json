@@ -1,0 +1,21 @@
+{
+ "command": "arithmetic-shape",
+ "args": {
+  "results": "results/run",
+  "cmd": "arithmetic-shape",
+  "max_N": 65536,
+  "block_entries_budget": 200000000
+ },
+ "versions": {
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "qiskit": "2.5.2",
+  "qiskit_aer": "0.17.2",
+  "qiskit_ibm_runtime": "0.50.0",
+  "scipy": "1.17.1",
+  "mpmath": "1.4.1",
+  "flint": "0.9.0",
+  "matplotlib": "3.11.2"
+ },
+ "time": "2026-10-08T20:10:45Z"
+}

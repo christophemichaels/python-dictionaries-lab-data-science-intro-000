@@ -1272,6 +1272,19 @@ for K = floor((log N)^(3/4)) vs allowances 1e6..4e23; tail carries delta; gamma_
 nothing beyond 1e7 is certified; the data are consistent with R = O(log N) (conjecture). Files: BALL_SHAPE.md,
 rh_ball_shape.py, rh_ball_shape_fig.py, BALL_SHAPE.png, data/ball_shape.json, data/ball_shape.log.
 
+## 2026-10-08: the prime-zero shape experiment (mobius_residue_experiment/)
+On the master prompt (signed arithmetic remainder, zero reconstruction, exact quantum Green-energy return). Built the
+package: mre/arith.py (R, V, A, C, kappa, delta, Gamma, c_N; exact rationals, float sweep, 200-bit balls, masked-block SVD),
+mre/primezero.py (psi staircase, e_Z from mpmath zeros, P/Z/I/D, Gram bound), mre/quantum.py (feature register with
+exact Gram 1/max(m,n), residue lift, H-readout P0 = R/(dQ), Weyl V_t/T_h, controlled Hadamard test, QFT characters,
+resources, fake-backend hardware batch), CLI and plots. Run results/run: 47/47 gates; fixtures A-D exact; sweep 6..65536:
+C_N < 0 and Gamma_N < 0 for every N > 63 (max C_7 = 59/126, Gamma_13 = 0.5555); A_N jumps at the sixth-power thresholds
+and C by the negatives, delta continuous; block decompositions complete at 64..4096: E+ 1.7..5.6, E- 2.0..6.0, difference
+-0.35..-0.42; prime-zero: 200 zeros reconstruct 90-97 % (D/P 0.03-0.10 for X >= 32), |I| <= 0.035, P = Z + I + D to 1e-14,
+finite Gram bound utilization 0.17-0.57; quantum: 80 cases, Wilson coverage 75/80, 11-qubit prep depth 12060 / 2036 CX,
+Weyl phases cos/sin theta reproduced, orders identical, shift invariance, QFT characters match; hardware pending (no
+account; fake_brisbane ISA batch). Deliverables: README, REPORT, RETURN_SUMMARY, CSV/JSON, 20 plots, QPY, archive.
+
 ## Not to drift into
 Refitting the decay constant; more grids; more supports for the tail law (the a = 1.75 and 2.0 supports were run on
 explicit request for the fiction's check; they are the last). The data are sufficient; the gap is analytic.
